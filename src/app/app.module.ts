@@ -16,12 +16,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers, metaReducers } from './reducers';
-import { AuthModule } from './auth/auth.module';
-import { ErrorsModule } from './errors/errors.module';
-import { DashboardModule } from './dashboard/dashboard.module';
-import { ErrorLayoutComponent } from './errors/containers/error-layout.component';
-import { AuthLayoutComponent } from './auth/containers/auth-layout.component';
-import { DashboardLayoutComponent } from './dashboard/containers/dashboard-layout.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /**
  * register locales
@@ -38,12 +33,17 @@ export function createTanslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
+/**
+ * jwt options factory to obtain token from the
+ * store
+ * @param store
+ */
 export function jwtOptionsFactory(store) {
   return {
     whiteListedDomains: environment.whiteListedDomains,
     skipWhenExpired: true,
     tokenGetter: () => {
-      this.store.pipe(
+      store.pipe(
         select(''),
         map(token => token),
         take(1)
@@ -71,13 +71,11 @@ function getBrowserLanguage() {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ErrorLayoutComponent,
-    AuthLayoutComponent,
-    DashboardLayoutComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {

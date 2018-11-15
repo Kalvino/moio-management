@@ -3,8 +3,7 @@ import { MatProgressBar, MatButton } from '@angular/material';
 
 @Component({
   selector: 'moio-lockscreen',
-  templateUrl: './lockscreen.component.html',
-  styleUrls: ['./lockscreen.component.css']
+  templateUrl: './lockscreen.component.html'
 })
 export class LockscreenComponent implements OnInit {
   @ViewChild(MatProgressBar) progressBar: MatProgressBar;

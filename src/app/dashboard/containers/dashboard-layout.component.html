@@ -1,1 +1,60 @@
-<router-outlet></router-outlet>
+<div class="app-admin-wrap" [dir]='layoutConf.dir'>
+  <!-- Main Container -->
+  <mat-sidenav-container
+    [dir]='layoutConf.dir'
+    class="app-admin-container app-side-nav-container mat-drawer-transition"
+    [ngClass]="{
+    'navigation-top': layoutConf.navigationPos === 'top',
+    'sidebar-full': layoutConf.sidebarStyle === 'full',
+    'sidebar-compact': layoutConf.sidebarStyle === 'compact' && layoutConf.navigationPos === 'side',
+    'sidebar-compact-big': layoutConf.sidebarStyle === 'compact-big' && layoutConf.navigationPos === 'side',
+    'layout-intransition': layoutConf.layoutInTransition,
+    'sidebar-opened': layoutConf.sidebarStyle !== 'closed' && layoutConf.navigationPos === 'side',
+    'sidebar-closed': layoutConf.sidebarStyle === 'closed',
+    'fixed-topbar': layoutConf.topbarFixed && layoutConf.navigationPos === 'side'
+  }">
+    <!-- SIDEBAR -->
+    <!-- ONLY REQUIRED FOR **SIDE** NAVIGATION LAYOUT -->
+    <moio-sidebar-side *ngIf="layoutConf.navigationPos === 'side'"></moio-sidebar-side>
+
+    <!-- Top navigation layout-components (navigation for mobile screen) -->
+    <!-- ONLY REQUIRED FOR **TOP** NAVIGATION MOBILE LAYOUT -->
+    <moio-sidebar-top *ngIf="layoutConf.navigationPos === 'top' && layoutConf.isMobile"></moio-sidebar-top>
+
+    <!-- App content -->
+    <div class="main-content-wrap" [perfectScrollbar]="scrollConfig" [disabled]="layoutConf.topbarFixed">
+      <!-- Header for side navigation layout-components -->
+      <!-- ONLY REQUIRED FOR **SIDE** NAVIGATION LAYOUT -->
+      <moio-header-side
+        *ngIf="layoutConf.navigationPos === 'side'"
+        [notificPanel]="notificationPanel">
+      </moio-header-side>
+
+      <div class="rightside-content-hold" [perfectScrollbar]="scrollConfig" [disabled]="!layoutConf.topbarFixed">
+        <!-- View Loader -->
+        <div class="view-loader" *ngIf="isModuleLoading">
+          <div class="spinner">
+            <div class="double-bounce1 mat-bg-accent"></div>
+            <div class="double-bounce2 mat-bg-primary"></div>
+          </div>
+        </div>
+        <!-- Breadcrumb -->
+        <moio-breadcrumb></moio-breadcrumb>
+        <!-- View outlet -->
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <!-- View overlay for mobile navigation -->
+    <div class="sidebar-backdrop"
+         [ngClass]="{'visible': layoutConf.sidebarStyle !== 'closed' && layoutConf.isMobile}"
+         (click)="closeSidebar()"></div>
+
+    <!-- Notificaation bar -->
+    <mat-sidenav #notificationPanel mode="over" class="" position="end">
+      <div class="navigation-hold" fxLayout="column">
+        <moio-notifications [notificPanel]="notificationPanel"></moio-notifications>
+      </div>
+    </mat-sidenav>
+
+  </mat-sidenav-container>
+</div>

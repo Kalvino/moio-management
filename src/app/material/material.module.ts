@@ -6,6 +6,7 @@ import {
   MatDialogModule,
   MatGridListModule,
   MatIconModule,
+  MatInputModule,
   MatListModule,
   MatMenuModule,
   MatOptionModule, MatProgressBarModule,
@@ -38,6 +39,7 @@ const MODULES = [
   MatRippleModule,
   MatDialogModule,
   MatProgressBarModule,
+  MatInputModule,
   FlexLayoutModule
 ];
 

@@ -4,8 +4,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'moio-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  templateUrl: './signup.component.html'
 })
 export class SignupComponent implements OnInit {
   @ViewChild(MatProgressBar) progressBar: MatProgressBar;

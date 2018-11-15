@@ -1,7 +1,4 @@
 import { Routes } from '@angular/router';
-import { AuthLayoutComponent } from './auth/containers/auth-layout.component';
-import { ErrorLayoutComponent } from './errors/containers/error-layout.component';
-import { DashboardLayoutComponent } from './dashboard/containers/dashboard-layout.component';
 
 export const rootRoutes: Routes = [
   {
@@ -11,7 +8,6 @@ export const rootRoutes: Routes = [
   },
   {
     path: '',
-    component: AuthLayoutComponent,
     children: [
       {
         path: 'auth',
@@ -22,7 +18,6 @@ export const rootRoutes: Routes = [
   },
   {
     path: '',
-    component: ErrorLayoutComponent,
     children: [
       {
         path: 'errors',
@@ -33,12 +28,14 @@ export const rootRoutes: Routes = [
   },
   {
     path: '',
-    component: DashboardLayoutComponent,
     children: [
       {
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule',
-        data: {title: 'Dashboard'}
+        data: {
+          title: 'Dashboard',
+          breadcrumb: 'Dashboard'
+        }
       }
     ]
   },
