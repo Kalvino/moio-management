@@ -9,6 +9,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthLayoutComponent } from './containers/auth-layout.component';
+import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
 
 export const COMPONENTS = [
   AuthLayoutComponent,
@@ -28,7 +30,9 @@ export const COMPONENTS = [
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    HttpClientModule,
+    EffectsModule.forFeature([])
   ]
 })
 export class AuthModule {
