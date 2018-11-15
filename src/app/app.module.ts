@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './core/containers/app.component';
+import { AppComponent } from './core/containers/app/app.component';
 import { registerLocaleData } from '@angular/common';
 import de from '@angular/common/locales/de';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -15,6 +15,13 @@ import { select, Store, StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { reducers, metaReducers } from './reducers';
+import { AuthModule } from './auth/auth.module';
+import { ErrorsModule } from './errors/errors.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { ErrorLayoutComponent } from './errors/containers/error-layout.component';
+import { AuthLayoutComponent } from './auth/containers/auth-layout.component';
+import { DashboardLayoutComponent } from './dashboard/containers/dashboard-layout.component';
 
 /**
  * register locales
@@ -62,14 +69,15 @@ function getBrowserLanguage() {
   return locale;
 }
 
-
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorLayoutComponent,
+    AuthLayoutComponent,
+    DashboardLayoutComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -85,12 +93,14 @@ function getBrowserLanguage() {
         deps: [Store]
       }
     }),
+    StoreModule.forRoot(reducers, {metaReducers}),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 10,
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    AppRoutingModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: getBrowserLanguage()}
