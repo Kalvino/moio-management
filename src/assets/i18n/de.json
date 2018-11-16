@@ -14,4 +14,10 @@
     "NewPasswordSendText": "Ein neues Passwort wird an Ihre Email-Adresse gesendet"
   },
   "Submit": "Einreichen",
+  "Search": "Suche",
+  "AccountMenu": {
+    "Profile": "Profil",
+    "AccountSettings": "Account Settings",
+    "DisableAlerts": "Disable Alerts"
+  }
 }

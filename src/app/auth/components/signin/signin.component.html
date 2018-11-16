@@ -1,12 +1,16 @@
 <div class="page-wrap height-100 mat-bg-primary">
   <div class="session-form-hold">
+
     <mat-progress-bar mode="determinate" class="session-progress"></mat-progress-bar>
+
     <mat-card>
       <mat-card-content>
+
         <div class="text-center pb-1">
           <img src="assets/images/logo-full.png" alt="" class="mb-05">
-          <p class="text-muted m-0">Sign in to your account</p>
+          <p class="text-muted m-0">{{'Sign in to your account' | translate}}</p>
         </div>
+
         <form [formGroup]="signinForm" (ngSubmit)="signin()">
           <div class="">
             <mat-form-field class="full-width">
@@ -14,12 +18,12 @@
                 matInput
                 name="username"
                 [formControl]="signinForm.controls['username']"
-                placeholder="Username"
+                placeholder="{{'Username' | translate}}"
                 value="">
             </mat-form-field>
             <small
               *ngIf="signinForm.controls['username'].hasError('required') && signinForm.controls['username'].touched"
-              class="form-error-msg"> Username is required
+              class="form-error-msg"> {{'Username is required' | translate}}
             </small>
           </div>
 
@@ -30,29 +34,34 @@
                 name="password"
                 matInput
                 [formControl]="signinForm.controls['password']"
-                placeholder="Password"
+                placeholder="{{'Password' | translate}}"
                 value="">
             </mat-form-field>
             <small
               *ngIf="signinForm.controls['password'].hasError('required') && signinForm.controls['password'].touched"
-              class="form-error-msg"> Password is required
+              class="form-error-msg"> {{'Password is required' | translate}}
             </small>
           </div>
 
-          <div class="pb-1">
-            <mat-checkbox
-              name="rememberMe"
-              [formControl]="signinForm.controls['rememberMe']"
-              class="pb-1">Remember this computer
-            </mat-checkbox>
-          </div>
+          <button mat-raised-button
+                  class="mat-primary full-width mb-1"
+                  [disabled]="signinForm.invalid || signinForm.disabled">
+            {{'Sign in' | translate}}
+          </button>
 
-          <button mat-raised-button class="mat-primary full-width mb-1" [disabled]="signinForm.invalid">Sign in</button>
-          <div class="text-center">
-            <a [routerLink]="'/auth/forgot-password'" class="mat-primary text-center full-width">Forgot password</a>
+          <!--div class="text-center">
+            <a [routerLink]="'/auth/forgot-password'"
+               class="mat-primary text-center full-width">
+              {{'Forgot password' | translate }}
+            </a>
+
             <span fxFlex></span>
-            <a [routerLink]="'/auth/signup'" class="mat-primary text-center full-width">Create a new account</a>
-          </div>
+
+            <a [routerLink]="'/auth/signup'"
+               class="mat-primary text-center full-width">
+              {{'Create a new account' | translate}}
+            </a>
+          </div-->
         </form>
       </mat-card-content>
     </mat-card>

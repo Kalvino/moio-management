@@ -5,7 +5,7 @@ import { ErrorLayoutComponent } from './containers/error-layout.component';
 
 export const errorsRoutes: Routes = [
   {
-    path: '',
+    path: 'errors',
     component: ErrorLayoutComponent,
     children: [
       {
@@ -17,6 +17,11 @@ export const errorsRoutes: Routes = [
         path: 'error',
         component: ErrorComponent,
         data: {title: 'Error'}
+      },
+      {
+        path: '**',
+        redirectTo: '404',
+        pathMatch: 'full'
       }
     ]
   }
