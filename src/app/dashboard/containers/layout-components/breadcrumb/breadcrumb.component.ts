@@ -20,9 +20,6 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
     private activeRoute: ActivatedRoute,
     public layout: LayoutService
   ) {
-
-    console.log('ROUTER', this.router);
-
     this.routerEventSub = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((routeChange) => {

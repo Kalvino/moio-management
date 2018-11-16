@@ -7,7 +7,7 @@ import { AuthLayoutComponent } from './containers/auth-layout.component';
 
 export const authRoutes: Routes = [
   {
-    path: '',
+    path: 'auth',
     component: AuthLayoutComponent,
     children: [
       {
@@ -21,7 +21,7 @@ export const authRoutes: Routes = [
       }, {
         path: 'forgot',
         component: ForgotPasswordComponent,
-        data: {title: 'Forogot Password'}
+        data: {title: 'Forgot Password'}
       }, {
         path: 'lock',
         component: LockscreenComponent,

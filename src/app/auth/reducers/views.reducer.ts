@@ -1,22 +1,44 @@
+import { AuthActions, AuthApiActions, AuthPageActions } from '../actions';
+import { falseIfMissing } from 'protractor/built/util';
+
 export interface State {
-  loginError: string | null;
-  registerError: string | null;
-  forgotError: string | null;
+  error: string | null;
   pending: boolean;
 }
 
 export const initialState: State = {
-  loginError: null,
-  registerError: null,
-  forgotError: null,
+  error: null,
   pending: false
 };
 
 export function reducer(
   state: State = initialState,
-  action: any): State {
+  action: AuthActions.AuthActionsUnion
+    | AuthApiActions.AuthApiActionsUnion
+    | AuthPageActions.AuthPageActionsUnion): State {
 
   switch (action.type) {
+
+    case AuthPageActions.AuthPageActionTypes.Login:
+      return {
+        ...state,
+        pending: true,
+        error: null
+      };
+
+    case AuthApiActions.AuthApiActionTypes.LoginSuccess:
+      return {
+        ...state,
+        pending: false,
+        error: null
+      };
+
+    case AuthApiActions.AuthApiActionTypes.LoginFailure:
+      return {
+        ...state,
+        pending: false,
+        error: action.payload.message
+      };
 
     default:
       return state;
@@ -24,7 +46,5 @@ export function reducer(
 
 }
 
-export const getLoginError = (state: State) => state.loginError;
-export const getRegisterError = (state: State) => state.registerError;
-export const getForgotError = (state: State) => state.forgotError;
+export const getError = (state: State) => state.error;
 export const getPending = (state: State) => state.pending;

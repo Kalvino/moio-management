@@ -5,6 +5,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ErrorsRoutingModule } from './errors-routing.module';
 import { ErrorLayoutComponent } from './containers/error-layout.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 export const COMPONENTS = [
   ErrorLayoutComponent,
@@ -19,7 +20,8 @@ export const COMPONENTS = [
   imports: [
     CommonModule,
     MaterialModule,
-    ErrorsRoutingModule
+    ErrorsRoutingModule,
+    TranslateModule
   ]
 })
 export class ErrorsModule {

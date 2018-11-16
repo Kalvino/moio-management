@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './core/containers/app/app.component';
 import { registerLocaleData } from '@angular/common';
@@ -17,6 +16,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers, metaReducers } from './reducers';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthModule } from './auth/auth.module';
+import { ErrorsModule } from './errors/errors.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import * as fromAuth from './auth/reducers';
 
 /**
  * register locales
@@ -36,7 +39,7 @@ export function createTanslateLoader(http: HttpClient) {
 /**
  * jwt options factory to obtain token from the
  * store
- * @param store
+ * @param store Store
  */
 export function jwtOptionsFactory(store) {
   return {
@@ -44,7 +47,7 @@ export function jwtOptionsFactory(store) {
     skipWhenExpired: true,
     tokenGetter: () => {
       store.pipe(
-        select(''),
+        select(fromAuth.getAccessToken),
         map(token => token),
         take(1)
       ).toPromise();
@@ -91,6 +94,9 @@ function getBrowserLanguage() {
         deps: [Store]
       }
     }),
+    AuthModule,
+    ErrorsModule,
+    DashboardModule,
     StoreModule.forRoot(reducers, {metaReducers}),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
