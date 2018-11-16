@@ -1,1 +1,17 @@
-{}
+{
+  "AppTitle": "Verwaltung",
+  "Auth": {
+    "ConfirmLogoutMessage": "Do you really want to log out?",
+    "InvalidCredentials": "Username or password were wrong!",
+    "Signin": "Sign In",
+    "Signout": "Sign Out",
+    "Password": "Password",
+    "Username": "Username",
+    "LoginError": "Error while logging into the application",
+    "LoggedInAs": "Logged in as",
+    "EmailRequired": "Email is required",
+    "PasswordRequried": "Password is required",
+    "NewPasswordSendText": "New password will be sent to your email address"
+  },
+  "Submit": "Submit",
+}

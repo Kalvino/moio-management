@@ -1,1 +1,17 @@
-{}
+{
+  "AppTitle": "Verwaltung",
+  "Auth": {
+    "ConfirmLogoutMessage": "Wollen Sie sich wirklich ausloggen?",
+    "InvalidCredentials": "Benutzername oder Passwort waren falsch!",
+    "Signin": "Anmelden",
+    "Signout": "Ausloggen",
+    "Password": "Passwort",
+    "Username": "Benutzername",
+    "LoginError": "Fehler beim Anmelden in der Anwendung",
+    "LoggedInAs": "Angemeldet als",
+    "EmailRequired": "Email ist erforderlich",
+    "PasswordRequried": "Passwort ist erforderlich",
+    "NewPasswordSendText": "Ein neues Passwort wird an Ihre Email-Adresse gesendet"
+  },
+  "Submit": "Einreichen",
+}
