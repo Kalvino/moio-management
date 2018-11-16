@@ -45,7 +45,9 @@
 
           <button mat-raised-button
                   class="mat-primary full-width mb-1"
-                  [disabled]="signinForm.invalid">{{'Sign in' | translate}}</button>
+                  [disabled]="signinForm.invalid || signinForm.disabled">
+            {{'Sign in' | translate}}
+          </button>
 
           <!--div class="text-center">
             <a [routerLink]="'/auth/forgot-password'"

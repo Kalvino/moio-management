@@ -11,6 +11,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './signin.component.html'
 })
 export class SigninComponent implements OnInit {
+
   @ViewChild(MatProgressBar) progressBar: MatProgressBar;
   @ViewChild(MatButton) submitButton: MatButton;
 
@@ -27,16 +28,16 @@ export class SigninComponent implements OnInit {
 
     this.store.pipe(
       select(fromAuth.getPending),
-      map(pending => {
-        if (pending) {
-          this.progressBar.mode = 'indeterminate';
-          this.signinForm.disable();
-        } else {
-          this.progressBar.mode = 'determinate';
-          this.signinForm.enable();
-        }
-      })
-    );
+    ).subscribe(pending => {
+      console.log('PENDING', pending);
+      if (pending) {
+        this.progressBar.mode = 'indeterminate';
+        this.signinForm.disable();
+      } else {
+        this.progressBar.mode = 'determinate';
+        this.signinForm.enable();
+      }
+    });
   }
 
   /**

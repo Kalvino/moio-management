@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
+import { catchError, delay, exhaustMap, map, tap } from 'rxjs/operators';
 import { Credentials } from '../models/user.interface';
 import { AuthApiService } from '../services/auth-api.service';
 import { AuthApiActions, AuthActions, AuthPageActions } from '../actions';
@@ -18,6 +18,7 @@ export class AuthEffects {
   login$ = this.actions$
     .pipe(
       ofType<AuthPageActions.Login>(AuthPageActions.AuthPageActionTypes.Login),
+      delay(3000),
       map(action => action.payload.credentials),
       exhaustMap((credentials: Credentials) => {
         // TODO implement a LOADER
