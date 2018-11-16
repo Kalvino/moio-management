@@ -24,7 +24,7 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 // use localstorage to save the state
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({
-    keys: [],
+    keys: ['auth'],
     rehydrate: true
   })(reducer);
 }

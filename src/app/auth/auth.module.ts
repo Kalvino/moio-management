@@ -9,13 +9,20 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthLayoutComponent } from './containers/auth-layout.component';
+import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './effects/auth.effects';
+import { LogoutConfirmationDialogComponent } from './components/dialogs/logout-confirmation-dialog.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromAuth from './reducers';
 
 export const COMPONENTS = [
   AuthLayoutComponent,
   ForgotPasswordComponent,
   LockscreenComponent,
   SigninComponent,
-  SignupComponent
+  SignupComponent,
+  LogoutConfirmationDialogComponent
 ];
 
 @NgModule({
@@ -28,8 +35,12 @@ export const COMPONENTS = [
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule
-  ]
+    TranslateModule,
+    HttpClientModule,
+    StoreModule.forFeature('auth', fromAuth.reducers),
+    EffectsModule.forFeature([AuthEffects]),
+  ],
+  entryComponents: [LogoutConfirmationDialogComponent]
 })
 export class AuthModule {
 }

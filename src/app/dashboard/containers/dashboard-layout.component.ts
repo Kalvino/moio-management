@@ -48,7 +48,7 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
   ngOnInit() {
     this.layoutConf = this.layout.layoutConf;
     // this.layout-components.adjustLayout();
-    console.log(this.layoutConf)
+    console.log(this.layoutConf);
 
     // FOR MODULE LOADER FLAG
     this.moduleLoaderSub = this.router.events.subscribe(event => {

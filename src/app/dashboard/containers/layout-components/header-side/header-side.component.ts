@@ -35,8 +35,9 @@ export class HeaderSideComponent implements OnInit {
     this.translate.use(this.currentLang);
   }
 
-  setLang(e) {
-    console.log(e);
+  setLang(event) {
+    // TODO: change language
+    console.log(event);
     this.translate.use(this.currentLang);
   }
 

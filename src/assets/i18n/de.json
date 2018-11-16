@@ -1,1 +1,15 @@
-{}
+{
+  "Forgot password": "Passwort vergessen",
+  "Create a new account": "Neues Konto erstellen",
+  "Sign in": "Anmelden",
+  "Username": "Benutzername",
+  "Password": "Passwort",
+  "Password is required": "Passwort ist erforderlich",
+  "Username is required": "Benutzername ist erforderlich",
+  "Sign in to your account": "Bitte melden Sie sich an",
+  "Logout": "Abmelden",
+  "Are you sure you want to logout?": "Willst Du Dich wirklich abmelden?",
+  "Cancel": "Abbrechen",
+  "OK": "Ok",
+  "Back to Dashboard": "Zurück zur Hauptseite"
+}
