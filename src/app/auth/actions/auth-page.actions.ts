@@ -2,7 +2,7 @@
  * login action types
  */
 import { Action } from '@ngrx/store';
-import { Credentials, User } from '../models/user.interface';
+import { Credentials } from '../models/user.interface';
 
 export enum AuthPageActionTypes {
   Login = '[Auth/Login Page] Login',
