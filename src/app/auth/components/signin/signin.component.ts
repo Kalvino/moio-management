@@ -4,7 +4,6 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import * as fromAuth from '../../reducers';
 import { AuthPageActions } from '../../actions';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'moio-signin',
@@ -29,7 +28,7 @@ export class SigninComponent implements OnInit {
     this.store.pipe(
       select(fromAuth.getPending),
     ).subscribe(pending => {
-      console.log('PENDING', pending);
+
       if (pending) {
         this.progressBar.mode = 'indeterminate';
         this.signinForm.disable();
