@@ -6,6 +6,10 @@ import { ThemeService } from '../../core/services/theme.service';
 import { LayoutService } from '../../core/services/layout.service';
 import { ObservableMedia } from '@angular/flex-layout';
 import { filter } from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
+
+import * as fromDashboard from '../state/dashboard.reducer';
+import * as dashboardActions from '../state/dashboard.actions';
 
 @Component({
   selector: 'moio-dashboard',
@@ -23,8 +27,10 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
   // private headerFixedBodyPS: PerfectScrollbar;
   public scrollConfig = {};
   public layoutConf: any = {};
+  showDashboard: string;
 
   constructor(
+    private store: Store<fromDashboard.State>,
     private router: Router,
     public translate: TranslateService,
     public themeService: ThemeService,
@@ -46,9 +52,11 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   ngOnInit() {
+    this.store.pipe(select(fromDashboard.getShowSideNav)).subscribe(
+      showSideNav => this.showDashboard = showSideNav
+    );
+
     this.layoutConf = this.layout.layoutConf;
-    // this.layout-components.adjustLayout();
-    console.log(this.layoutConf);
 
     // FOR MODULE LOADER FLAG
     this.moduleLoaderSub = this.router.events.subscribe(event => {

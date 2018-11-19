@@ -2,6 +2,10 @@ import { Component, OnInit, Input, Renderer2 } from '@angular/core';
 import { ThemeService } from '../../../../core/services/theme.service';
 import { LayoutService } from '../../../../core/services/layout.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Store, select } from '@ngrx/store';
+
+import * as dashboardActions from '../../../state/dashboard.actions';
+import * as fromDashboard from '../../../state/dashboard.reducer';
 
 @Component({
   selector: 'moio-header-side',
@@ -22,6 +26,7 @@ export class HeaderSideComponent implements OnInit {
   public layoutConf: any;
 
   constructor(
+    private store: Store<fromDashboard.State>,
     private themeService: ThemeService,
     private layout: LayoutService,
     public translate: TranslateService,
@@ -31,8 +36,13 @@ export class HeaderSideComponent implements OnInit {
 
   ngOnInit() {
     this.egretThemes = this.themeService.egretThemes;
-    this.layoutConf = this.layout.layoutConf;
+    console.log(this.layoutConf);
     this.translate.use(this.currentLang);
+
+    // TODO: Unsubscribe
+    this.store.pipe(select(fromDashboard.getShowSideNav)).subscribe(
+      showSideNav => this.layoutConf = showSideNav
+    );
   }
 
   setLang(event) {
@@ -50,14 +60,11 @@ export class HeaderSideComponent implements OnInit {
   }
 
   toggleSidenav() {
-    if (this.layoutConf.sidebarStyle === 'closed') {
-      return this.layout.publishLayoutChange({
-        sidebarStyle: 'full'
-      });
+    if (this.layoutConf === 'closed') {
+      this.store.dispatch(new dashboardActions.OpenSideNav('full'));
+    } else {
+      this.store.dispatch(new dashboardActions.CloseSideNav('closed'));
     }
-    this.layout.publishLayoutChange({
-      sidebarStyle: 'closed'
-    });
   }
 
   toggleCollapse() {

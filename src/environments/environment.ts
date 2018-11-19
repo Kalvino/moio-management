@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   whiteListedDomains: [],
-  apiHost: ''
+  apiHost: 'https://dev-api.my-appsolute-mobility.com'
 };
 
 /*

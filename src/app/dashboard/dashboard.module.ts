@@ -14,6 +14,10 @@ import { DashboardLayoutComponent } from './containers/dashboard-layout.componen
 import { SidenavComponent } from './containers/layout-components/sidenav/sidenav.component';
 import { BlankComponent } from './components/blank/blank.component';
 
+/* NGRX */
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './state/dashboard.reducer';
+
 export const COMPONENTS = [
   DashboardLayoutComponent,
   NotificationsComponent,
@@ -35,7 +39,8 @@ export const COMPONENTS = [
     DashboardRoutingModule,
     PerfectScrollbarModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forFeature('dashboard', reducer)
   ]
 })
 export class DashboardModule {

@@ -5,12 +5,12 @@
     class="app-admin-container app-side-nav-container mat-drawer-transition"
     [ngClass]="{
     'navigation-top': layoutConf.navigationPos === 'top',
-    'sidebar-full': layoutConf.sidebarStyle === 'full',
+    'sidebar-full': showDashboard === 'full',
     'sidebar-compact': layoutConf.sidebarStyle === 'compact' && layoutConf.navigationPos === 'side',
     'sidebar-compact-big': layoutConf.sidebarStyle === 'compact-big' && layoutConf.navigationPos === 'side',
     'layout-intransition': layoutConf.layoutInTransition,
-    'sidebar-opened': layoutConf.sidebarStyle !== 'closed' && layoutConf.navigationPos === 'side',
-    'sidebar-closed': layoutConf.sidebarStyle === 'closed',
+    'sidebar-opened': showDashboard !== 'closed' && layoutConf.navigationPos === 'side',
+    'sidebar-closed': showDashboard === 'closed',
     'fixed-topbar': layoutConf.topbarFixed && layoutConf.navigationPos === 'side'
   }">
     <!-- SIDEBAR -->
