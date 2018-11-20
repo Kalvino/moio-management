@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, from } from 'rxjs';
 import { NavigationEnd, ResolveEnd, ResolveStart, RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ThemeService } from '../../core/services/theme.service';
@@ -27,7 +27,10 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
   // private headerFixedBodyPS: PerfectScrollbar;
   public scrollConfig = {};
   public layoutConf: any = {};
-  showDashboard: string;
+  public sidebarStyle: string;
+  public navPosition: string;
+  public layoutInTransition: boolean;
+  public topBarFixed: boolean;
 
   constructor(
     private store: Store<fromDashboard.State>,
@@ -52,8 +55,20 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   ngOnInit() {
-    this.store.pipe(select(fromDashboard.getShowSideNav)).subscribe(
-      showSideNav => this.showDashboard = showSideNav
+    this.store.pipe(select(fromDashboard.getSideNav)).subscribe(
+      sideNavStyle => this.sidebarStyle = sideNavStyle
+    );
+
+    this.store.pipe(select(fromDashboard.getNavPosition)).subscribe(
+      navPosition => this.navPosition = navPosition
+    );
+
+    this.store.pipe(select(fromDashboard.getLayoutInTransition)).subscribe(
+      layoutInTransition => this.layoutInTransition = layoutInTransition
+    );
+
+    this.store.pipe(select(fromDashboard.getTopbarFixed)).subscribe(
+      topBarFixed => this.topBarFixed = topBarFixed
     );
 
     this.layoutConf = this.layout.layoutConf;
@@ -117,9 +132,7 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   closeSidebar() {
-    this.layout.publishLayoutChange({
-      sidebarStyle: 'closed'
-    });
+    this.store.dispatch(new dashboardActions.CloseSideNav('close'));
   }
 
 }

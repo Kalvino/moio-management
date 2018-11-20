@@ -2,6 +2,11 @@ import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { NavigationService } from '../../../../core/services/navigation.service';
 import { ThemeService } from '../../../../core/services/theme.service';
 import { Subscription } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+
+import * as dashboardActions from '../../../state/dashboard.actions';
+import * as fromDashboard from '../../../state/dashboard.reducer';
+import * as fromAuth from '../../../../auth/reducers';
 
 // import PerfectScrollbar from 'perfect-scrollbar';
 
@@ -15,10 +20,13 @@ export class SidebarSideComponent implements OnInit, OnDestroy, AfterViewInit {
   public hasIconTypeMenuItem: boolean;
   public iconTypeMenuTitle: string;
   private menuItemsSub: Subscription;
+  public user: any;
+  public username: string;
 
   constructor(
+    private store: Store<any>,
     private navService: NavigationService,
-    public themeService: ThemeService,
+    public themeService: ThemeService
   ) {
   }
 
@@ -29,6 +37,16 @@ export class SidebarSideComponent implements OnInit, OnDestroy, AfterViewInit {
       // Checks item list has any icon type.
       this.hasIconTypeMenuItem = !!this.menuItems.filter(item => item.type === 'icon').length;
     });
+
+    // TODO: Unsubscribe
+    this.store.pipe(select(fromAuth.getUser)).subscribe(
+      user => {
+        this.user = user;
+        this.username = this.user.username;
+      }
+    );
+
+    console.log(this.user);
   }
 
   ngAfterViewInit() {

@@ -23,7 +23,7 @@ export class HeaderSideComponent implements OnInit {
     code: 'de',
   }];
   public egretThemes;
-  public layoutConf: any;
+  public sidebarStyle: string;
 
   constructor(
     private store: Store<fromDashboard.State>,
@@ -36,12 +36,12 @@ export class HeaderSideComponent implements OnInit {
 
   ngOnInit() {
     this.egretThemes = this.themeService.egretThemes;
-    console.log(this.layoutConf);
+
     this.translate.use(this.currentLang);
 
     // TODO: Unsubscribe
-    this.store.pipe(select(fromDashboard.getShowSideNav)).subscribe(
-      showSideNav => this.layoutConf = showSideNav
+    this.store.pipe(select(fromDashboard.getSideNav)).subscribe(
+      sidebarStyle => this.sidebarStyle = sidebarStyle
     );
   }
 
@@ -60,7 +60,7 @@ export class HeaderSideComponent implements OnInit {
   }
 
   toggleSidenav() {
-    if (this.layoutConf === 'closed') {
+    if (this.sidebarStyle === 'closed') {
       this.store.dispatch(new dashboardActions.OpenSideNav('full'));
     } else {
       this.store.dispatch(new dashboardActions.CloseSideNav('closed'));
@@ -69,7 +69,7 @@ export class HeaderSideComponent implements OnInit {
 
   toggleCollapse() {
     // compact --> full
-    if (this.layoutConf.sidebarStyle === 'compact') {
+    if (this.sidebarStyle === 'compact') {
       return this.layout.publishLayoutChange({
         sidebarStyle: 'full'
       }, {transitionClass: true});

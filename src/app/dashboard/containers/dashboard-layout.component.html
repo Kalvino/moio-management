@@ -4,14 +4,14 @@
     [dir]='layoutConf.dir'
     class="app-admin-container app-side-nav-container mat-drawer-transition"
     [ngClass]="{
-    'navigation-top': layoutConf.navigationPos === 'top',
-    'sidebar-full': showDashboard === 'full',
-    'sidebar-compact': layoutConf.sidebarStyle === 'compact' && layoutConf.navigationPos === 'side',
-    'sidebar-compact-big': layoutConf.sidebarStyle === 'compact-big' && layoutConf.navigationPos === 'side',
-    'layout-intransition': layoutConf.layoutInTransition,
-    'sidebar-opened': showDashboard !== 'closed' && layoutConf.navigationPos === 'side',
-    'sidebar-closed': showDashboard === 'closed',
-    'fixed-topbar': layoutConf.topbarFixed && layoutConf.navigationPos === 'side'
+    'navigation-top': navPosition === 'top',
+    'sidebar-full': sidebarStyle === 'full',
+    'sidebar-compact': sidebarStyle === 'compact' && navPosition === 'side',
+    'sidebar-compact-big': sidebarStyle === 'compact-big' && navPosition === 'side',
+    'layout-intransition': layoutInTransition,
+    'sidebar-opened': sidebarStyle !== 'closed' && navPosition === 'side',
+    'sidebar-closed': sidebarStyle === 'closed',
+    'fixed-topbar': topBarFixed && navPosition === 'side'
   }">
     <!-- SIDEBAR -->
     <!-- ONLY REQUIRED FOR **SIDE** NAVIGATION LAYOUT -->

@@ -1,5 +1,5 @@
 {
-  "AppTitle": "Verwaltung",
+  "AppTitle": "Administration",
   "Auth": {
     "ConfirmLogoutMessage": "Do you really want to log out?",
     "InvalidCredentials": "Username or password were wrong!",
@@ -11,7 +11,14 @@
     "LoggedInAs": "Logged in as",
     "EmailRequired": "Email is required",
     "PasswordRequried": "Password is required",
-    "NewPasswordSendText": "New password will be sent to your email address"
+    "NewPasswordSendText": "New password will be sent to your email address",
+    "ForgotPassword": "Forgot Password",
+    "CreateNewAccount": "Create a new account",
+    "UsernameRequired": "Username is required",
+    "SignInToYourAccount": "Please sign in",
+    "Cancel": "Cancel",
+    "OK": "Ok",
+    "BackToDashboard": "Back to main page"
   },
   "Submit": "Submit",
   "Search": "Search",
@@ -19,7 +26,5 @@
     "Profile": "Profile",
     "AccountSettings": "Account Settings",
     "DisableAlerts": "Disable Alerts"
-
   }
-
 }

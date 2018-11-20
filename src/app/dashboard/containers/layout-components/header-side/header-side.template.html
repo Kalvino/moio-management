@@ -1,7 +1,7 @@
 <mat-toolbar class="topbar topbar-white">
   <!-- Sidenav toggle button -->
   <button
-    *ngIf="layoutConf.sidebarStyle !== 'compact'"
+    *ngIf="sidebarStyle !== 'compact'"
     mat-icon-button
     id="sidenavToggle"
     (click)="toggleSidenav()"
@@ -10,7 +10,7 @@
   </button>
   <!-- Sidenav toggle collapse -->
   <button
-    *ngIf="layoutConf.sidebarStyle !== 'closed'"
+    *ngIf="sidebarStyle !== 'closed'"
     mat-icon-button
     id="collapseToggle"
     fxHide.lt-md="true"
