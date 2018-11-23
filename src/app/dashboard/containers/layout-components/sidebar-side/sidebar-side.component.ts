@@ -4,8 +4,7 @@ import { ThemeService } from '../../../../core/services/theme.service';
 import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import * as dashboardActions from '../../../state/dashboard.actions';
-import * as fromDashboard from '../../../state/dashboard.reducer';
+import { AuthActions } from '../../../../auth/actions';
 import * as fromAuth from '../../../../auth/reducers';
 
 // import PerfectScrollbar from 'perfect-scrollbar';
@@ -24,6 +23,7 @@ export class SidebarSideComponent implements OnInit, OnDestroy, AfterViewInit {
   public username: string;
 
   constructor(
+    private authStore: Store<fromAuth.State>,
     private store: Store<any>,
     private navService: NavigationService,
     public themeService: ThemeService
@@ -55,6 +55,13 @@ export class SidebarSideComponent implements OnInit, OnDestroy, AfterViewInit {
     //     suppressScrollX: true
     //   })
     // })
+  }
+
+  /**
+   * logout the user
+   */
+  onConfirmLogout() {
+    this.authStore.dispatch(new AuthActions.LogoutConfirmation());
   }
 
   ngOnDestroy() {

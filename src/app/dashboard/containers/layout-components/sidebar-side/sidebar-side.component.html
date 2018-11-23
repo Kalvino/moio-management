@@ -2,7 +2,7 @@
   <div id="scroll-area" [perfectScrollbar] class="navigation-hold" fxLayout="column">
     <!-- App Logo -->
     <div class="branding default-bg">
-      <img src="assets/images/logo.png" alt="" class="app-logo">
+      <img src="assets/images/login-logo.png" alt="" class="app-logo">
       <!-- Two different logos for dark and light themes -->
       <img
         src="assets/images/logo-text-white.png"
@@ -48,7 +48,7 @@
             <mat-icon>account_box</mat-icon>
             <span>{{'AccountMenu.Profile' | translate }}</span>
           </button>
-          <button mat-menu-item routerLink="/sessions/signin">
+          <button mat-menu-item (click)="onConfirmLogout()" >
             <mat-icon>exit_to_app</mat-icon>
             <span>{{ 'Auth.Signout' | translate }}</span>
           </button>

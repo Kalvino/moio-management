@@ -8,8 +8,8 @@ import { ObservableMedia } from '@angular/flex-layout';
 import { filter } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
 
-import * as fromDashboard from '../state/dashboard.reducer';
-import * as dashboardActions from '../state/dashboard.actions';
+import * as fromLayout from '../reducers/layout.reducer';
+import * as layoutActions from '../actions/layout.actions';
 
 @Component({
   selector: 'moio-dashboard',
@@ -31,9 +31,10 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
   public navPosition: string;
   public layoutInTransition: boolean;
   public topBarFixed: boolean;
+  public getIsMobile: boolean;
 
   constructor(
-    private store: Store<fromDashboard.State>,
+    private store: Store<fromLayout.State>,
     private router: Router,
     public translate: TranslateService,
     public themeService: ThemeService,
@@ -55,20 +56,24 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   ngOnInit() {
-    this.store.pipe(select(fromDashboard.getSideNav)).subscribe(
+    this.store.pipe(select(fromLayout.getSideNav)).subscribe(
       sideNavStyle => this.sidebarStyle = sideNavStyle
     );
 
-    this.store.pipe(select(fromDashboard.getNavPosition)).subscribe(
+    this.store.pipe(select(fromLayout.getNavPosition)).subscribe(
       navPosition => this.navPosition = navPosition
     );
 
-    this.store.pipe(select(fromDashboard.getLayoutInTransition)).subscribe(
+    this.store.pipe(select(fromLayout.getLayoutInTransition)).subscribe(
       layoutInTransition => this.layoutInTransition = layoutInTransition
     );
 
-    this.store.pipe(select(fromDashboard.getTopbarFixed)).subscribe(
+    this.store.pipe(select(fromLayout.getTopbarFixed)).subscribe(
       topBarFixed => this.topBarFixed = topBarFixed
+    );
+
+    this.store.pipe(select(fromLayout.getIsMobile)).subscribe(
+      isMobile => this.getIsMobile = isMobile
     );
 
     this.layoutConf = this.layout.layoutConf;
@@ -132,7 +137,7 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   closeSidebar() {
-    this.store.dispatch(new dashboardActions.CloseSideNav('close'));
+    this.store.dispatch(new layoutActions.CloseSideNav('close'));
   }
 
 }

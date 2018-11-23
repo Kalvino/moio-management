@@ -1,13 +1,7 @@
-import * as fromAuth from '../../auth/reducers/auth.reducer';
+import { LayoutActions, LayoutActionTypes } from '../actions/layout.actions';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { DashboardActions, DashboardActionTypes } from './dashboard.actions';
-import { Title } from '@angular/platform-browser';
 
-export interface State extends fromAuth.State {
-  dashboard: DashboardState;
-}
-
-export interface DashboardState {
+export interface State {
   sideNavStyle: string; // full, compact, closed
   navigationPos: string;   // side, top
   direction: string;             // ltr, rtl
@@ -18,7 +12,7 @@ export interface DashboardState {
   topbarFixed: boolean;
 }
 
-const initialState: DashboardState = {
+const initialState: State = {
   sideNavStyle: 'full',
   navigationPos: 'side',
   direction: 'ltr',
@@ -29,107 +23,107 @@ const initialState: DashboardState = {
   topbarFixed: false
 };
 
-const getDashboardFeatureState = createFeatureSelector<DashboardState>('dashboard');
+export const getDashboardState = createFeatureSelector<State>('dashboard');
 
 export const getSideNav = createSelector(
-  getDashboardFeatureState,
-  state => state.sideNavStyle
+  getDashboardState,
+  (state: State) => state.sideNavStyle
 );
 export const getNavPosition = createSelector(
-  getDashboardFeatureState,
-  state => state.navigationPos
+  getDashboardState,
+  (state: State) => state.navigationPos
 );
 export const getDirection = createSelector(
-  getDashboardFeatureState,
-  state => state.direction
+  getDashboardState,
+  (state: State) => state.direction
 );
 export const getLayoutInTransition = createSelector(
-  getDashboardFeatureState,
-  state => state.layoutInTransition
+  getDashboardState,
+  (state: State) => state.layoutInTransition
 );
 export const getIsMobile = createSelector(
-  getDashboardFeatureState,
-  state => state.isMobile
+  getDashboardState,
+  (state: State) => state.isMobile
 );
 export const getUseBreadcrumb = createSelector(
-  getDashboardFeatureState,
-  state => state.useBreadcrumb
+  getDashboardState,
+  (state: State) => state.useBreadcrumb
 );
 export const getBreadcrumb = createSelector(
-  getDashboardFeatureState,
-  state => state.breadcrumb
+  getDashboardState,
+  (state: State) => state.breadcrumb
 );
 export const getTopbarFixed = createSelector(
-  getDashboardFeatureState,
-  state => state.topbarFixed
+  getDashboardState,
+  (state: State) => state.topbarFixed
 );
 
-export function reducer(state = initialState, action: DashboardActions): DashboardState {
+export function reducer(state = initialState, action: LayoutActions): State {
   switch (action.type) {
 
-    case DashboardActionTypes.OpenSideNav:
+    case LayoutActionTypes.OpenSideNav:
       return {
         ...state,
         sideNavStyle: action.payload
       };
-    case DashboardActionTypes.CloseSideNav:
+    case LayoutActionTypes.CloseSideNav:
       return {
         ...state,
         sideNavStyle: action.payload
       };
-    case DashboardActionTypes.CompactSideNav:
+    case LayoutActionTypes.CompactSideNav:
       return {
         ...state,
         sideNavStyle: action.payload
       };
 
-    case DashboardActionTypes.SetNavigationPositionSide:
+    case LayoutActionTypes.SetNavigationPositionSide:
       return {
         ...state,
         navigationPos: action.payload
       };
-    case DashboardActionTypes.SetNavigationPositionTop:
+    case LayoutActionTypes.SetNavigationPositionTop:
       return {
         ...state,
         navigationPos: action.payload
       };
 
-    case DashboardActionTypes.SetDirectionLtr:
+    case LayoutActionTypes.SetDirectionLtr:
       return {
         ...state,
         direction: action.payload
       };
-    case DashboardActionTypes.SetDirectionRtr:
+    case LayoutActionTypes.SetDirectionRtr:
       return {
         ...state,
         direction: action.payload
       };
 
-    case DashboardActionTypes.TransitioningLayout:
+    case LayoutActionTypes.TransitioningLayout:
       return {
         ...state,
         layoutInTransition: action.payload
       };
 
-    case DashboardActionTypes.UseBreadcrumb:
+    case LayoutActionTypes.UseBreadcrumb:
       return {
         ...state,
         useBreadcrumb: action.payload
       };
 
-    case DashboardActionTypes.MakeBreadcrumbSimple:
+    case LayoutActionTypes.MakeBreadcrumbSimple:
       return {
         ...state,
         breadcrumb: action.payload
       };
 
-    case DashboardActionTypes.MakeBreadcrumbTitle:
+    case LayoutActionTypes.MakeBreadcrumbTitle:
       return {
         ...state,
         breadcrumb: action.payload
       };
 
-    case DashboardActionTypes.FixTopbar:
+    case LayoutActionTypes.FixTopbar:
       return {
         ...state,
         topbarFixed: action.payload

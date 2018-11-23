@@ -15,22 +15,22 @@
   }">
     <!-- SIDEBAR -->
     <!-- ONLY REQUIRED FOR **SIDE** NAVIGATION LAYOUT -->
-    <moio-sidebar-side *ngIf="layoutConf.navigationPos === 'side'"></moio-sidebar-side>
+    <moio-sidebar-side ></moio-sidebar-side>
 
     <!-- Top navigation layout-components (navigation for mobile screen) -->
     <!-- ONLY REQUIRED FOR **TOP** NAVIGATION MOBILE LAYOUT -->
-    <moio-sidebar-top *ngIf="layoutConf.navigationPos === 'top' && layoutConf.isMobile"></moio-sidebar-top>
+    <moio-sidebar-top *ngIf="navPosition === 'top' && getIsMobile"></moio-sidebar-top>
 
     <!-- App content -->
-    <div class="main-content-wrap" [perfectScrollbar]="scrollConfig" [disabled]="layoutConf.topbarFixed">
+    <div class="main-content-wrap" [perfectScrollbar]="scrollConfig" [disabled]="topBarFixed">
       <!-- Header for side navigation layout-components -->
       <!-- ONLY REQUIRED FOR **SIDE** NAVIGATION LAYOUT -->
       <moio-header-side
-        *ngIf="layoutConf.navigationPos === 'side'"
+        *ngIf="navPosition === 'side'"
         [notificPanel]="notificationPanel">
       </moio-header-side>
 
-      <div class="rightside-content-hold" [perfectScrollbar]="scrollConfig" [disabled]="!layoutConf.topbarFixed">
+      <div class="rightside-content-hold" [perfectScrollbar]="scrollConfig" [disabled]="!topBarFixed">
         <!-- View Loader -->
         <div class="view-loader" *ngIf="isModuleLoading">
           <div class="spinner">
@@ -46,7 +46,7 @@
     </div>
     <!-- View overlay for mobile navigation -->
     <div class="sidebar-backdrop"
-         [ngClass]="{'visible': layoutConf.sidebarStyle !== 'closed' && layoutConf.isMobile}"
+         [ngClass]="{'visible': sidebarStyle !== 'closed' && getIsMobile}"
          (click)="closeSidebar()"></div>
 
     <!-- Notificaation bar -->

@@ -42,6 +42,7 @@ export function createTanslateLoader(http: HttpClient) {
  * @param store Store
  */
 export function jwtOptionsFactory(store) {
+  console.log(store);
   return {
     whiteListedDomains: environment.whiteListedDomains,
     skipWhenExpired: true,

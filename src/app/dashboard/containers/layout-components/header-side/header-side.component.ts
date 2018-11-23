@@ -4,8 +4,12 @@ import { LayoutService } from '../../../../core/services/layout.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Store, select } from '@ngrx/store';
 
-import * as dashboardActions from '../../../state/dashboard.actions';
-import * as fromDashboard from '../../../state/dashboard.reducer';
+import { AuthActions } from '../../../../auth/actions';
+import * as layoutActions from '../../../actions/layout.actions';
+import * as fromAuth from '../../../../auth/reducers';
+import * as fromDashboard from '../../../reducers';
+import * as  fromLayout from '../../../reducers/layout.reducer';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'moio-header-side',
@@ -26,7 +30,8 @@ export class HeaderSideComponent implements OnInit {
   public sidebarStyle: string;
 
   constructor(
-    private store: Store<fromDashboard.State>,
+    private authStore: Store<fromAuth.State>,
+    private store: Store<fromDashboard.DashboardState>,
     private themeService: ThemeService,
     private layout: LayoutService,
     public translate: TranslateService,
@@ -40,7 +45,7 @@ export class HeaderSideComponent implements OnInit {
     this.translate.use(this.currentLang);
 
     // TODO: Unsubscribe
-    this.store.pipe(select(fromDashboard.getSideNav)).subscribe(
+    this.store.pipe(select(fromLayout.getSideNav)).subscribe(
       sidebarStyle => this.sidebarStyle = sidebarStyle
     );
   }
@@ -60,10 +65,11 @@ export class HeaderSideComponent implements OnInit {
   }
 
   toggleSidenav() {
+    // todo subscribe to the sidenavstyle
     if (this.sidebarStyle === 'closed') {
-      this.store.dispatch(new dashboardActions.OpenSideNav('full'));
+      this.store.dispatch(new layoutActions.OpenSideNav('full'));
     } else {
-      this.store.dispatch(new dashboardActions.CloseSideNav('closed'));
+      this.store.dispatch(new layoutActions.CloseSideNav('closed'));
     }
   }
 
@@ -80,5 +86,12 @@ export class HeaderSideComponent implements OnInit {
       sidebarStyle: 'compact'
     }, {transitionClass: true});
 
+  }
+
+  /**
+   * logout the user
+   */
+  onConfirmLogout() {
+    this.authStore.dispatch(new AuthActions.LogoutConfirmation());
   }
 }
