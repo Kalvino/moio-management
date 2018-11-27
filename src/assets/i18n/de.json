@@ -26,5 +26,12 @@
     "Profile": "Profil",
     "AccountSettings": "Account Settings",
     "DisableAlerts": "Disable Alerts"
-  }
+  },
+
+  "users": "Benutzer",
+  "USERS": "BENUTZER",
+  "dashboard": "armaturenbrett",
+  "DASHBOARD": "ARMATURENBRETT",
+  "list": "liste",
+  "LIST": "LISTE"
 }

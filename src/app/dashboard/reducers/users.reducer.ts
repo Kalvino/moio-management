@@ -1,4 +1,5 @@
 import { createEntityAdapter, EntityAdapter, EntityState, Dictionary } from '@ngrx/entity';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { User } from '../models/user.model';
 import { UsersActions, UsersActionTypes} from '../actions/users.actions';
 
@@ -21,7 +22,11 @@ export function usersReducer(state = initialUsersState, action: UsersActions): U
 
     case UsersActionTypes.LoadUsersSuccess:
 
-      return adapter.addAll(action.payload, { ...state, allUsersLoaded: true });
+      return adapter.upsertMany(action.payload, { ...state, allUsersLoaded: true });
+
+    case UsersActionTypes.LoadUsersFail:
+
+      return { ...state, allUsersLoaded: false };
 
     default: {
 
@@ -39,7 +44,22 @@ export const {
 
 } = adapter.getSelectors();
 
+export const selectUsersState = createFeatureSelector<UsersState>('dashboard');
 
+export const selectUserById = (userId: number) => createSelector(
+  selectUsersState,
+  usersState => usersState.entities[userId]
+);
+
+export const selectAllUsers = createSelector(
+  selectUsersState,
+  selectAll
+);
+
+export const allUsersLoaded = createSelector(
+  selectUsersState,
+  usersState => usersState.allUsersLoaded
+);
 
 
 

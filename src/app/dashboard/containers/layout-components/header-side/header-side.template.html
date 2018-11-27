@@ -87,19 +87,19 @@
   <mat-menu #accountMenu="matMenu">
     <button mat-menu-item [routerLink]="['/profile/overview']">
       <mat-icon>account_box</mat-icon>
-      <span>Profile</span>
+      <span>{{'AccountMenu.Profile' | translate }}</span>
     </button>
-    <button mat-menu-item [routerLink]="['/profile/settings']">
+    <!-- <button mat-menu-item [routerLink]="['/profile/settings']">
       <mat-icon>settings</mat-icon>
       <span>Account Settings</span>
     </button>
     <button mat-menu-item>
       <mat-icon>notifications_off</mat-icon>
       <span>Disable alerts</span>
-    </button>
+    </button> -->
     <button mat-menu-item (click)="onConfirmLogout()">
       <mat-icon>exit_to_app</mat-icon>
-      <span>Sign out</span>
+      <span>{{ 'Auth.Signout' | translate }}</span>
     </button>
   </mat-menu>
 

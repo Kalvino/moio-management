@@ -11,6 +11,10 @@
           <p class="text-muted m-0">{{'Sign in to your account' | translate}}</p>
         </div>
 
+        <small *ngIf="errorMessage" class="text-center form-error-msg">
+          {{errorMessage}}!
+        </small>
+
         <form [formGroup]="signinForm" (ngSubmit)="signin()">
           <div class="">
             <mat-form-field class="full-width">

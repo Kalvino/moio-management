@@ -28,7 +28,8 @@ export class AuthEffects {
           .pipe(
             map(response => new AuthApiActions.LoginSuccess({response})),
             catchError(response => {
-              const message = response.error.error.toLowerCase();
+              console.log(response);
+              const message = response.statusText.toLowerCase();
               return of(new AuthApiActions.LoginFailure({message}));
             }),
             tap(() => {
@@ -81,7 +82,8 @@ export class AuthEffects {
           .pipe(
             map(() => new AuthApiActions.LogoutSuccess()),
             catchError(httpResponse => {
-              const message = httpResponse.error.error.toLowerCase();
+              console.log(httpResponse);
+              const message = httpResponse.statusText.toLowerCase();
               return of(new AuthApiActions.LogoutFailure({message}));
             }),
             tap(() => {

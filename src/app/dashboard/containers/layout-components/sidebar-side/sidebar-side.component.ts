@@ -20,7 +20,6 @@ export class SidebarSideComponent implements OnInit, OnDestroy, AfterViewInit {
   public iconTypeMenuTitle: string;
   private menuItemsSub: Subscription;
   public user: any;
-  public username: string;
 
   constructor(
     private authStore: Store<fromAuth.State>,
@@ -34,19 +33,18 @@ export class SidebarSideComponent implements OnInit, OnDestroy, AfterViewInit {
     this.iconTypeMenuTitle = this.navService.iconTypeMenuTitle;
     this.menuItemsSub = this.navService.menuItems$.subscribe(menuItem => {
       this.menuItems = menuItem;
+      console.log(this.menuItems);
       // Checks item list has any icon type.
       this.hasIconTypeMenuItem = !!this.menuItems.filter(item => item.type === 'icon').length;
     });
 
     // TODO: Unsubscribe
     this.store.pipe(select(fromAuth.getUser)).subscribe(
-      user => {
-        this.user = user;
-        this.username = this.user.username;
-      }
-    );
+      user => this.user = user );
 
     console.log(this.user);
+
+
   }
 
   ngAfterViewInit() {

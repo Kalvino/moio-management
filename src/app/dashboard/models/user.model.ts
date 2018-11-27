@@ -11,5 +11,6 @@ export interface User {
   password?: string;
   phone?: string;
   nursingHome?: string;
+  nursing_home_id?: number;
   username?: string;
 }

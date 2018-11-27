@@ -13,6 +13,7 @@ export class SigninComponent implements OnInit {
 
   @ViewChild(MatProgressBar) progressBar: MatProgressBar;
   @ViewChild(MatButton) submitButton: MatButton;
+  errorMessage: string;
 
   signinForm: FormGroup;
 
@@ -24,6 +25,12 @@ export class SigninComponent implements OnInit {
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     });
+
+    this.store.pipe(select(fromAuth.getError)).subscribe(
+      error => this.errorMessage = error
+    );
+
+    console.log(this.errorMessage);
 
     this.store.pipe(
       select(fromAuth.getPending),

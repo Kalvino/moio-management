@@ -8,7 +8,6 @@ import { AuthActions } from '../../../../auth/actions';
 import * as layoutActions from '../../../actions/layout.actions';
 import * as fromAuth from '../../../../auth/reducers';
 import * as fromDashboard from '../../../reducers';
-import * as  fromLayout from '../../../reducers/layout.reducer';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -45,7 +44,7 @@ export class HeaderSideComponent implements OnInit {
     this.translate.use(this.currentLang);
 
     // TODO: Unsubscribe
-    this.store.pipe(select(fromLayout.getSideNav)).subscribe(
+    this.store.pipe(select(fromDashboard.getSideNav)).subscribe(
       sidebarStyle => this.sidebarStyle = sidebarStyle
     );
   }

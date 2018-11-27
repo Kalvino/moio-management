@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './core/containers/app/app.component';
 import { registerLocaleData } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { rootRoutes } from './app.routes';
 import de from '@angular/common/locales/de';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -20,6 +22,14 @@ import { AuthModule } from './auth/auth.module';
 import { ErrorsModule } from './errors/errors.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import * as fromAuth from './auth/reducers';
+/**
+ * Angular material
+ */
+
+import {
+  MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,
+  MatSortModule, MatTableModule
+} from '@angular/material';
 
 /**
  * register locales
@@ -78,6 +88,7 @@ function getBrowserLanguage() {
     AppComponent
   ],
   imports: [
+    RouterModule.forRoot(rootRoutes),
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -98,6 +109,11 @@ function getBrowserLanguage() {
     AuthModule,
     ErrorsModule,
     DashboardModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatTableModule,
     StoreModule.forRoot(reducers, {metaReducers}),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
@@ -107,6 +123,7 @@ function getBrowserLanguage() {
     EffectsModule.forRoot([]),
     AppRoutingModule
   ],
+  exports: [RouterModule],
   providers: [
     {provide: LOCALE_ID, useValue: getBrowserLanguage()}
   ],

@@ -64,6 +64,14 @@
                   "with": "src/environments/environment.cvb.ts"
                 }
               ]
+            },
+            "cal": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.cal.ts"
+                }
+              ]
             }
           }
         },
@@ -78,6 +86,9 @@
             },
             "cvb": {
               "browserTarget": "moio-management:build:cvb"
+            },
+            "cal": {
+              "browserTarget": "moio-management:build:cal"
             }
           }
         },

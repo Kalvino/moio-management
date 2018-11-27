@@ -5,7 +5,6 @@ import * as usersActions from '../actions/users.actions';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { of } from 'rxjs';
-import { allUsersLoaded } from '../reducers/users.selector';
 
 @Injectable()
 export class UserEffects {

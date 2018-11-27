@@ -5,9 +5,8 @@ import { UsersService } from '../../../services/users.service';
 
 /* NGRX */
 import { Store, select } from '@ngrx/store';
-import * as fromUsers from '../../../reducers/users.reducer';
+import * as fromDashboard from '../../../reducers';
 import * as userActions from '../../../actions/users.actions';
-import * as usersSelector from '../../../reducers/users.selector';
 import { takeWhile } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -24,19 +23,45 @@ export class UserListComponent implements OnInit, OnDestroy {
   displayCode: boolean;
 
   users: User[];
+  displayedColumns: string[] = ['name', 'nursing-home', 'email', 'username'];
 
   // Used to highlight the selected user in the list
   selectedUser: User | null;
   componentActive = true;
 
-  constructor(private store: Store<fromUsers.UsersState>,
+  columns = [
+    {
+      prop: 'fistname',
+      name: 'First Name'
+    },
+    {
+      prop: 'lastname',
+      name: 'Last Name'
+    },
+    {
+      prop: 'nursing_home_id',
+      name: 'Nursing Home'
+    },
+    {
+      prop: 'email',
+      name: 'Email'
+    },
+    {
+      prop: 'username',
+      name: 'Username'
+    }
+  ];
+
+  rows = [];
+
+  constructor(private store: Store<fromDashboard.State>,
     private usersService: UsersService) { }
 
   ngOnInit(): void {
 
     // this.errorMessage$ = this.store.pipe(select(fromUsers.));
     this.store.dispatch(new userActions.LoadUsers());
-    this.store.pipe(select(usersSelector.selectAllUsers),
+    this.store.pipe(select(fromDashboard.getAllUsers),
       takeWhile(() => this.componentActive))
       .subscribe((users: User[]) => this.users = users);
 
@@ -47,7 +72,6 @@ export class UserListComponent implements OnInit, OnDestroy {
     this.componentActive = false;
   }
 
-
   newUser(): void {
     this.store.dispatch(new userActions.InitializeUser());
   }
@@ -55,5 +79,4 @@ export class UserListComponent implements OnInit, OnDestroy {
   selectUser(user: User): void {
     this.store.dispatch(new userActions.SelectUser(user));
   }
-
 }

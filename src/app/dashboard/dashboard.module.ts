@@ -13,7 +13,6 @@ import { SidebarTopComponent } from './containers/layout-components/sidebar-top/
 import { DashboardLayoutComponent } from './containers/dashboard-layout.component';
 import { SidenavComponent } from './containers/layout-components/sidenav/sidenav.component';
 import { BlankComponent } from './components/blank/blank.component';
-import { UserListComponent } from './components/users/user-list/user-list.component';
 import { UserEffects } from './effects/users.effects';
 import { UserModule } from './components/users/user.module';
 
@@ -31,8 +30,7 @@ export const COMPONENTS = [
   SidebarSideComponent,
   SidebarTopComponent,
   SidenavComponent,
-  BlankComponent,
-  UserListComponent
+  BlankComponent
 ];
 
 export const EFFECTS = [
@@ -52,6 +50,10 @@ export const EFFECTS = [
     UserModule,
     StoreModule.forFeature('dashboard', fromDashboard.reducers),
     EffectsModule.forFeature(EFFECTS)
+  ],
+  exports: [
+    DashboardLayoutComponent,
+    DashboardRoutingModule
   ]
 })
 export class DashboardModule {

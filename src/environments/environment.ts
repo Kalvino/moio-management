@@ -4,8 +4,15 @@
 
 export const environment = {
   production: false,
-  whiteListedDomains: [],
-  apiHost: 'http://localhost:8000'
+  whiteListedDomains: [
+    'http://localhost:8000',
+    'http://moio.cloud.local',
+    'http://localhost:4200',
+    'https://dev-api.my-appsolute-mobility.com'
+  ],
+  // apiHost: 'http://localhost:8000'
+  // apiHost: 'https://dev-api.my-appsolute-mobility.com'
+  apiHost: 'http://moio.cloud.local'
 };
 
 /*

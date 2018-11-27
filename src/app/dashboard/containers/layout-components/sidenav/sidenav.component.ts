@@ -14,6 +14,7 @@ export class SidenavComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.menuItems);
   }
 
   // Only for demo purpose

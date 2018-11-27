@@ -23,40 +23,14 @@ const initialState: State = {
   topbarFixed: false
 };
 
-export const getDashboardState = createFeatureSelector<State>('dashboard');
-
-export const getSideNav = createSelector(
-  getDashboardState,
-  (state: State) => state.sideNavStyle
-);
-export const getNavPosition = createSelector(
-  getDashboardState,
-  (state: State) => state.navigationPos
-);
-export const getDirection = createSelector(
-  getDashboardState,
-  (state: State) => state.direction
-);
-export const getLayoutInTransition = createSelector(
-  getDashboardState,
-  (state: State) => state.layoutInTransition
-);
-export const getIsMobile = createSelector(
-  getDashboardState,
-  (state: State) => state.isMobile
-);
-export const getUseBreadcrumb = createSelector(
-  getDashboardState,
-  (state: State) => state.useBreadcrumb
-);
-export const getBreadcrumb = createSelector(
-  getDashboardState,
-  (state: State) => state.breadcrumb
-);
-export const getTopbarFixed = createSelector(
-  getDashboardState,
-  (state: State) => state.topbarFixed
-);
+export const getSideNav = (state: State) => state.sideNavStyle;
+export const getNavPosition = (state: State) => state.navigationPos;
+export const getDirection = (state: State) => state.direction;
+export const getLayoutInTransition = (state: State) => state.layoutInTransition;
+export const getIsMobile = (state: State) => state.isMobile;
+export const getUseBreadcrumb = (state: State) => state.useBreadcrumb;
+export const getBreadcrumb = (state: State) => state.breadcrumb;
+export const getTopbarFixed = (state: State) => state.topbarFixed;
 
 export function reducer(state = initialState, action: LayoutActions): State {
   switch (action.type) {

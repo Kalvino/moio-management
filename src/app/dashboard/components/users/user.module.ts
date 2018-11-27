@@ -1,19 +1,30 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
-import { UserEffects } from '../../effects/users.effects';
+import { MatTableModule } from '@angular/material/table';
+import { CdkTableModule } from '@angular/cdk/table';
 
 /* NGRX */
-import { StoreModule } from '@ngrx/store';
-import { usersReducer } from '../../reducers/users.reducer';
-import { EffectsModule } from '@ngrx/effects';
+import { UsersComponent } from './users.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { MatSortModule } from '@angular/material';
+
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { DashboardRoutingModule } from '../../dashboard-routing.module';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('users', usersReducer),
-    EffectsModule.forFeature([UserEffects])
+    DashboardRoutingModule,
+    MatTableModule,
+    CdkTableModule,
+    MatSortModule,
+    NgxDatatableModule
   ],
   declarations: [
+    UsersComponent,
+    UserListComponent,
+  ],
+  exports: [
+    UsersComponent,
+    UserListComponent,
   ]
 })
 export class UserModule { }

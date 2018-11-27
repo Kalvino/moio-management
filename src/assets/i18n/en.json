@@ -26,5 +26,11 @@
     "Profile": "Profile",
     "AccountSettings": "Account Settings",
     "DisableAlerts": "Disable Alerts"
-  }
+  },
+  "users": "users",
+  "USERS": "USERS",
+  "dashboard": "dashboard",
+  "DASHBOARD": "DASHBOARD",
+  "list": "list",
+  "LIST": "LIST"
 }

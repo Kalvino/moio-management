@@ -8,7 +8,7 @@ import { ObservableMedia } from '@angular/flex-layout';
 import { filter } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
 
-import * as fromLayout from '../reducers/layout.reducer';
+import * as fromDashboard from '../reducers';
 import * as layoutActions from '../actions/layout.actions';
 
 @Component({
@@ -34,7 +34,7 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
   public getIsMobile: boolean;
 
   constructor(
-    private store: Store<fromLayout.State>,
+    private store: Store<fromDashboard.State>,
     private router: Router,
     public translate: TranslateService,
     public themeService: ThemeService,
@@ -56,25 +56,28 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   ngOnInit() {
-    this.store.pipe(select(fromLayout.getSideNav)).subscribe(
+    this.store.pipe(select(fromDashboard.getSideNav)).subscribe(
       sideNavStyle => this.sidebarStyle = sideNavStyle
     );
 
-    this.store.pipe(select(fromLayout.getNavPosition)).subscribe(
+    this.store.pipe(select(fromDashboard.getNavPosition)).subscribe(
       navPosition => this.navPosition = navPosition
     );
 
-    this.store.pipe(select(fromLayout.getLayoutInTransition)).subscribe(
+    this.store.pipe(select(fromDashboard.getLayoutInTransition)).subscribe(
       layoutInTransition => this.layoutInTransition = layoutInTransition
     );
 
-    this.store.pipe(select(fromLayout.getTopbarFixed)).subscribe(
+    this.store.pipe(select(fromDashboard.getTopbarFixed)).subscribe(
       topBarFixed => this.topBarFixed = topBarFixed
     );
 
-    this.store.pipe(select(fromLayout.getIsMobile)).subscribe(
+    this.store.pipe(select(fromDashboard.getIsMobile)).subscribe(
       isMobile => this.getIsMobile = isMobile
     );
+
+    console.log(this.sidebarStyle);
+    console.log(this.getIsMobile);
 
     this.layoutConf = this.layout.layoutConf;
 

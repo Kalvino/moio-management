@@ -23,7 +23,7 @@
       </div>
       <span class="app-user-name mb-05">
         <mat-icon class="icon-xs text-muted">lock</mat-icon>
-        {{ username }}
+        {{ user.firstname }} {{ user.lastname }}
       </span>
       <!-- Small buttons -->
       <div class="app-user-controls">
@@ -40,7 +40,7 @@
           mat-icon-button
           mat-xs-button
           matTooltip="Sign Out"
-          routerLink="/sessions/signin">
+          (click)="onConfirmLogout()">
           <mat-icon>exit_to_app</mat-icon>
         </button>
         <mat-menu #appUserMenu="matMenu">
