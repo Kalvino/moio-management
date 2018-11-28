@@ -52,14 +52,17 @@ export function createTanslateLoader(http: HttpClient) {
  * @param store Store
  */
 export function jwtOptionsFactory(store) {
-  console.log(store);
   return {
-    whiteListedDomains: environment.whiteListedDomains,
+    whitelistedDomains: environment.whitelistedDomains,
     skipWhenExpired: true,
     tokenGetter: () => {
-      store.pipe(
+      return store.pipe(
         select(fromAuth.getAccessToken),
-        map(token => token),
+        map(token => {
+          console.log('TOKEN', token);
+
+          return token;
+        }),
         take(1)
       ).toPromise();
     }
