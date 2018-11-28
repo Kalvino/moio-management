@@ -58,9 +58,7 @@ export function jwtOptionsFactory(store) {
     tokenGetter: () => {
       return store.pipe(
         select(fromAuth.getAccessToken),
-        map(token => {
-          return token;
-        }),
+        map(token => token),
         take(1)
       ).toPromise();
     }
