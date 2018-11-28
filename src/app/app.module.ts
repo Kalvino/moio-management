@@ -59,8 +59,6 @@ export function jwtOptionsFactory(store) {
       return store.pipe(
         select(fromAuth.getAccessToken),
         map(token => {
-          console.log('TOKEN', token);
-
           return token;
         }),
         take(1)
