@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  whiteListedDomains: [
+  whitelistedDomains: [
     'http://localhost:8000',
     'http://moio.cloud.local',
     'http://localhost:4200',

@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  whiteListedDomains: [
+  whitelistedDomains: [
     'localhost:4200',
-    'http://api.moiocloud.local'
+    'api.moiocloud.local'
   ],
   apiHost: 'http://api.moiocloud.local'
 };
