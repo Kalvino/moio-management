@@ -1,68 +1,70 @@
-import { createEntityAdapter, EntityAdapter, EntityState, Dictionary } from '@ngrx/entity';
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { UsersApiActions, UsersActions } from '../actions';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { User } from '../models/user.model';
-import { UsersActions, UsersActionTypes} from '../actions/users.actions';
+import { AuthApiActions } from '../../auth/actions';
 
-export interface UsersState extends EntityState<User> {
-  allUsersLoaded: boolean;
+// state interface definition
+export interface State extends EntityState<User> {
+  selectedUserId: number | null;
 }
 
-export const adapter: EntityAdapter<User> =
-  createEntityAdapter<User>();
-
-
-export const initialUsersState: UsersState = adapter.getInitialState({
-  allUsersLoaded: false
+// extend & export entity adapater
+export const adapater: EntityAdapter<User> = createEntityAdapter<User>({
+  selectId: (user: User) => user.id,
+  sortComparer: false
 });
 
+// compose the initial state
+export const initialState: State = adapater.getInitialState({
+  selectedUserId: null
+});
 
-export function usersReducer(state = initialUsersState, action: UsersActions): UsersState {
+/**
+ * reducer for the users state
+ * @param state
+ * @param action
+ */
+export function reducer(
+  state: State = initialState,
+  action:
+    | UsersApiActions.UsersApiActionsUnion
+    | UsersActions.UsersActionsUnion
+    | AuthApiActions.AuthApiActionsUnion
+): State {
 
   switch (action.type) {
 
-    case UsersActionTypes.LoadUsersSuccess:
+    // load users success state
+    case UsersApiActions.UsersApiActionTypes.LoadUsersSuccess:
+      return adapater.upsertMany(action.payload, state);
 
-      return adapter.upsertMany(action.payload, { ...state, allUsersLoaded: true });
+    // add a new entity to the state in case creation is successful
+    case UsersApiActions.UsersApiActionTypes.CreateUserSuccess:
+      return adapater.addOne(action.payload.user, state);
 
-    case UsersActionTypes.LoadUsersFail:
+    case UsersApiActions.UsersApiActionTypes.EditUserSuccess:
+      return adapater.upsertOne(action.payload.user, state);
 
-      return { ...state, allUsersLoaded: false };
+    // case select user
+    case UsersActions.UsersActionTypes.SelectUser:
+      return {
+        ...state,
+        selectedUserId: action.payload.id
+      };
 
-    default: {
+    // reset state to initial state on logout
+    case AuthApiActions.AuthApiActionTypes.LogoutSuccess:
+    case UsersActions.UsersActionTypes.ResetUsersState:
+      return initialState;
 
+    default:
       return state;
-    }
-
   }
+
 }
 
-export const {
-  selectAll,
-  selectEntities,
-  selectIds,
-  selectTotal
-
-} = adapter.getSelectors();
-
-export const selectUsersState = createFeatureSelector<UsersState>('dashboard');
-
-export const selectUserById = (userId: number) => createSelector(
-  selectUsersState,
-  usersState => usersState.entities[userId]
-);
-
-export const selectAllUsers = createSelector(
-  selectUsersState,
-  selectAll
-);
-
-export const allUsersLoaded = createSelector(
-  selectUsersState,
-  usersState => usersState.allUsersLoaded
-);
-
-
-
-
-
-
+/**
+ * return the selected user id from the state
+ * @param state
+ */
+export const getSelectedUserId = (state: State) => state.selectedUserId;

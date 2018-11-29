@@ -13,7 +13,7 @@ import { SidebarTopComponent } from './containers/layout-components/sidebar-top/
 import { DashboardLayoutComponent } from './containers/dashboard-layout.component';
 import { SidenavComponent } from './containers/layout-components/sidenav/sidenav.component';
 import { BlankComponent } from './components/blank/blank.component';
-import { UserEffects } from './effects/users.effects';
+import { UsersEffects } from './effects/users.effects';
 import { UserModule } from './components/users/user.module';
 
 /* NGRX */
@@ -34,7 +34,7 @@ export const COMPONENTS = [
 ];
 
 export const EFFECTS = [
-  UserEffects
+  UsersEffects
 ];
 
 @NgModule({

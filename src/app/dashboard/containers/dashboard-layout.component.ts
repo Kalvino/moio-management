@@ -52,7 +52,7 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
 
     // Translator init
     const browserLang: string = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+    translate.use(browserLang.match(/en|de/) ? browserLang : 'de');
   }
 
   ngOnInit() {

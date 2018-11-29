@@ -16,11 +16,7 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${environment.apiHost}/api/users`)
-      .pipe(
-        tap(data => console.log(JSON.stringify(data))),
-        catchError(this.handleError)
-      );
+    return this.http.get<User[]>(`${environment.apiHost}/api/users`);
   }
 
   createUser(user: User): Observable<User> {

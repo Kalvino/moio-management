@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatProgressBar, MatButton } from '@angular/material';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { select, Store } from '@ngrx/store';
 import * as fromAuth from '../../reducers';
 import { AuthPageActions } from '../../actions';
@@ -17,7 +18,8 @@ export class SigninComponent implements OnInit {
 
   signinForm: FormGroup;
 
-  constructor(private store: Store<fromAuth.State>) {
+  constructor(private store: Store<fromAuth.State>, private translate: TranslateService) {
+    translate.setDefaultLang('de');
   }
 
   ngOnInit() {

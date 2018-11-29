@@ -31,7 +31,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   columns = [
     {
-      prop: 'fistname',
+      prop: 'firstname',
       name: 'First Name'
     },
     {
@@ -53,6 +53,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   ];
 
   rows = [];
+  ids: string[];
 
   constructor(private store: Store<fromDashboard.State>,
     private usersService: UsersService) { }
@@ -63,9 +64,14 @@ export class UserListComponent implements OnInit, OnDestroy {
     this.store.dispatch(new userActions.LoadUsers());
     this.store.pipe(select(fromDashboard.getAllUsers),
       takeWhile(() => this.componentActive))
-      .subscribe((users: User[]) => this.users = users);
+      .subscribe((users: User[]) => this.rows = users);
 
-      console.log(this.users);
+      this.store.pipe(select(fromDashboard.getUsersIds),
+      takeWhile(() => this.componentActive))
+      .subscribe((ids: string[]) => this.ids = ids);
+
+      console.log(this.rows);
+      console.log(this.ids);
   }
 
   ngOnDestroy(): void {

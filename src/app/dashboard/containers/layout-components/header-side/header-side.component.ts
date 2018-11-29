@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
 })
 export class HeaderSideComponent implements OnInit {
   @Input() notificPanel;
-  currentLang = 'en';
+  currentLang = 'de';
 
   public availableLangs = [{
     name: 'English',
@@ -30,7 +30,7 @@ export class HeaderSideComponent implements OnInit {
 
   constructor(
     private authStore: Store<fromAuth.State>,
-    private store: Store<fromDashboard.DashboardState>,
+    private store: Store<fromDashboard.State>,
     private themeService: ThemeService,
     private layout: LayoutService,
     public translate: TranslateService,
