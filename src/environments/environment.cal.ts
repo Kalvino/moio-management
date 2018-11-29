@@ -6,7 +6,7 @@ export const environment = {
     'moio.cloud.local',
     'dev-api.my-appsolute-mobility.com'
   ],
-  apiHost: 'http://localhost:8000'
+  // apiHost: 'http://localhost:8000'
   // apiHost: 'https://dev-api.my-appsolute-mobility.com'
-  // apiHost: 'http://moio.cloud.local'
+  apiHost: 'http://moio.cloud.local'
 };
