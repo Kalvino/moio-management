@@ -43,7 +43,7 @@ export class CreateUserFailure implements Action {
 export class LoadUsersSuccess implements Action {
   public readonly type = UsersApiActionTypes.LoadUsersSuccess;
 
-  constructor(public payload: User[]) {
+  constructor(public payload: { users: User[] }) {
   }
 }
 

@@ -59,12 +59,11 @@ export class UsersEffects {
 
         // dispatch showLoader action
 
-        return this.usersService
-          .getUsers()
+        return this.usersService.getUsers()
           .pipe(
             map((users: User[]) => {
               console.log(users)
-              return new UsersApiActions.LoadUsersSuccess(users);
+              return new UsersApiActions.LoadUsersSuccess({users});
             }),
             catchError(httpError => {
               const message = httpError.error.message.toLowerCase();

@@ -36,7 +36,8 @@ export function reducer(
 
     // load users success state
     case UsersApiActions.UsersApiActionTypes.LoadUsersSuccess:
-      return adapater.upsertMany(action.payload, state);
+      console.log(action.payload.users);
+      return adapater.upsertMany(action.payload.users, state);
 
     // add a new entity to the state in case creation is successful
     case UsersApiActions.UsersApiActionTypes.CreateUserSuccess:

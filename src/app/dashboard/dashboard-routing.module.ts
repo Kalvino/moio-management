@@ -51,16 +51,6 @@ export const dashboardRoutes: Routes = [
               breadcrumb: 'users-list'
             }
           }, {
-            path: 'details',
-            component: UserListComponent,
-            children: [
-              {
-                path: 'patient',
-                outlet: 'patient',
-                component: UserListComponent
-              }
-            ]
-          }, {
             path: 'add',
             component: UserListComponent
           }

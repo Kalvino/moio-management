@@ -32,7 +32,6 @@ export const reducers: ActionReducerMap<DashboardState, any> = {
 // create feature selectors
 export const getDashboardState = createFeatureSelector<State, DashboardState>('dashboard');
 
-
 // ****************** USERS PAGE *************
 export const getUsersPageState = createSelector(
   getDashboardState,

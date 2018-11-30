@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { MatProgressBar, MatButton } from '@angular/material';
 
 import { User } from '../../../models/user.model';
-import { UsersService } from '../../../services/users.service';
 
 /* NGRX */
 import { Store, select } from '@ngrx/store';
@@ -16,16 +16,17 @@ import { Observable } from 'rxjs';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit, OnDestroy {
+  @ViewChild(MatProgressBar) progressBar: MatProgressBar;
+  @ViewChild(MatButton) submitButton: MatButton;
+
   pageTitle = 'Users';
-  errorMessage: string;
-  errorMessage$: Observable<string>;
 
   displayCode: boolean;
 
   users: User[];
   displayedColumns: string[] = ['name', 'nursing-home', 'email', 'username'];
 
-  // Used to highlight the selected user in the list
+  // Used to select user in the list
   selectedUser: User | null;
   componentActive = true;
 
@@ -52,26 +53,39 @@ export class UserListComponent implements OnInit, OnDestroy {
     }
   ];
 
-  rows = [];
   ids: string[];
+  
 
-  constructor(private store: Store<fromDashboard.State>,
-    private usersService: UsersService) { }
+  // all users
+  users$: Observable<User[]> = this.store.pipe(
+    select(fromDashboard.getAllUsers)
+  );
+
+  // pending action
+  isPending$: Observable<boolean> = this.store.pipe(
+    select(fromDashboard.getUserPagePending)
+  );
+
+  // get any error
+  errorMessage$: Observable<string> = this.store.pipe(
+    select(fromDashboard.getUserPageError)
+  );
+
+  /**
+   * constructor
+   * @param store
+   * 
+   */
+  constructor(private store: Store<fromDashboard.State>) { 
+
+  }
 
   ngOnInit(): void {
 
-    // this.errorMessage$ = this.store.pipe(select(fromUsers.));
     this.store.dispatch(new userActions.LoadUsers());
-    this.store.pipe(select(fromDashboard.getAllUsers),
-      takeWhile(() => this.componentActive))
-      .subscribe((users: User[]) => this.rows = users);
 
-      this.store.pipe(select(fromDashboard.getUsersIds),
-      takeWhile(() => this.componentActive))
-      .subscribe((ids: string[]) => this.ids = ids);
-
-      console.log(this.rows);
-      console.log(this.ids);
+    this.store.pipe(select(fromDashboard.getUsersIds))
+    .subscribe((ids: string[]) => this.ids = ids);
   }
 
   ngOnDestroy(): void {

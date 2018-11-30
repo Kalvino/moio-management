@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { CdkTableModule } from '@angular/cdk/table';
+import { CommonModule } from '@angular/common';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 /* NGRX */
 import { UsersComponent } from './users.component';
@@ -16,7 +18,9 @@ import { DashboardRoutingModule } from '../../dashboard-routing.module';
     MatTableModule,
     CdkTableModule,
     MatSortModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    CommonModule,
+    MatProgressBarModule
   ],
   declarations: [
     UsersComponent,

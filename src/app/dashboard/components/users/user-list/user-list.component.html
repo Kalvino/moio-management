@@ -33,8 +33,12 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table> -->
 
+<mat-progress-bar mode="isPending$ ? indeterminate : determinate" class="session-progress"></mat-progress-bar>
+<p *ngIf="errorMessage" class="errorMessage">
+  {{ errorMessage }}
+</p>
 <div class="mat-box-shadow margin-333">
   <ngx-datatable class="material fullscreen bg-white" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="0"
-    [rowHeight]="50" [scrollbarV]="true" [rows]="rows" [columns]="columns">
+    [rowHeight]="50" [scrollbarV]="false" [rows]="users$ | async" [columns]="columns">
   </ngx-datatable>
 </div>

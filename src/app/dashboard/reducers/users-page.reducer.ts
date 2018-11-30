@@ -1,7 +1,7 @@
 import { UsersApiActions, UsersActions } from '../actions';
 
 export interface State {
-  error: string | string[] | null;
+  error: string | null;
   pending: boolean;
 }
 
@@ -11,7 +11,7 @@ export const initialState: State = {
 };
 
 /**
- * reducer for patients page
+ * reducer for users page
  *
  * @param state
  * @param action
@@ -61,13 +61,13 @@ export function reducer(
 }
 
 /**
- * get the current error state for patient pages
+ * get the current error state for user pages
  * @param state
  */
 export const getError = (state: State) => state.error;
 
 /**
- * get the pending state for the patient pages
+ * get the pending state for the user pages
  * @param state
  */
 export const getPending = (state: State) => state.pending;
