@@ -87,8 +87,15 @@ export class AuthEffects {
                 duration: 10000
               });
 
-              snackBarRef.onAction().subscribe(() => this.store.dispatch(new AuthActions.Logout()));
-              
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
+
+                if (snackBarDismiss.dismissedByAction){
+                  this.store.dispatch(new AuthActions.Logout());
+                }else{
+                  this.router.navigate(['/dashboard']);
+                }
+              });
+
               return of(new AuthApiActions.LogoutFailure({message}));
             }),
             tap(() => {

@@ -67,12 +67,11 @@ export class UsersEffects {
                 duration: 10000
               });
 
-              snackBarRef.afterDismissed().subscribe((action) => {
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
 
-                if (action.dismissedByAction){
+                if (snackBarDismiss.dismissedByAction){
                   this.store.dispatch(new UsersActions.LoadUsers());
                 }else{
-                  console.log(action);
                   this.router.navigate(['/dashboard']);
                 }
               });
