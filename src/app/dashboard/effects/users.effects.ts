@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { UsersApiActions, UsersActions } from '../actions';
-import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map, tap, delay } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { UsersService } from '../services/users.service';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { fromPromise } from 'rxjs/internal-compatibility';
-import { Update } from '@ngrx/entity';
+import {MatSnackBar} from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * users effects
@@ -17,7 +17,7 @@ import { Update } from '@ngrx/entity';
 export class UsersEffects {
 
   /**
-   * effect fired, when the creato new user form is submitted
+   * effect fired, when the create new user form is submitted
    * send data to api and handle result
    */
   @Effect()
@@ -26,8 +26,6 @@ export class UsersEffects {
       ofType<UsersActions.CreateUser>(UsersActions.UsersActionTypes.CreateUser),
       map(action => action.payload.user),
       exhaustMap((userData: User) => {
-
-        // dispatch showLoader action
 
         return this.userService.createUser(userData)
           .pipe(
@@ -41,12 +39,10 @@ export class UsersEffects {
             }),
             tap(() => {
               console.log('Actions finished')
-              // dispatch hideLoader action
             })
           );
       })
     );
-
 
   /**
    * effect for loading users
@@ -57,16 +53,30 @@ export class UsersEffects {
       ofType<UsersActions.LoadUsers>(UsersActions.UsersActionTypes.LoadUsers),
       exhaustMap(() => {
 
-        // dispatch showLoader action
-
         return this.usersService.getUsers()
           .pipe(
+            delay(2000),
             map((users: User[]) => {
               console.log(users)
               return new UsersApiActions.LoadUsersSuccess({users});
             }),
             catchError(httpError => {
-              const message = httpError.error.message.toLowerCase();
+              const message = httpError.statusText.toLowerCase();
+
+              let snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe((action) => {
+
+                if (action.dismissedByAction){
+                  this.store.dispatch(new UsersActions.LoadUsers());
+                }else{
+                  console.log(action);
+                  this.router.navigate(['/dashboard']);
+                }
+              });
+
               return of(new UsersApiActions.LoadUsersFailure({ message }));
             }),
             tap(() => {
@@ -92,6 +102,8 @@ export class UsersEffects {
     private userService: UsersService,
     private usersService: UsersService,
     private router: Router,
-    private store: Store<any>) {
+    private store: Store<any>,
+    public snackBar: MatSnackBar,
+    private translate: TranslateService){
   }
 }

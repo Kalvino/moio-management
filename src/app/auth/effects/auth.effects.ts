@@ -6,8 +6,9 @@ import { AuthApiService } from '../services/auth-api.service';
 import { AuthApiActions, AuthActions, AuthPageActions } from '../actions';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { LogoutConfirmationDialogComponent } from '../components/dialogs/logout-confirmation-dialog.component';
+import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root'
@@ -21,19 +22,18 @@ export class AuthEffects {
       delay(3000),
       map(action => action.payload.credentials),
       exhaustMap((credentials: Credentials) => {
-        // TODO implement a LOADER
-
         return this.authApiService
           .login(credentials)
           .pipe(
             map(response => new AuthApiActions.LoginSuccess({response})),
             catchError(response => {
               console.log(response);
+              console.log(response.message);
               const message = response.statusText.toLowerCase();
               return of(new AuthApiActions.LoginFailure({message}));
             }),
             tap(() => {
-              // TODO: disable Loader
+              console.log('complete!');
             })
           );
       })
@@ -75,19 +75,24 @@ export class AuthEffects {
       ofType(AuthActions.AuthActionTypes.Logout),
       exhaustMap(() => {
 
-        // TODO: show Loader
-
         return this.authApiService
           .logout()
           .pipe(
             map(() => new AuthApiActions.LogoutSuccess()),
             catchError(httpResponse => {
-              console.log(httpResponse);
+              console.log(httpResponse.message);
               const message = httpResponse.statusText.toLowerCase();
+
+              let snackBarRef = this.snackBar.open(message, 'Retry', {
+                duration: 10000
+              });
+
+              snackBarRef.onAction().subscribe(() => this.store.dispatch(new AuthActions.Logout()));
+              
               return of(new AuthApiActions.LogoutFailure({message}));
             }),
             tap(() => {
-              // TODO disable Loader
+              console.log('complete!');
             })
           );
       })
@@ -119,11 +124,15 @@ export class AuthEffects {
    * @param authApiService service encapsulating api calls
    * @param router the router
    * @param dialog material dialog service
+   * @param store ngrx store
+   * @param snackbar material snackbar 
    */
   constructor(
     private actions$: Actions,
     private authApiService: AuthApiService,
     private router: Router,
+    private store: Store<any>,
+    public snackBar: MatSnackBar,
     private dialog: MatDialog) {
   }
 }

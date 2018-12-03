@@ -41,14 +41,14 @@ export const dashboardRoutes: Routes = [
         children: [
           {
             path: '',
-            redirectTo: 'list',
+            redirectTo: 'users',
             pathMatch: 'full'
           }, {
-            path: 'list',
+            path: 'users',
             component: UserListComponent,
             data: {
               title: 'App Users List',
-              breadcrumb: 'users-list'
+              breadcrumb: 'users'
             }
           }, {
             path: 'add',

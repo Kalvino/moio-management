@@ -1,14 +1,15 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MatProgressBar, MatButton } from '@angular/material';
 
+
 import { User } from '../../../models/user.model';
 
 /* NGRX */
 import { Store, select } from '@ngrx/store';
 import * as fromDashboard from '../../../reducers';
 import * as userActions from '../../../actions/users.actions';
-import { takeWhile } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'moio-user-list',
@@ -24,38 +25,41 @@ export class UserListComponent implements OnInit, OnDestroy {
   displayCode: boolean;
 
   users: User[];
-  displayedColumns: string[] = ['name', 'nursing-home', 'email', 'username'];
+  // displayedColumns: string[] = ['name', 'nursing_home', 'registered_on', 'last_login', 'patient_profiles'];
 
   // Used to select user in the list
   selectedUser: User | null;
   componentActive = true;
 
+  /**
+   * Users Table columns
+   */
+
   columns = [
     {
-      prop: 'firstname',
-      name: 'First Name'
+      prop: 'name',
+      name: this.translate.instant('Name')
     },
     {
-      prop: 'lastname',
-      name: 'Last Name'
+      prop: 'nursing_home',
+      name: this.translate.instant('NursingHome')
     },
     {
-      prop: 'nursing_home_id',
-      name: 'Nursing Home'
+      prop: 'registered_on',
+      name: this.translate.instant('RegisteredOn')
     },
     {
-      prop: 'email',
-      name: 'Email'
+      prop: 'last_login',
+      name: this.translate.instant('LastLoginOn')
     },
     {
-      prop: 'username',
-      name: 'Username'
+      prop: 'patient_profiles',
+      name: this.translate.instant('PatientProfiles')
     }
   ];
 
   ids: string[];
   
-
   // all users
   users$: Observable<User[]> = this.store.pipe(
     select(fromDashboard.getAllUsers)
@@ -66,7 +70,7 @@ export class UserListComponent implements OnInit, OnDestroy {
     select(fromDashboard.getUserPagePending)
   );
 
-  // get any error
+  // get error status
   errorMessage$: Observable<string> = this.store.pipe(
     select(fromDashboard.getUserPageError)
   );
@@ -76,10 +80,14 @@ export class UserListComponent implements OnInit, OnDestroy {
    * @param store
    * 
    */
-  constructor(private store: Store<fromDashboard.State>) { 
+  constructor(private store: Store<fromDashboard.State>, 
+    private translate: TranslateService) { 
 
   }
 
+   /**
+   * init UserListComponent component
+   */
   ngOnInit(): void {
 
     this.store.dispatch(new userActions.LoadUsers());
@@ -88,14 +96,17 @@ export class UserListComponent implements OnInit, OnDestroy {
     .subscribe((ids: string[]) => this.ids = ids);
   }
 
+  // unsubscribe from the observable
   ngOnDestroy(): void {
     this.componentActive = false;
   }
 
+  // Create User action
   newUser(): void {
     this.store.dispatch(new userActions.InitializeUser());
   }
 
+  // Select user action
   selectUser(user: User): void {
     this.store.dispatch(new userActions.SelectUser(user));
   }

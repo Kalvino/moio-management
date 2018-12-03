@@ -38,11 +38,13 @@ export const getUsersPageState = createSelector(
   (state: DashboardState) => state.userPage
 );
 
+// get error state of the userPage from the store
 export const getUserPageError = createSelector(
   getUsersPageState,
   fromUserPage.getError
 );
 
+// get pending state of the userPage from the store
 export const getUserPagePending = createSelector(
   getUsersPageState,
   fromUserPage.getPending

@@ -1,7 +1,7 @@
 {
   "AppTitle": "Verwaltung",
   "Auth": {
-    "ConfirmLogoutMessage": "Wollen Sie sich wirklich ausloggen?",
+    "ConfirmLogoutMessage": "Möchten Sie sich wirklich abmelden?",
     "InvalidCredentials": "Benutzername oder Passwort waren falsch!",
     "Signin": "Anmelden",
     "Signout": "Ausloggen",
@@ -16,9 +16,8 @@
     "CreateNewAccount": "Neues Konto erstellen",
     "UsernameRequired": "Benutzername ist erforderlich",
     "SignInToYourAccount": "Bitte melden Sie sich an",
-    "Cancel": "Abbrechen",
-    "OK": "Ok",
-    "BackToDashboard": "Zurück zur Hauptseite"
+    "BackToDashboard": "Zurück zur Hauptseite",
+    "unauthenticated": "Der Benutzer ist unbekannt"
   },
   "Submit": "Einreichen",
   "Search": "Suche",
@@ -28,10 +27,24 @@
     "DisableAlerts": "Disable Alerts"
   },
 
-  "users": "Benutzer",
+  "users": "benutzer",
   "USERS": "BENUTZER",
+  "Users": "Benutzer",
   "dashboard": "armaturenbrett",
   "DASHBOARD": "ARMATURENBRETT",
+  "Dashboard": "Armaturenbrett",
+  "Blank": "Leer",
   "list": "liste",
-  "LIST": "LISTE"
+  "LIST": "LISTE",
+
+  "Name": "Name",
+  "NursingHome": "Einrichtung",
+  "RegisteredOn": "Registriert am",
+  "LastLoginOn": "Lezte Anmeldung am",
+  "PatientProfiles": "Patientenprofile",
+
+  "unknown error": "unbekannter Fehler",
+  "Cancel": "Stornieren",
+  "OK": "Ok",
+  "Retry": "Wiederholen"
 }

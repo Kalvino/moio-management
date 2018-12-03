@@ -1,7 +1,7 @@
 {
   "AppTitle": "Administration",
   "Auth": {
-    "ConfirmLogoutMessage": "Do you really want to log out?",
+    "ConfirmLogoutMessage": "Are you sure you want to logout?",
     "InvalidCredentials": "Username or password were wrong!",
     "Signin": "Sign In",
     "Signout": "Sign Out",
@@ -16,9 +16,8 @@
     "CreateNewAccount": "Create a new account",
     "UsernameRequired": "Username is required",
     "SignInToYourAccount": "Please sign in",
-    "Cancel": "Cancel",
-    "OK": "Ok",
-    "BackToDashboard": "Back to main page"
+    "BackToDashboard": "Back to main page",
+    "unauthenticated": "The user is unknown"
   },
   "Submit": "Submit",
   "Search": "Search",
@@ -27,10 +26,25 @@
     "AccountSettings": "Account Settings",
     "DisableAlerts": "Disable Alerts"
   },
+
   "users": "users",
   "USERS": "USERS",
+  "Users": "Users",
   "dashboard": "dashboard",
   "DASHBOARD": "DASHBOARD",
+  "Dashboard": "Dashboard",
+  "Blank": "Blank",
   "list": "list",
-  "LIST": "LIST"
+  "LIST": "LIST",
+
+  "Name": "Name",
+  "NursingHome": "Nursing Home",
+  "RegisteredOn": "Registered on",
+  "LastLoginOn": "Last login on",
+  "PatientProfiles": "Patient profiles",
+
+  "unknown error": "unknown error",
+  "Cancel": "Cancel",
+  "OK": "Ok",
+  "Retry": "Retry"
 }

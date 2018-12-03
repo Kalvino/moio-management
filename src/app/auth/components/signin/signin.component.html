@@ -11,8 +11,8 @@
           <p class="text-muted m-0">{{'Auth.SignInToYourAccount' | translate}}</p>
         </div>
 
-        <small *ngIf="errorMessage" class="text-center form-error-msg">
-          {{errorMessage}}!
+        <small *ngIf="errorMessage$ | async" class="text-center form-error-msg">
+          {{errorMessage$ | async}}!
         </small>
 
         <form [formGroup]="signinForm" (ngSubmit)="signin()">

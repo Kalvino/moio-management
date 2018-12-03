@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
@@ -16,7 +15,6 @@ import { DashboardRoutingModule } from '../../dashboard-routing.module';
   imports: [
     DashboardRoutingModule,
     MatTableModule,
-    CdkTableModule,
     MatSortModule,
     NgxDatatableModule,
     CommonModule,
