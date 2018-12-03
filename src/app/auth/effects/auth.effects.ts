@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { LogoutConfirmationDialogComponent } from '../components/dialogs/logout-confirmation-dialog.component';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
@@ -83,7 +84,7 @@ export class AuthEffects {
               console.log(httpResponse.message);
               const message = httpResponse.statusText.toLowerCase();
 
-              let snackBarRef = this.snackBar.open(message, 'Retry', {
+              let snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
                 duration: 10000
               });
 
@@ -140,6 +141,7 @@ export class AuthEffects {
     private router: Router,
     private store: Store<any>,
     public snackBar: MatSnackBar,
+    private translate: TranslateService,
     private dialog: MatDialog) {
   }
 }
