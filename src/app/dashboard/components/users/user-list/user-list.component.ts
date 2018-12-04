@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MatProgressBar, MatButton } from '@angular/material';
-
+import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
+import { UserFormComponent } from '../user-form/user-form.component';
+import { UsersService } from '../../../services/users.service';
 
 import { User } from '../../../models/user.model';
 
@@ -81,9 +83,14 @@ export class UserListComponent implements OnInit, OnDestroy {
    * 
    */
   constructor(private store: Store<fromDashboard.State>, 
-    private translate: TranslateService) { 
+    private translate: TranslateService,
+    private usersService: UsersService,
+    private dialog: MatDialog,
+    private snack: MatSnackBar,) { 
 
   }
+
+  public items: User[];
 
    /**
    * init UserListComponent component
@@ -109,5 +116,30 @@ export class UserListComponent implements OnInit, OnDestroy {
   // Select user action
   selectUser(user: User): void {
     this.store.dispatch(new userActions.SelectUser(user));
+  }
+
+  //add user
+  openPopUp(data: any = {}, isNew?) {
+    let title = isNew ? 'Creating a new user' : 'Update user';
+    let dialogRef: MatDialogRef<any> = this.dialog.open(UserFormComponent, {
+      width: '720px',
+      disableClose: true,
+      data: { title: title, payload: data }
+    })
+    dialogRef.afterClosed()
+      .subscribe(res => {
+        if(!res) {
+          // If user press cancel
+          return;
+        }
+        if (isNew) {
+          this.usersService.createUser(res)
+            .subscribe(data => {
+              console.log(data);
+              // this.users = data;
+              // this.snack.open('User Added!', 'OK', { duration: 4000 })
+            })
+        }
+      })
   }
 }

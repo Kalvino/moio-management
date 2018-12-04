@@ -1,3 +1,7 @@
+<div class="m-333">
+  <!-- <span fxFlex></span> -->
+  <button mat-raised-button class="mb-05" color="primary" (click)="openPopUp({}, true)"><mat-icon>add</mat-icon>Create</button>
+</div>
 <mat-progress-bar [mode]="(isPending$ | async) ? 'indeterminate' : 'determinate'" class="session-progress"></mat-progress-bar>
 <div class="mat-box-shadow margin-333">
   <ngx-datatable class="material fullscreen bg-white" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="0"

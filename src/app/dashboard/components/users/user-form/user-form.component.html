@@ -1,0 +1,83 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+  <form [formGroup]="itemForm" (ngSubmit)="submit()">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="firstname"
+        [formControl]="itemForm.controls['firstname']"
+        placeholder="First Name">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="lastname"
+        [formControl]="itemForm.controls['lastname']"
+        placeholder="Last Name">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="username"
+        [formControl]="itemForm.controls['username']"
+        placeholder="Username">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        type="email"
+        name="email"
+        [formControl]="itemForm.controls['email']"
+        placeholder="Email">
+      </mat-form-field>
+    </div>
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        type="password"
+        name="password"
+        [formControl]="itemForm.controls['password']"
+        placeholder="Password">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        type="confirm_password"
+        name="confirm_password"
+        [formControl]="itemForm.controls['confirm_password']"
+        placeholder="Confirm Password">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        type="number"
+        name="nursing_home_key"
+        [formControl]="itemForm.controls['nursing_home_key']"
+        placeholder="Nursing Home">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100" class="mt-1">
+      <button mat-raised-button color="primary" [disabled]="itemForm.invalid">Save</button>
+      <span fxFlex></span>
+      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+    </div>
+  </div>
+  </form>
