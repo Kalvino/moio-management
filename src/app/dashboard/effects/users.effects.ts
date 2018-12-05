@@ -7,8 +7,9 @@ import { UsersService } from '../services/users.service';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import {MatSnackBar} from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
+import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
+import { UserFormComponent } from '../components/users/user-form/user-form.component';
 
 /**
  * users effects
@@ -87,6 +88,42 @@ export class UsersEffects {
     );
 
   /**
+   * show a dialog form for user details as a pop up
+   */
+  @Effect()
+  popUpUserForm$ = this.actions$
+    .pipe(
+      ofType<UsersActions.PopUpUserForm>(UsersActions.UsersActionTypes.PopUpUserForm),
+      exhaustMap(() => {
+        const title = 'Creating a new user';
+        const dialogRef: MatDialogRef<UserFormComponent> = this.dialog.open(UserFormComponent, {
+          width: '720px',
+          disableClose: true,
+          data: { title: title }
+        });
+        
+        return dialogRef.afterClosed();
+      })
+    );
+
+
+  /**
+   * effect to dismiss the dialog for adding user details
+   */
+  @Effect({
+    dispatch: false
+  })
+  DismissPoppedUpUserForm = this.actions$
+    .pipe(
+      ofType(UsersActions.UsersActionTypes.DismissPoppedUpUserForm),
+      map(() => {
+        this.dialog.closeAll();
+      })
+    );
+
+
+
+  /**
    * constructor
    *
    * @param actions$
@@ -103,6 +140,7 @@ export class UsersEffects {
     private router: Router,
     private store: Store<any>,
     public snackBar: MatSnackBar,
-    private translate: TranslateService){
+    private translate: TranslateService,
+    private dialog: MatDialog,){
   }
 }
