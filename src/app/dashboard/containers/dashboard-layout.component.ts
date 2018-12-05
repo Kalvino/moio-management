@@ -1,11 +1,15 @@
 import { AfterViewInit, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, from } from 'rxjs';
 import { NavigationEnd, ResolveEnd, ResolveStart, RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ThemeService } from '../../core/services/theme.service';
 import { LayoutService } from '../../core/services/layout.service';
 import { ObservableMedia } from '@angular/flex-layout';
 import { filter } from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
+
+import * as fromDashboard from '../reducers';
+import * as layoutActions from '../actions/layout.actions';
 
 @Component({
   selector: 'moio-dashboard',
@@ -23,8 +27,14 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
   // private headerFixedBodyPS: PerfectScrollbar;
   public scrollConfig = {};
   public layoutConf: any = {};
+  public sidebarStyle: string;
+  public navPosition: string;
+  public layoutInTransition: boolean;
+  public topBarFixed: boolean;
+  public getIsMobile: boolean;
 
   constructor(
+    private store: Store<fromDashboard.State>,
     private router: Router,
     public translate: TranslateService,
     public themeService: ThemeService,
@@ -42,13 +52,34 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
 
     // Translator init
     const browserLang: string = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+    translate.use(browserLang.match(/en|de/) ? browserLang : 'de');
   }
 
   ngOnInit() {
+    this.store.pipe(select(fromDashboard.getSideNav)).subscribe(
+      sideNavStyle => this.sidebarStyle = sideNavStyle
+    );
+
+    this.store.pipe(select(fromDashboard.getNavPosition)).subscribe(
+      navPosition => this.navPosition = navPosition
+    );
+
+    this.store.pipe(select(fromDashboard.getLayoutInTransition)).subscribe(
+      layoutInTransition => this.layoutInTransition = layoutInTransition
+    );
+
+    this.store.pipe(select(fromDashboard.getTopbarFixed)).subscribe(
+      topBarFixed => this.topBarFixed = topBarFixed
+    );
+
+    this.store.pipe(select(fromDashboard.getIsMobile)).subscribe(
+      isMobile => this.getIsMobile = isMobile
+    );
+
+    console.log(this.sidebarStyle);
+    console.log(this.getIsMobile);
+
     this.layoutConf = this.layout.layoutConf;
-    // this.layout-components.adjustLayout();
-    console.log(this.layoutConf);
 
     // FOR MODULE LOADER FLAG
     this.moduleLoaderSub = this.router.events.subscribe(event => {
@@ -109,9 +140,7 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   closeSidebar() {
-    this.layout.publishLayoutChange({
-      sidebarStyle: 'closed'
-    });
+    this.store.dispatch(new layoutActions.CloseSideNav('close'));
   }
 
 }

@@ -32,20 +32,20 @@ export class NavigationService {
   constructor() {
   }
 
-  defaultMenu: IMenuItem[] = [
+  iconMenu: IMenuItem[] = [
     {
       name: 'DASHBOARD',
       type: 'link',
       tooltip: 'Dashboard',
       icon: 'dashboard',
-      state: 'blank'
+      state: 'dashboard/blank'
     },
     {
-      name: 'DOC',
-      type: 'extLink',
-      tooltip: 'Documentation',
-      icon: 'library_books',
-      state: 'http://egret-doc.mhrafi.com/'
+      name: 'USERS',
+      type: 'link',
+      tooltip: 'users',
+      icon: 'group',
+      state: 'dashboard/users'
     }
   ];
 
@@ -53,7 +53,7 @@ export class NavigationService {
   // This title will appear if any icon type item is present in menu.
   iconTypeMenuTitle = 'Frequently Accessed';
   // sets iconMenu as default;
-  menuItems = new BehaviorSubject<IMenuItem[]>(this.defaultMenu);
+  menuItems = new BehaviorSubject<IMenuItem[]>(this.iconMenu);
   // navigation component has subscribed to this Observable
   menuItems$ = this.menuItems.asObservable();
 
@@ -62,6 +62,6 @@ export class NavigationService {
   // Or you can customize this method to supply different menu for
   // different user type.
   publishNavigationChange(menuType: string) {
-    this.menuItems.next(this.defaultMenu);
+    this.menuItems.next(this.iconMenu);
   }
 }
