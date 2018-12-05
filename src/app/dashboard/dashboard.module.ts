@@ -13,6 +13,13 @@ import { SidebarTopComponent } from './containers/layout-components/sidebar-top/
 import { DashboardLayoutComponent } from './containers/dashboard-layout.component';
 import { SidenavComponent } from './containers/layout-components/sidenav/sidenav.component';
 import { BlankComponent } from './components/blank/blank.component';
+import { UsersEffects } from './effects/users.effects';
+import { UserModule } from './components/users/user.module';
+
+/* NGRX */
+import { StoreModule } from '@ngrx/store';
+import * as fromDashboard from './reducers';
+import { EffectsModule } from '@ngrx/effects';
 
 export const COMPONENTS = [
   DashboardLayoutComponent,
@@ -26,6 +33,10 @@ export const COMPONENTS = [
   BlankComponent
 ];
 
+export const EFFECTS = [
+  UsersEffects
+];
+
 @NgModule({
   declarations: [COMPONENTS],
   imports: [
@@ -35,7 +46,14 @@ export const COMPONENTS = [
     DashboardRoutingModule,
     PerfectScrollbarModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UserModule,
+    StoreModule.forFeature('dashboard', fromDashboard.reducers),
+    EffectsModule.forFeature(EFFECTS)
+  ],
+  exports: [
+    DashboardLayoutComponent,
+    DashboardRoutingModule
   ]
 })
 export class DashboardModule {

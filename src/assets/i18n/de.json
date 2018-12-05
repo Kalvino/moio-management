@@ -1,15 +1,50 @@
 {
-  "Forgot password": "Passwort vergessen",
-  "Create a new account": "Neues Konto erstellen",
-  "Sign in": "Anmelden",
-  "Username": "Benutzername",
-  "Password": "Passwort",
-  "Password is required": "Passwort ist erforderlich",
-  "Username is required": "Benutzername ist erforderlich",
-  "Sign in to your account": "Bitte melden Sie sich an",
-  "Logout": "Abmelden",
-  "Are you sure you want to logout?": "Willst Du Dich wirklich abmelden?",
-  "Cancel": "Abbrechen",
+  "AppTitle": "Verwaltung",
+  "Auth": {
+    "ConfirmLogoutMessage": "Möchten Sie sich wirklich abmelden?",
+    "InvalidCredentials": "Benutzername oder Passwort waren falsch!",
+    "Signin": "Anmelden",
+    "Signout": "Ausloggen",
+    "Password": "Passwort",
+    "Username": "Benutzername",
+    "LoginError": "Fehler beim Anmelden in der Anwendung",
+    "LoggedInAs": "Angemeldet als",
+    "EmailRequired": "Email ist erforderlich",
+    "PasswordRequried": "Passwort ist erforderlich",
+    "NewPasswordSendText": "Ein neues Passwort wird an Ihre Email-Adresse gesendet",
+    "ForgotPassword": "Passwort vergessen",
+    "CreateNewAccount": "Neues Konto erstellen",
+    "UsernameRequired": "Benutzername ist erforderlich",
+    "SignInToYourAccount": "Bitte melden Sie sich an",
+    "BackToDashboard": "Zurück zur Hauptseite",
+    "unauthenticated": "Der Benutzer ist unbekannt"
+  },
+  "Submit": "Einreichen",
+  "Search": "Suche",
+  "AccountMenu": {
+    "Profile": "Profil",
+    "AccountSettings": "Account Settings",
+    "DisableAlerts": "Disable Alerts"
+  },
+
+  "users": "benutzer",
+  "USERS": "BENUTZER",
+  "Users": "Benutzer",
+  "dashboard": "armaturenbrett",
+  "DASHBOARD": "ARMATURENBRETT",
+  "Dashboard": "Armaturenbrett",
+  "Blank": "Leer",
+  "list": "liste",
+  "LIST": "LISTE",
+
+  "Name": "Name",
+  "NursingHome": "Einrichtung",
+  "RegisteredOn": "Registriert am",
+  "LastLoginOn": "Lezte Anmeldung am",
+  "PatientProfiles": "Patientenprofile",
+
+  "unknown error": "unbekannter Fehler",
+  "Cancel": "Stornieren",
   "OK": "Ok",
-  "Back to Dashboard": "Zurück zur Hauptseite"
+  "Retry": "Wiederholen"
 }

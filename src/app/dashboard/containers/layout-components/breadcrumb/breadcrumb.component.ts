@@ -26,7 +26,7 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
         this.routeParts = this.routePartsService.generateRouteParts(this.activeRoute.snapshot);
         // generate url from parts
 
-        console.log(this.routeParts);
+        // console.log(this.routeParts);
 
         this.routeParts.reverse().map((item, i) => {
           item.breadcrumb = this.parseText(item);

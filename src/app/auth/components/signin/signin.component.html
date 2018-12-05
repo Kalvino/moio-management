@@ -7,9 +7,13 @@
       <mat-card-content>
 
         <div class="text-center pb-1">
-          <img src="assets/images/logo-full.png" alt="" class="mb-05">
-          <p class="text-muted m-0">{{'Sign in to your account' | translate}}</p>
+          <img src="assets/images/login-logo.png" alt="" class="mb-05">
+          <p class="text-muted m-0">{{'Auth.SignInToYourAccount' | translate}}</p>
         </div>
+
+        <small *ngIf="errorMessage$ | async" class="text-center form-error-msg">
+          {{errorMessage$ | async}}!
+        </small>
 
         <form [formGroup]="signinForm" (ngSubmit)="signin()">
           <div class="">
@@ -18,12 +22,12 @@
                 matInput
                 name="username"
                 [formControl]="signinForm.controls['username']"
-                placeholder="{{'Username' | translate}}"
+                placeholder="{{'Auth.Username' | translate}}"
                 value="">
             </mat-form-field>
             <small
               *ngIf="signinForm.controls['username'].hasError('required') && signinForm.controls['username'].touched"
-              class="form-error-msg"> {{'Username is required' | translate}}
+              class="form-error-msg"> {{'Auth.UsernameRequired' | translate}}
             </small>
           </div>
 
@@ -34,19 +38,19 @@
                 name="password"
                 matInput
                 [formControl]="signinForm.controls['password']"
-                placeholder="{{'Password' | translate}}"
+                placeholder="{{'Auth.Password' | translate}}"
                 value="">
             </mat-form-field>
             <small
               *ngIf="signinForm.controls['password'].hasError('required') && signinForm.controls['password'].touched"
-              class="form-error-msg"> {{'Password is required' | translate}}
+              class="form-error-msg"> {{'Auth.PasswordRequried' | translate}}
             </small>
           </div>
 
           <button mat-raised-button
                   class="mat-primary full-width mb-1"
                   [disabled]="signinForm.invalid || signinForm.disabled">
-            {{'Sign in' | translate}}
+            {{'Auth.Signin' | translate}}
           </button>
 
           <!--div class="text-center">

@@ -1,7 +1,7 @@
 <mat-toolbar class="topbar topbar-white">
   <!-- Sidenav toggle button -->
   <button
-    *ngIf="layoutConf.sidebarStyle !== 'compact'"
+    *ngIf="sidebarStyle !== 'compact'"
     mat-icon-button
     id="sidenavToggle"
     (click)="toggleSidenav()"
@@ -10,7 +10,7 @@
   </button>
   <!-- Sidenav toggle collapse -->
   <button
-    *ngIf="layoutConf.sidebarStyle !== 'closed'"
+    *ngIf="sidebarStyle !== 'closed'"
     mat-icon-button
     id="collapseToggle"
     fxHide.lt-md="true"
@@ -20,7 +20,7 @@
     <mat-icon>chevron_left</mat-icon>
   </button>
   <!-- Search form -->
-  <div
+  <!-- <div
     fxFlex
     fxHide.lt-sm="true"
     class="search-bar">
@@ -28,7 +28,7 @@
       <mat-icon role="img">search</mat-icon>
       <input autofocus="true" placeholder="Search" type="text">
     </form>
-  </div>
+  </div> -->
   <span fxFlex></span>
   <!-- Language Switcher -->
   <mat-select
@@ -44,7 +44,7 @@
     </mat-option>
   </mat-select>
   <!-- Theme Switcher -->
-  <button
+  <!-- <button
     mat-icon-button
     id="schemeToggle"
     [style.overflow]="'visible'"
@@ -52,9 +52,9 @@
     [matMenuTriggerFor]="themeMenu"
     class="topbar-button-right">
     <mat-icon>format_color_fill</mat-icon>
-  </button>
+  </button> -->
 
-  <mat-menu #themeMenu="matMenu">
+  <!-- <mat-menu #themeMenu="matMenu">
     <mat-grid-list
       class="theme-list"
       cols="2"
@@ -68,9 +68,9 @@
         </div>
       </mat-grid-tile>
     </mat-grid-list>
-  </mat-menu>
+  </mat-menu> -->
   <!-- Notification toggle button -->
-  <button
+  <!-- <button
     mat-icon-button
     matTooltip="Notifications"
     (click)="toggleNotific()"
@@ -78,7 +78,7 @@
     class="topbar-button-right">
     <mat-icon>notifications</mat-icon>
     <span class="notification-number mat-bg-warn">3</span>
-  </button>
+  </button> -->
   <!-- Top left user menu -->
   <button mat-icon-button [matMenuTriggerFor]="accountMenu" class="topbar-button-right img-button">
     <img src="assets/images/face-7.jpg" alt="">
@@ -87,19 +87,19 @@
   <mat-menu #accountMenu="matMenu">
     <button mat-menu-item [routerLink]="['/profile/overview']">
       <mat-icon>account_box</mat-icon>
-      <span>Profile</span>
+      <span>{{'AccountMenu.Profile' | translate }}</span>
     </button>
-    <button mat-menu-item [routerLink]="['/profile/settings']">
+    <!-- <button mat-menu-item [routerLink]="['/profile/settings']">
       <mat-icon>settings</mat-icon>
       <span>Account Settings</span>
     </button>
     <button mat-menu-item>
       <mat-icon>notifications_off</mat-icon>
       <span>Disable alerts</span>
-    </button>
-    <button mat-menu-item [routerLink]="['/sessions/signin']">
+    </button> -->
+    <button mat-menu-item (click)="onConfirmLogout()">
       <mat-icon>exit_to_app</mat-icon>
-      <span>Sign out</span>
+      <span>{{ 'Auth.Signout' | translate }}</span>
     </button>
   </mat-menu>
 

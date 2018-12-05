@@ -1,1 +1,50 @@
-{}
+{
+  "AppTitle": "Administration",
+  "Auth": {
+    "ConfirmLogoutMessage": "Are you sure you want to logout?",
+    "InvalidCredentials": "Username or password were wrong!",
+    "Signin": "Sign In",
+    "Signout": "Sign Out",
+    "Password": "Password",
+    "Username": "Username",
+    "LoginError": "Error while logging into the application",
+    "LoggedInAs": "Logged in as",
+    "EmailRequired": "Email is required",
+    "PasswordRequried": "Password is required",
+    "NewPasswordSendText": "New password will be sent to your email address",
+    "ForgotPassword": "Forgot Password",
+    "CreateNewAccount": "Create a new account",
+    "UsernameRequired": "Username is required",
+    "SignInToYourAccount": "Please sign in",
+    "BackToDashboard": "Back to main page",
+    "unauthenticated": "The user is unknown"
+  },
+  "Submit": "Submit",
+  "Search": "Search",
+  "AccountMenu": {
+    "Profile": "Profile",
+    "AccountSettings": "Account Settings",
+    "DisableAlerts": "Disable Alerts"
+  },
+
+  "users": "users",
+  "USERS": "USERS",
+  "Users": "Users",
+  "dashboard": "dashboard",
+  "DASHBOARD": "DASHBOARD",
+  "Dashboard": "Dashboard",
+  "Blank": "Blank",
+  "list": "list",
+  "LIST": "LIST",
+
+  "Name": "Name",
+  "NursingHome": "Nursing Home",
+  "RegisteredOn": "Registered on",
+  "LastLoginOn": "Last login on",
+  "PatientProfiles": "Patient profiles",
+
+  "unknown error": "unknown error",
+  "Cancel": "Cancel",
+  "OK": "Ok",
+  "Retry": "Retry"
+}

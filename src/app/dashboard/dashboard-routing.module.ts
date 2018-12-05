@@ -1,8 +1,64 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { dashboardRoutes } from './dashboard.routes';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material';
+import { BlankComponent } from './components/blank/blank.component';
+import { UsersComponent } from './components/users/users.component';
+import { Routes } from '@angular/router';
+import { DashboardLayoutComponent } from './containers/dashboard-layout.component';
+import { UserListComponent } from './components/users/user-list/user-list.component';
+import { AuthGuard } from '../auth/guards/auth.guard';
+
+/**
+ * Dashboard module routings
+ * protected by AuthGuard
+**/
+export const dashboardRoutes: Routes = [
+  {
+    path: 'dashboard',
+    component: DashboardLayoutComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Dashboard',
+      breadcrumb: 'Dashboard'
+    },
+    children: [
+      {
+        path: '',
+        redirectTo: 'blank',
+        pathMatch: 'full'
+      },
+      {
+        path: 'blank',
+        component: BlankComponent,
+        data: {
+          title: 'Blank',
+          breadcrumb: 'Blank'
+        }
+      }, {
+        path: 'users',
+        component: UsersComponent,
+        children: [
+          {
+            path: '',
+            redirectTo: 'users',
+            pathMatch: 'full'
+          }, {
+            path: 'users',
+            component: UserListComponent,
+            data: {
+              title: 'App Users List',
+              breadcrumb: 'users'
+            }
+          }, {
+            path: 'add',
+            component: UserListComponent
+          }
+        ]
+      }
+    ]
+  }
+];
 
 @NgModule({
   imports: [
