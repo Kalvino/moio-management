@@ -27,6 +27,7 @@ export class UserFormComponent implements OnInit {
   ngOnInit() {
     this.buildItemForm(this.data.payload)
   }
+  
   buildItemForm(item) {
     this.itemForm = this.fb.group({
       firstname: [item.firstname || '', Validators.required],

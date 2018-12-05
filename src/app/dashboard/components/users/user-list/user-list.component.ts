@@ -117,14 +117,29 @@ export class UserListComponent implements OnInit, OnDestroy {
   selectUser(user: User): void {
     this.store.dispatch(new userActions.SelectUser(user));
   }
-
+ 
   //add user
-  popUpUserForm(data: any = {}, isNew?) {
-    let title = isNew ? 'Creating a new user' : 'Update user';
+  openPopUp(data: any = {}, isNew?) { 
+    let title ='Creating a new user';
     let dialogRef: MatDialogRef<any> = this.dialog.open(UserFormComponent, {
       width: '720px',
       disableClose: true,
-      data: { title: title }
+      data: { title: title, payload: data }
     })
+    dialogRef.afterClosed()
+      .subscribe(res => {
+        if(!res) {
+          // If user press cancel
+          return;
+        }
+        if (isNew) {
+          this.usersService.createUser(res)
+            .subscribe(data => {
+              console.log(data);
+              // this.users = data;
+              // this.snack.open('User Added!', 'OK', { duration: 4000 })
+            })
+        }
+      })
   }
 }
