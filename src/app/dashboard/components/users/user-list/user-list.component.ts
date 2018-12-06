@@ -9,7 +9,7 @@ import { User } from '../../../models/user.model';
 /* NGRX */
 import { Store, select } from '@ngrx/store';
 import * as fromDashboard from '../../../reducers';
-import * as userActions from '../../../actions/users.actions';
+import * as usersActions from '../../../actions/users.actions';
 import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -97,7 +97,7 @@ export class UserListComponent implements OnInit, OnDestroy {
    */
   ngOnInit(): void {
 
-    this.store.dispatch(new userActions.LoadUsers());
+    this.store.dispatch(new usersActions.LoadUsers());
 
     this.store.pipe(select(fromDashboard.getUsersIds))
     .subscribe((ids: string[]) => this.ids = ids);
@@ -110,36 +110,22 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   // Create User action
   newUser(): void {
-    this.store.dispatch(new userActions.InitializeUser());
+    this.store.dispatch(new usersActions.InitializeUser());
   }
 
   // Select user action
   selectUser(user: User): void {
-    this.store.dispatch(new userActions.SelectUser(user));
+    this.store.dispatch(new usersActions.SelectUser(user));
   }
  
-  //add user
-  openPopUp(data: any = {}, isNew?) { 
+  //add appUser
+  openPopUp() { 
     let title ='Creating a new user';
     let dialogRef: MatDialogRef<any> = this.dialog.open(UserFormComponent, {
       width: '720px',
       disableClose: true,
-      data: { title: title, payload: data }
-    })
-    dialogRef.afterClosed()
-      .subscribe(res => {
-        if(!res) {
-          // If user press cancel
-          return;
-        }
-        if (isNew) {
-          this.usersService.createUser(res)
-            .subscribe(data => {
-              console.log(data);
-              // this.users = data;
-              // this.snack.open('User Added!', 'OK', { duration: 4000 })
-            })
-        }
-      })
+      data: { title: title },
+      id: 'userCreationForm'
+    });
   }
 }

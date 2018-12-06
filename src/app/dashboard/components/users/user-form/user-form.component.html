@@ -1,12 +1,23 @@
+<div>
+  <mat-progress-bar [mode]="(loadNursinghomePending$ | async) ? 'indeterminate' : 'determinate'" class="session-progress"></mat-progress-bar>
+  <mat-progress-bar [mode]="(createUserPending$ | async) ? 'indeterminate' : 'determinate'" class="session-progress"></mat-progress-bar>
+</div>
+
 <h1 matDialogTitle>{{data.title}}</h1>
-  <form [formGroup]="itemForm" (ngSubmit)="submit()">
+  <small *ngIf="loadNursingHomeErrorMessage$ | async" class="text-center form-error-msg">
+    {{loadNursingHomeErrorMessage$ | async}}!
+  </small>
+  <small *ngIf="saveUserErrorMessage$ | async" class="text-center form-error-msg">
+    {{saveUserErrorMessage$ | async }}!
+  </small>
+  <form [formGroup]="userForm" (ngSubmit)="submit()">
   <div fxLayout="row wrap" fxLayout.lt-sm="column">
     <div fxFlex="50"  class="pr-1">
       <mat-form-field class="full-width">
         <input
         matInput
         name="firstname"
-        [formControl]="itemForm.controls['firstname']"
+        [formControl]="userForm.controls['firstname']"
         placeholder="First Name">
       </mat-form-field>
     </div>
@@ -16,7 +27,7 @@
         <input
         matInput
         name="lastname"
-        [formControl]="itemForm.controls['lastname']"
+        [formControl]="userForm.controls['lastname']"
         placeholder="Last Name">
       </mat-form-field>
     </div>
@@ -26,7 +37,7 @@
         <input
         matInput
         name="username"
-        [formControl]="itemForm.controls['username']"
+        [formControl]="userForm.controls['username']"
         placeholder="Username">
       </mat-form-field>
     </div>
@@ -37,7 +48,7 @@
         matInput
         type="email"
         name="email"
-        [formControl]="itemForm.controls['email']"
+        [formControl]="userForm.controls['email']"
         placeholder="Email">
       </mat-form-field>
     </div>
@@ -47,7 +58,7 @@
         matInput
         type="password"
         name="password"
-        [formControl]="itemForm.controls['password']"
+        [formControl]="userForm.controls['password']"
         placeholder="Password">
       </mat-form-field>
     </div>
@@ -57,25 +68,24 @@
         <input
         matInput
         type="password"
-        name="confirm_password"
-        [formControl]="itemForm.controls['confirm_password']"
+        name="password_confirmation"
+        [formControl]="userForm.controls['password_confirmation']"
         placeholder="Confirm Password">
       </mat-form-field>
     </div>
 
     <div fxFlex="50"  class="pr-1">
-      <mat-form-field class="full-width">
-        <input
-        matInput
-        type="number"
-        name="nursing_home_key"
-        [formControl]="itemForm.controls['nursing_home_key']"
-        placeholder="Nursing Home">
+      <mat-form-field>
+        <mat-select placeholder="Nursing Home" name="nursing_home_key" [formControl]="userForm.controls['nursing_home_key']">
+          <mat-option *ngFor="let nursingHome of nursingHomes$" [value]="nursingHome.key">
+            {{nursingHome.name}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 
     <div fxFlex="100" class="mt-1">
-      <button mat-raised-button color="primary" [disabled]="itemForm.invalid">Save</button>
+      <button mat-raised-button color="primary" [disabled]="userForm.invalid" type="submit">Save</button>
       <span fxFlex></span>
       <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
     </div>

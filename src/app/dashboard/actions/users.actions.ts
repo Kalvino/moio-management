@@ -3,10 +3,10 @@ import { User } from '../models/user.model';
 import { Update } from '@ngrx/entity';
 
 export enum UsersActionTypes {
-  SelectUser = '[User] Set Current User',
+  SelectUser = '[User] Select Current User',
   ClearSelectedUser = '[User] Clear Current User',
   InitializeUser = '[User] Initialize Current User',
-  PopUpUserForm = '[] Pop Up User Form',
+  PopUpUserForm = '[Users] Pop Up User Form',
   CreateUser = '[User] Create User',
   DismissPoppedUpUserForm = '[User] Dismiss Create user',
   LoadUsers = '[User] Load Users',
@@ -14,7 +14,7 @@ export enum UsersActionTypes {
   SearchUserComplete = '[User] Search User Complete',
   EditUser = '[User] Edit User',
   DismissEditUser = '[User] Dismiss Edit User',
-  ResetUsersState = '[Users] Reset Users State',
+  ResetUsersState = '[Users] Reset Users State'
 }
 
 

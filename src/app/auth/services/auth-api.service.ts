@@ -15,7 +15,7 @@ export class AuthApiService {
    */
   login(credentials: Credentials): Observable<any> {
     return this.http
-      .post(`${environment.apiHost}/api/auth/login`, credentials);
+      .post(`${environment.apiHost}/api/auth/loginmanagement`, credentials);
   }
 
   /**
