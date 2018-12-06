@@ -1,13 +1,15 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MatProgressBar, MatButton } from '@angular/material';
-
+import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
+import { UserFormComponent } from '../user-form/user-form.component';
+import { UsersService } from '../../../services/users.service';
 
 import { User } from '../../../models/user.model';
 
 /* NGRX */
 import { Store, select } from '@ngrx/store';
 import * as fromDashboard from '../../../reducers';
-import * as userActions from '../../../actions/users.actions';
+import * as usersActions from '../../../actions/users.actions';
 import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -81,16 +83,21 @@ export class UserListComponent implements OnInit, OnDestroy {
    * 
    */
   constructor(private store: Store<fromDashboard.State>, 
-    private translate: TranslateService) { 
+    private translate: TranslateService,
+    private usersService: UsersService,
+    private dialog: MatDialog,
+    private snack: MatSnackBar,) { 
 
   }
+
+  public items: User[];
 
    /**
    * init UserListComponent component
    */
   ngOnInit(): void {
 
-    this.store.dispatch(new userActions.LoadUsers());
+    this.store.dispatch(new usersActions.LoadUsers());
 
     this.store.pipe(select(fromDashboard.getUsersIds))
     .subscribe((ids: string[]) => this.ids = ids);
@@ -103,11 +110,22 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   // Create User action
   newUser(): void {
-    this.store.dispatch(new userActions.InitializeUser());
+    this.store.dispatch(new usersActions.InitializeUser());
   }
 
   // Select user action
   selectUser(user: User): void {
-    this.store.dispatch(new userActions.SelectUser(user));
+    this.store.dispatch(new usersActions.SelectUser(user));
+  }
+ 
+  //add appUser
+  openPopUp() { 
+    let title ='Creating a new user';
+    let dialogRef: MatDialogRef<any> = this.dialog.open(UserFormComponent, {
+      width: '720px',
+      disableClose: true,
+      data: { title: title },
+      id: 'userCreationForm'
+    });
   }
 }

@@ -3,11 +3,15 @@ import { UsersApiActions, UsersActions } from '../actions';
 export interface State {
   error: string | null;
   pending: boolean;
+  createUserError: string | null;
+  createUserPending: boolean;
 }
 
 export const initialState: State = {
   error: null,
-  pending: false
+  pending: false,
+  createUserError: null,
+  createUserPending: false
 };
 
 /**
@@ -30,8 +34,27 @@ export function reducer(
         error: null
       };
 
-    case (UsersApiActions.UsersApiActionTypes.LoadUsersSuccess):
+    case (UsersActions.UsersActionTypes.CreateUser):
+      return {
+        ...state,
+        createUserPending: true
+      };
+    
+    case (UsersApiActions.UsersApiActionTypes.CreateUserFailure):
+      return {
+        ...state,
+        createUserPending: false,
+        createUserError: action.payload.messages
+      };
+
     case (UsersApiActions.UsersApiActionTypes.CreateUserSuccess):
+      return {
+        ...state,
+        createUserPending: false,
+        createUserError: null
+      };
+
+    case (UsersApiActions.UsersApiActionTypes.LoadUsersSuccess):
     case (UsersApiActions.UsersApiActionTypes.EditUserSuccess):
       return {
         ...state,
@@ -46,7 +69,6 @@ export function reducer(
       }
 
     case (UsersApiActions.UsersApiActionTypes.LoadUsersFailure):
-    case (UsersApiActions.UsersApiActionTypes.CreateUserFailure):
     case (UsersApiActions.UsersApiActionTypes.EditUserFailure):
       return {
         ...state,
@@ -71,3 +93,15 @@ export const getError = (state: State) => state.error;
  * @param state
  */
 export const getPending = (state: State) => state.pending;
+
+/**
+ * get the current error state when creating user
+ * @param state
+ */
+export const getCreateUserError = (state: State) => state.createUserError;
+
+/**
+ * get the pending state when creating user
+ * @param state
+ */
+export const getCreateUserPending = (state: State) => state.createUserPending;

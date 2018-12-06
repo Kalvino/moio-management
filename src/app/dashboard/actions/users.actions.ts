@@ -3,16 +3,18 @@ import { User } from '../models/user.model';
 import { Update } from '@ngrx/entity';
 
 export enum UsersActionTypes {
-  SelectUser = '[User] Set Current User',
+  SelectUser = '[User] Select Current User',
   ClearSelectedUser = '[User] Clear Current User',
   InitializeUser = '[User] Initialize Current User',
+  PopUpUserForm = '[Users] Pop Up User Form',
   CreateUser = '[User] Create User',
+  DismissPoppedUpUserForm = '[User] Dismiss Create user',
   LoadUsers = '[User] Load Users',
   SearchUser = '[User] Search User',
   SearchUserComplete = '[User] Search User Complete',
   EditUser = '[User] Edit User',
   DismissEditUser = '[User] Dismiss Edit User',
-  ResetUsersState = '[Users] Reset Users State',
+  ResetUsersState = '[Users] Reset Users State'
 }
 
 
@@ -40,12 +42,26 @@ export class InitializeUser implements Action {
 }
 
 /**
+ * action to pop up user form
+ */
+export class PopUpUserForm implements Action {
+  readonly type = UsersActionTypes.PopUpUserForm;
+}
+
+/**
  * Create user Action
  */
 export class CreateUser implements Action {
   readonly type = UsersActionTypes.CreateUser;
 
   constructor(public payload: { user: User }) { }
+}
+
+/**
+ * CreateUser Dialog window dismissed
+ */
+export class DismissPoppedUpUserForm implements Action {
+  readonly type = UsersActionTypes.DismissPoppedUpUserForm;
 }
 
 /**
@@ -104,7 +120,9 @@ export type UsersActionsUnion
   = SelectUser
   | ClearSelectedUser
   | InitializeUser
+  | PopUpUserForm
   | CreateUser
+  | DismissPoppedUpUserForm
   | LoadUsers
   | SearchUser
   | SearchUserComplete
