@@ -11,7 +11,6 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class UsersService {
-  private usersUrl = 'api/users';
 
   constructor(private http: HttpClient) { }
 
@@ -25,7 +24,7 @@ export class UsersService {
    */
   createUser(user: User): Observable<User> {
     return this.http
-      .post(`${environment.apiHost}/api/users`, {...user});
+      .post(`${environment.apiHost}/api/appusers`, {...user});
   }
 
 }

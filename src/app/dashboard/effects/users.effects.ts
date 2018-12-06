@@ -30,18 +30,38 @@ export class UsersEffects {
 
         return this.userService.createUser(userData)
           .pipe(
+            delay(2000),
             map(user => {
+              console.log(user);
               return new UsersApiActions.CreateUserSuccess({ user });
             }),
             catchError(httpResponse => {
-              const message = [];
+              console.log(httpResponse);
+              const messages = httpResponse.statusText.toLowerCase();
 
-              return of(new UsersApiActions.CreateUserFailure({ message }));
+              return of(new UsersApiActions.CreateUserFailure({ messages }));
             }),
             tap(() => {
               console.log('Actions finished')
             })
           );
+      })
+    );
+
+  /**
+   * observes the CreateUserSuccess action
+   * in case create user succeeds, the form dialog box is closed
+   * and the users list is shown 
+   */
+  @Effect({
+    dispatch: false
+  })
+  createUserSuccess$ = this.actions$
+    .pipe(
+      ofType(UsersApiActions.UsersApiActionTypes.CreateUserSuccess),
+      tap(() => {
+        this.dialog.getDialogById("userCreationForm").close();
+        this.store.dispatch(new UsersActions.LoadUsers());
       })
     );
 

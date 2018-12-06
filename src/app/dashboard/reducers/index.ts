@@ -1,6 +1,8 @@
 import * as fromUserPage from './users-page.reducer';
+import * as fromNursingHomePage from './nursing-homes-page.reducer';
 import * as fromRoot from '../../reducers';
 import * as fromUsers from './users.reducer';
+import * as fromNursingHome from './nursing-homes.reducer';
 import * as fromLayout from './layout.reducer';
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
@@ -10,6 +12,8 @@ import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/s
 export interface DashboardState {
   userPage: fromUserPage.State;
   users: fromUsers.State;
+  nursingHomePage: fromNursingHomePage.State;
+  nursingHomes: fromNursingHome.State;
   layout: fromLayout.State;
 }
 
@@ -26,6 +30,8 @@ export interface State extends fromRoot.State {
 export const reducers: ActionReducerMap<DashboardState, any> = {
   userPage: fromUserPage.reducer,
   users: fromUsers.reducer,
+  nursingHomePage: fromNursingHomePage.reducer,
+  nursingHomes: fromNursingHome.reducer,
   layout: fromLayout.reducer
 };
 
@@ -48,6 +54,18 @@ export const getUserPageError = createSelector(
 export const getUserPagePending = createSelector(
   getUsersPageState,
   fromUserPage.getPending
+);
+
+// get error state when creating user from the store
+export const getUserCreationError = createSelector(
+  getUsersPageState,
+  fromUserPage.getCreateUserError
+);
+
+// get pending state of the userPage from the store
+export const getUserCreationPending = createSelector(
+  getUsersPageState,
+  fromUserPage.getCreateUserPending
 );
 
 // ****************** USERS *************
@@ -74,6 +92,52 @@ export const {
 export const getSelectedUser = createSelector(
   getUserEntities,
   getSelectedUserId,
+  (entities, id) => entities[id]
+);
+
+
+// ****************** NURSING HOMES PAGE *************
+export const getNursingHomesPageState = createSelector(
+  getDashboardState,
+  (state: DashboardState) => state.nursingHomePage
+);
+
+// get error state of the nursingHomePage from the store
+export const getNursingHomePageError = createSelector(
+  getNursingHomesPageState,
+  fromNursingHomePage.getError
+);
+
+// get pending state of the nursingHomePage from the store
+export const getNursingHomePagePending = createSelector(
+  getNursingHomesPageState,
+  fromNursingHomePage.getPending
+);
+
+// ****************** NURSING HOMES *************
+export const getNursingHomesState = createSelector(
+  getDashboardState,
+  (state: DashboardState) => state.nursingHomes
+);
+
+// get the selected nursing home id from state
+export const getSelectedNursingHomeId = createSelector(
+  getNursingHomesState,
+  fromNursingHome.getSelectedNursingHomeId
+);
+
+// deconstruct several functions from ngrx/entity
+export const {
+  selectIds: getNursingHomesIds,
+  selectEntities: getNursingHomeEntities,
+  selectAll: getAllNursingHomes,
+  selectTotal: getTotalNursiomes
+} = fromNursingHome.adapater.getSelectors(getNursingHomesState);
+
+// get the selected nursing home from the state / nursing homes collection
+export const getSelectedNursingHome = createSelector(
+  getNursingHomeEntities,
+  getSelectedNursingHomeId,
   (entities, id) => entities[id]
 );
 

@@ -11,6 +11,7 @@ import { MatSortModule, MatFormFieldModule } from '@angular/material';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { DashboardRoutingModule } from '../../dashboard-routing.module';
 import { UserFormComponent } from './user-form/user-form.component';
+import { NursingHomeFormComponent } from '../nursing-homes/nursing-home-form/nursing-home-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatInputModule} from '@angular/material';
@@ -20,6 +21,7 @@ import {MatCardModule} from '@angular/material/card';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -41,12 +43,14 @@ import {MatButtonModule} from '@angular/material/button';
     MatCardModule,
     FlexLayoutModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule
   ],
   declarations: [
     UsersComponent,
     UserListComponent,
-    UserFormComponent
+    UserFormComponent,
+    NursingHomeFormComponent
   ],
   exports: [
     UsersComponent,
@@ -60,7 +64,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatCardModule,
     FlexLayoutModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    NursingHomeFormComponent,
+    MatSelectModule
   ],
   entryComponents: [UserFormComponent]
 })
