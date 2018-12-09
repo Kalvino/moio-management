@@ -7,8 +7,9 @@ import { UsersService } from '../services/users.service';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import {MatSnackBar} from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
+import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
+import { UserFormComponent } from '../components/users/user-form/user-form.component';
 
 /**
  * users effects
@@ -27,20 +28,40 @@ export class UsersEffects {
       map(action => action.payload.user),
       exhaustMap((userData: User) => {
 
-        return this.userService.createUser(userData)
+        return this.usersService.createUser(userData)
           .pipe(
+            // delay(2000),
             map(user => {
+              console.log(user);
               return new UsersApiActions.CreateUserSuccess({ user });
             }),
             catchError(httpResponse => {
-              const message = [];
+              console.log(httpResponse);
+              const messages = httpResponse.statusText.toLowerCase();
 
-              return of(new UsersApiActions.CreateUserFailure({ message }));
+              return of(new UsersApiActions.CreateUserFailure({ messages }));
             }),
             tap(() => {
               console.log('Actions finished')
             })
           );
+      })
+    );
+
+  /**
+   * observes the CreateUserSuccess action
+   * in case create user succeeds, the form dialog box is closed
+   * and the users list is shown 
+   */
+  @Effect({
+    dispatch: false
+  })
+  createUserSuccess$ = this.actions$
+    .pipe(
+      ofType(UsersApiActions.UsersApiActionTypes.CreateUserSuccess),
+      tap(() => {
+        this.dialog.getDialogById("userCreationForm").close();
+        this.store.dispatch(new UsersActions.LoadUsers());
       })
     );
 
@@ -87,10 +108,45 @@ export class UsersEffects {
     );
 
   /**
+   * show a dialog form for user details as a pop up
+   */
+  @Effect()
+  popUpUserForm$ = this.actions$
+    .pipe(
+      ofType<UsersActions.CreateUserFormDialog>(UsersActions.UsersActionTypes.CreateUserFormDialog),
+      exhaustMap(() => {
+        const title = 'Creating a new user';
+        const dialogRef: MatDialogRef<UserFormComponent> = this.dialog.open(UserFormComponent, {
+          width: '720px',
+          disableClose: true,
+          data: { title: title }
+        });
+        
+        return dialogRef.afterClosed();
+      })
+    );
+
+
+  /**
+   * effect to dismiss the dialog for adding user details
+   */
+  @Effect({
+    dispatch: false
+  })
+  DismissUserFormDialog = this.actions$
+    .pipe(
+      ofType(UsersActions.UsersActionTypes.DismissUserFormDialog),
+      map(() => {
+        this.dialog.getDialogById('userCreationForm').close();
+      })
+    );
+
+
+
+  /**
    * constructor
    *
    * @param actions$
-   * @param userService
    * @param usersService
    * @param router
    * @param modalController
@@ -98,11 +154,11 @@ export class UsersEffects {
    */
   constructor(
     private actions$: Actions,
-    private userService: UsersService,
     private usersService: UsersService,
     private router: Router,
     private store: Store<any>,
     public snackBar: MatSnackBar,
-    private translate: TranslateService){
+    private translate: TranslateService,
+    private dialog: MatDialog,){
   }
 }

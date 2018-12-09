@@ -45,7 +45,7 @@ export class HeaderSideComponent implements OnInit {
 
     // TODO: Unsubscribe
     this.store.pipe(select(fromDashboard.getSideNav)).subscribe(
-      sidebarStyle => this.sidebarStyle = sidebarStyle
+      (sidebarStyle:string) => this.sidebarStyle = sidebarStyle
     );
   }
 

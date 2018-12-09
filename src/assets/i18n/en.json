@@ -26,7 +26,6 @@
     "AccountSettings": "Account Settings",
     "DisableAlerts": "Disable Alerts"
   },
-
   "users": "users",
   "USERS": "USERS",
   "Users": "Users",
@@ -36,15 +35,37 @@
   "Blank": "Blank",
   "list": "list",
   "LIST": "LIST",
-
   "Name": "Name",
   "NursingHome": "Nursing Home",
   "RegisteredOn": "Registered on",
   "LastLoginOn": "Last login on",
   "PatientProfiles": "Patient profiles",
-
   "unknown error": "unknown error",
   "Cancel": "Cancel",
   "OK": "Ok",
-  "Retry": "Retry"
+  "Retry": "Retry",
+  "Create": "Create",
+  "UserForm": {
+    "FormTitle": "Creating a new user",
+    "FirsNameRequired": "First name is required",
+    "LastNameRequired": "Last name is required",
+    "UserNameRequired": "Username is requried",
+    "EmailRequired": "Email is required",
+    "PasswordRequried": "Password is required",
+    "ConfirmPasswordRequired": "Confirm password is required",
+    "NursingHomeKeyRequired": "Nursing home is required",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "Username": "Username",
+    "Email": "Email",
+    "Password": "Password",
+    "ConfirmPassword": "Confirm Password",
+    "NursingHome": "Nursing Home",
+    "Save": "Save",
+    "Cancel": "Cancel"
+  },
+  "CloseUserForm":{
+    "title": "Close  this form?",
+    "message": "The unsaved data in this form will be lost. Are you sure you want to close this form?"
+  }
 }

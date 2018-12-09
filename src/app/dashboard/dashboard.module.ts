@@ -14,7 +14,10 @@ import { DashboardLayoutComponent } from './containers/dashboard-layout.componen
 import { SidenavComponent } from './containers/layout-components/sidenav/sidenav.component';
 import { BlankComponent } from './components/blank/blank.component';
 import { UsersEffects } from './effects/users.effects';
+import { NursingHomesEffects } from './effects/nursing-homes.effects';
 import { UserModule } from './components/users/user.module';
+import { ConfirmService } from '../core/services/confirm.service';
+import { ComfirmComponent } from '../core/components/confirm/confirm.component';
 
 /* NGRX */
 import { StoreModule } from '@ngrx/store';
@@ -30,11 +33,13 @@ export const COMPONENTS = [
   SidebarSideComponent,
   SidebarTopComponent,
   SidenavComponent,
-  BlankComponent
+  BlankComponent,
+  ComfirmComponent
 ];
 
 export const EFFECTS = [
-  UsersEffects
+  UsersEffects,
+  NursingHomesEffects
 ];
 
 @NgModule({
@@ -54,6 +59,12 @@ export const EFFECTS = [
   exports: [
     DashboardLayoutComponent,
     DashboardRoutingModule
+  ],
+  providers: [
+    ConfirmService
+  ],
+  entryComponents: [
+    ComfirmComponent
   ]
 })
 export class DashboardModule {

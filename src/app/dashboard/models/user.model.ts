@@ -9,4 +9,7 @@ export interface User {
   registered_on?: string;
   last_login?: string;
   patient_profiles?: number;
+  password?: string;
+  confirm_password?: string;
+  nursing_home_key?: string;
 }
