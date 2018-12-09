@@ -1,6 +1,6 @@
-<div>
-  <mat-progress-bar [mode]="(loadNursinghomePending$ | async) ? 'indeterminate' : 'determinate'" class="session-progress"></mat-progress-bar>
-  <mat-progress-bar [mode]="(createUserPending$ | async) ? 'indeterminate' : 'determinate'" class="session-progress"></mat-progress-bar>
+<div >
+  <mat-progress-bar *ngIf="loadNursinghomePending$ | async" [mode]="(loadNursinghomePending$ | async) ? 'indeterminate' : 'determinate'" class="session-progress"></mat-progress-bar>
+  <mat-progress-bar *ngIf="createUserPending$ | async" [mode]="(createUserPending$ | async) ? 'indeterminate' : 'determinate'" class="session-progress"></mat-progress-bar>
 </div>
 
 <h1 matDialogTitle>{{data.title}}</h1>
@@ -94,7 +94,7 @@
     <div fxFlex="100" class="mt-1">
       <button mat-raised-button color="primary" [disabled]="userForm.invalid" type="submit">{{'UserForm.Save' | translate}}</button>
       <span fxFlex></span>
-      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">{{'UserForm.Cancel' | translate}}</button>
+      <button mat-button color="warn" type="button" (click)="cancel()">{{'UserForm.Cancel' | translate}}</button>
     </div>
   </div>
   </form>

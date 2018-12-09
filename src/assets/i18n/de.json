@@ -64,5 +64,9 @@
     "NursingHome": "Einrichtung",
     "Save": "Speichern",
     "Cancel": "Stornieren"
+  },
+  "CloseUserForm":{
+    "title": "Schließen Sie dieses Formular?",
+    "message": "Die nicht gespeicherten Daten in diesem Formular gehen verloren. Möchten Sie dieses Formular wirklich schließen?"
   }
 }

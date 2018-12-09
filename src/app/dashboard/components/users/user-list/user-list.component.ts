@@ -18,8 +18,8 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit, OnDestroy {
-  @ViewChild(MatProgressBar) progressBar: MatProgressBar;
-  @ViewChild(MatButton) submitButton: MatButton;
+  // @ViewChild(MatProgressBar) progressBar: MatProgressBar;
+  // @ViewChild(MatButton) submitButton: MatButton;
 
   users: User[];
   
