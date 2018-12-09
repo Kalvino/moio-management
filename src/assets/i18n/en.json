@@ -50,7 +50,7 @@
     "FirsNameRequired": "First name is required",
     "LastNameRequired": "Last name is required",
     "UserNameRequired": "Username is requried",
-    "EmailRequired": "Email is required",
+    "EmailRequired": "Please enter a valid email address",
     "PasswordRequried": "Password is required",
     "ConfirmPasswordRequired": "Confirm password is required",
     "NursingHomeKeyRequired": "Nursing home is required",
