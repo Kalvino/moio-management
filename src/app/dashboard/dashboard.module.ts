@@ -14,6 +14,7 @@ import { DashboardLayoutComponent } from './containers/dashboard-layout.componen
 import { SidenavComponent } from './containers/layout-components/sidenav/sidenav.component';
 import { BlankComponent } from './components/blank/blank.component';
 import { UsersEffects } from './effects/users.effects';
+import { NursingHomesEffects } from './effects/nursing-homes.effects';
 import { UserModule } from './components/users/user.module';
 
 /* NGRX */
@@ -34,7 +35,8 @@ export const COMPONENTS = [
 ];
 
 export const EFFECTS = [
-  UsersEffects
+  UsersEffects,
+  NursingHomesEffects
 ];
 
 @NgModule({

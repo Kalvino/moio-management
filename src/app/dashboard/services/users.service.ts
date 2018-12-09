@@ -14,6 +14,9 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * get all users from the moio-cloud api
+   */
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${environment.apiHost}/api/usermanagement`);
   }

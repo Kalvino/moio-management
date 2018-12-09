@@ -11,6 +11,7 @@ import { UsersApiActions, UsersActions } from '../../../actions';
 import { User } from '../../../models/user.model';
 import { NursingHome } from 'src/app/dashboard/models/nursing-home.model';
 
+
 @Component({
   selector: 'user-form',
   templateUrl: './user-form.component.html'
@@ -38,70 +39,19 @@ export class UserFormComponent implements OnInit {
     select(fromDashboard.getUserCreationError)
   );
 
-  // nursingHomes$: Observable<NursingHome[]> = this.store.pipe(
-  //   select(fromDashboard.getAllNursingHomes)
-  // );
-
-  nursingHomes$ = [
-    {
-        "id": 1,
-        "key": "Miss Emily Predovic",
-        "name": "Clair Morar"
-    },
-    {
-        "id": 2,
-        "key": "Reggie Hermann",
-        "name": "Juvenal Roob Jr."
-    },
-    {
-        "id": 3,
-        "key": "Prof. Kayleigh Braun",
-        "name": "Guido Kerluke"
-    },
-    {
-        "id": 4,
-        "key": "Ms. Dolores Bergstrom",
-        "name": "Serena Yundt V"
-    },
-    {
-        "id": 5,
-        "key": "Jo Thompson",
-        "name": "Lenny Hane"
-    },
-    {
-        "id": 6,
-        "key": "Khalid Crist",
-        "name": "Scottie Nicolas"
-    },
-    {
-        "id": 7,
-        "key": "Donnie Hodkiewicz",
-        "name": "Karianne Gibson Sr."
-    },
-    {
-        "id": 8,
-        "key": "Miss Josefa Sauer I",
-        "name": "Elyssa Ziemann"
-    },
-    {
-        "id": 9,
-        "key": "Prof. Mabelle Ratke",
-        "name": "Nathan Grady"
-    },
-    {
-        "id": 10,
-        "key": "Gertrude Herman",
-        "name": "Brenda Walter"
-    }
-];
+  nursingHomes$: Observable<NursingHome[]> = this.store.pipe(
+    select(fromDashboard.getAllNursingHomes)
+  );
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<UserFormComponent>,
     private fb: FormBuilder,
     private store: Store<fromDashboard.State>, 
-    private translate: TranslateService,
-  ) { }
+    public translate: TranslateService,
+  ) { 
+    translate.setDefaultLang('de');
+  }
 
   ngOnInit() {
     // LoadAllNursingHomes
@@ -114,7 +64,7 @@ export class UserFormComponent implements OnInit {
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       username: ['', Validators.required],
-      email: ['',Validators.required],
+      email: ['',[Validators.required, Validators.email]],
       password: ['',Validators.required],
       password_confirmation: ['',Validators.required],
       nursing_home_key: ['',Validators.required]

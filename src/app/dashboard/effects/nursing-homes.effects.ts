@@ -28,7 +28,7 @@ export class NursingHomesEffects {
       map(action => action.payload.nursingHome),
       exhaustMap((nursingHomeData: NursingHome) => {
 
-        return this.nursingHomeService.createNursingHome(nursingHomeData)
+        return this.nursingHomesService.createNursingHome(nursingHomeData)
           .pipe(
             map(nursingHome => {
               return new NursingHomesApiActions.CreateNursingHomeSuccess({ nursingHome });
@@ -46,17 +46,17 @@ export class NursingHomesEffects {
     );
 
   /**
-   * effect for loading nursingHomes
+   * effect for loading nursing homes
    */
   @Effect()
-  loadNursingHomes = this.actions$
+  loadNursingHomes$ = this.actions$
     .pipe(
       ofType<NursingHomesActions.LoadNursingHomes>(NursingHomesActions.NursingHomesActionTypes.LoadNursingHomes),
       exhaustMap(() => {
 
         return this.nursingHomesService.getNursingHomes()
           .pipe(
-            delay(2000),
+            // delay(2000),
             map((nursingHomes: NursingHome[]) => {
               console.log(nursingHomes)
               return new NursingHomesApiActions.LoadNursingHomesSuccess({nursingHomes});
@@ -119,8 +119,8 @@ export class NursingHomesEffects {
       ofType(NursingHomesActions.NursingHomesActionTypes.DismissPoppedUpNursingHomeForm),
       map(() => {
         this.dialog.closeAll();
-      })
-    );
+    })
+  );
 
 
 
@@ -128,7 +128,6 @@ export class NursingHomesEffects {
    * constructor
    *
    * @param actions$
-   * @param nursingHomeService
    * @param nursingHomesService
    * @param router
    * @param modalController
@@ -136,7 +135,6 @@ export class NursingHomesEffects {
    */
   constructor(
     private actions$: Actions,
-    private nursingHomeService: NursingHomesService,
     private nursingHomesService: NursingHomesService,
     private router: Router,
     private store: Store<any>,

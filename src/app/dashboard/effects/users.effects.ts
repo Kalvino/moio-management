@@ -28,9 +28,9 @@ export class UsersEffects {
       map(action => action.payload.user),
       exhaustMap((userData: User) => {
 
-        return this.userService.createUser(userData)
+        return this.usersService.createUser(userData)
           .pipe(
-            delay(2000),
+            // delay(2000),
             map(user => {
               console.log(user);
               return new UsersApiActions.CreateUserSuccess({ user });
@@ -147,7 +147,6 @@ export class UsersEffects {
    * constructor
    *
    * @param actions$
-   * @param userService
    * @param usersService
    * @param router
    * @param modalController
@@ -155,7 +154,6 @@ export class UsersEffects {
    */
   constructor(
     private actions$: Actions,
-    private userService: UsersService,
     private usersService: UsersService,
     private router: Router,
     private store: Store<any>,

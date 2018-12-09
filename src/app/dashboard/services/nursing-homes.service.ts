@@ -14,6 +14,9 @@ export class NursingHomesService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * get all nursing homes from the moio-cloud api
+   */
   getNursingHomes(): Observable<NursingHome[]> {
     return this.http.get<NursingHome[]>(`${environment.apiHost}/api/nursinghomes`);
   }

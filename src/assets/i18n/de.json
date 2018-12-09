@@ -26,7 +26,7 @@
     "AccountSettings": "Account Settings",
     "DisableAlerts": "Disable Alerts"
   },
-
+  "Logout": "Ausloggen",
   "users": "benutzer",
   "USERS": "BENUTZER",
   "Users": "Benutzer",
@@ -36,15 +36,33 @@
   "Blank": "Leer",
   "list": "liste",
   "LIST": "LISTE",
-
   "Name": "Name",
   "NursingHome": "Einrichtung",
   "RegisteredOn": "Registriert am",
   "LastLoginOn": "Lezte Anmeldung am",
   "PatientProfiles": "Patientenprofile",
-
   "unknown error": "unbekannter Fehler",
   "Cancel": "Stornieren",
   "OK": "Ok",
-  "Retry": "Wiederholen"
+  "Retry": "Wiederholen",
+  "Create": "Erstell",
+  "UserForm": {
+    "FormTitle": "Erstelle einen neuen Benutzer",
+    "FirsNameRequired": "Vorname ist erforderlich",
+    "LastNameRequired": "Nachname ist erforderlich",
+    "UserNameRequired": "Username is requried",
+    "EmailRequired": "Benutzername ist erforderlich",
+    "PasswordRequried": "Passwort ist erforderlich",
+    "ConfirmPasswordRequired": "konfirmieren passwort ist erforderlich",
+    "NursingHomeKeyRequired": "Pflegeheim ist erforderlich",
+    "FirstName": "Vorname",
+    "LastName": "Nachname",
+    "Username": "Nutzername",
+    "Email": "Email",
+    "Password": "Passwort",
+    "ConfirmPassword": "Passwort bestätigen",
+    "NursingHome": "Einrichtung",
+    "Save": "Speichern",
+    "Cancel": "Stornieren"
+  }
 }

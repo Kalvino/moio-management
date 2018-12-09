@@ -7,6 +7,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { UsersComponent } from './users.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { MatSortModule, MatFormFieldModule } from '@angular/material';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { DashboardRoutingModule } from '../../dashboard-routing.module';
@@ -23,10 +24,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 
-
-
 @NgModule({
   imports: [
+    TranslateModule,
     DashboardRoutingModule,
     MatTableModule,
     MatSortModule,
