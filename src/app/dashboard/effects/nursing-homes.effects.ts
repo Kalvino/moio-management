@@ -30,6 +30,7 @@ export class NursingHomesEffects {
 
         return this.nursingHomesService.createNursingHome(nursingHomeData)
           .pipe(
+            delay(2000),
             map(nursingHome => {
               return new NursingHomesApiActions.CreateNursingHomeSuccess({ nursingHome });
             }),
@@ -56,7 +57,7 @@ export class NursingHomesEffects {
 
         return this.nursingHomesService.getNursingHomes()
           .pipe(
-            // delay(2000),
+            delay(2000),
             map((nursingHomes: NursingHome[]) => {
               console.log(nursingHomes)
               return new NursingHomesApiActions.LoadNursingHomesSuccess({nursingHomes});

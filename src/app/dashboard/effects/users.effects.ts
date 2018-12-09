@@ -113,7 +113,7 @@ export class UsersEffects {
   @Effect()
   popUpUserForm$ = this.actions$
     .pipe(
-      ofType<UsersActions.PopUpUserForm>(UsersActions.UsersActionTypes.PopUpUserForm),
+      ofType<UsersActions.CreateUserFormDialog>(UsersActions.UsersActionTypes.CreateUserFormDialog),
       exhaustMap(() => {
         const title = 'Creating a new user';
         const dialogRef: MatDialogRef<UserFormComponent> = this.dialog.open(UserFormComponent, {
@@ -133,11 +133,11 @@ export class UsersEffects {
   @Effect({
     dispatch: false
   })
-  DismissPoppedUpUserForm = this.actions$
+  DismissUserFormDialog = this.actions$
     .pipe(
-      ofType(UsersActions.UsersActionTypes.DismissPoppedUpUserForm),
+      ofType(UsersActions.UsersActionTypes.DismissUserFormDialog),
       map(() => {
-        this.dialog.closeAll();
+        this.dialog.getDialogById('userCreationForm').close();
       })
     );
 

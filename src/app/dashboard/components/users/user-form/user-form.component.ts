@@ -10,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UsersApiActions, UsersActions } from '../../../actions';
 import { User } from '../../../models/user.model';
 import { NursingHome } from 'src/app/dashboard/models/nursing-home.model';
+import { ConfirmService } from '../../../../core/services/confirm.service'
 
 
 @Component({
@@ -49,6 +50,7 @@ export class UserFormComponent implements OnInit {
     private fb: FormBuilder,
     private store: Store<fromDashboard.State>, 
     public translate: TranslateService,
+    public confirmService: ConfirmService
   ) { 
     translate.setDefaultLang('de');
   }
@@ -84,7 +86,22 @@ export class UserFormComponent implements OnInit {
     // this.dialogRef.close(this.userForm.value)
   }
 
+  /**
+   * dismiss the open user form dialogue with confirmation if 
+   * the form has unsave data
+   */
   cancel(){
-    this.store.dispatch(new UsersActions.DismissPoppedUpUserForm());
+    const title = this.translate.instant("CloseUserForm.title");
+    const message = this.translate.instant("CloseUserForm.message");
+    if (this.userForm.dirty){
+      this.confirmService.confirm({title: title, message: message})
+      .subscribe(res => {
+        if (res){
+          this.store.dispatch(new UsersActions.DismissUserFormDialog());
+        }
+      })
+    }else{
+      this.store.dispatch(new UsersActions.DismissUserFormDialog());
+    }
   }
 }

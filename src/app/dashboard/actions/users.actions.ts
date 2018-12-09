@@ -6,9 +6,9 @@ export enum UsersActionTypes {
   SelectUser = '[User] Select Current User',
   ClearSelectedUser = '[User] Clear Current User',
   InitializeUser = '[User] Initialize Current User',
-  PopUpUserForm = '[Users] Pop Up User Form',
+  CreateUserFormDialog = '[Users] Pop Up User Form',
   CreateUser = '[User] Create User',
-  DismissPoppedUpUserForm = '[User] Dismiss Create user',
+  DismissUserFormDialog = '[User] Dismiss User Form Dialog',
   LoadUsers = '[User] Load Users',
   SearchUser = '[User] Search User',
   SearchUserComplete = '[User] Search User Complete',
@@ -44,8 +44,8 @@ export class InitializeUser implements Action {
 /**
  * action to pop up user form
  */
-export class PopUpUserForm implements Action {
-  readonly type = UsersActionTypes.PopUpUserForm;
+export class CreateUserFormDialog implements Action {
+  readonly type = UsersActionTypes.CreateUserFormDialog;
 }
 
 /**
@@ -60,8 +60,8 @@ export class CreateUser implements Action {
 /**
  * CreateUser Dialog window dismissed
  */
-export class DismissPoppedUpUserForm implements Action {
-  readonly type = UsersActionTypes.DismissPoppedUpUserForm;
+export class DismissUserFormDialog implements Action {
+  readonly type = UsersActionTypes.DismissUserFormDialog;
 }
 
 /**
@@ -120,9 +120,9 @@ export type UsersActionsUnion
   = SelectUser
   | ClearSelectedUser
   | InitializeUser
-  | PopUpUserForm
+  | CreateUserFormDialog
   | CreateUser
-  | DismissPoppedUpUserForm
+  | DismissUserFormDialog
   | LoadUsers
   | SearchUser
   | SearchUserComplete
