@@ -4,6 +4,10 @@ import {
 
 import { AppDropdownDirective } from './dropdown.directive';
 
+/**
+ * DropDownLink directive
+ * @deprecated (cvb) Not sure if we need it.
+ */
 @Directive({
   selector: '[appDropdownLink]'
 })

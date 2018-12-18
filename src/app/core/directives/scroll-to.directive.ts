@@ -1,5 +1,9 @@
 import { Directive, ElementRef, Attribute, OnInit, HostListener } from '@angular/core';
 
+/**
+ * scroll to directive
+ * @deprecated (cvb) not sure if we need it
+ */
 @Directive({selector: '[scrollTo]'})
 export class ScrollToDirective implements OnInit {
   constructor(@Attribute('scrollTo') public elmID: string, private el: ElementRef) {

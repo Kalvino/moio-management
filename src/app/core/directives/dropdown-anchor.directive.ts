@@ -1,6 +1,10 @@
 import { Directive, HostListener, Inject } from '@angular/core';
 import { DropdownLinkDirective } from './dropdown-link.directive';
 
+/**
+ * DropDownToggle directive
+ * @deprecated (cvb) Not sure if we need it.
+ */
 @Directive({
   selector: '[appDropdownToggle]'
 })

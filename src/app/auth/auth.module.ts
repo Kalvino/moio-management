@@ -12,7 +12,6 @@ import { AuthLayoutComponent } from './containers/auth-layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './effects/auth.effects';
-import { LogoutConfirmationDialogComponent } from './components/dialogs/logout-confirmation-dialog.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromAuth from './reducers';
 
@@ -21,8 +20,7 @@ export const COMPONENTS = [
   ForgotPasswordComponent,
   LockscreenComponent,
   SigninComponent,
-  SignupComponent,
-  LogoutConfirmationDialogComponent
+  SignupComponent
 ];
 
 @NgModule({
@@ -40,7 +38,7 @@ export const COMPONENTS = [
     StoreModule.forFeature('auth', fromAuth.reducers),
     EffectsModule.forFeature([AuthEffects]),
   ],
-  entryComponents: [LogoutConfirmationDialogComponent]
+  entryComponents: []
 })
 export class AuthModule {
 }

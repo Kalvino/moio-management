@@ -76,9 +76,6 @@ export class DashboardLayoutComponent implements OnInit, AfterViewInit, OnDestro
       isMobile => this.getIsMobile = isMobile
     );
 
-    console.log(this.sidebarStyle);
-    console.log(this.getIsMobile);
-
     this.layoutConf = this.layout.layoutConf;
 
     // FOR MODULE LOADER FLAG

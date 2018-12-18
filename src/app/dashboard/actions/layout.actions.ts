@@ -1,5 +1,8 @@
 import { Action } from '@ngrx/store';
 
+/**
+ * layout action types
+ */
 export enum LayoutActionTypes {
   OpenSideNav = '[Layout] Open Side Nav',
   CloseSideNav = '[Layout] Close Side Nav',
@@ -20,7 +23,8 @@ export enum LayoutActionTypes {
  */
 export class OpenSideNav {
   readonly type = LayoutActionTypes.OpenSideNav;
-  constructor(public payload: string) { }
+  constructor(public payload: string) {
+  }
 }
 
 /**
@@ -28,7 +32,8 @@ export class OpenSideNav {
  */
 export class CloseSideNav {
   readonly type = LayoutActionTypes.CloseSideNav;
-  constructor(public payload: string) { }
+  constructor(public payload: string) {
+  }
 }
 
 /**
@@ -36,7 +41,8 @@ export class CloseSideNav {
  */
 export class CompactSideNav {
   readonly type = LayoutActionTypes.CompactSideNav;
-  constructor(public payload: string) { }
+  constructor(public payload: string) { 
+  }
 }
 
 /**
@@ -44,7 +50,8 @@ export class CompactSideNav {
  */
 export class SetNavigationPositionSide {
   readonly type = LayoutActionTypes.SetNavigationPositionSide;
-  constructor(public payload: string) { }
+  constructor(public payload: string) { 
+  }
 }
 
 /**
@@ -52,7 +59,8 @@ export class SetNavigationPositionSide {
  */
 export class SetNavigationPositionTop {
   readonly type = LayoutActionTypes.SetNavigationPositionTop;
-  constructor(public payload: string) { }
+  constructor(public payload: string) { 
+  }
 }
 
 /**
@@ -60,7 +68,8 @@ export class SetNavigationPositionTop {
  */
 export class SetDirectionLtr {
   readonly type = LayoutActionTypes.SetDirectionLtr;
-  constructor(public payload: string) { }
+  constructor(public payload: string) { 
+  }
 }
 
 /**
@@ -68,7 +77,8 @@ export class SetDirectionLtr {
  */
 export class SetDirectionRtr {
   readonly type = LayoutActionTypes.SetDirectionRtr;
-  constructor(public payload: string) { }
+  constructor(public payload: string) { 
+  }
 }
 
 /**
@@ -76,7 +86,8 @@ export class SetDirectionRtr {
  */
 export class TransitioningLayout {
   readonly type = LayoutActionTypes.TransitioningLayout;
-  constructor(public payload: boolean) { }
+  constructor(public payload: boolean) { 
+  }
 }
 
 /**
@@ -84,7 +95,8 @@ export class TransitioningLayout {
  */
 export class UseBreadcrumb {
   readonly type = LayoutActionTypes.UseBreadcrumb;
-  constructor(public payload: boolean) { }
+  constructor(public payload: boolean) { 
+  }
 }
 
 /**
@@ -92,7 +104,8 @@ export class UseBreadcrumb {
  */
 export class MakeBreadcrumbSimple {
   readonly type = LayoutActionTypes.MakeBreadcrumbSimple;
-  constructor(public payload: string) { }
+  constructor(public payload: string) { 
+  }
 }
 
 /**
@@ -100,7 +113,8 @@ export class MakeBreadcrumbSimple {
  */
 export class MakeBreadcrumbTitle {
   readonly type = LayoutActionTypes.MakeBreadcrumbTitle;
-  constructor(public payload: string) { }
+  constructor(public payload: string) { 
+  }
 }
 
 /**
@@ -108,10 +122,12 @@ export class MakeBreadcrumbTitle {
  */
 export class FixTopbar {
   readonly type = LayoutActionTypes.FixTopbar;
-  constructor(public payload: boolean) { }
+  constructor(public payload: boolean) { 
+  }
 }
 
-export type LayoutActions = OpenSideNav
+export type LayoutActions = 
+  | OpenSideNav
   | CloseSideNav
   | CompactSideNav
   | SetNavigationPositionSide

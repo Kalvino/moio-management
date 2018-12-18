@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Router } from '@angular/router';
 import { getQueryParam } from '../helpers/url.helper';
 
+/**
+ * layout configuration defintion
+ */
 interface ILayoutConf {
   navigationPos?: string;   // side, top
   sidebarStyle?: string;    // full, compact, closed
@@ -14,6 +16,9 @@ interface ILayoutConf {
   topbarFixed?: boolean;
 }
 
+/**
+ * change layout options definition
+ */
 interface ILayoutChangeOptions {
   duration?: number;
   transitionClass?: boolean;
@@ -24,6 +29,10 @@ interface IAdjustScreenOptions {
   route?: string;
 }
 
+/**
+ * layout service
+ * injected in root
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -35,12 +44,16 @@ export class LayoutService {
   public currentRoute: string;
   public fullWidthRoutes = ['shop'];
 
-  constructor(
-    private router: Router
-  ) {
+  /**
+   * constructor
+   */
+  constructor() {
     this.setAppLayout();
   }
 
+  /**
+   * set default layout options
+   */
   setAppLayout() {
     // ******** SET YOUR LAYOUT OPTIONS HERE *********
     this.layoutConf = {
@@ -53,6 +66,11 @@ export class LayoutService {
     };
   }
 
+  /**
+   * publish layout changes
+   * @param lc layout conf
+   * @param opt layout options
+   */
   publishLayoutChange(lc: ILayoutConf, opt: ILayoutChangeOptions = {}) {
     const duration = opt.duration || 250;
     if (!opt.transitionClass) {
@@ -69,6 +87,10 @@ export class LayoutService {
     }, duration);
   }
 
+  /**
+   * set layout from query
+   * @deprecated we do not need this
+   */
   setLayoutFromQuery() {
     const layoutConfString = getQueryParam('layout');
     try {
@@ -77,7 +99,11 @@ export class LayoutService {
     }
   }
 
-
+  /**
+   * adjust layout to the current situation
+   * e.g. isMobile
+   * @param options screen options
+   */
   adjustLayout(options: IAdjustScreenOptions = {}) {
     let sidebarStyle: string;
     this.isMobile = this.isSm();
@@ -98,6 +124,10 @@ export class LayoutService {
     });
   }
 
+  /**
+   * identify current screen width
+   * and return if the max width is 959px
+   */
   isSm() {
     return window.matchMedia(`(max-width: 959px)`).matches;
   }

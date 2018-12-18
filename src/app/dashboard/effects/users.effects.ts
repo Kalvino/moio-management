@@ -33,16 +33,13 @@ export class UsersEffects {
             // delay(2000),
             map(user => {
               console.log(user);
-              return new UsersApiActions.CreateUserSuccess({ user });
+              return new UsersApiActions.CreateUserSuccess({user});
             }),
             catchError(httpResponse => {
               console.log(httpResponse);
               const messages = httpResponse.statusText.toLowerCase();
 
-              return of(new UsersApiActions.CreateUserFailure({ messages }));
-            }),
-            tap(() => {
-              console.log('Actions finished')
+              return of(new UsersApiActions.CreateUserFailure({messages}));
             })
           );
       })
@@ -51,7 +48,7 @@ export class UsersEffects {
   /**
    * observes the CreateUserSuccess action
    * in case create user succeeds, the form dialog box is closed
-   * and the users list is shown 
+   * and the users list is shown
    */
   @Effect({
     dispatch: false
@@ -76,15 +73,14 @@ export class UsersEffects {
 
         return this.usersService.getUsers()
           .pipe(
-            delay(2000),
+            //delay(2000),
             map((users: User[]) => {
-              console.log(users)
               return new UsersApiActions.LoadUsersSuccess({users});
             }),
             catchError(httpError => {
               const message = httpError.statusText.toLowerCase();
 
-              let snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
+              const snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
                 duration: 10000
               });
 
@@ -92,16 +88,12 @@ export class UsersEffects {
 
                 if (snackBarDismiss.dismissedByAction){
                   this.store.dispatch(new UsersActions.LoadUsers());
-                }else{
+                } else {
                   this.router.navigate(['/dashboard']);
                 }
               });
 
-              return of(new UsersApiActions.LoadUsersFailure({ message }));
-            }),
-            tap(() => {
-              console.log('Actions finished')
-              // dispatch hideLoader action
+              return of(new UsersApiActions.LoadUsersFailure({message}));
             })
           );
       })
@@ -159,6 +151,6 @@ export class UsersEffects {
     private store: Store<any>,
     public snackBar: MatSnackBar,
     private translate: TranslateService,
-    private dialog: MatDialog,){
+    private dialog: MatDialog) {
   }
 }

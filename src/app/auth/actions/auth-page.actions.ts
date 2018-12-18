@@ -2,7 +2,7 @@
  * login action types
  */
 import { Action } from '@ngrx/store';
-import { Credentials } from '../models/user.interface';
+import { ICredentials } from '../models/user.interface';
 
 export enum AuthPageActionTypes {
   Login = '[Auth/Login Page] Login',
@@ -16,7 +16,7 @@ export enum AuthPageActionTypes {
 export class Login implements Action {
   readonly type = AuthPageActionTypes.Login;
 
-  constructor(public payload: { credentials: Credentials }) {
+  constructor(public payload: { credentials: ICredentials }) {
   }
 }
 
@@ -26,7 +26,7 @@ export class Login implements Action {
 export class Signup implements Action {
   readonly type = AuthPageActionTypes.Signup;
 
-  constructor(public payload: { credentials: Credentials }) {
+  constructor(public payload: { credentials: ICredentials }) {
   }
 }
 

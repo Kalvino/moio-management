@@ -1,3 +1,9 @@
+/**
+ * helper to extract a query param from the URL
+ * @param prop the property
+ * @deprecated (cvb) probably we do not need this
+ */
+
 export function getQueryParam(prop) {
   const params = {};
   const search = decodeURIComponent(window.location.href.slice(window.location.href.indexOf('?') + 1));

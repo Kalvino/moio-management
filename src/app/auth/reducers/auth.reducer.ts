@@ -1,11 +1,11 @@
-import { User } from '../models/user.interface';
+import { IUser } from '../models/user.interface';
 import { AuthApiActions, AuthActions } from '../actions';
 
 /**
  * auth state
  */
 export interface State {
-  user: User | null;
+  user: IUser | null;
   access_token: string | null;
 }
 

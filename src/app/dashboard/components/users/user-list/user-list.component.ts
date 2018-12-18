@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, EventEmitter, Output } from '@angular/core';
 import { MatProgressBar, MatButton } from '@angular/material';
 import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
 import { UserFormComponent } from '../user-form/user-form.component';
@@ -18,14 +18,14 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit, OnDestroy {
-  // @ViewChild(MatProgressBar) progressBar: MatProgressBar;
-  // @ViewChild(MatButton) submitButton: MatButton;
 
   users: User[];
   
   // Used to select user in the list
   selectedUser: User | null;
   componentActive = true;
+
+  @Output() userSelected: EventEmitter<User[]> = new EventEmitter();
 
   /**
    * Users Table columns
@@ -73,13 +73,14 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   /**
    * constructor
-   * @param store
-   * 
+   * @param store Store
+   * @param translate TranslateService
    */
-  constructor(private store: Store<fromDashboard.State>, 
+  constructor(
+    private store: Store<fromDashboard.State>, 
     private translate: TranslateService,
     private dialog: MatDialog,
-    private snack: MatSnackBar,) { 
+    private snack: MatSnackBar) {
 
       this.translate.setDefaultLang('de');
 
@@ -87,7 +88,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   public items: User[];
 
-   /**
+  /**
    * init UserListComponent component
    */
   ngOnInit(): void {
@@ -123,4 +124,18 @@ export class UserListComponent implements OnInit, OnDestroy {
       id: 'userCreationForm'
     });
   }
+
+  /**
+   * emit the selected user
+   * the datatable component returns an ARRAY of selected
+   * elements depending on the 'selectionType' setting.
+   * In our case just a single user!
+   * Therefor emit 0th element of the selection.
+   *
+   * @param selected User first element of array
+   */
+  onSelectRow({selected}) {
+    this.userSelected.emit(selected[0]);
+  }
+
 }

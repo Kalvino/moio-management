@@ -6,11 +6,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'moio-users-page',
-  template: `
-    <div>
-      <router-outlet></router-outlet>
-    </div>
-  `
+  templateUrl: './users.component.html'
 })
 export class UsersComponent {
 }

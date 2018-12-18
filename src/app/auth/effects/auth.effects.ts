@@ -1,45 +1,52 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { catchError, delay, exhaustMap, map, tap } from 'rxjs/operators';
-import { Credentials } from '../models/user.interface';
+import { ICredentials } from '../models/user.interface';
 import { AuthApiService } from '../services/auth-api.service';
 import { AuthApiActions, AuthActions, AuthPageActions } from '../actions';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { LogoutConfirmationDialogComponent } from '../components/dialogs/logout-confirmation-dialog.component';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
+import { ConfirmService } from '../../core/services/confirm.service';
 
+/**
+ * Authentication effects
+ * provided in root
+ * bundles effects for the Authentication Module
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class AuthEffects {
 
+  /**
+   * login effect
+   * listen to action Login. Will trigger the login API
+   */
   @Effect()
   login$ = this.actions$
     .pipe(
       ofType<AuthPageActions.Login>(AuthPageActions.AuthPageActionTypes.Login),
       delay(3000),
       map(action => action.payload.credentials),
-      exhaustMap((credentials: Credentials) => {
+      exhaustMap((credentials: ICredentials) => {
         return this.authApiService
           .login(credentials)
           .pipe(
             map(response => new AuthApiActions.LoginSuccess({response})),
             catchError(response => {
-              console.log(response);
-              console.log(response.message);
               const message = response.statusText.toLowerCase();
               return of(new AuthApiActions.LoginFailure({message}));
-            }),
-            tap(() => {
-              console.log('complete!');
             })
           );
       })
     );
 
+  /**
+   * effect when API returns a successful login
+   */
   @Effect({
     dispatch: false
   })
@@ -51,6 +58,10 @@ export class AuthEffects {
       })
     );
 
+  /**
+   * effect on login redirect
+   * redirect to the login page
+   */
   @Effect({
     dispatch: false
   })
@@ -81,26 +92,22 @@ export class AuthEffects {
           .pipe(
             map(() => new AuthApiActions.LogoutSuccess()),
             catchError(httpResponse => {
-              console.log(httpResponse.message);
               const message = httpResponse.statusText.toLowerCase();
 
-              let snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
+              const snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
                 duration: 10000
               });
 
               snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
 
-                if (snackBarDismiss.dismissedByAction){
+                if (snackBarDismiss.dismissedByAction) {
                   this.store.dispatch(new AuthActions.Logout());
-                }else{
+                } else {
                   this.router.navigate(['/dashboard']);
                 }
               });
 
               return of(new AuthApiActions.LogoutFailure({message}));
-            }),
-            tap(() => {
-              console.log('complete!');
             })
           );
       })
@@ -114,10 +121,7 @@ export class AuthEffects {
     .pipe(
       ofType(AuthActions.AuthActionTypes.LogoutConfirmation),
       exhaustMap(() => {
-        const dialogRef = this.dialog
-          .open<LogoutConfirmationDialogComponent, undefined, boolean>(LogoutConfirmationDialogComponent);
-
-        return dialogRef.afterClosed();
+        return this.confirmService.confirm({title: 'Logout', message: 'Do you really want to logout?'});
       }),
       map(result =>
         result
@@ -131,9 +135,11 @@ export class AuthEffects {
    * @param actions$ actions
    * @param authApiService service encapsulating api calls
    * @param router the router
-   * @param dialog material dialog service
    * @param store ngrx store
-   * @param snackbar material snackbar 
+   * @param snackBar material snackbar
+   * @param translate translate service
+   * @param confirmService ConfirmService
+
    */
   constructor(
     private actions$: Actions,
@@ -142,6 +148,6 @@ export class AuthEffects {
     private store: Store<any>,
     public snackBar: MatSnackBar,
     private translate: TranslateService,
-    private dialog: MatDialog) {
+    private confirmService: ConfirmService) {
   }
 }

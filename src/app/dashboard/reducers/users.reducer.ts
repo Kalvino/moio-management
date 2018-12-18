@@ -36,7 +36,6 @@ export function reducer(
 
     // load users success state
     case UsersApiActions.UsersApiActionTypes.LoadUsersSuccess:
-      console.log(action.payload.users);
       return adapater.upsertMany(action.payload.users, state);
 
     // add a new entity to the state in case creation is successful
@@ -67,5 +66,6 @@ export function reducer(
 /**
  * return the selected user id from the state
  * @param state
+ * @param state the current state
  */
 export const getSelectedUserId = (state: State) => state.selectedUserId;

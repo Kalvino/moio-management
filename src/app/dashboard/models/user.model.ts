@@ -2,6 +2,8 @@
  * user defintion
  */
 
+import { IPatient } from './patient.model';
+
 export interface User {
   id?: number | null;
   name?: string;

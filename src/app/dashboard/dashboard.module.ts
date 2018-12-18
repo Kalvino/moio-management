@@ -17,13 +17,22 @@ import { UsersEffects } from './effects/users.effects';
 import { NursingHomesEffects } from './effects/nursing-homes.effects';
 import { UserModule } from './components/users/user.module';
 import { ConfirmService } from '../core/services/confirm.service';
-import { ComfirmComponent } from '../core/components/confirm/confirm.component';
+import { ConfirmComponent } from '../core/components/confirm/confirm.component';
 
 /* NGRX */
 import { StoreModule } from '@ngrx/store';
 import * as fromDashboard from './reducers';
 import { EffectsModule } from '@ngrx/effects';
+import { CoreModule } from '../core/core.module';
+import { UserListComponent } from './components/users/user-list/user-list.component';
+import { UsersComponent } from './components/users/users.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { SplitPaneModule } from 'ng2-split-pane/lib/ng2-split-pane';
+import { UserEditFormComponent } from './components/users/user-edit-form/user-edit-form.component';
 
+/**
+ * list of components in this module
+ */
 export const COMPONENTS = [
   DashboardLayoutComponent,
   NotificationsComponent,
@@ -34,14 +43,24 @@ export const COMPONENTS = [
   SidebarTopComponent,
   SidenavComponent,
   BlankComponent,
-  ComfirmComponent
+  ConfirmComponent,
+  BlankComponent,
+  UsersComponent,
+  UserListComponent,
+  UserEditFormComponent
 ];
 
+/**
+ * list of effects in this module
+ */
 export const EFFECTS = [
   UsersEffects,
   NursingHomesEffects
 ];
 
+/**
+ * Dashboard Module
+ */
 @NgModule({
   declarations: [COMPONENTS],
   imports: [
@@ -53,6 +72,7 @@ export const EFFECTS = [
     FormsModule,
     ReactiveFormsModule,
     UserModule,
+    NgxDatatableModule,
     StoreModule.forFeature('dashboard', fromDashboard.reducers),
     EffectsModule.forFeature(EFFECTS)
   ],
@@ -64,7 +84,7 @@ export const EFFECTS = [
     ConfirmService
   ],
   entryComponents: [
-    ComfirmComponent
+    ConfirmComponent
   ]
 })
 export class DashboardModule {

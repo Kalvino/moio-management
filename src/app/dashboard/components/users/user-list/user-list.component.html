@@ -4,7 +4,16 @@
 </div>
 <mat-progress-bar *ngIf="isPending$ | async" [mode]="(isPending$ | async) ? 'indeterminate' : 'determinate'" class="session-progress"></mat-progress-bar>
 <div class="mat-box-shadow margin-333">
-  <ngx-datatable class="material fullscreen bg-white" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="0"
-    [rowHeight]="50" [scrollbarV]="false" [rows]="users$ | async" [columns]="columns">
+  <ngx-datatable class="material fullscreen bg-white"
+                [columnMode]="'force'"
+                [headerHeight]="50"
+                [footerHeight]="0"
+                [rowHeight]="50"
+                [scrollbarV]="false"
+                [rows]="users$ | async"
+                [columns]="columns"
+                [selectionType]="'single'"
+                [ngClass]="{'active': product?.id === selectedProduct?.id}"
+                (select)="onSelectRow($event)">
   </ngx-datatable>
 </div> 

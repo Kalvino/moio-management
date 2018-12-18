@@ -22,7 +22,7 @@ export class HeaderSideComponent implements OnInit {
     name: 'English',
     code: 'en',
   }, {
-    name: 'Deutsche',
+    name: 'Deutsch',
     code: 'de',
   }];
   public egretThemes;

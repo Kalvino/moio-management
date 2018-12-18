@@ -26,11 +26,10 @@
     "AccountSettings": "Account Settings",
     "DisableAlerts": "Disable Alerts"
   },
+  "Logout": "Logout",
   "users": "users",
-  "USERS": "USERS",
   "Users": "Users",
   "dashboard": "dashboard",
-  "DASHBOARD": "DASHBOARD",
   "Dashboard": "Dashboard",
   "Blank": "Blank",
   "list": "list",
@@ -44,6 +43,8 @@
   "Cancel": "Cancel",
   "OK": "Ok",
   "Retry": "Retry",
+  "Are you sure?": "Are you sure?",
+  "Confirm": "Confirm",
   "Create": "Create",
   "UserForm": {
     "FormTitle": "Creating a new user",

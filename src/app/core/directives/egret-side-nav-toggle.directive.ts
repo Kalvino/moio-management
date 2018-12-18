@@ -3,7 +3,10 @@ import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
 import { MatSidenav } from '@angular/material';
 
-
+/**
+ * SideNav toggle directive
+ * @deprecated (cvb) Not sure if we need it.
+ */
 @Directive({
   selector: '[EgretSideNavToggle]'
 })

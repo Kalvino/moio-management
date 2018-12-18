@@ -1,7 +1,7 @@
 /**
  * user definition
  */
-export interface User {
+export interface IUser {
   username?: string;
   firstname?: string;
   lastname?: string;
@@ -12,7 +12,7 @@ export interface User {
 /**
  * credentials definition
  */
-export interface Credentials {
+export interface ICredentials {
   username: string;
   password: string;
 }

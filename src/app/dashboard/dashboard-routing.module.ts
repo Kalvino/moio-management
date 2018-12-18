@@ -38,23 +38,10 @@ export const dashboardRoutes: Routes = [
       }, {
         path: 'users',
         component: UsersComponent,
-        children: [
-          {
-            path: '',
-            redirectTo: 'users',
-            pathMatch: 'full'
-          }, {
-            path: 'users',
-            component: UserListComponent,
-            data: {
-              title: 'App Users List',
-              breadcrumb: 'users'
-            }
-          }, {
-            path: 'add',
-            component: UserListComponent
-          }
-        ]
+        data: {
+          title: 'Users',
+          breadcrumb: 
+        }.
       }
     ]
   }

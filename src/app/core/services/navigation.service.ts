@@ -34,14 +34,14 @@ export class NavigationService {
 
   iconMenu: IMenuItem[] = [
     {
-      name: 'DASHBOARD',
+      name: 'Dashboard',
       type: 'link',
       tooltip: 'Dashboard',
       icon: 'dashboard',
       state: 'dashboard/blank'
     },
     {
-      name: 'USERS',
+      name: 'Users',
       type: 'link',
       tooltip: 'users',
       icon: 'group',

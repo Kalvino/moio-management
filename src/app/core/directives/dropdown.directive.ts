@@ -4,6 +4,10 @@ import { DropdownLinkDirective } from './dropdown-link.directive';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
+/**
+ * DropDown directive
+ * @deprecated (cvb) Not sure if we need it.
+ */
 @Directive({
   selector: '[appDropdown]'
 })

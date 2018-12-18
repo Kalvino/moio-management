@@ -1,10 +1,28 @@
 import { NgModule } from '@angular/core';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { MaterialModule } from '../material';
 
+/**
+ * list of components in this module
+ */
+export const COMPONENTS = [
+  ConfirmComponent
+];
+
+/**
+ * bundles components and services
+ * shared over all modules
+ */
 @NgModule({
-  declarations: [],
+  declarations: COMPONENTS,
   imports: [],
-  exports: [],
-  providers: []
+  exports: [
+    MaterialModule,
+    TranslateModule
+  ],
+  providers: [],
+  entryComponents: [ConfirmComponent]
 })
 export class CoreModule {
 }

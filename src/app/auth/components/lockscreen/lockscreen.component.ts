@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatProgressBar, MatButton } from '@angular/material';
 
+/**
+ * component to show a lock screen
+ */
 @Component({
   selector: 'moio-lockscreen',
   templateUrl: './lockscreen.component.html'
@@ -18,6 +21,9 @@ export class LockscreenComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * unlock function
+   */
   unlock() {
     console.log(this.lockscreenData);
 

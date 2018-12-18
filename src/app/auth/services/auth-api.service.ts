@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Credentials } from '../models/user.interface';
+import { ICredentials } from '../models/user.interface';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
@@ -13,7 +13,7 @@ export class AuthApiService {
    * log user in to API
    * @param credentials user credentials
    */
-  login(credentials: Credentials): Observable<any> {
+  login(credentials: ICredentials): Observable<any> {
     return this.http
       .post(`${environment.apiHost}/api/auth/loginmanagement`, credentials);
   }
