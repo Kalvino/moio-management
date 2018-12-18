@@ -1,100 +1,85 @@
-<div >
-  <mat-progress-bar *ngIf="loadNursinghomePending$ | async" [mode]="(loadNursinghomePending$ | async) ? 'indeterminate' : 'determinate'" class="session-progress"></mat-progress-bar>
-  <mat-progress-bar *ngIf="createUserPending$ | async" [mode]="(createUserPending$ | async) ? 'indeterminate' : 'determinate'" class="session-progress"></mat-progress-bar>
+<div>
+  <mat-progress-bar *ngIf="loadNursinghomePending$ | async" [mode]="(loadNursinghomePending$ | async) ? 'indeterminate' : 'determinate'"
+    class="session-progress"></mat-progress-bar>
+  <mat-progress-bar *ngIf="createUserPending$ | async" [mode]="(createUserPending$ | async) ? 'indeterminate' : 'determinate'"
+    class="session-progress"></mat-progress-bar>
 </div>
 
 <h1 matDialogTitle>{{data.title}}</h1>
-  <small *ngIf="loadNursingHomeErrorMessage$ | async" class="text-center form-error-msg">
-    {{loadNursingHomeErrorMessage$ | async}}!
-  </small>
-  <small *ngIf="saveUserErrorMessage$ | async" class="text-center form-error-msg">
-    {{saveUserErrorMessage$ | async }}!
-  </small>
-  <form [formGroup]="userForm" (ngSubmit)="submit()">
+<small *ngIf="loadNursingHomeErrorMessage$ | async" class="text-center form-error-msg">
+  {{loadNursingHomeErrorMessage$ | async}}!
+</small>
+<small *ngIf="saveUserErrorMessage$ | async" class="text-center form-error-msg">
+  {{saveUserErrorMessage$ | async }}!
+</small>
+<form [formGroup]="userForm" (ngSubmit)="submit()">
   <div fxLayout="row wrap" fxLayout.lt-sm="column">
-    <div fxFlex="50"  class="pr-1">
+    <div fxFlex="50" class="pr-1">
       <mat-form-field class="full-width">
-        <input
-        matInput
-        name="firstname"
-        [formControl]="userForm.controls['firstname']"
-        placeholder="{{'UserForm.FirstName' | translate}}">
-        <mat-error *ngIf="userForm.controls['firstname'].invalid">{{'UserForm.FirsNameRequired' | translate}}</mat-error>
+        <input matInput name="firstname" [formControl]="userForm.controls['firstname']" placeholder="{{'UserForm.FirstName' | translate}}">
+        <mat-error *ngIf="userForm.controls['firstname'].invalid">{{'UserForm.FirstNameRequired' | translate}}</mat-error>
       </mat-form-field>
     </div>
 
-    <div fxFlex="50"  class="pr-1">
+    <div fxFlex="50" class="pr-1">
       <mat-form-field class="full-width">
-        <input
-        matInput
-        name="lastname"
-        [formControl]="userForm.controls['lastname']"
-        placeholder="{{'UserForm.LastName' | translate}}">
+        <input matInput name="lastname" [formControl]="userForm.controls['lastname']" placeholder="{{'UserForm.LastName' | translate}}">
         <mat-error *ngIf="userForm.controls['lastname'].invalid">{{'UserForm.LastNameRequired' | translate}}</mat-error>
       </mat-form-field>
     </div>
 
-    <div fxFlex="50"  class="pr-1">
+    <div fxFlex="50" class="pr-1">
       <mat-form-field class="full-width">
-        <input
-        matInput
-        name="username"
-        [formControl]="userForm.controls['username']"
-        placeholder="{{'UserForm.Username' | translate}}">
+        <input matInput name="username" [formControl]="userForm.controls['username']" placeholder="{{'UserForm.Username' | translate}}">
         <mat-error *ngIf="userForm.controls['username'].invalid">{{'UserForm.UserNameRequired' | translate}}</mat-error>
       </mat-form-field>
     </div>
 
-    <div fxFlex="50"  class="pr-1">
+    <div fxFlex="50" class="pr-1">
       <mat-form-field class="full-width">
-        <input
-        matInput
-        type="email"
-        name="email"
-        [formControl]="userForm.controls['email']"
-        placeholder="{{'UserForm.Email' | translate}}">
+        <input matInput type="email" name="email" [formControl]="userForm.controls['email']" placeholder="{{'UserForm.Email' | translate}}">
         <mat-error *ngIf="userForm.controls['email'].invalid">{{'UserForm.EmailRequired' | translate}}</mat-error>
       </mat-form-field>
     </div>
-    <div fxFlex="50"  class="pr-1">
+
+    <div fxFlex="50" class="pr-1">
       <mat-form-field class="full-width">
-        <input
-        matInput
-        type="password"
-        name="password"
-        [formControl]="userForm.controls['password']"
-        placeholder="{{'UserForm.Password' | translate}}">
+        <input matInput type="password" name="password" [formControl]="userForm.controls['password']" placeholder="{{'UserForm.Password' | translate}}">
         <mat-error *ngIf="userForm.controls['password'].invalid">{{'UserForm.PasswordRequried' | translate}}</mat-error>
       </mat-form-field>
     </div>
 
-    <div fxFlex="50"  class="pr-1">
+    <div fxFlex="50" class="pr-1">
       <mat-form-field class="full-width">
-        <input
-        matInput
-        type="password"
-        name="password_confirmation"
-        [formControl]="userForm.controls['password_confirmation']"
-        placeholder="{{'UserForm.ConfirmPassword' | translate}}">
-        <mat-error *ngIf="userForm.controls['password_confirmation'].invalid">{{'UserForm.ConfirmPasswordRequired' | translate}}</mat-error>
+        <input matInput type="password" name="password_confirmation" [formControl]="userForm.controls['password_confirmation']"
+          placeholder="{{'UserForm.ConfirmPassword' | translate}}">
+        <mat-error *ngIf="userForm.controls['password_confirmation'].hasError('required')">
+          {{'UserForm.ConfirmPasswordRequired' | translate}}
+        </mat-error>
+        <mat-error *ngIf="userForm.controls['password_confirmation'].hasError('NoPasswordMatch')"> 
+          Password do not match 
+        </mat-error>
       </mat-form-field>
     </div>
 
-    <div fxFlex="50"  class="pr-1">
+    <div fxFlex="50" class="pr-1">
       <mat-form-field>
         <mat-select placeholder="{{'UserForm.NursingHome' | translate}}" name="nursing_home_key" [formControl]="userForm.controls['nursing_home_key']">
           <mat-option *ngFor="let nursingHome of nursingHomes$ | async" [value]="nursingHome.key">
             {{nursingHome.name}}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="userForm.controls['nursing_home_key'].invalid">{{'UserForm.NursingHomeKeyRequired' | translate}}</mat-error>
+        <mat-error *ngIf="userForm.controls['nursing_home_key'].invalid">{{'UserForm.NursingHomeKeyRequired' |
+          translate}}</mat-error>
+
       </mat-form-field>
     </div>
 
     <div fxFlex="100" class="mt-1">
-      <button mat-raised-button color="primary" [disabled]="userForm.invalid" type="submit">{{'UserForm.Save' | translate}}</button>
+      <button mat-raised-button color="primary" [disabled]="userForm.invalid" type="submit">{{'UserForm.Save' |
+        translate}}</button>
       <span fxFlex></span>
       <button mat-button color="warn" type="button" (click)="cancel()">{{'UserForm.Cancel' | translate}}</button>
     </div>
   </div>
-  </form>
+</form>

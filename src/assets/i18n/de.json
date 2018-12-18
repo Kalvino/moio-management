@@ -51,7 +51,7 @@
     "FirsNameRequired": "Vorname ist erforderlich",
     "LastNameRequired": "Nachname ist erforderlich",
     "UserNameRequired": "Benutzername ist erforderlich",
-    "EmailRequired": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "EmailRequired": "Eine gültige E-Mail-Adresse ist erforderlich",
     "PasswordRequried": "Passwort ist erforderlich",
     "ConfirmPasswordRequired": "konfirmieren passwort ist erforderlich",
     "NursingHomeKeyRequired": "Pflegeheim ist erforderlich",

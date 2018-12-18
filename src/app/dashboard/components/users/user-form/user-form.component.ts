@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 /* NGRX */
 import { Store, select } from '@ngrx/store';
 import * as fromDashboard from '../../../reducers';
@@ -70,7 +70,26 @@ export class UserFormComponent implements OnInit {
       password: ['',Validators.required],
       password_confirmation: ['',Validators.required],
       nursing_home_key: ['',Validators.required]
-    })
+    },
+    {
+      // check whether our password and confirm password match
+      validator: this.passwordMatchValidator
+   })
+  }
+
+  passwordMatchValidator(control: AbstractControl) {
+    const password: string = control.get('password').value; // get password from our password form control
+    const passwordConfirmation: string = control.get('password_confirmation').value; // get password from our password_confirmation form control
+    // compare is the password math
+    if (password !== passwordConfirmation) {
+      // if they don't match, set an error in our passwordConfirmation form control
+      control.get('password_confirmation').setErrors({ NoPasswordMatch: true });
+    }else{
+     if ( control.getError('NoPasswordMatch')){
+       control.setErrors(null);
+     }
+      return null
+    }
   }
 
   /**
