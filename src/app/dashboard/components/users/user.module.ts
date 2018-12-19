@@ -3,9 +3,6 @@ import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
-/* NGRX */
-import { UsersComponent } from './users.component';
-import { UserListComponent } from './user-list/user-list.component';
 import { MatSortModule, MatFormFieldModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -47,14 +44,10 @@ import {MatSelectModule} from '@angular/material/select';
     MatSelectModule
   ],
   declarations: [
-    UsersComponent,
-    UserListComponent,
     UserFormComponent,
     NursingHomeFormComponent
   ],
   exports: [
-    UsersComponent,
-    UserListComponent,
     UserFormComponent,
     MatFormFieldModule,
     MatSlideToggleModule,

@@ -5,13 +5,17 @@ export interface State {
   pending: boolean;
   createUserError: string | null;
   createUserPending: boolean;
+  editUserError: string | null;
+  editUserPending: boolean;
 }
 
 export const initialState: State = {
   error: null,
   pending: false,
   createUserError: null,
-  createUserPending: false
+  createUserPending: false,
+  editUserError: null,
+  editUserPending: false
 };
 
 /**
@@ -27,11 +31,17 @@ export function reducer(
   switch (action.type) {
 
     case (UsersActions.UsersActionTypes.LoadUsers):
-    case (UsersActions.UsersActionTypes.EditUser):
       return {
         ...state,
         pending: true,
         error: null
+      };
+
+    case (UsersActions.UsersActionTypes.EditUser):
+      return {
+        ...state,
+        editUserPending: true,
+        editUserError: null
       };
 
     case (UsersActions.UsersActionTypes.CreateUser):
@@ -55,11 +65,17 @@ export function reducer(
       };
 
     case (UsersApiActions.UsersApiActionTypes.LoadUsersSuccess):
-    case (UsersApiActions.UsersApiActionTypes.EditUserSuccess):
       return {
         ...state,
         pending: false,
         error: null
+      };
+
+    case (UsersApiActions.UsersApiActionTypes.EditUserSuccess):
+      return {
+        ...state,
+        editUserPending: false,
+        editUserError: null
       };
 
     case (UsersActions.UsersActionTypes.DismissEditUser):
@@ -69,11 +85,17 @@ export function reducer(
       }
 
     case (UsersApiActions.UsersApiActionTypes.LoadUsersFailure):
-    case (UsersApiActions.UsersApiActionTypes.EditUserFailure):
       return {
         ...state,
         pending: false,
         error: action.payload.message
+      };
+    
+    case (UsersApiActions.UsersApiActionTypes.EditUserFailure):
+      return {
+        ...state,
+        editUserPending: false,
+        editUserError: action.payload.message
       };
 
     default:
@@ -105,3 +127,16 @@ export const getCreateUserError = (state: State) => state.createUserError;
  * @param state
  */
 export const getCreateUserPending = (state: State) => state.createUserPending;
+
+/**
+ * get the current error state when editing user
+ * @param state
+ */
+export const getEditUserError = (state: State) => state.editUserError;
+
+/**
+ * get the pending state when editing user
+ * @param state
+ */
+export const getEditUserPending = (state: State) => state.editUserPending;
+

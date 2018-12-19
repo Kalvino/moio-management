@@ -69,7 +69,7 @@ export class EditUserSuccess implements Action {
 export class EditUserFailure implements Action {
   public readonly type = UsersApiActionTypes.EditUserFailure;
 
-  constructor(public payload: { message: string[]}) {
+  constructor(public payload: { message: string }) {
   }
 }
 

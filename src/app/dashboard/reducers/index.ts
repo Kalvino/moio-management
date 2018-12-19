@@ -62,10 +62,22 @@ export const getUserCreationError = createSelector(
   fromUserPage.getCreateUserError
 );
 
-// get pending state of the userPage from the store
+// get pending state when creating a user from the store
 export const getUserCreationPending = createSelector(
   getUsersPageState,
   fromUserPage.getCreateUserPending
+);
+
+// get error state when editing a user from the store
+export const getUserEditionError = createSelector(
+  getUsersPageState,
+  fromUserPage.getEditUserError
+);
+
+// get pending state when editing a user from the store
+export const getUserEditionPending = createSelector(
+  getUsersPageState,
+  fromUserPage.getEditUserPending
 );
 
 // ****************** USERS *************

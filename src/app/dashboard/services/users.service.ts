@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { User } from '../models/user.model';
 import { environment } from '../../../environments/environment';
+import { Update } from '@ngrx/entity';
 
 /**
  * user service
@@ -31,7 +32,7 @@ export class UsersService {
    * @param user User
    */
   createUser(user: User): Observable<User> {
-    return this.http.post(`${environment.apiHost}/api/appusers`, user);
+    return this.http.post<User>(`${environment.apiHost}/api/appusers`, user);
   }
 
   /**
@@ -48,6 +49,15 @@ export class UsersService {
    */
   updateUser(user: User): Observable<User> {
     return this.http.put<User>(`${environment.apiHost}/api/users/${user.id}`, user);
+  }
+
+  /**
+   * edit a user
+   * @param changed
+   */
+  editPatient(changed: Update<User>): Observable<User> {
+    return this.http
+      .put<User>(`${environment.apiHost}/api/users/${changed.id}`, {...changed.changes});
   }
 
 

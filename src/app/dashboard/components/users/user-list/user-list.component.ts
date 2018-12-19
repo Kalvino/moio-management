@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { MatProgressBar, MatButton } from '@angular/material';
 import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
 import { UserFormComponent } from '../user-form/user-form.component';
@@ -11,6 +11,7 @@ import * as fromDashboard from '../../../reducers';
 import * as usersActions from '../../../actions/users.actions';
 import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'moio-user-list',
@@ -25,7 +26,6 @@ export class UserListComponent implements OnInit, OnDestroy {
   selectedUser: User | null;
   componentActive = true;
 
-  @Output() userSelected: EventEmitter<User[]> = new EventEmitter();
 
   /**
    * Users Table columns
@@ -97,6 +97,14 @@ export class UserListComponent implements OnInit, OnDestroy {
 
     this.store.pipe(select(fromDashboard.getUsersIds))
     .subscribe((ids: string[]) => this.ids = ids);
+
+    // Subscribe here because it does not use an async pipe
+    this.store.pipe(
+      select(fromDashboard.getSelectedUser),
+      takeWhile(() => this.componentActive)
+    ).subscribe(
+      currentUser => this.selectedUser = currentUser
+    );
   }
 
   // unsubscribe from the observable
@@ -135,7 +143,10 @@ export class UserListComponent implements OnInit, OnDestroy {
    * @param selected User first element of array
    */
   onSelectRow({selected}) {
-    this.userSelected.emit(selected[0]);
+    // this.userSelected.emit(selected[0]);
+    const user = selected[0];
+    console.log(user);
+    this.store.dispatch(new usersActions.SelectUser(user));
   }
 
 }

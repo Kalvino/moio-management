@@ -13,7 +13,7 @@
                 [rows]="users$ | async"
                 [columns]="columns"
                 [selectionType]="'single'"
-                [ngClass]="{'active': product?.id === selectedProduct?.id}"
+                [ngClass]="{'active': user?.id === selectedUser?.id}"
                 (select)="onSelectRow($event)">
   </ngx-datatable>
 </div> 

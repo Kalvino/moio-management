@@ -17,7 +17,7 @@ import { UsersEffects } from './effects/users.effects';
 import { NursingHomesEffects } from './effects/nursing-homes.effects';
 import { UserModule } from './components/users/user.module';
 import { ConfirmService } from '../core/services/confirm.service';
-import { ConfirmComponent } from '../core/components/confirm/confirm.component';
+import { SharedModule } from './shared/shared.module';
 
 /* NGRX */
 import { StoreModule } from '@ngrx/store';
@@ -29,6 +29,7 @@ import { UsersComponent } from './components/users/users.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SplitPaneModule } from 'ng2-split-pane/lib/ng2-split-pane';
 import { UserEditFormComponent } from './components/users/user-edit-form/user-edit-form.component';
+
 
 /**
  * list of components in this module
@@ -43,7 +44,6 @@ export const COMPONENTS = [
   SidebarTopComponent,
   SidenavComponent,
   BlankComponent,
-  ConfirmComponent,
   BlankComponent,
   UsersComponent,
   UserListComponent,
@@ -65,6 +65,7 @@ export const EFFECTS = [
   declarations: [COMPONENTS],
   imports: [
     CommonModule,
+    CoreModule,
     MaterialModule,
     TranslateModule,
     DashboardRoutingModule,
@@ -72,9 +73,11 @@ export const EFFECTS = [
     FormsModule,
     ReactiveFormsModule,
     UserModule,
+    SharedModule,
     NgxDatatableModule,
     StoreModule.forFeature('dashboard', fromDashboard.reducers),
-    EffectsModule.forFeature(EFFECTS)
+    EffectsModule.forFeature(EFFECTS),
+    SplitPaneModule
   ],
   exports: [
     DashboardLayoutComponent,
@@ -84,7 +87,6 @@ export const EFFECTS = [
     ConfirmService
   ],
   entryComponents: [
-    ConfirmComponent
   ]
 })
 export class DashboardModule {

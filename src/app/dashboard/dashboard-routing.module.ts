@@ -40,8 +40,8 @@ export const dashboardRoutes: Routes = [
         component: UsersComponent,
         data: {
           title: 'Users',
-          breadcrumb: 
-        }.
+          breadcrumb: 'Users'
+        }
       }
     ]
   }

@@ -52,6 +52,13 @@ export function reducer(
         selectedUserId: action.payload.id
       };
 
+    // clear selected user
+    case (UsersActions.UsersActionTypes.DismissEditUser):
+      return {
+        ...state,
+        selectedUserId: null
+      }
+
     // reset state to initial state on logout
     case AuthApiActions.AuthApiActionTypes.LogoutSuccess:
     case UsersActions.UsersActionTypes.ResetUsersState:

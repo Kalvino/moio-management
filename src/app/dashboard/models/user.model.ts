@@ -7,6 +7,10 @@ import { IPatient } from './patient.model';
 export interface User {
   id?: number | null;
   name?: string;
+  username
+  firstname?: string;
+  lastname?: string;
+  email?: string;
   nursing_home?: string;
   registered_on?: string;
   last_login?: string;

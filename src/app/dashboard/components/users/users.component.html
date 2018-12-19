@@ -1,17 +1,11 @@
 <div fxLayout="row" fxLayoutAlign="start stretch">
-  <div class="split-pane-left" [fxFlex]="(selectedUser !== null) ? 50 : 100">
-    <moio-user-list
-      (userSelected)="onUserSelected($event)"
-      [users]="(users$ | async)">
-    </moio-user-list>
+  <div class="split-pane-left" [fxFlex]="((selecteduserId$ | async) !== null) ? 50 : 100">
+    <moio-user-list></moio-user-list>
   </div>
   <div
     class="split-pane-right"
     fxFlex="50" 
-    [fxShow]="selectedUser !== null">
-    <moio-user-edit-form
-      [user]="selectedUser"
-      (closing)="onCloseEdit($event)">
-    </moio-user-edit-form>
+    [fxShow]="(selecteduserId$ | async) !== null">
+    <moio-user-edit-form></moio-user-edit-form>
   </div>
 </div>

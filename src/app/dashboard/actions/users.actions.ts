@@ -14,7 +14,8 @@ export enum UsersActionTypes {
   SearchUserComplete = '[User] Search User Complete',
   EditUser = '[User] Edit User',
   DismissEditUser = '[User] Dismiss Edit User',
-  ResetUsersState = '[Users] Reset Users State'
+  ResetUsersState = '[Users] Reset Users State',
+  DeleteUser ='[Users] Delete User'
 }
 
 
@@ -111,6 +112,16 @@ export class DismissEditUser implements Action {
  */
 export class ResetUsersState implements Action {
   readonly type = UsersActionTypes.ResetUsersState;
+}
+
+/**
+ * action to delete a user
+ */
+export class DeleteUser implements Action {
+  readonly type = UsersActionTypes.DeleteUser;
+
+  constructor(public payload: number) {
+  }
 }
 
 /**
