@@ -10,6 +10,8 @@ import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
 import { UserFormComponent } from '../components/users/user-form/user-form.component';
+import { IPatient } from '../models/patient.model';
+import { Update } from '@ngrx/entity';
 
 /**
  * users effects
@@ -46,6 +48,44 @@ export class UsersEffects {
     );
 
   /**
+   * send user data to api and handle result
+   */
+  @Effect()
+  editUser$ = this.actions$.pipe(
+    ofType<UsersActions.EditUser>(UsersActions.UsersActionTypes.EditUser),
+    map(action => action.payload),
+    exhaustMap((user: User) => {
+
+      return this.usersService.updateUser(user)
+        .pipe(
+          map((savedUser: User) => {
+            this.store.dispatch(new UsersActions.DismissEditUser());
+            return new UsersApiActions.EditUserSuccess({user: savedUser});
+          }),
+          catchError(httpError => {
+            console.log(httpError);
+              const message = httpError.statusText.toLowerCase();
+
+              const snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
+
+                if (snackBarDismiss.dismissedByAction){
+                  this.store.dispatch(new UsersActions.EditUser(user));
+                } else {
+                  this.router.navigate(['/dashboard/users']);
+                }
+              });
+
+              return of(new UsersApiActions.LoadUserPatientsFailure({message}));
+            })
+        );
+    })
+  );
+
+  /**
    * observes the CreateUserSuccess action
    * in case create user succeeds, the form dialog box is closed
    * and the users list is shown
@@ -57,7 +97,22 @@ export class UsersEffects {
     .pipe(
       ofType(UsersApiActions.UsersApiActionTypes.CreateUserSuccess),
       tap(() => {
+        this.store.dispatch(new UsersActions.LoadUsers());
         this.dialog.getDialogById("userCreationForm").close();
+      })
+    );
+
+  /**
+   * observes the EditUserSuccess action
+   * in case edit user succeeds, the list is reloaded
+   */
+  @Effect({
+    dispatch: false
+  })
+  editUserSuccess$ = this.actions$
+    .pipe(
+      ofType(UsersApiActions.UsersApiActionTypes.EditUserSuccess),
+      tap(() => {
         this.store.dispatch(new UsersActions.LoadUsers());
       })
     );
@@ -94,6 +149,46 @@ export class UsersEffects {
               });
 
               return of(new UsersApiActions.LoadUsersFailure({message}));
+            })
+          );
+      })
+    );
+
+
+  /**
+   * effect for loading user users
+   */
+  @Effect()
+  loadUserPatients = this.actions$
+    .pipe(
+      ofType<UsersActions.LoadUserPatients>(UsersActions.UsersActionTypes.LoadUserPatients),
+      map(action => action.payload),
+      exhaustMap((id: number) => {
+
+        return this.usersService.getUserPatients(id)
+          .pipe(
+            delay(2000),
+            map((patients: IPatient[]) => {
+              console.log(patients);
+              return new UsersApiActions.LoadUserPatientsSuccess({patients});
+            }),
+            catchError(httpError => {
+              const message = httpError.statusText.toLowerCase();
+
+              const snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
+
+                if (snackBarDismiss.dismissedByAction){
+                  this.store.dispatch(new UsersActions.LoadUserPatients(id));
+                } else {
+                  this.router.navigate(['/dashboard/users']);
+                }
+              });
+
+              return of(new UsersApiActions.LoadUserPatientsFailure({message}));
             })
           );
       })

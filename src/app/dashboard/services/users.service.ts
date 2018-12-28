@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { environment } from '../../../environments/environment';
 import { Update } from '@ngrx/entity';
+import { IPatient } from '../models/patient.model';
 
 /**
  * user service
@@ -25,6 +26,14 @@ export class UsersService {
    */
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${environment.apiHost}/api/usermanagement`);
+  }
+
+  /**
+   * get all patients belonging to a user from the moio-cloud api
+   * @param id user id
+   */
+  getUserPatients(id: number): Observable<IPatient[]> {
+    return this.http.get<IPatient[]>(`${environment.apiHost}/api/users/${id}/patients`);
   }
 
   /**
@@ -48,6 +57,7 @@ export class UsersService {
    * @param user object:User
    */
   updateUser(user: User): Observable<User> {
+    console.log(user);
     return this.http.put<User>(`${environment.apiHost}/api/users/${user.id}`, user);
   }
 
@@ -55,7 +65,8 @@ export class UsersService {
    * edit a user
    * @param changed
    */
-  editPatient(changed: Update<User>): Observable<User> {
+  editUser(changed: Update<User>): Observable<User> {
+    console.log(changed);
     return this.http
       .put<User>(`${environment.apiHost}/api/users/${changed.id}`, {...changed.changes});
   }

@@ -1,0 +1,85 @@
+<div>
+        <mat-progress-bar *ngIf="loadNursinghomePending$ | async" [mode]="(loadNursinghomePending$ | async) ? 'indeterminate' : 'determinate'"
+          class="session-progress"></mat-progress-bar>
+        <mat-progress-bar *ngIf="createPatientPending$ | async" [mode]="(createPatientPending$ | async) ? 'indeterminate' : 'determinate'"
+          class="session-progress"></mat-progress-bar>
+      </div>
+      
+      <h1 matDialogTitle>{{data.title}}</h1>
+      <small *ngIf="loadNursingHomeErrorMessage$ | async" class="text-center form-error-msg">
+        {{loadNursingHomeErrorMessage$ | async}}!
+      </small>
+      <small *ngIf="savePatientErrorMessage$ | async" class="text-center form-error-msg">
+        {{savePatientErrorMessage$ | async }}!
+      </small>
+      <form [formGroup]="patientForm" (ngSubmit)="submit()">
+        <div fxLayout="row wrap" fxLayout.lt-sm="column">
+          <div fxFlex="50" class="pr-1">
+            <mat-form-field class="full-width">
+              <input matInput name="firstname" [formControl]="patientForm.controls['firstname']" placeholder="{{'PatientForm.FirstName' | translate}}">
+              <mat-error *ngIf="patientForm.controls['firstname'].invalid">{{'PatientForm.FirstNameRequired' | translate}}</mat-error>
+            </mat-form-field>
+          </div>
+      
+          <div fxFlex="50" class="pr-1">
+            <mat-form-field class="full-width">
+              <input matInput name="lastname" [formControl]="patientForm.controls['lastname']" placeholder="{{'PatientForm.LastName' | translate}}">
+              <mat-error *ngIf="patientForm.controls['lastname'].invalid">{{'PatientForm.LastNameRequired' | translate}}</mat-error>
+            </mat-form-field>
+          </div>
+      
+          <div fxFlex="50" class="pr-1">
+            <mat-form-field class="full-width">
+              <input matInput name="patientname" [formControl]="patientForm.controls['patientname']" placeholder="{{'PatientForm.Patientname' | translate}}">
+              <mat-error *ngIf="patientForm.controls['patientname'].invalid">{{'PatientForm.PatientNameRequired' | translate}}</mat-error>
+            </mat-form-field>
+          </div>
+      
+          <div fxFlex="50" class="pr-1">
+            <mat-form-field class="full-width">
+              <input matInput type="email" name="email" [formControl]="patientForm.controls['email']" placeholder="{{'PatientForm.Email' | translate}}">
+              <mat-error *ngIf="patientForm.controls['email'].invalid">{{'PatientForm.EmailRequired' | translate}}</mat-error>
+            </mat-form-field>
+          </div>
+      
+          <div fxFlex="50" class="pr-1">
+            <mat-form-field class="full-width">
+              <input matInput type="password" name="password" [formControl]="patientForm.controls['password']" placeholder="{{'PatientForm.Password' | translate}}">
+              <mat-error *ngIf="patientForm.controls['password'].invalid">{{'PatientForm.PasswordRequried' | translate}}</mat-error>
+            </mat-form-field>
+          </div>
+      
+          <div fxFlex="50" class="pr-1">
+            <mat-form-field class="full-width">
+              <input matInput type="password" name="password_confirmation" [formControl]="patientForm.controls['password_confirmation']"
+                placeholder="{{'PatientForm.ConfirmPassword' | translate}}">
+              <mat-error *ngIf="patientForm.controls['password_confirmation'].hasError('required')">
+                {{'PatientForm.ConfirmPasswordRequired' | translate}}
+              </mat-error>
+              <mat-error *ngIf="patientForm.controls['password_confirmation'].hasError('NoPasswordMatch')"> 
+                Password do not match 
+              </mat-error>
+            </mat-form-field>
+          </div>
+      
+          <div fxFlex="50" class="pr-1">
+            <mat-form-field>
+              <mat-select placeholder="{{'PatientForm.NursingHome' | translate}}" name="nursing_home_key" [formControl]="patientForm.controls['nursing_home_key']">
+                <mat-option *ngFor="let nursingHome of nursingHomes$ | async" [value]="nursingHome.key">
+                  {{nursingHome.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="patientForm.controls['nursing_home_key'].invalid">{{'PatientForm.NursingHomeKeyRequired' |
+                translate}}</mat-error>
+      
+            </mat-form-field>
+          </div>
+      
+          <div fxFlex="100" class="mt-1">
+            <button mat-raised-button color="primary" [disabled]="patientForm.invalid" type="submit">{{'PatientForm.Save' |
+              translate}}</button>
+            <span fxFlex></span>
+            <button mat-button color="warn" type="button" (click)="cancel()">{{'PatientForm.Cancel' | translate}}</button>
+          </div>
+        </div>
+      </form>

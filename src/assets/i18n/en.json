@@ -65,6 +65,11 @@
     "Save": "Save",
     "Cancel": "Cancel"
   },
+  "Edit": "Edit",
+  "FirstName": "First Name",
+  "LastName": "Last Name",
+  "Username": "Username",
+  "Gender": "Gender",
   "CloseUserForm":{
     "title": "Close  this form?",
     "message": "The unsaved data in this form will be lost. Are you sure you want to close this form?"

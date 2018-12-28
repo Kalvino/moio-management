@@ -15,7 +15,8 @@ export enum UsersActionTypes {
   EditUser = '[User] Edit User',
   DismissEditUser = '[User] Dismiss Edit User',
   ResetUsersState = '[Users] Reset Users State',
-  DeleteUser ='[Users] Delete User'
+  DeleteUser = '[Users] Delete User',
+  LoadUserPatients = '[User] Load User Patients'
 }
 
 
@@ -73,7 +74,7 @@ export class LoadUsers implements Action {
 }
 
 /**
- * Search user Action
+ * Search user action
  */
 export class SearchUser implements Action {
   readonly type = UsersActionTypes.SearchUser;
@@ -82,7 +83,7 @@ export class SearchUser implements Action {
 }
 
 /**
- * Search user complete Action
+ * Search user complete action
  */
 export class SearchUserComplete implements Action {
   readonly type = UsersActionTypes.SearchUserComplete;
@@ -96,7 +97,7 @@ export class SearchUserComplete implements Action {
 export class EditUser implements Action {
   readonly type = UsersActionTypes.EditUser;
 
-  constructor(public payload: Update<User>) {
+  constructor(public payload: User) {
   }
 }
 
@@ -125,6 +126,14 @@ export class DeleteUser implements Action {
 }
 
 /**
+ * Load user patients action
+ */
+export class LoadUserPatients implements Action {
+  readonly type = UsersActionTypes.LoadUserPatients;
+  constructor(public payload: number ) { }
+}
+
+/**
  * Export union of user Action
  */
 export type UsersActionsUnion
@@ -139,4 +148,5 @@ export type UsersActionsUnion
   | SearchUserComplete
   | EditUser
   | DismissEditUser
-  | ResetUsersState;
+  | ResetUsersState
+  | LoadUserPatients;

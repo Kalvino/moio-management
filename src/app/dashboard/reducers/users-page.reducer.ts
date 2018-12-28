@@ -7,6 +7,8 @@ export interface State {
   createUserPending: boolean;
   editUserError: string | null;
   editUserPending: boolean;
+  loadUserPatientsPending: boolean;
+  LoadUserPatientsError: null;
 }
 
 export const initialState: State = {
@@ -15,7 +17,9 @@ export const initialState: State = {
   createUserError: null,
   createUserPending: false,
   editUserError: null,
-  editUserPending: false
+  editUserPending: false,
+  loadUserPatientsPending: false,
+  LoadUserPatientsError: null
 };
 
 /**
@@ -44,6 +48,13 @@ export function reducer(
         editUserError: null
       };
 
+    case (UsersActions.UsersActionTypes.LoadUserPatients):
+      return {
+        ...state,
+        loadUserPatientsPending: true,
+        LoadUserPatientsError: null
+      };
+
     case (UsersActions.UsersActionTypes.CreateUser):
       return {
         ...state,
@@ -69,6 +80,20 @@ export function reducer(
         ...state,
         pending: false,
         error: null
+      };
+
+    case (UsersApiActions.UsersApiActionTypes.LoadUserPatientsSuccess):
+      return {
+        ...state,
+        loadUserPatientsPending: false,
+        LoadUserPatientsError: null
+      };
+
+    case (UsersApiActions.UsersApiActionTypes.LoadUserPatientsFailure):
+      return {
+        ...state,
+        loadUserPatientsPending: false,
+        LoadUserPatientsError: action.payload.message
       };
 
     case (UsersApiActions.UsersApiActionTypes.EditUserSuccess):
@@ -139,4 +164,16 @@ export const getEditUserError = (state: State) => state.editUserError;
  * @param state
  */
 export const getEditUserPending = (state: State) => state.editUserPending;
+
+/**
+ * get the pending state when loading user patients
+ * @param state
+ */
+export const getloadUserPatientsPending = (state: State) => state.loadUserPatientsPending;
+
+/**
+ * get the error state when loading user patients
+ * @param state
+ */
+export const getLoadUserPatientsError = (state: State) => state.LoadUserPatientsError;
 

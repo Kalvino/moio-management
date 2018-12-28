@@ -1,7 +1,3 @@
-<div class="m-333">
-  <!-- <span fxFlex></span> -->
-  <button mat-raised-button class="mb-05" color="primary" (click)="openPopUp()"><mat-icon>add</mat-icon>{{'Create' | translate}}</button>
-</div>
 <mat-progress-bar *ngIf="isPending$ | async" [mode]="(isPending$ | async) ? 'indeterminate' : 'determinate'" class="session-progress"></mat-progress-bar>
 <div class="mat-box-shadow margin-333">
   <ngx-datatable class="material fullscreen bg-white"
@@ -10,7 +6,7 @@
                 [footerHeight]="0"
                 [rowHeight]="50"
                 [scrollbarV]="false"
-                [rows]="users$ | async"
+                [rows]="users | async"
                 [columns]="columns"
                 [selectionType]="'single'"
                 [ngClass]="{'active': user?.id === selectedUser?.id}"

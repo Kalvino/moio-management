@@ -8,12 +8,13 @@ import { GenericValidator } from '../../../shared/generic-validator';
 import { NumberValidators } from '../../../shared/number-validator';
 
 import { takeWhile } from 'rxjs/operators';
-
-/* NgRx */
 import { Store, select } from '@ngrx/store';
 
 import * as fromDashboard from '../../../reducers';
 import * as usersActions from '../../../actions/users.actions';
+import { IPatient } from 'src/app/dashboard/models/patient.model';
+import { TranslateService } from '@ngx-translate/core';
+import { ConfirmService } from '../../../../core/services/confirm.service'
 
 @Component({
   selector: 'moio-user-edit-form',
@@ -33,8 +34,47 @@ export class UserEditFormComponent implements OnInit, OnDestroy {
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
 
+  // all user patients
+  userPatients$: Observable<IPatient[]> = this.store.pipe(
+    select(fromDashboard.getAllUserPatients)
+  );
+
+  // get error state when loading user patients
+  loadUserPatientsError$: Observable<string> = this.store.pipe(
+    select(fromDashboard.getloadUserPatientsError)
+  )
+
+  // get pending state when loading user patients
+  loadUserPatientsPending$: Observable<boolean> = this.store.pipe(
+    select(fromDashboard.getloadUserPatientsPending)
+  )
+
+  /**
+   * Users Table columns
+   */
+  columns = [
+    {
+      prop: 'firstname',
+      name: this.translate.instant('FirstName')
+    },
+    {
+      prop: 'lastname',
+      name: this.translate.instant('LastName')
+    },
+    {
+      prop: 'nursing_home_id',
+      name: this.translate.instant('NursingHome')
+    },
+    {
+      prop: 'gender',
+      name: this.translate.instant('Gender')
+    }
+  ];
+
   constructor(private store: Store<fromDashboard.State>,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private translate: TranslateService,
+              public confirmService: ConfirmService) {
 
     // Defines all of the validation messages for the form.
     // These could instead be retrieved from a file or database.
@@ -47,11 +87,14 @@ export class UserEditFormComponent implements OnInit, OnDestroy {
     // Define an instance of the validator for use with this form,
     // passing in this form's set of validation messages.
     this.genericValidator = new GenericValidator(this.validationMessages);
+
+    this.translate.setDefaultLang('de');
   }
 
   ngOnInit(): void {
     // Define the form group
     this.userEditForm = this.fb.group({
+      id: [''],
       firstname: [''],
       lastname: [''],
       email: ['',[Validators.required, Validators.email]],
@@ -76,7 +119,7 @@ export class UserEditFormComponent implements OnInit, OnDestroy {
     this.errorMessage$ = this.store.pipe(select(fromDashboard.getUserEditionError));
 
     // Watch for value changes
-    this.userEditForm.valueChanges.subscribe(
+   const formValuechanges = this.userEditForm.valueChanges.subscribe(
       value => this.displayMessage = this.genericValidator.processMessages(this.userEditForm)
     );
   }
@@ -100,10 +143,11 @@ export class UserEditFormComponent implements OnInit, OnDestroy {
       this.userEditForm.reset();
 
       // Display the appropriate page title
-      this.pageTitle = `Edit User: ${this.user.firstname}`;
+      this.pageTitle = `${this.user.firstname} ${this.user.lastname}`;
 
       // Update the data on the form
       this.userEditForm.patchValue({
+        id: this.user.id,
         firstname: this.user.firstname,
         lastname: this.user.lastname,
         email: this.user.email,
@@ -119,7 +163,21 @@ export class UserEditFormComponent implements OnInit, OnDestroy {
     // Redisplay the currently selected user
     // replacing any edits made
     this.displayUser(this.user);
-     this.store.dispatch(new usersActions.DismissEditUser);
+    this.store.dispatch(new usersActions.DismissEditUser);
+
+
+    const title = this.translate.instant("CloseUserForm.title");
+    const message = this.translate.instant("CloseUserForm.message");
+    if (this.userEditForm.dirty){
+      this.confirmService.confirm({title: title, message: message})
+      .subscribe(res => {
+        if (res){
+          this.store.dispatch(new usersActions.DismissEditUser());
+        }
+      })
+    }else{
+      this.store.dispatch(new usersActions.DismissEditUser());
+    }
   }
 
   deleteUser(): void {
@@ -133,13 +191,19 @@ export class UserEditFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  saveUser(): void {
+  editUser(): void {
+    console.log(this.userEditForm.value);
     if (this.userEditForm.valid) {
       if (this.userEditForm.dirty) {
         // Copy over all of the original user properties
         // Then copy over the values from the form
         // This ensures values not on the form, such as the Id, are retained
-        const p = { ...this.user, ...this.userEditForm.value };
+        const p = { id: this.userEditForm.get('id').value,
+                    firstname: this.userEditForm.get('firstname').value,
+                    lastname: this.userEditForm.get('lastname').value,
+                    email: this.userEditForm.get('email').value,
+                    username: this.userEditForm.get('username').value
+                  };
 
         this.store.dispatch(new usersActions.EditUser(p));
       }

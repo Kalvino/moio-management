@@ -5,9 +5,10 @@
 export const environment = {
   production: false,
   whitelistedDomains: [
-    'localhost:8000'
+    'dev-api.my-appsolute-mobility.com',
+    'localhost:4200'
   ],
-  apiHost: 'http://localhost:8000'
+  apiHost: 'https://dev-api.my-appsolute-mobility.com'
 };
 
 /*

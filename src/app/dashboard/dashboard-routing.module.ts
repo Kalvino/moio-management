@@ -6,7 +6,6 @@ import { BlankComponent } from './components/blank/blank.component';
 import { UsersComponent } from './components/users/users.component';
 import { Routes } from '@angular/router';
 import { DashboardLayoutComponent } from './containers/dashboard-layout.component';
-import { UserListComponent } from './components/users/user-list/user-list.component';
 import { AuthGuard } from '../auth/guards/auth.guard';
 
 /**

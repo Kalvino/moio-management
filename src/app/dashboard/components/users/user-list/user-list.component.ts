@@ -19,8 +19,6 @@ import { takeWhile } from 'rxjs/operators';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit, OnDestroy {
-
-  users: User[];
   
   // Used to select user in the list
   selectedUser: User | null;
@@ -30,10 +28,9 @@ export class UserListComponent implements OnInit, OnDestroy {
   /**
    * Users Table columns
    */
-
   columns = [
     {
-      prop: 'name',
+      prop: 'fullname',
       name: this.translate.instant('Name')
     },
     {
@@ -87,6 +84,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   public items: User[];
+  users: Observable<User[]>;
 
   /**
    * init UserListComponent component
@@ -94,6 +92,8 @@ export class UserListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.store.dispatch(new usersActions.LoadUsers());
+
+    this.users = this.store.pipe(select(fromDashboard.getAllUsers)) as Observable<User[]>;
 
     this.store.pipe(select(fromDashboard.getUsersIds))
     .subscribe((ids: string[]) => this.ids = ids);
@@ -121,17 +121,6 @@ export class UserListComponent implements OnInit, OnDestroy {
   selectUser(user: User): void {
     this.store.dispatch(new usersActions.SelectUser(user));
   }
- 
-  //add appUser
-  openPopUp() { 
-    let title = this.translate.instant('UserForm.FormTitle');
-    let dialogRef: MatDialogRef<any> = this.dialog.open(UserFormComponent, {
-      width: '720px',
-      disableClose: true,
-      data: { title: title },
-      id: 'userCreationForm'
-    });
-  }
 
   /**
    * emit the selected user
@@ -145,7 +134,10 @@ export class UserListComponent implements OnInit, OnDestroy {
   onSelectRow({selected}) {
     // this.userSelected.emit(selected[0]);
     const user = selected[0];
-    console.log(user);
+    const userId = user.id;
+    console.log(userId);
+
+    this.store.dispatch(new usersActions.LoadUserPatients(userId));
     this.store.dispatch(new usersActions.SelectUser(user));
   }
 

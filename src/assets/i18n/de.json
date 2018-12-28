@@ -63,8 +63,13 @@
     "ConfirmPassword": "Passwort bestätigen",
     "NursingHome": "Einrichtung",
     "Save": "Speichern",
-    "Cancel": "Stornieren"
+    "Cancel": "Abbrechen"
   },
+  "Edit": "bearbeiten",
+  "FirstName": "Vorname",
+  "LastName": "Nachname",
+  "Username": "Nutzername",
+  "Gender": "Geschlecht",
   "CloseUserForm":{
     "title": "Schließen Sie dieses Formular?",
     "message": "Die nicht gespeicherten Daten in diesem Formular gehen verloren. Möchten Sie dieses Formular wirklich schließen?"

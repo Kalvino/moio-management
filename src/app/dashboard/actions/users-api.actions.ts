@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { User } from '../models/user.model';
+import { IPatient } from '../models/patient.model';
 
 /**
  * definitions for action types
@@ -11,6 +12,8 @@ export enum UsersApiActionTypes {
   LoadUsersFailure = '[User/Api] Load Users Failure',
   EditUserSuccess = '[User/Api] Edit User Success',
   EditUserFailure = '[User/Api] Edit User Failure',
+  LoadUserPatientsSuccess = '[User/Api] Load User Patients Success',
+  LoadUserPatientsFailure = '[User/Api] Load User Patients Failure',
 }
 
 /**
@@ -44,7 +47,7 @@ export class LoadUsersSuccess implements Action {
 }
 
 /**
- * load all users action
+ * load all users failure action
  */
 export class LoadUsersFailure implements Action {
   public readonly type = UsersApiActionTypes.LoadUsersFailure;
@@ -73,6 +76,26 @@ export class EditUserFailure implements Action {
   }
 }
 
+/**
+ * load all user patients success action
+ */
+export class LoadUserPatientsSuccess implements Action {
+  public readonly type = UsersApiActionTypes.LoadUserPatientsSuccess;
+
+  constructor(public payload: { patients: IPatient[] }) {
+  }
+}
+
+/**
+ * load all user patients failure action
+ */
+export class LoadUserPatientsFailure implements Action {
+  public readonly type = UsersApiActionTypes.LoadUserPatientsFailure;
+
+  constructor(public payload: { message: any }) {
+  }
+}
+
 // export types
 export type UsersApiActionsUnion =
   | CreateUserSuccess
@@ -81,3 +104,5 @@ export type UsersApiActionsUnion =
   | EditUserFailure
   | LoadUsersSuccess
   | LoadUsersFailure
+  | LoadUserPatientsSuccess
+  | LoadUserPatientsFailure

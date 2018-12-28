@@ -7,26 +7,26 @@ import * as fromDashboard from '../../../reducers';
 import * as nursingHomeActions from '../../../actions/nursing-homes.actions';
 import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { UsersApiActions, UsersActions } from '../../../actions';
-import { User } from '../../../models/user.model';
+import { PatientsApiActions, PatientsActions } from '../../../actions';
+import { IPatient } from '../../../models/patient.model';
 import { NursingHome } from 'src/app/dashboard/models/nursing-home.model';
 import { ConfirmService } from '../../../../core/services/confirm.service'
 
 
 @Component({
-  selector: 'user-form',
-  templateUrl: './user-form.component.html'
+  selector: 'patient-form',
+  templateUrl: './patient-form.component.html'
 })
-export class UserFormComponent implements OnInit {
-  public userForm: FormGroup;
+export class PatientFormComponent implements OnInit {
+  public patientForm: FormGroup;
 
-  // observe user creation pending state
-  createUserPending$: Observable<boolean> = this.store.pipe(
-    select(fromDashboard.getUserCreationPending)
+  // observe patient creation pending state
+  createPatientPending$: Observable<boolean> = this.store.pipe(
+    select(fromDashboard.getPatientCreationPending)
   );
 
-  // observe errors while saving the user
-  saveUserErrorMessage$: Observable<string> = this.store.pipe(
+  // observe errors while saving the patient
+  savePatientErrorMessage$: Observable<string> = this.store.pipe(
     select(fromDashboard.getNursingHomePageError)
   );
 
@@ -37,7 +37,7 @@ export class UserFormComponent implements OnInit {
 
   // observe errors while loading nursing homes
   loadNursingHomeErrorMessage$: Observable<string> = this.store.pipe(
-    select(fromDashboard.getUserCreationError)
+    select(fromDashboard.getPatientCreationError)
   );
 
   nursingHomes$: Observable<NursingHome[]> = this.store.pipe(
@@ -46,7 +46,7 @@ export class UserFormComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<UserFormComponent>,
+    public dialogRef: MatDialogRef<PatientFormComponent>,
     private fb: FormBuilder,
     private store: Store<fromDashboard.State>, 
     public translate: TranslateService,
@@ -60,13 +60,13 @@ export class UserFormComponent implements OnInit {
     this.store.dispatch(new nursingHomeActions.LoadNursingHomes());
 
     /**
-     * Create userForm group to collect user details
+     * Create patientForm group to collect patient details
      */
-    this.userForm = this.fb.group({
-      firstname: [''],
-      lastname: [''],
-      username: ['', Validators.required],
-      email: ['',[Validators.email]],
+    this.patientForm = this.fb.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      patientname: ['', Validators.required],
+      email: ['',[Validators.required, Validators.email]],
       password: ['',Validators.required],
       password_confirmation: ['',Validators.required],
       nursing_home_key: ['',Validators.required]
@@ -93,34 +93,34 @@ export class UserFormComponent implements OnInit {
   }
 
   /**
-   * dispatch new create user action when form is submitted
-   * @param user
+   * dispatch new create patient action when form is submitted
+   * @param patient
    */
   submit() {
-    if (this.userForm.valid) {
-      const user = this.userForm.value;
-      console.log(user);
-      this.store.dispatch(new UsersActions.CreateUser({user}));
+    if (this.patientForm.valid) {
+      const patient = this.patientForm.value;
+      console.log(patient);
+      this.store.dispatch(new PatientsActions.CreatePatient({patient}));
     }
-    // this.dialogRef.close(this.userForm.value)
+    // this.dialogRef.close(this.patientForm.value)
   }
 
   /**
-   * dismiss the open user form dialogue with confirmation if 
+   * dismiss the open patient form dialogue with confirmation if 
    * the form has unsave data
    */
   cancel(){
-    const title = this.translate.instant("CloseUserForm.title");
-    const message = this.translate.instant("CloseUserForm.message");
-    if (this.userForm.dirty){
+    const title = this.translate.instant("ClosePatientForm.title");
+    const message = this.translate.instant("ClosePatientForm.message");
+    if (this.patientForm.dirty){
       this.confirmService.confirm({title: title, message: message})
       .subscribe(res => {
         if (res){
-          this.store.dispatch(new UsersActions.DismissUserFormDialog());
+          this.store.dispatch(new PatientsActions.DismissPatientFormDialog());
         }
       })
     }else{
-      this.store.dispatch(new UsersActions.DismissUserFormDialog());
+      this.store.dispatch(new PatientsActions.DismissPatientFormDialog());
     }
   }
 }
