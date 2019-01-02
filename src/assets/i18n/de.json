@@ -70,6 +70,7 @@
   "LastName": "Nachname",
   "Username": "Nutzername",
   "Gender": "Geschlecht",
+  "EmailInvalid": "Geben sie eine gültige E-Mail-Adresse",
   "CloseUserForm":{
     "title": "Schließen Sie dieses Formular?",
     "message": "Die nicht gespeicherten Daten in diesem Formular gehen verloren. Möchten Sie dieses Formular wirklich schließen?"

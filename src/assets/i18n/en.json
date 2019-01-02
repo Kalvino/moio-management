@@ -70,6 +70,7 @@
   "LastName": "Last Name",
   "Username": "Username",
   "Gender": "Gender",
+  "EmailInvalid": "Enter a valid email address",
   "CloseUserForm":{
     "title": "Close  this form?",
     "message": "The unsaved data in this form will be lost. Are you sure you want to close this form?"

@@ -1,103 +1,85 @@
-<div class="m-333">
-<mat-card class="p-0">
-  <!-- <div>
-      <mat-progress-bar *ngIf="loadNursinghomePending$ | async" [mode]="(loadNursinghomePending$ | async) ? 'indeterminate' : 'determinate'"
-          class="session-progress"></mat-progress-bar>
-      <mat-progress-bar *ngIf="createUserPending$ | async" [mode]="(createUserPending$ | async) ? 'indeterminate' : 'determinate'"
-          class="session-progress"></mat-progress-bar>
-  </div> -->
-  <mat-card-title class="default">
-    <div class="card-title-text">{{pageTitle}}</div>
-    <mat-divider></mat-divider>
-  </mat-card-title>
-  <mat-card-content>
-    <form [formGroup]="userEditForm" (ngSubmit)="editUser()">
-      <div fxLayout="row wrap">
-        <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
-          <div class="pb-1">
-            <mat-form-field class="full-width">
-              <input matInput name="firstname" formControlName="firstname" placeholder="{{'UserForm.FirstName' | translate}}" value="">
-            </mat-form-field>
-            <small *ngIf="userEditForm.controls['firstname'].hasError('required') && userEditForm.controls['firstname'].touched"
-              class="form-error-msg"> {{'UserForm.FirstNameRequired' | translate}} </small>
+<div *ngIf="user" class="m-333">
+  <mat-card class="p-0">
+    <mat-card-title class="default">
+      <div class="card-title-text">{{pageTitle}}</div>
+      <mat-divider></mat-divider>
+    </mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="userEditForm" (ngSubmit)="editUser()">
+        <div fxLayout="row wrap">
+          <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+            <div class="pb-1">
+              <mat-form-field class="full-width">
+                <input matInput name="firstname" formControlName="firstname" placeholder="{{'UserForm.FirstName' | translate}}" >
+              </mat-form-field>
+            </div>
+
+            <div class="pb-1">
+              <mat-form-field class="full-width">
+                <input matInput name="lastname" formControlName="lastname" placeholder="{{'UserForm.LastName' | translate}}" >
+              </mat-form-field>
+            </div>
+
+            <div class="pb-1">
+              <mat-form-field class="full-width">
+                <input matInput type="email" name="email" formControlName="email" placeholder="{{'UserForm.Email' | translate}}" >
+              </mat-form-field>
+              <small *ngIf="userEditForm.controls['email'].hasError('email') && userEditForm.controls['email'].touched"
+                class="form-error-msg">
+                {{'EmailInvalid' | translate}} </small>
+            </div>
+
+            <div class="pb-1">
+              <mat-form-field class="full-width">
+                <input matInput name="username" formControlName="username" placeholder="{{'UserForm.Username' | translate}}" >
+              </mat-form-field>
+              <small *ngIf="userEditForm.controls['username'].hasError('required') && userEditForm.controls['username'].touched"
+                class="form-error-msg"> {{'UserForm.EmailRequired' | translate}} </small>
+              <small *ngIf="userEditForm.controls['username'].hasError('username') && userEditForm.controls['username'].touched"
+                class="form-error-msg">
+                {{'UserForm.Username' | translate}} </small>
+            </div>
           </div>
 
-          <div class="pb-1">
-            <mat-form-field class="full-width">
-              <input matInput name="lastname" formControlName="lastname" placeholder="{{'UserForm.LastName' | translate}}" value="">
-            </mat-form-field>
-            <small *ngIf="userEditForm.controls['lastname'].hasError('required') && userEditForm.controls['lastname'].touched"
-              class="form-error-msg"> {{'UserForm.LastNameRequired' | translate}} </small>
-          </div>
+          <div fxFlex="100" fxFlex.gt-xs="50">
+            <div class="pb-1">
+              <mat-form-field class="full-width">
+                <input matInput [readonly]="true" name="nursing_home" formControlName="nursing_home" placeholder="{{'UserForm.NursingHome' | translate}}" >
+              </mat-form-field>
+            </div>
 
-          <div class="pb-1">
-            <mat-form-field class="full-width">
-              <input matInput type="email" name="email" formControlName="email" placeholder="{{'UserForm.Email' | translate}}" value="">
-            </mat-form-field>
-            <small *ngIf="userEditForm.controls['email'].hasError('required') && userEditForm.controls['email'].touched"
-              class="form-error-msg"> {{'UserForm.EmailRequired' | translate}} </small>
-            <small *ngIf="userEditForm.controls['email'].hasError('email') && userEditForm.controls['email'].touched" class="form-error-msg">
-              {{'UserForm.EmailInvalid' | translate}} </small>
-          </div>
+            <div class="pb-1">
+              <mat-form-field class="full-width">
+                <input matInput [readonly]="true" name="registered_on" formControlName="registered_on" placeholder="{{'RegisteredOn' | translate}}" >
+              </mat-form-field>
+            </div>
 
-          <div class="pb-1">
-            <mat-form-field class="full-width">
-              <input matInput name="username" formControlName="username" placeholder="{{'UserForm.Username' | translate}}" value="">
-            </mat-form-field>
-            <small *ngIf="userEditForm.controls['username'].hasError('required') && userEditForm.controls['username'].touched"
-              class="form-error-msg"> {{'UserForm.EmailRequired' | translate}} </small>
-            <small *ngIf="userEditForm.controls['username'].hasError('username') && userEditForm.controls['username'].touched" class="form-error-msg">
-              {{'UserForm.Username' | translate}} </small>
+            <div class="pb-1">
+              <mat-form-field class="full-width">
+                <input matInput [readonly]="true" name="last_login" formControlName="last_login" placeholder="{{'LastLoginOn' | translate}}" >
+              </mat-form-field>
+            </div>
           </div>
-        </div>
-
-        <div fxFlex="100" fxFlex.gt-xs="50">
-          <div class="pb-1">
-            <mat-form-field class="full-width">
-              <input matInput [readonly]="true" name="nursing_home" formControlName="nursing_home" placeholder="{{'UserForm.NursingHome' | translate}}"
-                value="">
-            </mat-form-field>
-            <small *ngIf="userEditForm.controls['nursing_home'].hasError('required') && userEditForm.controls['nursing_home'].touched"
-              class="form-error-msg"> {{'UserForm.NursingHomeRequired' | translate}} </small>
-          </div>
-
-          <div class="pb-1">
-            <mat-form-field class="full-width">
-              <input matInput [readonly]="true" name="registered_on" formControlName="registered_on" placeholder="{{'RegisteredOn' | translate}}" value="">
-            </mat-form-field>
-          </div>
-
-          <div class="pb-1">
-            <mat-form-field class="full-width">
-              <input matInput [readonly]="true" name="last_login" formControlName="last_login" placeholder="{{'LastLoginOn' | translate}}" value="">
-            </mat-form-field>
+          <div fxFlex="100" class="mt-1">
+            <button mat-raised-button color="primary" [disabled]="userEditForm.invalid || !userEditForm.dirty" type="submit">
+              {{'Edit' | translate}}</button>
+            <span fxFlex></span>
+            <button mat-button color="warn" type="button" (click)="cancelEdit()">{{'UserForm.Cancel' | translate}}</button>
           </div>
         </div>
-        <div fxFlex="100" class="mt-1">
-          <button mat-raised-button color="primary" [disabled]="userEditForm.invalid || !userEditForm.dirty" type="submit">
-            {{'Edit' | translate}}</button>
-          <span fxFlex></span>
-          <button mat-button color="warn" type="button" (click)="cancelEdit()">{{'UserForm.Cancel' | translate}}</button>
-        </div>
-      </div>
-    </form>
-  </mat-card-content>
-</mat-card>
+      </form>
+    </mat-card-content>
+  </mat-card>
 
-<mat-card class="default">
-    <mat-progress-bar *ngIf="loadUserPatientsPending$ | async" [mode]="(loadUserPatientsPending$ | async) ? 'indeterminate' : 'determinate'" class="session-progress"></mat-progress-bar>
+  <mat-card class="default">
+    <mat-progress-bar *ngIf="loadUserPatientsPending$ | async" [mode]="(loadUserPatientsPending$ | async) ? 'indeterminate' : 'determinate'"
+      class="session-progress"></mat-progress-bar>
     <mat-card-title>Connected patient profiles</mat-card-title>
     <mat-card-content class="p-0" fxLayout="column">
       <div class="activity-data">
-        <ngx-datatable class="material bg-white" 
-        [columnMode]="'force'"  
-        [headerHeight]="50"
-        [footerHeight]="50" 
-        [rowHeight]="50"
-        [limit]="4"
-        [rows]="userPatients$ | async"
-        [columns]="columns">
-          
+        <ngx-datatable class="material bg-white" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+          [rowHeight]="50" [limit]="4" [rows]="userPatients$ | async" [columns]="columns">
+
         </ngx-datatable>
       </div>
     </mat-card-content>

@@ -7,7 +7,7 @@ import { IPatient } from './patient.model';
 export interface User {
   id?: number | null;
   name?: string;
-  username
+  username?: string;
   firstname?: string;
   lastname?: string;
   email?: string;

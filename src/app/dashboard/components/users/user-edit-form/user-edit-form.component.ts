@@ -27,7 +27,7 @@ export class UserEditFormComponent implements OnInit, OnDestroy {
   componentActive = true;
   userEditForm: FormGroup;
 
-  user: User | null;
+  user: User;
 
   // Use with the generic validation message class
   displayMessage: { [key: string]: string } = {};
@@ -42,12 +42,12 @@ export class UserEditFormComponent implements OnInit, OnDestroy {
   // get error state when loading user patients
   loadUserPatientsError$: Observable<string> = this.store.pipe(
     select(fromDashboard.getloadUserPatientsError)
-  )
+  );
 
   // get pending state when loading user patients
   loadUserPatientsPending$: Observable<boolean> = this.store.pipe(
     select(fromDashboard.getloadUserPatientsPending)
-  )
+  );
 
   /**
    * Users Table columns
@@ -91,37 +91,23 @@ export class UserEditFormComponent implements OnInit, OnDestroy {
     this.translate.setDefaultLang('de');
   }
 
-  ngOnInit(): void {
-    // Define the form group
-    this.userEditForm = this.fb.group({
-      id: [''],
-      firstname: [''],
-      lastname: [''],
-      email: ['',[Validators.required, Validators.email]],
-      username: ['', Validators.required],      
-      nursing_home: ['',Validators.required],
-      registered_on: ['',Validators.required],
-      last_login: ['',Validators.required]
-    });
-
+  ngOnInit() {
     // Watch for changes to the currently selected user
     this.store.pipe(
       select(fromDashboard.getSelectedUser),
       takeWhile(() => this.componentActive)
     ).subscribe(
-      selectedUser => {
-        this.displayUser(selectedUser);
-        console.log(selectedUser);
+      user => {
+        if (user){
+          this.user = user;
+          this.displayUser(this.user);
+        }
       }
     );
 
     // Watch for changes to the error message
     this.errorMessage$ = this.store.pipe(select(fromDashboard.getUserEditionError));
 
-    // Watch for value changes
-   const formValuechanges = this.userEditForm.valueChanges.subscribe(
-      value => this.displayMessage = this.genericValidator.processMessages(this.userEditForm)
-    );
   }
 
   ngOnDestroy(): void {
@@ -134,29 +120,25 @@ export class UserEditFormComponent implements OnInit, OnDestroy {
     this.displayMessage = this.genericValidator.processMessages(this.userEditForm);
   }
 
-  displayUser(user: User | null): void {
-    // Set the local user property
-    this.user = user;
+  displayUser(user: User) {
+    // Display the appropriate page title
+    this.pageTitle = `${this.user.firstname} ${this.user.lastname}`;
+    // Define the form group
+    this.userEditForm = this.fb.group({
+      id: [user.id],
+      firstname: [user.firstname],
+      lastname: [user.lastname],
+      email: [user.email,[Validators.email]],
+      username: [user.username, Validators.required],      
+      nursing_home: [user.nursing_home],
+      registered_on: [user.registered_on],
+      last_login: [user.last_login]
+    });
 
-    if (this.user) {
-      // Reset the form back to pristine
-      this.userEditForm.reset();
-
-      // Display the appropriate page title
-      this.pageTitle = `${this.user.firstname} ${this.user.lastname}`;
-
-      // Update the data on the form
-      this.userEditForm.patchValue({
-        id: this.user.id,
-        firstname: this.user.firstname,
-        lastname: this.user.lastname,
-        email: this.user.email,
-        username: this.user.username,      
-        nursing_home: this.user.nursing_home,
-        registered_on: this.user.registered_on,
-        last_login: this.user.last_login
-      });
-    }
+    // Watch for value changes
+    const formValuechanges = this.userEditForm.valueChanges.subscribe(
+      value => this.displayMessage = this.genericValidator.processMessages(this.userEditForm)
+    );
   }
 
   cancelEdit(): void {
