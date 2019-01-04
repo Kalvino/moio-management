@@ -15,7 +15,6 @@ import { SidenavComponent } from './containers/layout-components/sidenav/sidenav
 import { BlankComponent } from './components/blank/blank.component';
 import { UsersEffects } from './effects/users.effects';
 import { NursingHomesEffects } from './effects/nursing-homes.effects';
-import { UserModule } from './components/users/user.module';
 import { ConfirmService } from '../core/services/confirm.service';
 import { SharedModule } from './shared/shared.module';
 
@@ -25,10 +24,15 @@ import * as fromDashboard from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { CoreModule } from '../core/core.module';
 import { UserListComponent } from './components/users/user-list/user-list.component';
+import { PatientListComponent } from './components/patients/patient-list/patient-list.component';
 import { UsersComponent } from './components/users/users.component';
+import { PatientsComponent } from './components/patients/patients.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SplitPaneModule } from 'ng2-split-pane/lib/ng2-split-pane';
 import { UserEditFormComponent } from './components/users/user-edit-form/user-edit-form.component';
+import { PatientEditFormComponent } from './components/patients/patient-edit-form/patient-edit-form.component';
+import { UserFormComponent } from './components/users/user-form/user-form.component';
+import { NursingHomeFormComponent } from './components/nursing-homes/nursing-home-form/nursing-home-form.component';
 
 
 /**
@@ -46,8 +50,13 @@ export const COMPONENTS = [
   BlankComponent,
   BlankComponent,
   UsersComponent,
+  PatientsComponent,
   UserListComponent,
-  UserEditFormComponent
+  PatientListComponent,
+  UserEditFormComponent,
+  PatientEditFormComponent,
+  UserFormComponent,
+  NursingHomeFormComponent
 ];
 
 /**
@@ -72,7 +81,6 @@ export const EFFECTS = [
     PerfectScrollbarModule,
     FormsModule,
     ReactiveFormsModule,
-    UserModule,
     SharedModule,
     NgxDatatableModule,
     StoreModule.forFeature('dashboard', fromDashboard.reducers),
@@ -86,7 +94,7 @@ export const EFFECTS = [
   providers: [
     ConfirmService
   ],
-  entryComponents: [
+  entryComponents: [UserFormComponent
   ]
 })
 export class DashboardModule {

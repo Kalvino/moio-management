@@ -41,7 +41,7 @@ export class UserEditFormComponent implements OnInit, OnDestroy {
 
   // get error state when loading user patients
   loadUserPatientsError$: Observable<string> = this.store.pipe(
-    select(fromDashboard.getloadUserPatientsError)
+    select(fromDashboard.getLoadUserPatientsError)
   );
 
   // get pending state when loading user patients

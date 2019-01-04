@@ -5,21 +5,21 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
 
-import { UserFormComponent } from './user-form/user-form.component';
+import { PatientFormComponent } from './patient-form/patient-form.component';
 
 /**
  * contains basic page layout for the
- * users section
+ * patients section
  */
 @Component({
-  selector: 'moio-users-page',
-  templateUrl: './users.component.html'
+  selector: 'moio-patients-page',
+  templateUrl: './patients.component.html'
 })
-export class UsersComponent {
+export class PatientsComponent {
 
-  // get selected user id
-  selectedUserId$: Observable<number> = this.store.pipe(
-    select(fromDashboard.getSelectedUserId)
+  // get selected patient id
+  selectedPatientId$: Observable<number> = this.store.pipe(
+    select(fromDashboard.getSelectedPatientId)
   );
 
   /**
@@ -34,14 +34,14 @@ export class UsersComponent {
 
   }
 
-   //add appUser
+   //add appPatient
    openPopUp() { 
-    let title = this.translate.instant('UserForm.FormTitle');
-    let dialogRef: MatDialogRef<any> = this.dialog.open(UserFormComponent, {
+    let title = this.translate.instant('PatientForm.FormTitle');
+    let dialogRef: MatDialogRef<any> = this.dialog.open(PatientFormComponent, {
       width: '720px',
       disableClose: true,
       data: { title: title },
-      id: 'userCreationForm'
+      id: 'patientCreationForm'
     });
   }
 }

@@ -96,7 +96,7 @@ export const getloadUserPatientsPending = createSelector(
 );
 
 // get error state when loading user patients from the store
-export const getloadUserPatientsError = createSelector(
+export const getLoadUserPatientsError = createSelector(
   getUsersPageState,
   fromUserPage.getLoadUserPatientsError
 );

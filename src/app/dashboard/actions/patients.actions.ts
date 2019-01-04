@@ -15,7 +15,8 @@ export enum PatientsActionTypes {
   EditPatient = '[Patient] Edit Patient',
   DismissEditPatient = '[Patient] Dismiss Edit Patient',
   ResetPatientsState = '[Patients] Reset Patients State',
-  DeletePatient ='[Patients] Delete Patient'
+  DeletePatient ='[Patients] Delete Patient',
+  LoadPatientUsers = '[User] Load User Patients'
 }
 
 
@@ -125,6 +126,15 @@ export class DeletePatient implements Action {
 }
 
 /**
+ * Load patient users action
+ */
+export class LoadPatientUsers implements Action {
+  readonly type = PatientsActionTypes.LoadPatientUsers;
+  constructor(public payload: number ) { }
+}
+
+
+/**
  * Export union of patient Action
  */
 export type PatientsActionsUnion
@@ -139,4 +149,5 @@ export type PatientsActionsUnion
   | SearchPatientComplete
   | EditPatient
   | DismissEditPatient
-  | ResetPatientsState;
+  | ResetPatientsState
+  | LoadPatientUsers;

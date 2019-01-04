@@ -13,4 +13,5 @@ export interface IPatient {
   nursing_home_id?: number | null;
   phone?: string; // optional
   device?: IDevice;
+  users?: number | null;
 }

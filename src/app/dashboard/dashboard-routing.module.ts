@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material';
 import { BlankComponent } from './components/blank/blank.component';
 import { UsersComponent } from './components/users/users.component';
+import { PatientsComponent } from './components/patients/patients.component';
 import { Routes } from '@angular/router';
 import { DashboardLayoutComponent } from './containers/dashboard-layout.component';
 import { AuthGuard } from '../auth/guards/auth.guard';
@@ -40,6 +41,13 @@ export const dashboardRoutes: Routes = [
         data: {
           title: 'Users',
           breadcrumb: 'Users'
+        }
+      }, {
+        path: 'patients',
+        component: PatientsComponent,
+        data: {
+          title: 'Patients',
+          breadcrumb: 'Patients'
         }
       }
     ]
