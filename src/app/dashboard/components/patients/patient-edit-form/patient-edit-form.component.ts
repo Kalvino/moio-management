@@ -127,11 +127,8 @@ export class PatientEditFormComponent implements OnInit, OnDestroy {
       id: [patient.id],
       firstname: [patient.firstname],
       lastname: [patient.lastname],
-      email: [patient.email,[Validators.email]],
-      patientname: [patient.patientname, Validators.required],      
-      nursing_home: [patient.nursing_home],
-      registered_on: [patient.registered_on],
-      last_login: [patient.last_login]
+      gender: [patient.gender],    
+      nursing_home_id: [patient.nursing_home_id]
     });
 
     // Watch for value changes
@@ -147,8 +144,8 @@ export class PatientEditFormComponent implements OnInit, OnDestroy {
     this.store.dispatch(new patientsActions.DismissEditPatient);
 
 
-    const title = this.translate.instant("ClosePatientForm.title");
-    const message = this.translate.instant("ClosePatientForm.message");
+    const title = this.translate.instant("CloseUnsavedForm.title");
+    const message = this.translate.instant("CloseUnsavedForm.message");
     if (this.patientEditForm.dirty){
       this.confirmService.confirm({title: title, message: message})
       .subscribe(res => {
@@ -182,8 +179,7 @@ export class PatientEditFormComponent implements OnInit, OnDestroy {
         const p = { id: this.patientEditForm.get('id').value,
                     firstname: this.patientEditForm.get('firstname').value,
                     lastname: this.patientEditForm.get('lastname').value,
-                    email: this.patientEditForm.get('email').value,
-                    patientname: this.patientEditForm.get('patientname').value
+                    gender: this.patientEditForm.get('gender').value
                   };
 
         this.store.dispatch(new patientsActions.EditPatient(p));

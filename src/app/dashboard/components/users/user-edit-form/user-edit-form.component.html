@@ -10,19 +10,19 @@
           <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
             <div class="pb-1">
               <mat-form-field class="full-width">
-                <input matInput name="firstname" formControlName="firstname" placeholder="{{'UserForm.FirstName' | translate}}" >
+                <input matInput name="firstname" formControlName="firstname" placeholder="{{'FirstName' | translate}}" >
               </mat-form-field>
             </div>
 
             <div class="pb-1">
               <mat-form-field class="full-width">
-                <input matInput name="lastname" formControlName="lastname" placeholder="{{'UserForm.LastName' | translate}}" >
+                <input matInput name="lastname" formControlName="lastname" placeholder="{{'LastName' | translate}}" >
               </mat-form-field>
             </div>
 
             <div class="pb-1">
               <mat-form-field class="full-width">
-                <input matInput type="email" name="email" formControlName="email" placeholder="{{'UserForm.Email' | translate}}" >
+                <input matInput type="email" name="email" formControlName="email" placeholder="{{'Email' | translate}}" >
               </mat-form-field>
               <small *ngIf="userEditForm.controls['email'].hasError('email') && userEditForm.controls['email'].touched"
                 class="form-error-msg">
@@ -31,20 +31,20 @@
 
             <div class="pb-1">
               <mat-form-field class="full-width">
-                <input matInput name="username" formControlName="username" placeholder="{{'UserForm.Username' | translate}}" >
+                <input matInput name="username" formControlName="username" placeholder="{{'Username' | translate}}" >
               </mat-form-field>
               <small *ngIf="userEditForm.controls['username'].hasError('required') && userEditForm.controls['username'].touched"
-                class="form-error-msg"> {{'UserForm.EmailRequired' | translate}} </small>
+                class="form-error-msg"> {{'EmailRequired' | translate}} </small>
               <small *ngIf="userEditForm.controls['username'].hasError('username') && userEditForm.controls['username'].touched"
                 class="form-error-msg">
-                {{'UserForm.Username' | translate}} </small>
+                {{'Username' | translate}} </small>
             </div>
           </div>
 
           <div fxFlex="100" fxFlex.gt-xs="50">
             <div class="pb-1">
               <mat-form-field class="full-width">
-                <input matInput [readonly]="true" name="nursing_home" formControlName="nursing_home" placeholder="{{'UserForm.NursingHome' | translate}}" >
+                <input matInput [readonly]="true" name="nursing_home" formControlName="nursing_home" placeholder="{{'NursingHome' | translate}}" >
               </mat-form-field>
             </div>
 
@@ -64,7 +64,7 @@
             <button mat-raised-button color="primary" [disabled]="userEditForm.invalid || !userEditForm.dirty" type="submit">
               {{'Edit' | translate}}</button>
             <span fxFlex></span>
-            <button mat-button color="warn" type="button" (click)="cancelEdit()">{{'UserForm.Cancel' | translate}}</button>
+            <button mat-button color="warn" type="button" (click)="cancelEdit()">{{'Cancel' | translate}}</button>
           </div>
         </div>
       </form>

@@ -2,7 +2,7 @@
   <button mat-raised-button class="mb-05" color="primary" (click)="openPopUp()"><mat-icon>add</mat-icon>{{'Create' | translate}}</button>
 </div>
 <div fxLayout="row" fxLayoutAlign="start stretch">
-  <div class="split-pane-left" [fxFlex]="((selecteduserId$ | async) !== null) ? 50 : 100">
+  <div class="split-pane-left" [fxFlex]="((selectedUserId$ | async) !== null) ? 50 : 100">
     <moio-user-list></moio-user-list>
   </div>
   <div class="split-pane-right"

@@ -110,8 +110,8 @@ export class PatientFormComponent implements OnInit {
    * the form has unsave data
    */
   cancel(){
-    const title = this.translate.instant("ClosePatientForm.title");
-    const message = this.translate.instant("ClosePatientForm.message");
+    const title = this.translate.instant("CloseUnsavedForm.title");
+    const message = this.translate.instant("CloseUnsavedForm.message");
     if (this.patientForm.dirty){
       this.confirmService.confirm({title: title, message: message})
       .subscribe(res => {

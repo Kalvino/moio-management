@@ -16,45 +16,45 @@
   <div fxLayout="row wrap" fxLayout.lt-sm="column">
     <div fxFlex="50" class="pr-1">
       <mat-form-field class="full-width">
-        <input matInput name="firstname" [formControl]="userForm.controls['firstname']" placeholder="{{'UserForm.FirstName' | translate}}">
-        <mat-error *ngIf="userForm.controls['firstname'].invalid">{{'UserForm.FirstNameRequired' | translate}}</mat-error>
+        <input matInput name="firstname" [formControl]="userForm.controls['firstname']" placeholder="{{'FirstName' | translate}}">
+        <mat-error *ngIf="userForm.controls['firstname'].invalid">{{'FirstNameRequired' | translate}}</mat-error>
       </mat-form-field>
     </div>
 
     <div fxFlex="50" class="pr-1">
       <mat-form-field class="full-width">
-        <input matInput name="lastname" [formControl]="userForm.controls['lastname']" placeholder="{{'UserForm.LastName' | translate}}">
-        <mat-error *ngIf="userForm.controls['lastname'].invalid">{{'UserForm.LastNameRequired' | translate}}</mat-error>
+        <input matInput name="lastname" [formControl]="userForm.controls['lastname']" placeholder="{{'LastName' | translate}}">
+        <mat-error *ngIf="userForm.controls['lastname'].invalid">{{'LastNameRequired' | translate}}</mat-error>
       </mat-form-field>
     </div>
 
     <div fxFlex="50" class="pr-1">
       <mat-form-field class="full-width">
-        <input matInput name="username" [formControl]="userForm.controls['username']" placeholder="{{'UserForm.Username' | translate}}">
-        <mat-error *ngIf="userForm.controls['username'].invalid">{{'UserForm.UserNameRequired' | translate}}</mat-error>
+        <input matInput name="username" [formControl]="userForm.controls['username']" placeholder="{{'Username' | translate}}">
+        <mat-error *ngIf="userForm.controls['username'].invalid">{{'UserNameRequired' | translate}}</mat-error>
       </mat-form-field>
     </div>
 
     <div fxFlex="50" class="pr-1">
       <mat-form-field class="full-width">
-        <input matInput type="email" name="email" [formControl]="userForm.controls['email']" placeholder="{{'UserForm.Email' | translate}}">
-        <mat-error *ngIf="userForm.controls['email'].invalid">{{'UserForm.EmailRequired' | translate}}</mat-error>
+        <input matInput type="email" name="email" [formControl]="userForm.controls['email']" placeholder="{{'Email' | translate}}">
+        <mat-error *ngIf="userForm.controls['email'].invalid">{{'EmailRequired' | translate}}</mat-error>
       </mat-form-field>
     </div>
 
     <div fxFlex="50" class="pr-1">
       <mat-form-field class="full-width">
-        <input matInput type="password" name="password" [formControl]="userForm.controls['password']" placeholder="{{'UserForm.Password' | translate}}">
-        <mat-error *ngIf="userForm.controls['password'].invalid">{{'UserForm.PasswordRequried' | translate}}</mat-error>
+        <input matInput type="password" name="password" [formControl]="userForm.controls['password']" placeholder="{{'Password' | translate}}">
+        <mat-error *ngIf="userForm.controls['password'].invalid">{{'PasswordRequried' | translate}}</mat-error>
       </mat-form-field>
     </div>
 
     <div fxFlex="50" class="pr-1">
       <mat-form-field class="full-width">
         <input matInput type="password" name="password_confirmation" [formControl]="userForm.controls['password_confirmation']"
-          placeholder="{{'UserForm.ConfirmPassword' | translate}}">
+          placeholder="{{'ConfirmPassword' | translate}}">
         <mat-error *ngIf="userForm.controls['password_confirmation'].hasError('required')">
-          {{'UserForm.ConfirmPasswordRequired' | translate}}
+          {{'ConfirmPasswordRequired' | translate}}
         </mat-error>
         <mat-error *ngIf="userForm.controls['password_confirmation'].hasError('NoPasswordMatch')"> 
           Password do not match 
@@ -64,22 +64,22 @@
 
     <div fxFlex="50" class="pr-1">
       <mat-form-field>
-        <mat-select placeholder="{{'UserForm.NursingHome' | translate}}" name="nursing_home_key" [formControl]="userForm.controls['nursing_home_key']">
+        <mat-select placeholder="{{'NursingHome' | translate}}" name="nursing_home_key" [formControl]="userForm.controls['nursing_home_key']">
           <mat-option *ngFor="let nursingHome of nursingHomes$ | async" [value]="nursingHome.key">
             {{nursingHome.name}}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="userForm.controls['nursing_home_key'].invalid">{{'UserForm.NursingHomeKeyRequired' |
+        <mat-error *ngIf="userForm.controls['nursing_home_key'].invalid">{{'NursingHomeKeyRequired' |
           translate}}</mat-error>
 
       </mat-form-field>
     </div>
 
     <div fxFlex="100" class="mt-1">
-      <button mat-raised-button color="primary" [disabled]="userForm.invalid" type="submit">{{'UserForm.Save' |
+      <button mat-raised-button color="primary" [disabled]="userForm.invalid" type="submit">{{'Save' |
         translate}}</button>
       <span fxFlex></span>
-      <button mat-button color="warn" type="button" (click)="cancel()">{{'UserForm.Cancel' | translate}}</button>
+      <button mat-button color="warn" type="button" (click)="cancel()">{{'Cancel' | translate}}</button>
     </div>
   </div>
 </form>

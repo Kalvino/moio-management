@@ -10,61 +10,36 @@
           <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
             <div class="pb-1">
               <mat-form-field class="full-width">
-                <input matInput name="firstname" formControlName="firstname" placeholder="{{'PatientForm.FirstName' | translate}}" >
+                <input matInput name="firstname" formControlName="firstname" placeholder="{{'FirstName' | translate}}" >
               </mat-form-field>
             </div>
 
             <div class="pb-1">
               <mat-form-field class="full-width">
-                <input matInput name="lastname" formControlName="lastname" placeholder="{{'PatientForm.LastName' | translate}}" >
+                <input matInput name="lastname" formControlName="lastname" placeholder="{{'LastName' | translate}}" >
               </mat-form-field>
-            </div>
-
-            <div class="pb-1">
-              <mat-form-field class="full-width">
-                <input matInput type="email" name="email" formControlName="email" placeholder="{{'PatientForm.Email' | translate}}" >
-              </mat-form-field>
-              <small *ngIf="patientEditForm.controls['email'].hasError('email') && patientEditForm.controls['email'].touched"
-                class="form-error-msg">
-                {{'EmailInvalid' | translate}} </small>
-            </div>
-
-            <div class="pb-1">
-              <mat-form-field class="full-width">
-                <input matInput name="patientname" formControlName="patientname" placeholder="{{'PatientForm.Patientname' | translate}}" >
-              </mat-form-field>
-              <small *ngIf="patientEditForm.controls['patientname'].hasError('required') && patientEditForm.controls['patientname'].touched"
-                class="form-error-msg"> {{'PatientForm.EmailRequired' | translate}} </small>
-              <small *ngIf="patientEditForm.controls['patientname'].hasError('patientname') && patientEditForm.controls['patientname'].touched"
-                class="form-error-msg">
-                {{'PatientForm.Patientname' | translate}} </small>
             </div>
           </div>
 
           <div fxFlex="100" fxFlex.gt-xs="50">
             <div class="pb-1">
               <mat-form-field class="full-width">
-                <input matInput [readonly]="true" name="nursing_home" formControlName="nursing_home" placeholder="{{'PatientForm.NursingHome' | translate}}" >
+                <input matInput name="gender" formControlName="gender" placeholder="{{'Gender' | translate}}" >
               </mat-form-field>
             </div>
 
             <div class="pb-1">
               <mat-form-field class="full-width">
-                <input matInput [readonly]="true" name="registered_on" formControlName="registered_on" placeholder="{{'RegisteredOn' | translate}}" >
-              </mat-form-field>
-            </div>
-
-            <div class="pb-1">
-              <mat-form-field class="full-width">
-                <input matInput [readonly]="true" name="last_login" formControlName="last_login" placeholder="{{'LastLoginOn' | translate}}" >
+                <input matInput [readonly]="true" name="nursing_home_id" formControlName="nursing_home_id" placeholder="{{'NursingHome' | translate}}" >
               </mat-form-field>
             </div>
           </div>
+          
           <div fxFlex="100" class="mt-1">
             <button mat-raised-button color="primary" [disabled]="patientEditForm.invalid || !patientEditForm.dirty" type="submit">
               {{'Edit' | translate}}</button>
             <span fxFlex></span>
-            <button mat-button color="warn" type="button" (click)="cancelEdit()">{{'PatientForm.Cancel' | translate}}</button>
+            <button mat-button color="warn" type="button" (click)="cancelEdit()">{{'Cancel' | translate}}</button>
           </div>
         </div>
       </form>
@@ -72,13 +47,13 @@
   </mat-card>
 
   <mat-card class="default">
-    <mat-progress-bar *ngIf="loadPatientPatientsPending$ | async" [mode]="(loadPatientPatientsPending$ | async) ? 'indeterminate' : 'determinate'"
+    <mat-progress-bar *ngIf="loadPatientUsersPending$ | async" [mode]="(loadPatientUsersPending$ | async) ? 'indeterminate' : 'determinate'"
       class="session-progress"></mat-progress-bar>
-    <mat-card-title>Connected patient profiles</mat-card-title>
+    <mat-card-title>Connected user profiles</mat-card-title>
     <mat-card-content class="p-0" fxLayout="column">
       <div class="activity-data">
         <ngx-datatable class="material bg-white" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-          [rowHeight]="50" [limit]="4" [rows]="patientPatients$ | async" [columns]="columns">
+          [rowHeight]="50" [limit]="4" [rows]="patientUsers$ | async" [columns]="columns">
 
         </ngx-datatable>
       </div>

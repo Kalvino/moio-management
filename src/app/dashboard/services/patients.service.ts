@@ -24,7 +24,8 @@ export class PatientsService {
    * get all patients from the moio-cloud api
    */
   getPatients(): Observable<IPatient[]> {
-    return this.http.get<IPatient[]>(`${environment.apiHost}/api/patientmanagement`);
+    console.log('loading patients');
+    return this.http.get<IPatient[]>(`${environment.apiHost}/api/patients`);
   }
 
   /**
@@ -32,7 +33,7 @@ export class PatientsService {
    * @param patient IPatient
    */
   createPatient(patient: IPatient): Observable<IPatient> {
-    return this.http.post<IPatient>(`${environment.apiHost}/api/apppatients`, patient);
+    return this.http.post<IPatient>(`${environment.apiHost}/api/patients`, patient);
   }
 
   /**

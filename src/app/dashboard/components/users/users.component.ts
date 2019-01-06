@@ -36,7 +36,7 @@ export class UsersComponent {
 
    //add appUser
    openPopUp() { 
-    let title = this.translate.instant('UserForm.FormTitle');
+    let title = this.translate.instant('UserFormTitle');
     let dialogRef: MatDialogRef<any> = this.dialog.open(UserFormComponent, {
       width: '720px',
       disableClose: true,

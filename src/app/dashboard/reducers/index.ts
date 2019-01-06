@@ -5,6 +5,7 @@ import * as fromRoot from '../../reducers';
 import * as fromUsers from './users.reducer';
 import * as fromPatients from './patients.reducer';
 import * as fromUserPatients from './user-patients.reducer';
+import * as fromPatientUsers from './patient-users.reducer';
 import * as fromNursingHome from './nursing-homes.reducer';
 import * as fromLayout from './layout.reducer';
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
@@ -20,6 +21,7 @@ export interface DashboardState {
   patientPage: fromPatientPage.State;
   patients: fromPatients.State;
   userPatients: fromUserPatients.State;
+  patientUsers: fromPatientUsers.State;
   layout: fromLayout.State;
 }
 
@@ -41,6 +43,7 @@ export const reducers: ActionReducerMap<DashboardState, any> = {
   patientPage: fromPatientPage.reducer,
   patients: fromPatients.reducer,
   userPatients: fromUserPatients.reducer,
+  patientUsers: fromPatientUsers.reducer,
   layout: fromLayout.reducer
 };
 
@@ -90,9 +93,9 @@ export const getUserEditionPending = createSelector(
 );
 
 // get pending state when loading user patients from the store
-export const getloadUserPatientsPending = createSelector(
+export const getLoadUserPatientsPending = createSelector(
   getUsersPageState,
-  fromUserPage.getloadUserPatientsPending
+  fromUserPage.getLoadUserPatientsPending
 );
 
 // get error state when loading user patients from the store
@@ -231,6 +234,18 @@ export const getPatientEditionPending = createSelector(
   fromPatientPage.getEditPatientPending
 );
 
+// get pending state when loading patient users from the store
+export const getLoadPatientUsersPending = createSelector(
+  getPatientsPageState,
+  fromPatientPage.getLoadPatientUsersPending
+);
+
+// get error state when loading patient users from the store
+export const getLoadPatientUsersError = createSelector(
+  getPatientsPageState,
+  fromPatientPage.getLoadPatientUsersError
+);
+
 // ****************** PATIENTS *************
 export const getPatientsState = createSelector(
   getDashboardState,
@@ -257,6 +272,19 @@ export const getSelectedPatient = createSelector(
   getSelectedPatientId,
   (entities, id) => entities[id]
 );
+
+// ****************** PATIENT USERS *************
+export const getPatientUsersState = createSelector(
+  getDashboardState,
+  (state: DashboardState) => state.patientUsers
+);
+
+// deconstruct several functions from ngrx/entity
+export const {
+  selectEntities: getPatientUsersEntities,
+  selectAll: getAllPatientUsers,
+  selectTotal: getTotalPatientUsers
+} = fromPatientUsers.adapater.getSelectors(getPatientUsersState);
 
 // ****************** DASHBOARD LAYOUT *************
 export const getLayoutState = createSelector(

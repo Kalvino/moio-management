@@ -1,6 +1,7 @@
-<div class="m-333">
+<!-- <div class="m-333">
   <button mat-raised-button class="mb-05" color="primary" (click)="openPopUp()"><mat-icon>add</mat-icon>{{'Create' | translate}}</button>
-</div>
+</div> -->
+
 <div fxLayout="row" fxLayoutAlign="start stretch">
   <div class="split-pane-left" [fxFlex]="((selectedPatientId$ | async) !== null) ? 50 : 100">
     <moio-patient-list></moio-patient-list>

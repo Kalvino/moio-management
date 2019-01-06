@@ -36,7 +36,7 @@ export class PatientsComponent {
 
    //add appPatient
    openPopUp() { 
-    let title = this.translate.instant('PatientForm.FormTitle');
+    let title = this.translate.instant('PatientFormTitle');
     let dialogRef: MatDialogRef<any> = this.dialog.open(PatientFormComponent, {
       width: '720px',
       disableClose: true,

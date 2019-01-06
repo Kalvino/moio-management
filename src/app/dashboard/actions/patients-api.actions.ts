@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { User } from '../models/user.model';
 import { IPatient } from '../models/patient.model';
 
 /**
@@ -11,6 +12,8 @@ export enum PatientsApiActionTypes {
   LoadPatientsFailure = '[Patient/Api] Load Patients Failure',
   EditPatientSuccess = '[Patient/Api] Edit Patient Success',
   EditPatientFailure = '[Patient/Api] Edit Patient Failure',
+  LoadPatientUsersSuccess = '[User/Api] Load Patient Users Success',
+  LoadPatientUsersFailure = '[User/Api] Load Patient Users Failure',
 }
 
 /**
@@ -73,6 +76,26 @@ export class EditPatientFailure implements Action {
   }
 }
 
+/**
+ * load all patient users success action
+ */
+export class LoadPatientUsersSuccess implements Action {
+  public readonly type = PatientsApiActionTypes.LoadPatientUsersSuccess;
+
+  constructor(public payload: { users: User[] }) {
+  }
+}
+
+/**
+ * load all patient users failure action
+ */
+export class LoadPatientUsersFailure implements Action {
+  public readonly type = PatientsApiActionTypes.LoadPatientUsersFailure;
+
+  constructor(public payload: { message: any }) {
+  }
+}
+
 // export types
 export type PatientsApiActionsUnion =
   | CreatePatientSuccess
@@ -81,3 +104,5 @@ export type PatientsApiActionsUnion =
   | EditPatientFailure
   | LoadPatientsSuccess
   | LoadPatientsFailure
+  | LoadPatientUsersSuccess
+  | LoadPatientUsersFailure;

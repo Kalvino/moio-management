@@ -169,7 +169,7 @@ export const getEditUserPending = (state: State) => state.editUserPending;
  * get the pending state when loading user patients
  * @param state
  */
-export const getloadUserPatientsPending = (state: State) => state.loadUserPatientsPending;
+export const getLoadUserPatientsPending = (state: State) => state.loadUserPatientsPending;
 
 /**
  * get the error state when loading user patients

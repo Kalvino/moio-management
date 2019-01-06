@@ -97,7 +97,7 @@ export class SearchPatientComplete implements Action {
 export class EditPatient implements Action {
   readonly type = PatientsActionTypes.EditPatient;
 
-  constructor(public payload: Update<IPatient>) {
+  constructor(public payload: IPatient) {
   }
 }
 

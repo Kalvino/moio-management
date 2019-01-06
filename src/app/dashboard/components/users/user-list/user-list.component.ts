@@ -134,11 +134,9 @@ export class UserListComponent implements OnInit, OnDestroy {
   onSelectRow({selected}) {
     // this.userSelected.emit(selected[0]);
     const user = selected[0];
-    const userId = user.id;
-    console.log(userId);
-
-    this.store.dispatch(new usersActions.LoadUserPatients(userId));
     this.store.dispatch(new usersActions.SelectUser(user));
+    this.store.dispatch(new usersActions.LoadUserPatients(user.id));
+    
   }
 
 }

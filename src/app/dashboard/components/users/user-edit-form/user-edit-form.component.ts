@@ -46,7 +46,7 @@ export class UserEditFormComponent implements OnInit, OnDestroy {
 
   // get pending state when loading user patients
   loadUserPatientsPending$: Observable<boolean> = this.store.pipe(
-    select(fromDashboard.getloadUserPatientsPending)
+    select(fromDashboard.getLoadUserPatientsPending)
   );
 
   /**
@@ -148,8 +148,8 @@ export class UserEditFormComponent implements OnInit, OnDestroy {
     this.store.dispatch(new usersActions.DismissEditUser);
 
 
-    const title = this.translate.instant("CloseUserForm.title");
-    const message = this.translate.instant("CloseUserForm.message");
+    const title = this.translate.instant("CloseUnsavedForm.title");
+    const message = this.translate.instant("CloseUnsavedForm.message");
     if (this.userEditForm.dirty){
       this.confirmService.confirm({title: title, message: message})
       .subscribe(res => {

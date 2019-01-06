@@ -110,8 +110,8 @@ export class UserFormComponent implements OnInit {
    * the form has unsave data
    */
   cancel(){
-    const title = this.translate.instant("CloseUserForm.title");
-    const message = this.translate.instant("CloseUserForm.message");
+    const title = this.translate.instant("CloseUnsavedForm.title");
+    const message = this.translate.instant("CloseUnsavedForm.message");
     if (this.userForm.dirty){
       this.confirmService.confirm({title: title, message: message})
       .subscribe(res => {

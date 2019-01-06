@@ -30,24 +30,20 @@ export class PatientListComponent implements OnInit, OnDestroy {
    */
   columns = [
     {
-      prop: 'fullname',
-      name: this.translate.instant('Name')
+      prop: 'firstname',
+      name: this.translate.instant('FirstName')
     },
     {
-      prop: 'nursing_home',
+      prop: 'lastname',
+      name: this.translate.instant('LastName')
+    },
+    {
+      prop: 'gender',
+      name: this.translate.instant('Gender')
+    },
+    {
+      prop: 'nursing_home_id',
       name: this.translate.instant('NursingHome')
-    },
-    {
-      prop: 'registered_on',
-      name: this.translate.instant('RegisteredOn')
-    },
-    {
-      prop: 'last_login',
-      name: this.translate.instant('LastLoginOn')
-    },
-    {
-      prop: 'patient_profiles',
-      name: this.translate.instant('PatientProfiles')
     }
   ];
 
@@ -134,11 +130,9 @@ export class PatientListComponent implements OnInit, OnDestroy {
   onSelectRow({selected}) {
     // this.patientSelected.emit(selected[0]);
     const patient = selected[0];
-    const patientId = patient.id;
-    console.log(patientId);
-
-    this.store.dispatch(new patientsActions.LoadPatientUsers(patientId));
     this.store.dispatch(new patientsActions.SelectPatient(patient));
+    // this.store.dispatch(new patientsActions.LoadPatientUsers(patient.id));
+    
   }
 
 }

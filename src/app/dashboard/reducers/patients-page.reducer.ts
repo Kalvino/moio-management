@@ -7,6 +7,9 @@ export interface State {
   createPatientPending: boolean;
   editPatientError: string | null;
   editPatientPending: boolean;
+  loadPatientUsersPending: boolean;
+  loadPatientUsersError: string | null;
+
 }
 
 export const initialState: State = {
@@ -15,7 +18,9 @@ export const initialState: State = {
   createPatientError: null,
   createPatientPending: false,
   editPatientError: null,
-  editPatientPending: false
+  editPatientPending: false,
+  loadPatientUsersPending: false,
+  loadPatientUsersError: null
 };
 
 /**
@@ -140,3 +145,14 @@ export const getEditPatientError = (state: State) => state.editPatientError;
  */
 export const getEditPatientPending = (state: State) => state.editPatientPending;
 
+/**
+ * get the pending state when loading user patients
+ * @param state
+ */
+export const getLoadPatientUsersPending = (state: State) => state.loadPatientUsersPending;
+
+/**
+ * get the error state when loading user patients
+ * @param state
+ */
+export const getLoadPatientUsersError = (state: State) => state.loadPatientUsersError;

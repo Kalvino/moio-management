@@ -45,6 +45,45 @@ export class PatientsEffects {
       })
     );
 
+
+  /**
+   * send patient data to api and handle result
+   */
+  @Effect()
+  editPatient$ = this.actions$.pipe(
+    ofType<PatientsActions.EditPatient>(PatientsActions.PatientsActionTypes.EditPatient),
+    map(action => action.payload),
+    exhaustMap((patient: IPatient) => {
+
+      return this.patientsService.updatePatient(patient)
+        .pipe(
+          map((savedPatient: IPatient) => {
+            this.store.dispatch(new PatientsActions.DismissEditPatient());
+            return new PatientsApiActions.EditPatientSuccess({patient: savedPatient});
+          }),
+          catchError(httpError => {
+            console.log(httpError);
+              const message = httpError.statusText.toLowerCase();
+
+              const snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
+
+                if (snackBarDismiss.dismissedByAction){
+                  this.store.dispatch(new PatientsActions.EditPatient(patient));
+                } else {
+                  this.router.navigate(['/dashboard/patients']);
+                }
+              });
+
+              return of(new PatientsApiActions.LoadPatientUsersFailure({message}));
+            })
+        );
+    })
+  );
+
   /**
    * observes the CreatePatientSuccess action
    * in case create patient succeeds, the form dialog box is closed

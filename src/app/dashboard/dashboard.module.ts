@@ -14,6 +14,7 @@ import { DashboardLayoutComponent } from './containers/dashboard-layout.componen
 import { SidenavComponent } from './containers/layout-components/sidenav/sidenav.component';
 import { BlankComponent } from './components/blank/blank.component';
 import { UsersEffects } from './effects/users.effects';
+import { PatientsEffects } from './effects/patients.effects';
 import { NursingHomesEffects } from './effects/nursing-homes.effects';
 import { ConfirmService } from '../core/services/confirm.service';
 import { SharedModule } from './shared/shared.module';
@@ -32,6 +33,7 @@ import { SplitPaneModule } from 'ng2-split-pane/lib/ng2-split-pane';
 import { UserEditFormComponent } from './components/users/user-edit-form/user-edit-form.component';
 import { PatientEditFormComponent } from './components/patients/patient-edit-form/patient-edit-form.component';
 import { UserFormComponent } from './components/users/user-form/user-form.component';
+import { PatientFormComponent } from './components/patients/patient-form/patient-form.component';
 import { NursingHomeFormComponent } from './components/nursing-homes/nursing-home-form/nursing-home-form.component';
 
 
@@ -56,6 +58,7 @@ export const COMPONENTS = [
   UserEditFormComponent,
   PatientEditFormComponent,
   UserFormComponent,
+  PatientFormComponent,
   NursingHomeFormComponent
 ];
 
@@ -64,6 +67,7 @@ export const COMPONENTS = [
  */
 export const EFFECTS = [
   UsersEffects,
+  PatientsEffects,
   NursingHomesEffects
 ];
 
@@ -94,7 +98,7 @@ export const EFFECTS = [
   providers: [
     ConfirmService
   ],
-  entryComponents: [UserFormComponent
+  entryComponents: [UserFormComponent, PatientFormComponent
   ]
 })
 export class DashboardModule {
