@@ -121,7 +121,8 @@ export class AuthEffects {
     .pipe(
       ofType(AuthActions.AuthActionTypes.LogoutConfirmation),
       exhaustMap(() => {
-        return this.confirmService.confirm({title: 'Logout', message: 'Do you really want to logout?'});
+        return this.confirmService.confirm({title: this.translate.instant("Logout"), 
+          message: this.translate.instant("Auth.ConfirmLogoutMessage")});
       }),
       map(result =>
         result

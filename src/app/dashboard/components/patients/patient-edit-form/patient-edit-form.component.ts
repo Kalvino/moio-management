@@ -181,7 +181,7 @@ export class PatientEditFormComponent implements OnInit, OnDestroy {
                     lastname: this.patientEditForm.get('lastname').value,
                     gender: this.patientEditForm.get('gender').value
                   };
-
+        console.log(p);
         this.store.dispatch(new patientsActions.EditPatient(p));
       }
     } else {

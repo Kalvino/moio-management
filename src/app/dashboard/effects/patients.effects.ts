@@ -45,7 +45,6 @@ export class PatientsEffects {
       })
     );
 
-
   /**
    * send patient data to api and handle result
    */
@@ -114,6 +113,7 @@ export class PatientsEffects {
           .pipe(
             //delay(2000),
             map((patients: IPatient[]) => {
+              console.log(patients);
               return new PatientsApiActions.LoadPatientsSuccess({patients});
             }),
             catchError(httpError => {

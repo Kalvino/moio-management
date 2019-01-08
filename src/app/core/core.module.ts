@@ -16,10 +16,11 @@ export const COMPONENTS = [
  */
 @NgModule({
   declarations: COMPONENTS,
-  imports: [],
+  imports: [MaterialModule, TranslateModule],
   exports: [
     MaterialModule,
-    TranslateModule
+    TranslateModule,
+    COMPONENTS
   ],
   providers: [],
   entryComponents: [ConfirmComponent]
