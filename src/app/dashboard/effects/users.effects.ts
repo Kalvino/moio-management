@@ -97,7 +97,6 @@ export class UsersEffects {
     .pipe(
       ofType(UsersApiActions.UsersApiActionTypes.CreateUserSuccess),
       tap(() => {
-        this.store.dispatch(new UsersActions.LoadUsers());
         this.dialog.getDialogById("userCreationForm").close();
       })
     );
@@ -130,6 +129,7 @@ export class UsersEffects {
           .pipe(
             //delay(2000),
             map((users: User[]) => {
+              console.log(users);
               return new UsersApiActions.LoadUsersSuccess({users});
             }),
             catchError(httpError => {
@@ -170,6 +170,20 @@ export class UsersEffects {
             delay(2000),
             map((patients: IPatient[]) => {
               console.log(patients);
+
+              for (let key in patients){
+                const patient = patients[key];
+                const user = patient.users.filter(user => user.id === id );
+                let permission = "";
+
+                if(user[0].user_patient_permission == 1){
+                  permission = "Administrator";
+                }else{
+                  permission = "Read Only"
+                }
+                patient["permission"] = permission;
+              }
+
               return new UsersApiActions.LoadUserPatientsSuccess({patients});
             }),
             catchError(httpError => {
@@ -227,8 +241,6 @@ export class UsersEffects {
         this.dialog.getDialogById('userCreationForm').close();
       })
     );
-
-
 
   /**
    * constructor

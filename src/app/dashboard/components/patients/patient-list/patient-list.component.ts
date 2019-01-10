@@ -24,29 +24,6 @@ export class PatientListComponent implements OnInit, OnDestroy {
   selectedPatient: Patient | null;
   componentActive = true;
 
-
-  /**
-   * Patients Table columns
-   */
-  columns = [
-    {
-      prop: 'firstname',
-      name: this.translate.instant('FirstName')
-    },
-    {
-      prop: 'lastname',
-      name: this.translate.instant('LastName')
-    },
-    {
-      prop: 'gender',
-      name: this.translate.instant('Gender')
-    },
-    {
-      prop: 'nursing_home_id',
-      name: this.translate.instant('NursingHome')
-    }
-  ];
-
   ids: string[];
   
   // all patients

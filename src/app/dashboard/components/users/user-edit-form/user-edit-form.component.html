@@ -34,7 +34,7 @@
                 <input matInput name="username" formControlName="username" placeholder="{{'Username' | translate}}" >
               </mat-form-field>
               <small *ngIf="userEditForm.controls['username'].hasError('required') && userEditForm.controls['username'].touched"
-                class="form-error-msg"> {{'EmailRequired' | translate}} </small>
+                class="form-error-msg"> {{'UsernameRequired' | translate}} </small>
               <small *ngIf="userEditForm.controls['username'].hasError('username') && userEditForm.controls['username'].touched"
                 class="form-error-msg">
                 {{'Username' | translate}} </small>
@@ -74,12 +74,33 @@
   <mat-card class="default">
     <mat-progress-bar *ngIf="loadUserPatientsPending$ | async" [mode]="(loadUserPatientsPending$ | async) ? 'indeterminate' : 'determinate'"
       class="session-progress"></mat-progress-bar>
-    <mat-card-title>Connected patient profiles</mat-card-title>
+    <mat-card-title>{{'ConnectedPatientProfiles' | translate}}</mat-card-title>
     <mat-card-content class="p-0" fxLayout="column">
       <div class="activity-data">
-        <ngx-datatable class="material bg-white" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-          [rowHeight]="50" [limit]="4" [rows]="userPatients$ | async" [columns]="columns">
+        <ngx-datatable 
+          class="material bg-white" 
+          [columnMode]="'force'" 
+          [headerHeight]="50" 
+          [footerHeight]="50"
+          [rowHeight]="50" 
+          [limit]="4" 
+          [rows]="userPatients$ | async">
 
+          <ngx-datatable-column name="{{'Name' | translate}}" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.firstname }} {{ row?.lastname }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="{{'Permission' | translate}}" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.permission }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="{{'NursingHome' | translate}}" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.nursing_home.name }}
+            </ng-template>
+          </ngx-datatable-column>
         </ngx-datatable>
       </div>
     </mat-card-content>

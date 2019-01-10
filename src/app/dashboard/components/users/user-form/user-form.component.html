@@ -57,7 +57,7 @@
           {{'ConfirmPasswordRequired' | translate}}
         </mat-error>
         <mat-error *ngIf="userForm.controls['password_confirmation'].hasError('NoPasswordMatch')"> 
-          Password do not match 
+          {{ 'NoPasswordMatch' | translate }} 
         </mat-error>
       </mat-form-field>
     </div>

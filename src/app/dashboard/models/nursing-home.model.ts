@@ -4,7 +4,7 @@
 
 export interface NursingHome {
     id?: number | null;
-    name?: string;
     key?: string;
+    name?: string;
   }
   

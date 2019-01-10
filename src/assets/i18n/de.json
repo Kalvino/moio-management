@@ -40,6 +40,7 @@
   "LastLoginOn": "Lezte Anmeldung am",
   "PatientProfiles": "Patientenprofile",
   "unknown error": "unbekannter Fehler",
+  "NoPasswordMatch": "Passwörter stimmen nicht überein",
   "Cancel": "Abbrechen",
   "OK": "Ok",
   "Retry": "Wiederholen",
@@ -68,5 +69,12 @@
   "CloseUnsavedForm": {
     "title": "Schließen Sie dieses Formular?",
     "message": "Die nicht gespeicherten Daten in diesem Formular gehen verloren. Möchten Sie dieses Formular wirklich schließen?"
-  }
+  },
+  "ConnectedUserProfiles": "Verbundene Benutzerprofile",
+  "ConnectedPatientProfiles": "Verbundene Patientenprofile",
+  "LastLogin": "Letzte Anmeldung",
+  "Patients": "Patienten",
+  "Patient": "Patient",
+  "Permission": "Berechtigung"
+
 }

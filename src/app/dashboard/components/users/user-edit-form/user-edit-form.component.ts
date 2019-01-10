@@ -49,28 +49,6 @@ export class UserEditFormComponent implements OnInit, OnDestroy {
     select(fromDashboard.getLoadUserPatientsPending)
   );
 
-  /**
-   * Users Table columns
-   */
-  columns = [
-    {
-      prop: 'firstname',
-      name: this.translate.instant('FirstName')
-    },
-    {
-      prop: 'lastname',
-      name: this.translate.instant('LastName')
-    },
-    {
-      prop: 'nursing_home_id',
-      name: this.translate.instant('NursingHome')
-    },
-    {
-      prop: 'gender',
-      name: this.translate.instant('Gender')
-    }
-  ];
-
   constructor(private store: Store<fromDashboard.State>,
               private fb: FormBuilder,
               private translate: TranslateService,

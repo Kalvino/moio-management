@@ -114,6 +114,12 @@ export class PatientsEffects {
             //delay(2000),
             map((patients: IPatient[]) => {
               console.log(patients);
+
+              for (let key in patients){
+                const patient = patients[key];
+                patient["users_count"] = patient.users.length;
+              }
+
               return new PatientsApiActions.LoadPatientsSuccess({patients});
             }),
             catchError(httpError => {

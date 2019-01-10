@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 
 import { IPatient as Patient } from '../../../models/patient.model';
+import { User } from '../../../models/user.model';
 import { GenericValidator } from '../../../shared/generic-validator';
 import { NumberValidators } from '../../../shared/number-validator';
 
@@ -33,10 +34,12 @@ export class PatientEditFormComponent implements OnInit, OnDestroy {
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
 
-  // all patient patients
-  patientPatients$: Observable<Patient[]> = this.store.pipe(
-    select(fromDashboard.getAllPatientUsers)
-  );
+  // // all patient users
+  // patientUsers$: Observable<User[]> = this.store.pipe(
+  //   select(fromDashboard.getAllPatientUsers)
+  // );
+
+  patientUsers: User[];
 
   // get error state when loading patient patients
   loadPatientPatientsError$: Observable<string> = this.store.pipe(
@@ -47,28 +50,6 @@ export class PatientEditFormComponent implements OnInit, OnDestroy {
   loadPatientPatientsPending$: Observable<boolean> = this.store.pipe(
     select(fromDashboard.getLoadPatientUsersPending)
   );
-
-  /**
-   * Patients Table columns
-   */
-  columns = [
-    {
-      prop: 'firstname',
-      name: this.translate.instant('FirstName')
-    },
-    {
-      prop: 'lastname',
-      name: this.translate.instant('LastName')
-    },
-    {
-      prop: 'nursing_home_id',
-      name: this.translate.instant('NursingHome')
-    },
-    {
-      prop: 'gender',
-      name: this.translate.instant('Gender')
-    }
-  ];
 
   constructor(private store: Store<fromDashboard.State>,
               private fb: FormBuilder,
@@ -99,6 +80,7 @@ export class PatientEditFormComponent implements OnInit, OnDestroy {
       patient => {
         if (patient){
           this.patient = patient;
+          this.patientUsers = patient.users; 
           this.displayPatient(this.patient);
         }
       }
@@ -128,7 +110,7 @@ export class PatientEditFormComponent implements OnInit, OnDestroy {
       firstname: [patient.firstname],
       lastname: [patient.lastname],
       gender: [patient.gender],    
-      nursing_home_id: [patient.nursing_home_id]
+      nursing_home_name: [patient.nursing_home.name]
     });
 
     // Watch for value changes

@@ -22,8 +22,8 @@
           </div>
 
           <div fxFlex="100" fxFlex.gt-xs="50">
+            <label>{{'Gender' | translate}}* </label>
             <div class="pb-1">
-              <Label>{{'Gender' | translate}}* </Label>
               <mat-radio-group name="gender" formControlName="gender">
                 <mat-radio-button value="m">Male</mat-radio-button>
                 <mat-radio-button value="f">Female</mat-radio-button>
@@ -32,7 +32,7 @@
 
             <div class="pb-1">
               <mat-form-field class="full-width">
-                <input matInput [readonly]="true" name="nursing_home_id" formControlName="nursing_home_id" placeholder="{{'NursingHome' | translate}}" >
+                <input matInput [readonly]="true" name="nursing_home_name" formControlName="nursing_home_name" placeholder="{{'NursingHome' | translate}}" >
               </mat-form-field>
             </div>
           </div>
@@ -49,14 +49,30 @@
   </mat-card>
 
   <mat-card class="default">
-    <mat-progress-bar *ngIf="loadPatientUsersPending$ | async" [mode]="(loadPatientUsersPending$ | async) ? 'indeterminate' : 'determinate'"
-      class="session-progress"></mat-progress-bar>
-    <mat-card-title>Connected user profiles</mat-card-title>
+    <!-- <mat-progress-bar *ngIf="loadPatientUsersPending$ | async" [mode]="(loadPatientUsersPending$ | async) ? 'indeterminate' : 'determinate'"
+      class="session-progress"></mat-progress-bar> -->
+    <mat-card-title>{{'ConnectedUserProfiles' | translate}}</mat-card-title>
     <mat-card-content class="p-0" fxLayout="column">
       <div class="activity-data">
-        <ngx-datatable class="material bg-white" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-          [rowHeight]="50" [limit]="4" [rows]="patientUsers$ | async" [columns]="columns">
+        <ngx-datatable 
+          class="material bg-white" 
+          [columnMode]="'force'" 
+          [headerHeight]="50" 
+          [footerHeight]="50"
+          [rowHeight]="50" 
+          [limit]="4" 
+          [rows]="patientUsers" >
 
+          <ngx-datatable-column name="{{'Name' | translate}}" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.firstname }} {{ row?.lastname }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="{{'LastLogin' | translate}}" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.last_login_at }}
+            </ng-template>
+          </ngx-datatable-column>
         </ngx-datatable>
       </div>
     </mat-card-content>

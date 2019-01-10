@@ -1,17 +1,23 @@
 import { IDevice } from './device.model';
+import { User } from './user.model';
+import { NursingHome } from './nursing-home.model';
 
 /**
  * patient model description
  */
 export interface IPatient {
-  device_id?: number | null;
-  firstname?: string | null;
-  gender?: string | null;
   id?: number | null; // auto generated from DB
-  image?: string; // url or base64 encoded image?
+  firstname?: string | null;
   lastname?: string;
-  nursing_home_id?: number | null;
+  gender?: string | null;
+  image?: string; // url or base64 encoded image?
   phone?: string; // optional
+  device_id?: number | null;
+  nursing_home_id?: number | null;
+  nursing_home_name?: string | null;
   device?: IDevice;
-  users?: number | null;
+  nursing_home?: NursingHome;
+  users?: User[];
+  
+  users_count?: number | null;
 }

@@ -1,15 +1,31 @@
 <mat-progress-bar *ngIf="isPending$ | async" [mode]="(isPending$ | async) ? 'indeterminate' : 'determinate'" class="session-progress"></mat-progress-bar>
 <div class="mat-box-shadow margin-333">
-  <ngx-datatable class="material fullscreen bg-white"
-                [columnMode]="'force'"
-                [headerHeight]="50"
-                [footerHeight]="0"
-                [rowHeight]="50"
-                [scrollbarV]="false"
-                [rows]="patients | async"
-                [columns]="columns"
-                [selectionType]="'single'"
-                [ngClass]="{'active': patient?.id === selectedUser?.id}"
-                (select)="onSelectRow($event)">
+  <ngx-datatable 
+    class="material fullscreen bg-white"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="0"
+    [rowHeight]="50"
+    [scrollbarV]="false"
+    [rows]="patients | async"
+    [selectionType]="'single'"
+    [ngClass]="{'active': patient?.id === selectedUser?.id}"
+    (select)="onSelectRow($event)">
+
+    <ngx-datatable-column name="{{'Name' | translate}}" [flexGrow]="1">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row?.firstname }} {{ row?.lastname }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Moio Sensor" [flexGrow]="1">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row?.device.serial_no }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="{{'Users' | translate}}" [flexGrow]="1">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row?.users_count }}
+      </ng-template>
+    </ngx-datatable-column>
   </ngx-datatable>
 </div> 

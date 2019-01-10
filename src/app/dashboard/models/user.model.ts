@@ -18,4 +18,5 @@ export interface User {
   password?: string;
   confirm_password?: string;
   nursing_home_key?: string;
+  user_patient_permission?: number | null;
 }

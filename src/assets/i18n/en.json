@@ -40,6 +40,7 @@
   "LastLoginOn": "Last login on",
   "PatientProfiles": "Patient profiles",
   "unknown error": "unknown error",
+  "NoPasswordMatch": "Passwords do not match",
   "Cancel": "Cancel",
   "OK": "Ok",
   "Retry": "Retry",
@@ -68,5 +69,12 @@
   "CloseUnsavedForm": {
     "title": "Close  this form?",
     "message": "The unsaved data in this form will be lost. Are you sure you want to close this form?"
-  }
+  },
+
+  "ConnectedUserProfiles": "Connected User Profiles",
+  "ConnectedPatientProfiles": "Connected Patient Profiles",
+  "LastLogin": "Last Login",
+  "Patients": "Patients",
+  "Patient": "Patient",
+  "Permission": "Permission"
 }
