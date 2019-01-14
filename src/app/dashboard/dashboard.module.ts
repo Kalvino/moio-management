@@ -35,6 +35,13 @@ import { PatientEditFormComponent } from './components/patients/patient-edit-for
 import { UserFormComponent } from './components/users/user-form/user-form.component';
 import { PatientFormComponent } from './components/patients/patient-form/patient-form.component';
 import { NursingHomeFormComponent } from './components/nursing-homes/nursing-home-form/nursing-home-form.component';
+import { LoaderComponent } from '../core/components/loader/loader.component';
+import { AppDropdownDirective } from '../core/directives/dropdown.directive';
+import { DropdownLinkDirective } from '../core/directives/dropdown-link.directive';
+import { DropdownAnchorDirective } from '../core/directives/dropdown-anchor.directive';
+import { EgretSideNavToggleDirective } from '../core/directives/egret-side-nav-toggle.directive';
+import { FontSizeDirective } from '../core/directives/font-size.directive';
+import { ScrollToDirective } from '../core/directives/scroll-to.directive';
 
 
 /**
@@ -59,7 +66,16 @@ export const COMPONENTS = [
   PatientEditFormComponent,
   UserFormComponent,
   PatientFormComponent,
-  NursingHomeFormComponent
+  NursingHomeFormComponent,
+
+  LoaderComponent,
+  AppDropdownDirective,
+  DropdownLinkDirective,
+  DropdownAnchorDirective,
+  EgretSideNavToggleDirective,
+  FontSizeDirective,
+  ScrollToDirective
+
 ];
 
 /**

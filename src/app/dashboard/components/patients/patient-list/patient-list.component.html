@@ -9,7 +9,6 @@
     [scrollbarV]="false"
     [rows]="patients | async"
     [selectionType]="'single'"
-    [ngClass]="{'active': patient?.id === selectedUser?.id}"
     (select)="onSelectRow($event)">
 
     <ngx-datatable-column name="{{'Name' | translate}}" [flexGrow]="1">
