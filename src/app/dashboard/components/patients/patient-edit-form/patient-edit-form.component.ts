@@ -108,7 +108,7 @@ export class PatientEditFormComponent implements OnInit, OnDestroy {
     this.patientEditForm = this.fb.group({
       id: [patient.id],
       firstname: [patient.firstname],
-      lastname: [patient.lastname],
+      lastname: [patient.lastname, Validators.required],
       gender: [patient.gender],    
       nursing_home_name: [patient.nursing_home.name]
     });

@@ -69,7 +69,7 @@ export class UserFormComponent implements OnInit {
       email: ['',[Validators.email]],
       password: ['',Validators.required],
       password_confirmation: ['',Validators.required],
-      nursing_home_key: ['',Validators.required]
+      nursing_home_key: ['']
     },
     {
       // check whether our password and confirm password match

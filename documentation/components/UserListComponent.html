@@ -1,0 +1,1198 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>moio-management documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">moio-management documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>UserListComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/dashboard/components/users/user-list/user-list.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>moio-user-list</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./user-list.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./user-list.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#columns">columns</a>
+                            </li>
+                            <li>
+                                <a href="#componentActive">componentActive</a>
+                            </li>
+                            <li>
+                                <a href="#errorMessage$">errorMessage$</a>
+                            </li>
+                            <li>
+                                <a href="#ids">ids</a>
+                            </li>
+                            <li>
+                                <a href="#isPending$">isPending$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#items">items</a>
+                            </li>
+                            <li>
+                                <a href="#selectedUser">selectedUser</a>
+                            </li>
+                            <li>
+                                <a href="#users">users</a>
+                            </li>
+                            <li>
+                                <a href="#users$">users$</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#newUser">newUser</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onSelectRow">onSelectRow</a>
+                            </li>
+                            <li>
+                                <a href="#selectUser">selectUser</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(store: <a href="../interfaces/State.html">Store<fromDashboard.State></a>, translate: TranslateService, dialog: MatDialog, snack: MatSnackBar)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/dashboard/components/users/user-list/user-list.component.ts:69</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>constructor</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../interfaces/State.html" target="_self" >Store&lt;fromDashboard.State&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Store</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>translate</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>TranslateService</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>snack</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="newUser"></a>
+                        <span class="name">
+                            <b>
+                            newUser
+                            </b>
+                            <a href="#newUser"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>newUser()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/dashboard/components/users/user-list/user-list.component.ts:116</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnDestroy"></a>
+                        <span class="name">
+                            <b>
+                            ngOnDestroy
+                            </b>
+                            <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/dashboard/components/users/user-list/user-list.component.ts:111</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/dashboard/components/users/user-list/user-list.component.ts:92</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>init UserListComponent component</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onSelectRow"></a>
+                        <span class="name">
+                            <b>
+                            onSelectRow
+                            </b>
+                            <a href="#onSelectRow"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onSelectRow(undefined)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/dashboard/components/users/user-list/user-list.component.ts:134</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>emit the selected user
+the datatable component returns an ARRAY of selected
+elements depending on the &#39;selectionType&#39; setting.
+In our case just a single user!
+Therefor emit 0th element of the selection.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectUser"></a>
+                        <span class="name">
+                            <b>
+                            selectUser
+                            </b>
+                            <a href="#selectUser"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectUser(user: <a href="../interfaces/User.html">User</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/dashboard/components/users/user-list/user-list.component.ts:121</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>user</td>
+                                                        <td>
+                                                                    <code><a href="../interfaces/User.html" target="_self" >User</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="columns"></a>
+                        <span class="name">
+                            <b>
+                            columns
+                            </b>
+                            <a href="#columns"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>columns:     <code>[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+    {
+      prop: &#x27;fullname&#x27;,
+      name: this.translate.instant(&#x27;Name&#x27;)
+    },
+    {
+      prop: &#x27;nursing_home&#x27;,
+      name: this.translate.instant(&#x27;NursingHome&#x27;)
+    },
+    {
+      prop: &#x27;registered_on&#x27;,
+      name: this.translate.instant(&#x27;RegisteredOn&#x27;)
+    },
+    {
+      prop: &#x27;last_login&#x27;,
+      name: this.translate.instant(&#x27;LastLoginOn&#x27;)
+    },
+    {
+      prop: &#x27;patient_profiles&#x27;,
+      name: this.translate.instant(&#x27;PatientProfiles&#x27;)
+    }
+  ]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/dashboard/components/users/user-list/user-list.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Users Table columns</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="componentActive"></a>
+                        <span class="name">
+                            <b>
+                            componentActive
+                            </b>
+                            <a href="#componentActive"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>componentActive:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/dashboard/components/users/user-list/user-list.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="errorMessage$"></a>
+                        <span class="name">
+                            <b>
+                            errorMessage$
+                            </b>
+                            <a href="#errorMessage$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>errorMessage$:     <code>Observable&lt;string&gt;</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Observable&lt;string&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.store.pipe(
+    select(fromDashboard.getUserPageError)
+  )</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/dashboard/components/users/user-list/user-list.component.ts:67</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ids"></a>
+                        <span class="name">
+                            <b>
+                            ids
+                            </b>
+                            <a href="#ids"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>ids:     <code>string[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>string[]</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/dashboard/components/users/user-list/user-list.component.ts:54</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isPending$"></a>
+                        <span class="name">
+                            <b>
+                            isPending$
+                            </b>
+                            <a href="#isPending$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>isPending$:     <code>Observable&lt;boolean&gt;</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.store.pipe(
+    select(fromDashboard.getUserPagePending)
+  )</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/dashboard/components/users/user-list/user-list.component.ts:62</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="items"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            items
+                            </b>
+                            <a href="#items"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>items:     <code><a href="../interfaces/User.html" target="_self" >User[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/User.html" target="_self" >User[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/dashboard/components/users/user-list/user-list.component.ts:86</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedUser"></a>
+                        <span class="name">
+                            <b>
+                            selectedUser
+                            </b>
+                            <a href="#selectedUser"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>selectedUser:     <code><a href="../interfaces/User.html" target="_self" >User | null</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/User.html" target="_self" >User | null</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/dashboard/components/users/user-list/user-list.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="users"></a>
+                        <span class="name">
+                            <b>
+                            users
+                            </b>
+                            <a href="#users"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>users:     <code><a href="../interfaces/User.html" target="_self" >Observable&lt;User[]&gt;</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/User.html" target="_self" >Observable&lt;User[]&gt;</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/dashboard/components/users/user-list/user-list.component.ts:87</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="users$"></a>
+                        <span class="name">
+                            <b>
+                            users$
+                            </b>
+                            <a href="#users$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>users$:     <code><a href="../interfaces/User.html" target="_self" >Observable&lt;User[]&gt;</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/User.html" target="_self" >Observable&lt;User[]&gt;</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.store.pipe(
+    select(fromDashboard.getAllUsers)
+  )</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/dashboard/components/users/user-list/user-list.component.ts:57</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy} from &#x27;@angular/core&#x27;;
+import { MatProgressBar, MatButton } from &#x27;@angular/material&#x27;;
+import { MatDialogRef, MatDialog, MatSnackBar } from &#x27;@angular/material&#x27;;
+import { UserFormComponent } from &#x27;../user-form/user-form.component&#x27;;
+
+import { User } from &#x27;../../../models/user.model&#x27;;
+
+/* NGRX */
+import { Store, select } from &#x27;@ngrx/store&#x27;;
+import * as fromDashboard from &#x27;../../../reducers&#x27;;
+import * as usersActions from &#x27;../../../actions/users.actions&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { takeWhile } from &#x27;rxjs/operators&#x27;;
+
+@Component({
+  selector: &#x27;moio-user-list&#x27;,
+  templateUrl: &#x27;./user-list.component.html&#x27;,
+  styleUrls: [&#x27;./user-list.component.scss&#x27;]
+})
+export class UserListComponent implements OnInit, OnDestroy {
+  
+  // Used to select user in the list
+  selectedUser: User | null;
+  componentActive &#x3D; true;
+
+
+  /**
+   * Users Table columns
+   */
+  columns &#x3D; [
+    {
+      prop: &#x27;fullname&#x27;,
+      name: this.translate.instant(&#x27;Name&#x27;)
+    },
+    {
+      prop: &#x27;nursing_home&#x27;,
+      name: this.translate.instant(&#x27;NursingHome&#x27;)
+    },
+    {
+      prop: &#x27;registered_on&#x27;,
+      name: this.translate.instant(&#x27;RegisteredOn&#x27;)
+    },
+    {
+      prop: &#x27;last_login&#x27;,
+      name: this.translate.instant(&#x27;LastLoginOn&#x27;)
+    },
+    {
+      prop: &#x27;patient_profiles&#x27;,
+      name: this.translate.instant(&#x27;PatientProfiles&#x27;)
+    }
+  ];
+
+  ids: string[];
+  
+  // all users
+  users$: Observable&lt;User[]&gt; &#x3D; this.store.pipe(
+    select(fromDashboard.getAllUsers)
+  );
+
+  // pending action
+  isPending$: Observable&lt;boolean&gt; &#x3D; this.store.pipe(
+    select(fromDashboard.getUserPagePending)
+  );
+
+  // get error status
+  errorMessage$: Observable&lt;string&gt; &#x3D; this.store.pipe(
+    select(fromDashboard.getUserPageError)
+  );
+
+  /**
+   * constructor
+   * @param store Store
+   * @param translate TranslateService
+   */
+  constructor(
+    private store: Store&lt;fromDashboard.State&gt;, 
+    private translate: TranslateService,
+    private dialog: MatDialog,
+    private snack: MatSnackBar) {
+
+      this.translate.setDefaultLang(&#x27;de&#x27;);
+
+  }
+
+  public items: User[];
+  users: Observable&lt;User[]&gt;;
+
+  /**
+   * init UserListComponent component
+   */
+  ngOnInit(): void {
+
+    this.store.dispatch(new usersActions.LoadUsers());
+
+    this.users &#x3D; this.store.pipe(select(fromDashboard.getAllUsers)) as Observable&lt;User[]&gt;;
+
+    this.store.pipe(select(fromDashboard.getUsersIds))
+    .subscribe((ids: string[]) &#x3D;&gt; this.ids &#x3D; ids);
+
+    // Subscribe here because it does not use an async pipe
+    this.store.pipe(
+      select(fromDashboard.getSelectedUser),
+      takeWhile(() &#x3D;&gt; this.componentActive)
+    ).subscribe(
+      currentUser &#x3D;&gt; this.selectedUser &#x3D; currentUser
+    );
+  }
+
+  // unsubscribe from the observable
+  ngOnDestroy(): void {
+    this.componentActive &#x3D; false;
+  }
+
+  // Create User action
+  newUser(): void {
+    this.store.dispatch(new usersActions.InitializeUser());
+  }
+
+  // Select user action
+  selectUser(user: User): void {
+    this.store.dispatch(new usersActions.SelectUser(user));
+  }
+
+  /**
+   * emit the selected user
+   * the datatable component returns an ARRAY of selected
+   * elements depending on the &#x27;selectionType&#x27; setting.
+   * In our case just a single user!
+   * Therefor emit 0th element of the selection.
+   *
+   * @param selected User first element of array
+   */
+  onSelectRow({selected}) {
+    // this.userSelected.emit(selected[0]);
+    const user &#x3D; selected[0];
+    this.store.dispatch(new usersActions.SelectUser(user));
+    this.store.dispatch(new usersActions.LoadUserPatients(user.id));
+    
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;mat-progress-bar *ngIf&#x3D;&quot;isPending$ | async&quot; [mode]&#x3D;&quot;(isPending$ | async) ? &#x27;indeterminate&#x27; : &#x27;determinate&#x27;&quot; class&#x3D;&quot;session-progress&quot;&gt;&lt;/mat-progress-bar&gt;
+&lt;div class&#x3D;&quot;mat-box-shadow margin-333&quot;&gt;
+  &lt;ngx-datatable class&#x3D;&quot;material fullscreen bg-white&quot;
+                [columnMode]&#x3D;&quot;&#x27;force&#x27;&quot;
+                [headerHeight]&#x3D;&quot;50&quot;
+                [footerHeight]&#x3D;&quot;0&quot;
+                [rowHeight]&#x3D;&quot;50&quot;
+                [scrollbarV]&#x3D;&quot;false&quot;
+                [rows]&#x3D;&quot;users | async&quot;
+                [columns]&#x3D;&quot;columns&quot;
+                [selectionType]&#x3D;&quot;&#x27;single&#x27;&quot;
+                (select)&#x3D;&quot;onSelectRow($event)&quot;&gt;
+  &lt;/ngx-datatable&gt;
+&lt;/div&gt; </code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./user-list.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><mat-progress-bar *ngIf="isPending$ | async" [mode]="(isPending$ | async) ? \'indeterminate\' : \'determinate\'" class="session-progress"></mat-progress-bar><div class="mat-box-shadow margin-333">  <ngx-datatable class="material fullscreen bg-white"                [columnMode]="\'force\'"                [headerHeight]="50"                [footerHeight]="0"                [rowHeight]="50"                [scrollbarV]="false"                [rows]="users | async"                [columns]="columns"                [selectionType]="\'single\'"                (select)="onSelectRow($event)">  </ngx-datatable></div> </div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'moio-root'},{'name': 'AuthLayoutComponent', 'selector': 'moio-auth-layout'},{'name': 'BlankComponent', 'selector': 'moio-blank'},{'name': 'BreadcrumbComponent', 'selector': 'moio-breadcrumb'},{'name': 'ConfirmComponent', 'selector': 'moio-confirm'},{'name': 'DashboardLayoutComponent', 'selector': 'moio-dashboard'},{'name': 'ErrorComponent', 'selector': 'moio-error'},{'name': 'ErrorLayoutComponent', 'selector': 'moio-error-layout'},{'name': 'ForgotPasswordComponent', 'selector': 'moio-forgot-password'},{'name': 'HeaderSideComponent', 'selector': 'moio-header-side'},{'name': 'LoaderComponent', 'selector': 'moio-app-loader'},{'name': 'LockscreenComponent', 'selector': 'moio-lockscreen'},{'name': 'NotFoundComponent', 'selector': 'moio-not-found'},{'name': 'NotificationsComponent', 'selector': 'moio-notifications'},{'name': 'NursingHomeFormComponent', 'selector': 'nursing-home-form'},{'name': 'PatientEditFormComponent', 'selector': 'moio-patient-edit-form'},{'name': 'PatientFormComponent', 'selector': 'patient-form'},{'name': 'PatientListComponent', 'selector': 'moio-patient-list'},{'name': 'PatientsComponent', 'selector': 'moio-patients-page'},{'name': 'SidebarSideComponent', 'selector': 'moio-sidebar-side'},{'name': 'SidebarTopComponent', 'selector': 'moio-sidebar-top'},{'name': 'SidenavComponent', 'selector': 'moio-sidenav'},{'name': 'SigninComponent', 'selector': 'moio-signin'},{'name': 'SignupComponent', 'selector': 'moio-signup'},{'name': 'UserEditFormComponent', 'selector': 'moio-user-edit-form'},{'name': 'UserFormComponent', 'selector': 'user-form'},{'name': 'UserListComponent', 'selector': 'moio-user-list'},{'name': 'UsersComponent', 'selector': 'moio-users-page'}];
+    var DIRECTIVES = [{'name': 'AppDropdownDirective', 'selector': '[appDropdown]'},{'name': 'DropdownAnchorDirective', 'selector': '[appDropdownToggle]'},{'name': 'DropdownLinkDirective', 'selector': '[appDropdownLink]'},{'name': 'EgretSideNavToggleDirective', 'selector': '[EgretSideNavToggle]'},{'name': 'FontSizeDirective', 'selector': '[fontSize]'},{'name': 'ScrollToDirective', 'selector': '[scrollTo]'}];
+    var ACTUAL_COMPONENT = {'name': 'UserListComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'UserListComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

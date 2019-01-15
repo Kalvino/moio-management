@@ -1,0 +1,1162 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>moio-management documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">moio-management documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>HeaderSideComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/dashboard/containers/layout-components/header-side/header-side.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>moio-header-side</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./header-side.template.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#availableLangs">availableLangs</a>
+                            </li>
+                            <li>
+                                <a href="#currentLang">currentLang</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#egretThemes">egretThemes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#sidebarStyle">sidebarStyle</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#translate">translate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#changeTheme">changeTheme</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onConfirmLogout">onConfirmLogout</a>
+                            </li>
+                            <li>
+                                <a href="#setLang">setLang</a>
+                            </li>
+                            <li>
+                                <a href="#toggleCollapse">toggleCollapse</a>
+                            </li>
+                            <li>
+                                <a href="#toggleNotific">toggleNotific</a>
+                            </li>
+                            <li>
+                                <a href="#toggleSidenav">toggleSidenav</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#notificPanel">notificPanel</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(authStore: <a href="../interfaces/State.html">Store<fromAuth.State></a>, store: <a href="../interfaces/State.html">Store<fromDashboard.State></a>, themeService: <a href="../injectables/ThemeService.html">ThemeService</a>, layout: <a href="../injectables/LayoutService.html">LayoutService</a>, translate: TranslateService, renderer: <a href="https://angular.io/api/core/Renderer2" target="_blank">Renderer2</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/dashboard/containers/layout-components/header-side/header-side.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>authStore</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../interfaces/State.html" target="_self" >Store&lt;fromAuth.State&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../interfaces/State.html" target="_self" >Store&lt;fromDashboard.State&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>themeService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/ThemeService.html" target="_self" >ThemeService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>layout</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/LayoutService.html" target="_self" >LayoutService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>translate</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>renderer</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/core/Renderer2" target="_blank" >Renderer2</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="notificPanel"></a>
+                        <code>notificPanel</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/dashboard/containers/layout-components/header-side/header-side.component.ts:18</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="changeTheme"></a>
+                        <span class="name">
+                            <b>
+                            changeTheme
+                            </b>
+                            <a href="#changeTheme"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>changeTheme(theme)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/dashboard/containers/layout-components/header-side/header-side.component.ts:58</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>theme</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/dashboard/containers/layout-components/header-side/header-side.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onConfirmLogout"></a>
+                        <span class="name">
+                            <b>
+                            onConfirmLogout
+                            </b>
+                            <a href="#onConfirmLogout"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onConfirmLogout()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/dashboard/containers/layout-components/header-side/header-side.component.ts:93</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>logout the user</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="setLang"></a>
+                        <span class="name">
+                            <b>
+                            setLang
+                            </b>
+                            <a href="#setLang"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>setLang(event)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/dashboard/containers/layout-components/header-side/header-side.component.ts:52</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="toggleCollapse"></a>
+                        <span class="name">
+                            <b>
+                            toggleCollapse
+                            </b>
+                            <a href="#toggleCollapse"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>toggleCollapse()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/dashboard/containers/layout-components/header-side/header-side.component.ts:75</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="toggleNotific"></a>
+                        <span class="name">
+                            <b>
+                            toggleNotific
+                            </b>
+                            <a href="#toggleNotific"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>toggleNotific()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/dashboard/containers/layout-components/header-side/header-side.component.ts:62</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="toggleSidenav"></a>
+                        <span class="name">
+                            <b>
+                            toggleSidenav
+                            </b>
+                            <a href="#toggleSidenav"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>toggleSidenav()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/dashboard/containers/layout-components/header-side/header-side.component.ts:66</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="availableLangs"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            availableLangs
+                            </b>
+                            <a href="#availableLangs"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>availableLangs:     <code>[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[{
+    name: &#x27;English&#x27;,
+    code: &#x27;en&#x27;,
+  }, {
+    name: &#x27;Deutsch&#x27;,
+    code: &#x27;de&#x27;,
+  }]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/dashboard/containers/layout-components/header-side/header-side.component.ts:21</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentLang"></a>
+                        <span class="name">
+                            <b>
+                            currentLang
+                            </b>
+                            <a href="#currentLang"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>currentLang:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;de&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/dashboard/containers/layout-components/header-side/header-side.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="egretThemes"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            egretThemes
+                            </b>
+                            <a href="#egretThemes"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>egretThemes:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/dashboard/containers/layout-components/header-side/header-side.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sidebarStyle"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            sidebarStyle
+                            </b>
+                            <a href="#sidebarStyle"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>sidebarStyle:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/dashboard/containers/layout-components/header-side/header-side.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="translate"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            translate
+                            </b>
+                            <a href="#translate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>translate:     <code>TranslateService</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>TranslateService</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/dashboard/containers/layout-components/header-side/header-side.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input, Renderer2 } from &#x27;@angular/core&#x27;;
+import { ThemeService } from &#x27;../../../../core/services/theme.service&#x27;;
+import { LayoutService } from &#x27;../../../../core/services/layout.service&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { Store, select } from &#x27;@ngrx/store&#x27;;
+
+import { AuthActions } from &#x27;../../../../auth/actions&#x27;;
+import * as layoutActions from &#x27;../../../actions/layout.actions&#x27;;
+import * as fromAuth from &#x27;../../../../auth/reducers&#x27;;
+import * as fromDashboard from &#x27;../../../reducers&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+
+@Component({
+  selector: &#x27;moio-header-side&#x27;,
+  templateUrl: &#x27;./header-side.template.html&#x27;
+})
+export class HeaderSideComponent implements OnInit {
+  @Input() notificPanel;
+  currentLang &#x3D; &#x27;de&#x27;;
+
+  public availableLangs &#x3D; [{
+    name: &#x27;English&#x27;,
+    code: &#x27;en&#x27;,
+  }, {
+    name: &#x27;Deutsch&#x27;,
+    code: &#x27;de&#x27;,
+  }];
+  public egretThemes;
+  public sidebarStyle: string;
+
+  constructor(
+    private authStore: Store&lt;fromAuth.State&gt;,
+    private store: Store&lt;fromDashboard.State&gt;,
+    private themeService: ThemeService,
+    private layout: LayoutService,
+    public translate: TranslateService,
+    private renderer: Renderer2
+  ) {
+  }
+
+  ngOnInit() {
+    this.egretThemes &#x3D; this.themeService.egretThemes;
+
+    this.translate.use(this.currentLang);
+
+    // TODO: Unsubscribe
+    this.store.pipe(select(fromDashboard.getSideNav)).subscribe(
+      (sidebarStyle:string) &#x3D;&gt; this.sidebarStyle &#x3D; sidebarStyle
+    );
+  }
+
+  setLang(event) {
+    // TODO: change language
+    console.log(event);
+    this.translate.use(this.currentLang);
+  }
+
+  changeTheme(theme) {
+    this.themeService.changeTheme(this.renderer, theme);
+  }
+
+  toggleNotific() {
+    this.notificPanel.toggle();
+  }
+
+  toggleSidenav() {
+    // todo subscribe to the sidenavstyle
+    if (this.sidebarStyle &#x3D;&#x3D;&#x3D; &#x27;closed&#x27;) {
+      this.store.dispatch(new layoutActions.OpenSideNav(&#x27;full&#x27;));
+    } else {
+      this.store.dispatch(new layoutActions.CloseSideNav(&#x27;closed&#x27;));
+    }
+  }
+
+  toggleCollapse() {
+    // compact --&gt; full
+    if (this.sidebarStyle &#x3D;&#x3D;&#x3D; &#x27;compact&#x27;) {
+      return this.layout.publishLayoutChange({
+        sidebarStyle: &#x27;full&#x27;
+      }, {transitionClass: true});
+    }
+
+    // * --&gt; compact
+    this.layout.publishLayoutChange({
+      sidebarStyle: &#x27;compact&#x27;
+    }, {transitionClass: true});
+
+  }
+
+  /**
+   * logout the user
+   */
+  onConfirmLogout() {
+    this.authStore.dispatch(new AuthActions.LogoutConfirmation());
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;mat-toolbar class&#x3D;&quot;topbar topbar-white&quot;&gt;
+  &lt;!-- Sidenav toggle button --&gt;
+  &lt;button
+    *ngIf&#x3D;&quot;sidebarStyle !&#x3D;&#x3D; &#x27;compact&#x27;&quot;
+    mat-icon-button
+    id&#x3D;&quot;sidenavToggle&quot;
+    (click)&#x3D;&quot;toggleSidenav()&quot;
+    matTooltip&#x3D;&quot;Toggle Hide/Open&quot;&gt;
+    &lt;mat-icon&gt;menu&lt;/mat-icon&gt;
+  &lt;/button&gt;
+  &lt;!-- Sidenav toggle collapse --&gt;
+  &lt;button
+    *ngIf&#x3D;&quot;sidebarStyle !&#x3D;&#x3D; &#x27;closed&#x27;&quot;
+    mat-icon-button
+    id&#x3D;&quot;collapseToggle&quot;
+    fxHide.lt-md&#x3D;&quot;true&quot;
+    (click)&#x3D;&quot;toggleCollapse()&quot;
+    matTooltip&#x3D;&quot;Toggle Collapse&quot;
+    class&#x3D;&quot;toggle-collapsed&quot;&gt;
+    &lt;mat-icon&gt;chevron_left&lt;/mat-icon&gt;
+  &lt;/button&gt;
+  &lt;!-- Search form --&gt;
+  &lt;!-- &lt;div
+    fxFlex
+    fxHide.lt-sm&#x3D;&quot;true&quot;
+    class&#x3D;&quot;search-bar&quot;&gt;
+    &lt;form class&#x3D;&quot;top-search-form&quot;&gt;
+      &lt;mat-icon role&#x3D;&quot;img&quot;&gt;search&lt;/mat-icon&gt;
+      &lt;input autofocus&#x3D;&quot;true&quot; placeholder&#x3D;&quot;Search&quot; type&#x3D;&quot;text&quot;&gt;
+    &lt;/form&gt;
+  &lt;/div&gt; --&gt;
+  &lt;span fxFlex&gt;&lt;/span&gt;
+  &lt;!-- Language Switcher --&gt;
+  &lt;mat-select
+    placeholder&#x3D;&quot;&quot;
+    id&#x3D;&quot;langToggle&quot;
+    [style.width]&#x3D;&quot;&#x27;auto&#x27;&quot;
+    name&#x3D;&quot;currentLang&quot;
+    [(ngModel)]&#x3D;&quot;currentLang&quot;
+    (selectionChange)&#x3D;&quot;setLang($event)&quot;&gt;
+    &lt;mat-option
+      *ngFor&#x3D;&quot;let lang of availableLangs&quot;
+      [value]&#x3D;&quot;lang.code&quot; ngDefaultControl&gt;{{ lang.name }}
+    &lt;/mat-option&gt;
+  &lt;/mat-select&gt;
+  &lt;!-- Theme Switcher --&gt;
+  &lt;!-- &lt;button
+    mat-icon-button
+    id&#x3D;&quot;schemeToggle&quot;
+    [style.overflow]&#x3D;&quot;&#x27;visible&#x27;&quot;
+    matTooltip&#x3D;&quot;Color Schemes&quot;
+    [matMenuTriggerFor]&#x3D;&quot;themeMenu&quot;
+    class&#x3D;&quot;topbar-button-right&quot;&gt;
+    &lt;mat-icon&gt;format_color_fill&lt;/mat-icon&gt;
+  &lt;/button&gt; --&gt;
+
+  &lt;!-- &lt;mat-menu #themeMenu&#x3D;&quot;matMenu&quot;&gt;
+    &lt;mat-grid-list
+      class&#x3D;&quot;theme-list&quot;
+      cols&#x3D;&quot;2&quot;
+      rowHeight&#x3D;&quot;48px&quot;&gt;
+      &lt;mat-grid-tile
+        *ngFor&#x3D;&quot;let theme of egretThemes&quot;
+        (click)&#x3D;&quot;changeTheme(theme)&quot;&gt;
+        &lt;div mat-menu-item [title]&#x3D;&quot;theme.name&quot;&gt;
+          &lt;div [style.background]&#x3D;&quot;theme.baseColor&quot; class&#x3D;&quot;egret-swatch&quot;&gt;&lt;/div&gt;
+          &lt;mat-icon class&#x3D;&quot;active-icon&quot; *ngIf&#x3D;&quot;theme.isActive&quot;&gt;check&lt;/mat-icon&gt;
+        &lt;/div&gt;
+      &lt;/mat-grid-tile&gt;
+    &lt;/mat-grid-list&gt;
+  &lt;/mat-menu&gt; --&gt;
+  &lt;!-- Notification toggle button --&gt;
+  &lt;!-- &lt;button
+    mat-icon-button
+    matTooltip&#x3D;&quot;Notifications&quot;
+    (click)&#x3D;&quot;toggleNotific()&quot;
+    [style.overflow]&#x3D;&quot;&#x27;visible&#x27;&quot;
+    class&#x3D;&quot;topbar-button-right&quot;&gt;
+    &lt;mat-icon&gt;notifications&lt;/mat-icon&gt;
+    &lt;span class&#x3D;&quot;notification-number mat-bg-warn&quot;&gt;3&lt;/span&gt;
+  &lt;/button&gt; --&gt;
+  &lt;!-- Top left user menu --&gt;
+  &lt;button mat-icon-button [matMenuTriggerFor]&#x3D;&quot;accountMenu&quot; class&#x3D;&quot;topbar-button-right img-button&quot;&gt;
+    &lt;img src&#x3D;&quot;assets/images/face-7.jpg&quot; alt&#x3D;&quot;&quot;&gt;
+  &lt;/button&gt;
+
+  &lt;mat-menu #accountMenu&#x3D;&quot;matMenu&quot;&gt;
+    &lt;button mat-menu-item [routerLink]&#x3D;&quot;[&#x27;/profile/overview&#x27;]&quot;&gt;
+      &lt;mat-icon&gt;account_box&lt;/mat-icon&gt;
+      &lt;span&gt;{{&#x27;AccountMenu.Profile&#x27; | translate }}&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;!-- &lt;button mat-menu-item [routerLink]&#x3D;&quot;[&#x27;/profile/settings&#x27;]&quot;&gt;
+      &lt;mat-icon&gt;settings&lt;/mat-icon&gt;
+      &lt;span&gt;Account Settings&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;button mat-menu-item&gt;
+      &lt;mat-icon&gt;notifications_off&lt;/mat-icon&gt;
+      &lt;span&gt;Disable alerts&lt;/span&gt;
+    &lt;/button&gt; --&gt;
+    &lt;button mat-menu-item (click)&#x3D;&quot;onConfirmLogout()&quot;&gt;
+      &lt;mat-icon&gt;exit_to_app&lt;/mat-icon&gt;
+      &lt;span&gt;{{ &#x27;Auth.Signout&#x27; | translate }}&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/mat-menu&gt;
+
+&lt;/mat-toolbar&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><mat-toolbar class="topbar topbar-white">  <!-- Sidenav toggle button -->  <button    *ngIf="sidebarStyle !== \'compact\'"    mat-icon-button    id="sidenavToggle"    (click)="toggleSidenav()"    matTooltip="Toggle Hide/Open">    <mat-icon>menu</mat-icon>  </button>  <!-- Sidenav toggle collapse -->  <button    *ngIf="sidebarStyle !== \'closed\'"    mat-icon-button    id="collapseToggle"    fxHide.lt-md="true"    (click)="toggleCollapse()"    matTooltip="Toggle Collapse"    class="toggle-collapsed">    <mat-icon>chevron_left</mat-icon>  </button>  <!-- Search form -->  <!-- <div    fxFlex    fxHide.lt-sm="true"    class="search-bar">    <form class="top-search-form">      <mat-icon role="img">search</mat-icon>      <input autofocus="true" placeholder="Search" type="text">    </form>  </div> -->  <span fxFlex></span>  <!-- Language Switcher -->  <mat-select    placeholder=""    id="langToggle"    [style.width]="\'auto\'"    name="currentLang"    [(ngModel)]="currentLang"    (selectionChange)="setLang($event)">    <mat-option      *ngFor="let lang of availableLangs"      [value]="lang.code" ngDefaultControl>{{ lang.name }}    </mat-option>  </mat-select>  <!-- Theme Switcher -->  <!-- <button    mat-icon-button    id="schemeToggle"    [style.overflow]="\'visible\'"    matTooltip="Color Schemes"    [matMenuTriggerFor]="themeMenu"    class="topbar-button-right">    <mat-icon>format_color_fill</mat-icon>  </button> -->  <!-- <mat-menu #themeMenu="matMenu">    <mat-grid-list      class="theme-list"      cols="2"      rowHeight="48px">      <mat-grid-tile        *ngFor="let theme of egretThemes"        (click)="changeTheme(theme)">        <div mat-menu-item [title]="theme.name">          <div [style.background]="theme.baseColor" class="egret-swatch"></div>          <mat-icon class="active-icon" *ngIf="theme.isActive">check</mat-icon>        </div>      </mat-grid-tile>    </mat-grid-list>  </mat-menu> -->  <!-- Notification toggle button -->  <!-- <button    mat-icon-button    matTooltip="Notifications"    (click)="toggleNotific()"    [style.overflow]="\'visible\'"    class="topbar-button-right">    <mat-icon>notifications</mat-icon>    <span class="notification-number mat-bg-warn">3</span>  </button> -->  <!-- Top left user menu -->  <button mat-icon-button [matMenuTriggerFor]="accountMenu" class="topbar-button-right img-button">    <img src="assets/images/face-7.jpg" alt="">  </button>  <mat-menu #accountMenu="matMenu">    <button mat-menu-item [routerLink]="[\'/profile/overview\']">      <mat-icon>account_box</mat-icon>      <span>{{\'AccountMenu.Profile\' | translate }}</span>    </button>    <!-- <button mat-menu-item [routerLink]="[\'/profile/settings\']">      <mat-icon>settings</mat-icon>      <span>Account Settings</span>    </button>    <button mat-menu-item>      <mat-icon>notifications_off</mat-icon>      <span>Disable alerts</span>    </button> -->    <button mat-menu-item (click)="onConfirmLogout()">      <mat-icon>exit_to_app</mat-icon>      <span>{{ \'Auth.Signout\' | translate }}</span>    </button>  </mat-menu></mat-toolbar></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'moio-root'},{'name': 'AuthLayoutComponent', 'selector': 'moio-auth-layout'},{'name': 'BlankComponent', 'selector': 'moio-blank'},{'name': 'BreadcrumbComponent', 'selector': 'moio-breadcrumb'},{'name': 'ConfirmComponent', 'selector': 'moio-confirm'},{'name': 'DashboardLayoutComponent', 'selector': 'moio-dashboard'},{'name': 'ErrorComponent', 'selector': 'moio-error'},{'name': 'ErrorLayoutComponent', 'selector': 'moio-error-layout'},{'name': 'ForgotPasswordComponent', 'selector': 'moio-forgot-password'},{'name': 'HeaderSideComponent', 'selector': 'moio-header-side'},{'name': 'LoaderComponent', 'selector': 'moio-app-loader'},{'name': 'LockscreenComponent', 'selector': 'moio-lockscreen'},{'name': 'NotFoundComponent', 'selector': 'moio-not-found'},{'name': 'NotificationsComponent', 'selector': 'moio-notifications'},{'name': 'NursingHomeFormComponent', 'selector': 'nursing-home-form'},{'name': 'PatientEditFormComponent', 'selector': 'moio-patient-edit-form'},{'name': 'PatientFormComponent', 'selector': 'patient-form'},{'name': 'PatientListComponent', 'selector': 'moio-patient-list'},{'name': 'PatientsComponent', 'selector': 'moio-patients-page'},{'name': 'SidebarSideComponent', 'selector': 'moio-sidebar-side'},{'name': 'SidebarTopComponent', 'selector': 'moio-sidebar-top'},{'name': 'SidenavComponent', 'selector': 'moio-sidenav'},{'name': 'SigninComponent', 'selector': 'moio-signin'},{'name': 'SignupComponent', 'selector': 'moio-signup'},{'name': 'UserEditFormComponent', 'selector': 'moio-user-edit-form'},{'name': 'UserFormComponent', 'selector': 'user-form'},{'name': 'UserListComponent', 'selector': 'moio-user-list'},{'name': 'UsersComponent', 'selector': 'moio-users-page'}];
+    var DIRECTIVES = [{'name': 'AppDropdownDirective', 'selector': '[appDropdown]'},{'name': 'DropdownAnchorDirective', 'selector': '[appDropdownToggle]'},{'name': 'DropdownLinkDirective', 'selector': '[appDropdownLink]'},{'name': 'EgretSideNavToggleDirective', 'selector': '[EgretSideNavToggle]'},{'name': 'FontSizeDirective', 'selector': '[fontSize]'},{'name': 'ScrollToDirective', 'selector': '[scrollTo]'}];
+    var ACTUAL_COMPONENT = {'name': 'HeaderSideComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'HeaderSideComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

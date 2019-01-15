@@ -1,0 +1,958 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>moio-management documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">moio-management documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>PatientsEffects</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/dashboard/effects/patients.effects.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>patients effects</p>
+
+            </p>
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#createPatient$">createPatient$</a>
+                            </li>
+                            <li>
+                                <a href="#createPatientSuccess$">createPatientSuccess$</a>
+                            </li>
+                            <li>
+                                <a href="#DismissPatientFormDialog">DismissPatientFormDialog</a>
+                            </li>
+                            <li>
+                                <a href="#editPatient$">editPatient$</a>
+                            </li>
+                            <li>
+                                <a href="#loadPatients">loadPatients</a>
+                            </li>
+                            <li>
+                                <a href="#popUpPatientForm$">popUpPatientForm$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#snackBar">snackBar</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(actions$: Actions, patientsService: <a href="../injectables/PatientsService.html">PatientsService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, store: Store<any>, snackBar: MatSnackBar, translate: TranslateService, dialog: MatDialog)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/app/dashboard/effects/patients.effects.ts:179</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>constructor</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>actions$</td>
+                                                  
+                                                        <td>
+                                                                    <code>Actions</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>patientsService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/PatientsService.html" target="_self" >PatientsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code>Store&lt;any&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>translate</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="createPatient$"></a>
+                        <span class="name">
+                            <b>
+                            createPatient$
+                            </b>
+                            <a href="#createPatient$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>createPatient$:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.actions$
+    .pipe(
+      ofType&lt;PatientsActions.CreatePatient&gt;(PatientsActions.PatientsActionTypes.CreatePatient),
+      map(action &#x3D;&gt; action.payload.patient),
+      exhaustMap((patientData: IPatient) &#x3D;&gt; {
+
+        return this.patientsService.createPatient(patientData)
+          .pipe(
+            // delay(2000),
+            map(patient &#x3D;&gt; {
+              console.log(patient);
+              return new PatientsApiActions.CreatePatientSuccess({patient});
+            }),
+            catchError(httpResponse &#x3D;&gt; {
+              console.log(httpResponse);
+              const messages &#x3D; httpResponse.statusText.toLowerCase();
+
+              return of(new PatientsApiActions.CreatePatientFailure({messages}));
+            })
+          );
+      })
+    )</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Effect()<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/dashboard/effects/patients.effects.ts:25</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>effect fired, when the create new patient form is submitted
+send data to api and handle result</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="createPatientSuccess$"></a>
+                        <span class="name">
+                            <b>
+                            createPatientSuccess$
+                            </b>
+                            <a href="#createPatientSuccess$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>createPatientSuccess$:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.actions$
+    .pipe(
+      ofType(PatientsApiActions.PatientsApiActionTypes.CreatePatientSuccess),
+      tap(() &#x3D;&gt; {
+        this.dialog.getDialogById(&quot;patientCreationForm&quot;).close();
+        this.store.dispatch(new PatientsActions.LoadPatients());
+      })
+    )</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Effect({dispatch: undefined})<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/dashboard/effects/patients.effects.ts:94</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>observes the CreatePatientSuccess action
+in case create patient succeeds, the form dialog box is closed
+and the patients list is shown</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="DismissPatientFormDialog"></a>
+                        <span class="name">
+                            <b>
+                            DismissPatientFormDialog
+                            </b>
+                            <a href="#DismissPatientFormDialog"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>DismissPatientFormDialog:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.actions$
+    .pipe(
+      ofType(PatientsActions.PatientsActionTypes.DismissPatientFormDialog),
+      map(() &#x3D;&gt; {
+        this.dialog.getDialogById(&#x27;patientCreationForm&#x27;).close();
+      })
+    )</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Effect({dispatch: undefined})<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/app/dashboard/effects/patients.effects.ts:173</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>effect to dismiss the dialog for adding patient details</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editPatient$"></a>
+                        <span class="name">
+                            <b>
+                            editPatient$
+                            </b>
+                            <a href="#editPatient$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>editPatient$:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.actions$.pipe(
+    ofType&lt;PatientsActions.EditPatient&gt;(PatientsActions.PatientsActionTypes.EditPatient),
+    map(action &#x3D;&gt; action.payload),
+    exhaustMap((patient: IPatient) &#x3D;&gt; {
+
+      return this.patientsService.updatePatient(patient)
+        .pipe(
+          map((savedPatient: IPatient) &#x3D;&gt; {
+            this.store.dispatch(new PatientsActions.DismissEditPatient());
+            return new PatientsApiActions.EditPatientSuccess({patient: savedPatient});
+          }),
+          catchError(httpError &#x3D;&gt; {
+            console.log(httpError);
+              const message &#x3D; httpError.statusText.toLowerCase();
+
+              const snackBarRef &#x3D; this.snackBar.open(this.translate.instant(message), this.translate.instant(&#x27;Retry&#x27;), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss &#x3D;&gt; {
+
+                if (snackBarDismiss.dismissedByAction){
+                  this.store.dispatch(new PatientsActions.EditPatient(patient));
+                } else {
+                  this.router.navigate([&#x27;/dashboard/patients&#x27;]);
+                }
+              });
+
+              return of(new PatientsApiActions.LoadPatientUsersFailure({message}));
+            })
+        );
+    })
+  )</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Effect()<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/dashboard/effects/patients.effects.ts:52</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>send patient data to api and handle result</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loadPatients"></a>
+                        <span class="name">
+                            <b>
+                            loadPatients
+                            </b>
+                            <a href="#loadPatients"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>loadPatients:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.actions$
+    .pipe(
+      ofType&lt;PatientsActions.LoadPatients&gt;(PatientsActions.PatientsActionTypes.LoadPatients),
+      exhaustMap(() &#x3D;&gt; {
+
+        return this.patientsService.getPatients()
+          .pipe(
+            //delay(2000),
+            map((patients: IPatient[]) &#x3D;&gt; {
+              console.log(patients);
+
+              for (let key in patients){
+                const patient &#x3D; patients[key];
+                patient[&quot;users_count&quot;] &#x3D; patient.users.length;
+              }
+
+              return new PatientsApiActions.LoadPatientsSuccess({patients});
+            }),
+            catchError(httpError &#x3D;&gt; {
+              const message &#x3D; httpError.statusText.toLowerCase();
+
+              const snackBarRef &#x3D; this.snackBar.open(this.translate.instant(message), this.translate.instant(&#x27;Retry&#x27;), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss &#x3D;&gt; {
+
+                if (snackBarDismiss.dismissedByAction){
+                  this.store.dispatch(new PatientsActions.LoadPatients());
+                } else {
+                  this.router.navigate([&#x27;/dashboard&#x27;]);
+                }
+              });
+
+              return of(new PatientsApiActions.LoadPatientsFailure({message}));
+            })
+          );
+      })
+    )</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Effect()<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/dashboard/effects/patients.effects.ts:107</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>effect for loading patients</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="popUpPatientForm$"></a>
+                        <span class="name">
+                            <b>
+                            popUpPatientForm$
+                            </b>
+                            <a href="#popUpPatientForm$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>popUpPatientForm$:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.actions$
+    .pipe(
+      ofType&lt;PatientsActions.CreatePatientFormDialog&gt;(PatientsActions.PatientsActionTypes.CreatePatientFormDialog),
+      exhaustMap(() &#x3D;&gt; {
+        const title &#x3D; &#x27;Creating a new patient&#x27;;
+        const dialogRef: MatDialogRef&lt;PatientFormComponent&gt; &#x3D; this.dialog.open(PatientFormComponent, {
+          width: &#x27;720px&#x27;,
+          disableClose: true,
+          data: { title: title }
+        });
+        
+        return dialogRef.afterClosed();
+      })
+    )</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Effect()<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/app/dashboard/effects/patients.effects.ts:151</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>show a dialog form for patient details as a pop up</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="snackBar"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            snackBar
+                            </b>
+                            <a href="#snackBar"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>snackBar:     <code>MatSnackBar</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>MatSnackBar</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/app/dashboard/effects/patients.effects.ts:195</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { Actions, Effect, ofType } from &#x27;@ngrx/effects&#x27;;
+import { PatientsApiActions, PatientsActions } from &#x27;../actions&#x27;;
+import { catchError, exhaustMap, map, tap, delay } from &#x27;rxjs/operators&#x27;;
+import { IPatient } from &#x27;../models/patient.model&#x27;;
+import { PatientsService } from &#x27;../services/patients.service&#x27;;
+import { of } from &#x27;rxjs&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { Store } from &#x27;@ngrx/store&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { MatDialogRef, MatDialog, MatSnackBar } from &#x27;@angular/material&#x27;;
+import { PatientFormComponent } from &#x27;../components/patients/patient-form/patient-form.component&#x27;;
+
+/**
+ * patients effects
+ */
+@Injectable()
+export class PatientsEffects {
+
+  /**
+   * effect fired, when the create new patient form is submitted
+   * send data to api and handle result
+   */
+  @Effect()
+  createPatient$ &#x3D; this.actions$
+    .pipe(
+      ofType&lt;PatientsActions.CreatePatient&gt;(PatientsActions.PatientsActionTypes.CreatePatient),
+      map(action &#x3D;&gt; action.payload.patient),
+      exhaustMap((patientData: IPatient) &#x3D;&gt; {
+
+        return this.patientsService.createPatient(patientData)
+          .pipe(
+            // delay(2000),
+            map(patient &#x3D;&gt; {
+              console.log(patient);
+              return new PatientsApiActions.CreatePatientSuccess({patient});
+            }),
+            catchError(httpResponse &#x3D;&gt; {
+              console.log(httpResponse);
+              const messages &#x3D; httpResponse.statusText.toLowerCase();
+
+              return of(new PatientsApiActions.CreatePatientFailure({messages}));
+            })
+          );
+      })
+    );
+
+  /**
+   * send patient data to api and handle result
+   */
+  @Effect()
+  editPatient$ &#x3D; this.actions$.pipe(
+    ofType&lt;PatientsActions.EditPatient&gt;(PatientsActions.PatientsActionTypes.EditPatient),
+    map(action &#x3D;&gt; action.payload),
+    exhaustMap((patient: IPatient) &#x3D;&gt; {
+
+      return this.patientsService.updatePatient(patient)
+        .pipe(
+          map((savedPatient: IPatient) &#x3D;&gt; {
+            this.store.dispatch(new PatientsActions.DismissEditPatient());
+            return new PatientsApiActions.EditPatientSuccess({patient: savedPatient});
+          }),
+          catchError(httpError &#x3D;&gt; {
+            console.log(httpError);
+              const message &#x3D; httpError.statusText.toLowerCase();
+
+              const snackBarRef &#x3D; this.snackBar.open(this.translate.instant(message), this.translate.instant(&#x27;Retry&#x27;), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss &#x3D;&gt; {
+
+                if (snackBarDismiss.dismissedByAction){
+                  this.store.dispatch(new PatientsActions.EditPatient(patient));
+                } else {
+                  this.router.navigate([&#x27;/dashboard/patients&#x27;]);
+                }
+              });
+
+              return of(new PatientsApiActions.LoadPatientUsersFailure({message}));
+            })
+        );
+    })
+  );
+
+  /**
+   * observes the CreatePatientSuccess action
+   * in case create patient succeeds, the form dialog box is closed
+   * and the patients list is shown
+   */
+  @Effect({
+    dispatch: false
+  })
+  createPatientSuccess$ &#x3D; this.actions$
+    .pipe(
+      ofType(PatientsApiActions.PatientsApiActionTypes.CreatePatientSuccess),
+      tap(() &#x3D;&gt; {
+        this.dialog.getDialogById(&quot;patientCreationForm&quot;).close();
+        this.store.dispatch(new PatientsActions.LoadPatients());
+      })
+    );
+
+  /**
+   * effect for loading patients
+   */
+  @Effect()
+  loadPatients &#x3D; this.actions$
+    .pipe(
+      ofType&lt;PatientsActions.LoadPatients&gt;(PatientsActions.PatientsActionTypes.LoadPatients),
+      exhaustMap(() &#x3D;&gt; {
+
+        return this.patientsService.getPatients()
+          .pipe(
+            //delay(2000),
+            map((patients: IPatient[]) &#x3D;&gt; {
+              console.log(patients);
+
+              for (let key in patients){
+                const patient &#x3D; patients[key];
+                patient[&quot;users_count&quot;] &#x3D; patient.users.length;
+              }
+
+              return new PatientsApiActions.LoadPatientsSuccess({patients});
+            }),
+            catchError(httpError &#x3D;&gt; {
+              const message &#x3D; httpError.statusText.toLowerCase();
+
+              const snackBarRef &#x3D; this.snackBar.open(this.translate.instant(message), this.translate.instant(&#x27;Retry&#x27;), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss &#x3D;&gt; {
+
+                if (snackBarDismiss.dismissedByAction){
+                  this.store.dispatch(new PatientsActions.LoadPatients());
+                } else {
+                  this.router.navigate([&#x27;/dashboard&#x27;]);
+                }
+              });
+
+              return of(new PatientsApiActions.LoadPatientsFailure({message}));
+            })
+          );
+      })
+    );
+
+  /**
+   * show a dialog form for patient details as a pop up
+   */
+  @Effect()
+  popUpPatientForm$ &#x3D; this.actions$
+    .pipe(
+      ofType&lt;PatientsActions.CreatePatientFormDialog&gt;(PatientsActions.PatientsActionTypes.CreatePatientFormDialog),
+      exhaustMap(() &#x3D;&gt; {
+        const title &#x3D; &#x27;Creating a new patient&#x27;;
+        const dialogRef: MatDialogRef&lt;PatientFormComponent&gt; &#x3D; this.dialog.open(PatientFormComponent, {
+          width: &#x27;720px&#x27;,
+          disableClose: true,
+          data: { title: title }
+        });
+        
+        return dialogRef.afterClosed();
+      })
+    );
+
+
+  /**
+   * effect to dismiss the dialog for adding patient details
+   */
+  @Effect({
+    dispatch: false
+  })
+  DismissPatientFormDialog &#x3D; this.actions$
+    .pipe(
+      ofType(PatientsActions.PatientsActionTypes.DismissPatientFormDialog),
+      map(() &#x3D;&gt; {
+        this.dialog.getDialogById(&#x27;patientCreationForm&#x27;).close();
+      })
+    );
+
+  /**
+   * constructor
+   *
+   * @param actions$
+   * @param patientsService
+   * @param router
+   * @param modalController
+   * @param store
+   */
+  constructor(
+    private actions$: Actions,
+    private patientsService: PatientsService,
+    private router: Router,
+    private store: Store&lt;any&gt;,
+    public snackBar: MatSnackBar,
+    private translate: TranslateService,
+    private dialog: MatDialog) {
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'PatientsEffects.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

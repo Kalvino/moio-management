@@ -1,0 +1,1171 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>moio-management documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">moio-management documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>UsersEffects</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/dashboard/effects/users.effects.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>users effects</p>
+
+            </p>
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#createUser$">createUser$</a>
+                            </li>
+                            <li>
+                                <a href="#createUserSuccess$">createUserSuccess$</a>
+                            </li>
+                            <li>
+                                <a href="#DismissUserFormDialog">DismissUserFormDialog</a>
+                            </li>
+                            <li>
+                                <a href="#editUser$">editUser$</a>
+                            </li>
+                            <li>
+                                <a href="#editUserSuccess$">editUserSuccess$</a>
+                            </li>
+                            <li>
+                                <a href="#loadUserPatients">loadUserPatients</a>
+                            </li>
+                            <li>
+                                <a href="#loadUsers">loadUsers</a>
+                            </li>
+                            <li>
+                                <a href="#popUpUserForm$">popUpUserForm$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#snackBar">snackBar</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(actions$: Actions, usersService: <a href="../injectables/UsersService.html">UsersService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, store: Store<any>, snackBar: MatSnackBar, translate: TranslateService, dialog: MatDialog)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="243" class="link-to-prism">src/app/dashboard/effects/users.effects.ts:243</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>constructor</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>actions$</td>
+                                                  
+                                                        <td>
+                                                                    <code>Actions</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>usersService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/UsersService.html" target="_self" >UsersService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code>Store&lt;any&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>translate</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="createUser$"></a>
+                        <span class="name">
+                            <b>
+                            createUser$
+                            </b>
+                            <a href="#createUser$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>createUser$:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.actions$
+    .pipe(
+      ofType&lt;UsersActions.CreateUser&gt;(UsersActions.UsersActionTypes.CreateUser),
+      map(action &#x3D;&gt; action.payload.user),
+      exhaustMap((userData: User) &#x3D;&gt; {
+
+        return this.usersService.createUser(userData)
+          .pipe(
+            // delay(2000),
+            map(user &#x3D;&gt; {
+              console.log(user);
+              return new UsersApiActions.CreateUserSuccess({user});
+            }),
+            catchError(httpResponse &#x3D;&gt; {
+              console.log(httpResponse);
+              const messages &#x3D; httpResponse.statusText.toLowerCase();
+
+              return of(new UsersApiActions.CreateUserFailure({messages}));
+            })
+          );
+      })
+    )</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Effect()<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/dashboard/effects/users.effects.ts:27</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>effect fired, when the create new user form is submitted
+send data to api and handle result</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="createUserSuccess$"></a>
+                        <span class="name">
+                            <b>
+                            createUserSuccess$
+                            </b>
+                            <a href="#createUserSuccess$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>createUserSuccess$:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.actions$
+    .pipe(
+      ofType(UsersApiActions.UsersApiActionTypes.CreateUserSuccess),
+      tap(() &#x3D;&gt; {
+        this.dialog.getDialogById(&quot;userCreationForm&quot;).close();
+      })
+    )</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Effect({dispatch: undefined})<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/dashboard/effects/users.effects.ts:96</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>observes the CreateUserSuccess action
+in case create user succeeds, the form dialog box is closed
+and the users list is shown</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="DismissUserFormDialog"></a>
+                        <span class="name">
+                            <b>
+                            DismissUserFormDialog
+                            </b>
+                            <a href="#DismissUserFormDialog"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>DismissUserFormDialog:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.actions$
+    .pipe(
+      ofType(UsersActions.UsersActionTypes.DismissUserFormDialog),
+      map(() &#x3D;&gt; {
+        this.dialog.getDialogById(&#x27;userCreationForm&#x27;).close();
+      })
+    )</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Effect({dispatch: undefined})<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="237" class="link-to-prism">src/app/dashboard/effects/users.effects.ts:237</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>effect to dismiss the dialog for adding user details</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editUser$"></a>
+                        <span class="name">
+                            <b>
+                            editUser$
+                            </b>
+                            <a href="#editUser$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>editUser$:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.actions$.pipe(
+    ofType&lt;UsersActions.EditUser&gt;(UsersActions.UsersActionTypes.EditUser),
+    map(action &#x3D;&gt; action.payload),
+    exhaustMap((user: User) &#x3D;&gt; {
+
+      return this.usersService.updateUser(user)
+        .pipe(
+          map((savedUser: User) &#x3D;&gt; {
+            this.store.dispatch(new UsersActions.DismissEditUser());
+            return new UsersApiActions.EditUserSuccess({user: savedUser});
+          }),
+          catchError(httpError &#x3D;&gt; {
+            console.log(httpError);
+              const message &#x3D; httpError.statusText.toLowerCase();
+
+              const snackBarRef &#x3D; this.snackBar.open(this.translate.instant(message), this.translate.instant(&#x27;Retry&#x27;), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss &#x3D;&gt; {
+
+                if (snackBarDismiss.dismissedByAction){
+                  this.store.dispatch(new UsersActions.EditUser(user));
+                } else {
+                  this.router.navigate([&#x27;/dashboard/users&#x27;]);
+                }
+              });
+
+              return of(new UsersApiActions.LoadUserPatientsFailure({message}));
+            })
+        );
+    })
+  )</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Effect()<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/dashboard/effects/users.effects.ts:54</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>send user data to api and handle result</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editUserSuccess$"></a>
+                        <span class="name">
+                            <b>
+                            editUserSuccess$
+                            </b>
+                            <a href="#editUserSuccess$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>editUserSuccess$:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.actions$
+    .pipe(
+      ofType(UsersApiActions.UsersApiActionTypes.EditUserSuccess),
+      tap(() &#x3D;&gt; {
+        this.store.dispatch(new UsersActions.LoadUsers());
+      })
+    )</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Effect({dispatch: undefined})<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/dashboard/effects/users.effects.ts:111</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>observes the EditUserSuccess action
+in case edit user succeeds, the list is reloaded</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loadUserPatients"></a>
+                        <span class="name">
+                            <b>
+                            loadUserPatients
+                            </b>
+                            <a href="#loadUserPatients"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>loadUserPatients:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.actions$
+    .pipe(
+      ofType&lt;UsersActions.LoadUserPatients&gt;(UsersActions.UsersActionTypes.LoadUserPatients),
+      map(action &#x3D;&gt; action.payload),
+      exhaustMap((id: number) &#x3D;&gt; {
+
+        return this.usersService.getUserPatients(id)
+          .pipe(
+            delay(2000),
+            map((patients: IPatient[]) &#x3D;&gt; {
+              console.log(patients);
+
+              for (let key in patients){
+                const patient &#x3D; patients[key];
+                const user &#x3D; patient.users.filter(user &#x3D;&gt; user.id &#x3D;&#x3D;&#x3D; id );
+                let permission &#x3D; &quot;&quot;;
+
+                if(user[0].user_patient_permission &#x3D;&#x3D; 1){
+                  permission &#x3D; &quot;Administrator&quot;;
+                }else{
+                  permission &#x3D; &quot;Read Only&quot;
+                }
+                patient[&quot;permission&quot;] &#x3D; permission;
+              }
+
+              return new UsersApiActions.LoadUserPatientsSuccess({patients});
+            }),
+            catchError(httpError &#x3D;&gt; {
+              const message &#x3D; httpError.statusText.toLowerCase();
+
+              const snackBarRef &#x3D; this.snackBar.open(this.translate.instant(message), this.translate.instant(&#x27;Retry&#x27;), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss &#x3D;&gt; {
+
+                if (snackBarDismiss.dismissedByAction){
+                  this.store.dispatch(new UsersActions.LoadUserPatients(id));
+                } else {
+                  this.router.navigate([&#x27;/dashboard/users&#x27;]);
+                }
+              });
+
+              return of(new UsersApiActions.LoadUserPatientsFailure({message}));
+            })
+          );
+      })
+    )</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Effect()<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/app/dashboard/effects/users.effects.ts:162</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>effect for loading user users</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loadUsers"></a>
+                        <span class="name">
+                            <b>
+                            loadUsers
+                            </b>
+                            <a href="#loadUsers"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>loadUsers:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.actions$
+    .pipe(
+      ofType&lt;UsersActions.LoadUsers&gt;(UsersActions.UsersActionTypes.LoadUsers),
+      exhaustMap(() &#x3D;&gt; {
+
+        return this.usersService.getUsers()
+          .pipe(
+            //delay(2000),
+            map((users: User[]) &#x3D;&gt; {
+              console.log(users);
+              return new UsersApiActions.LoadUsersSuccess({users});
+            }),
+            catchError(httpError &#x3D;&gt; {
+              const message &#x3D; httpError.statusText.toLowerCase();
+
+              const snackBarRef &#x3D; this.snackBar.open(this.translate.instant(message), this.translate.instant(&#x27;Retry&#x27;), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss &#x3D;&gt; {
+
+                if (snackBarDismiss.dismissedByAction){
+                  this.store.dispatch(new UsersActions.LoadUsers());
+                } else {
+                  this.router.navigate([&#x27;/dashboard&#x27;]);
+                }
+              });
+
+              return of(new UsersApiActions.LoadUsersFailure({message}));
+            })
+          );
+      })
+    )</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Effect()<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/dashboard/effects/users.effects.ts:123</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>effect for loading users</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="popUpUserForm$"></a>
+                        <span class="name">
+                            <b>
+                            popUpUserForm$
+                            </b>
+                            <a href="#popUpUserForm$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>popUpUserForm$:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.actions$
+    .pipe(
+      ofType&lt;UsersActions.CreateUserFormDialog&gt;(UsersActions.UsersActionTypes.CreateUserFormDialog),
+      exhaustMap(() &#x3D;&gt; {
+        const title &#x3D; &#x27;Creating a new user&#x27;;
+        const dialogRef: MatDialogRef&lt;UserFormComponent&gt; &#x3D; this.dialog.open(UserFormComponent, {
+          width: &#x27;720px&#x27;,
+          disableClose: true,
+          data: { title: title }
+        });
+        
+        return dialogRef.afterClosed();
+      })
+    )</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Effect()<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/app/dashboard/effects/users.effects.ts:215</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>show a dialog form for user details as a pop up</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="snackBar"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            snackBar
+                            </b>
+                            <a href="#snackBar"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>snackBar:     <code>MatSnackBar</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>MatSnackBar</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/app/dashboard/effects/users.effects.ts:259</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { Actions, Effect, ofType } from &#x27;@ngrx/effects&#x27;;
+import { UsersApiActions, UsersActions } from &#x27;../actions&#x27;;
+import { catchError, exhaustMap, map, tap, delay } from &#x27;rxjs/operators&#x27;;
+import { User } from &#x27;../models/user.model&#x27;;
+import { UsersService } from &#x27;../services/users.service&#x27;;
+import { of } from &#x27;rxjs&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { Store } from &#x27;@ngrx/store&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { MatDialogRef, MatDialog, MatSnackBar } from &#x27;@angular/material&#x27;;
+import { UserFormComponent } from &#x27;../components/users/user-form/user-form.component&#x27;;
+import { IPatient } from &#x27;../models/patient.model&#x27;;
+import { Update } from &#x27;@ngrx/entity&#x27;;
+
+/**
+ * users effects
+ */
+@Injectable()
+export class UsersEffects {
+
+  /**
+   * effect fired, when the create new user form is submitted
+   * send data to api and handle result
+   */
+  @Effect()
+  createUser$ &#x3D; this.actions$
+    .pipe(
+      ofType&lt;UsersActions.CreateUser&gt;(UsersActions.UsersActionTypes.CreateUser),
+      map(action &#x3D;&gt; action.payload.user),
+      exhaustMap((userData: User) &#x3D;&gt; {
+
+        return this.usersService.createUser(userData)
+          .pipe(
+            // delay(2000),
+            map(user &#x3D;&gt; {
+              console.log(user);
+              return new UsersApiActions.CreateUserSuccess({user});
+            }),
+            catchError(httpResponse &#x3D;&gt; {
+              console.log(httpResponse);
+              const messages &#x3D; httpResponse.statusText.toLowerCase();
+
+              return of(new UsersApiActions.CreateUserFailure({messages}));
+            })
+          );
+      })
+    );
+
+  /**
+   * send user data to api and handle result
+   */
+  @Effect()
+  editUser$ &#x3D; this.actions$.pipe(
+    ofType&lt;UsersActions.EditUser&gt;(UsersActions.UsersActionTypes.EditUser),
+    map(action &#x3D;&gt; action.payload),
+    exhaustMap((user: User) &#x3D;&gt; {
+
+      return this.usersService.updateUser(user)
+        .pipe(
+          map((savedUser: User) &#x3D;&gt; {
+            this.store.dispatch(new UsersActions.DismissEditUser());
+            return new UsersApiActions.EditUserSuccess({user: savedUser});
+          }),
+          catchError(httpError &#x3D;&gt; {
+            console.log(httpError);
+              const message &#x3D; httpError.statusText.toLowerCase();
+
+              const snackBarRef &#x3D; this.snackBar.open(this.translate.instant(message), this.translate.instant(&#x27;Retry&#x27;), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss &#x3D;&gt; {
+
+                if (snackBarDismiss.dismissedByAction){
+                  this.store.dispatch(new UsersActions.EditUser(user));
+                } else {
+                  this.router.navigate([&#x27;/dashboard/users&#x27;]);
+                }
+              });
+
+              return of(new UsersApiActions.LoadUserPatientsFailure({message}));
+            })
+        );
+    })
+  );
+
+  /**
+   * observes the CreateUserSuccess action
+   * in case create user succeeds, the form dialog box is closed
+   * and the users list is shown
+   */
+  @Effect({
+    dispatch: false
+  })
+  createUserSuccess$ &#x3D; this.actions$
+    .pipe(
+      ofType(UsersApiActions.UsersApiActionTypes.CreateUserSuccess),
+      tap(() &#x3D;&gt; {
+        this.dialog.getDialogById(&quot;userCreationForm&quot;).close();
+      })
+    );
+
+  /**
+   * observes the EditUserSuccess action
+   * in case edit user succeeds, the list is reloaded
+   */
+  @Effect({
+    dispatch: false
+  })
+  editUserSuccess$ &#x3D; this.actions$
+    .pipe(
+      ofType(UsersApiActions.UsersApiActionTypes.EditUserSuccess),
+      tap(() &#x3D;&gt; {
+        this.store.dispatch(new UsersActions.LoadUsers());
+      })
+    );
+
+  /**
+   * effect for loading users
+   */
+  @Effect()
+  loadUsers &#x3D; this.actions$
+    .pipe(
+      ofType&lt;UsersActions.LoadUsers&gt;(UsersActions.UsersActionTypes.LoadUsers),
+      exhaustMap(() &#x3D;&gt; {
+
+        return this.usersService.getUsers()
+          .pipe(
+            //delay(2000),
+            map((users: User[]) &#x3D;&gt; {
+              console.log(users);
+              return new UsersApiActions.LoadUsersSuccess({users});
+            }),
+            catchError(httpError &#x3D;&gt; {
+              const message &#x3D; httpError.statusText.toLowerCase();
+
+              const snackBarRef &#x3D; this.snackBar.open(this.translate.instant(message), this.translate.instant(&#x27;Retry&#x27;), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss &#x3D;&gt; {
+
+                if (snackBarDismiss.dismissedByAction){
+                  this.store.dispatch(new UsersActions.LoadUsers());
+                } else {
+                  this.router.navigate([&#x27;/dashboard&#x27;]);
+                }
+              });
+
+              return of(new UsersApiActions.LoadUsersFailure({message}));
+            })
+          );
+      })
+    );
+
+
+  /**
+   * effect for loading user users
+   */
+  @Effect()
+  loadUserPatients &#x3D; this.actions$
+    .pipe(
+      ofType&lt;UsersActions.LoadUserPatients&gt;(UsersActions.UsersActionTypes.LoadUserPatients),
+      map(action &#x3D;&gt; action.payload),
+      exhaustMap((id: number) &#x3D;&gt; {
+
+        return this.usersService.getUserPatients(id)
+          .pipe(
+            delay(2000),
+            map((patients: IPatient[]) &#x3D;&gt; {
+              console.log(patients);
+
+              for (let key in patients){
+                const patient &#x3D; patients[key];
+                const user &#x3D; patient.users.filter(user &#x3D;&gt; user.id &#x3D;&#x3D;&#x3D; id );
+                let permission &#x3D; &quot;&quot;;
+
+                if(user[0].user_patient_permission &#x3D;&#x3D; 1){
+                  permission &#x3D; &quot;Administrator&quot;;
+                }else{
+                  permission &#x3D; &quot;Read Only&quot;
+                }
+                patient[&quot;permission&quot;] &#x3D; permission;
+              }
+
+              return new UsersApiActions.LoadUserPatientsSuccess({patients});
+            }),
+            catchError(httpError &#x3D;&gt; {
+              const message &#x3D; httpError.statusText.toLowerCase();
+
+              const snackBarRef &#x3D; this.snackBar.open(this.translate.instant(message), this.translate.instant(&#x27;Retry&#x27;), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss &#x3D;&gt; {
+
+                if (snackBarDismiss.dismissedByAction){
+                  this.store.dispatch(new UsersActions.LoadUserPatients(id));
+                } else {
+                  this.router.navigate([&#x27;/dashboard/users&#x27;]);
+                }
+              });
+
+              return of(new UsersApiActions.LoadUserPatientsFailure({message}));
+            })
+          );
+      })
+    );
+
+  /**
+   * show a dialog form for user details as a pop up
+   */
+  @Effect()
+  popUpUserForm$ &#x3D; this.actions$
+    .pipe(
+      ofType&lt;UsersActions.CreateUserFormDialog&gt;(UsersActions.UsersActionTypes.CreateUserFormDialog),
+      exhaustMap(() &#x3D;&gt; {
+        const title &#x3D; &#x27;Creating a new user&#x27;;
+        const dialogRef: MatDialogRef&lt;UserFormComponent&gt; &#x3D; this.dialog.open(UserFormComponent, {
+          width: &#x27;720px&#x27;,
+          disableClose: true,
+          data: { title: title }
+        });
+        
+        return dialogRef.afterClosed();
+      })
+    );
+
+
+  /**
+   * effect to dismiss the dialog for adding user details
+   */
+  @Effect({
+    dispatch: false
+  })
+  DismissUserFormDialog &#x3D; this.actions$
+    .pipe(
+      ofType(UsersActions.UsersActionTypes.DismissUserFormDialog),
+      map(() &#x3D;&gt; {
+        this.dialog.getDialogById(&#x27;userCreationForm&#x27;).close();
+      })
+    );
+
+  /**
+   * constructor
+   *
+   * @param actions$
+   * @param usersService
+   * @param router
+   * @param modalController
+   * @param store
+   */
+  constructor(
+    private actions$: Actions,
+    private usersService: UsersService,
+    private router: Router,
+    private store: Store&lt;any&gt;,
+    public snackBar: MatSnackBar,
+    private translate: TranslateService,
+    private dialog: MatDialog) {
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'UsersEffects.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
