@@ -9,7 +9,6 @@ import { MaterialModule } from 'src/app/material';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { TranslateModule } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { of } from 'rxjs';
 
 
 describe('DashboardLayoutComponent', () => {
