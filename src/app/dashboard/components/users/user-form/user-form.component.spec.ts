@@ -57,8 +57,8 @@ describe('UserFormComponent', () => {
     const form = overlayContainerElement.querySelector('form');
     // const div = overlayContainerElement.querySelector('.mat-dialog-content');
 
-    expect(h1).toBeDefined;
-    expect(form).toBeDefined;
+    expect(h1).toBeDefined();
+    expect(form).toBeDefined();
     // expect(div.textContent).toBe('Are you sure you want to logout?');
   });
 

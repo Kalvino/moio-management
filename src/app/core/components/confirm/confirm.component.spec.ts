@@ -50,7 +50,7 @@ describe('ConfirmDialog', () => {
     // const button = overlayContainerElement.querySelector('button');
 
     // expect(h1.textContent).toBe('Confirm Logout');
-    expect(h1).toBeDefined;
+    expect(h1).toBeDefined();
     // expect(div.textContent).toBe('Are you sure you want to logout?');
   });
 
