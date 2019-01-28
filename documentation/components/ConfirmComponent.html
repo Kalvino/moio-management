@@ -383,23 +383,24 @@ export class ConfirmComponent {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;h1 matDialogTitle&gt;{{ data.title }}&lt;/h1&gt;
-  &lt;div mat-dialog-content&gt;{{ data.message }}&lt;/div&gt;
-  &lt;div mat-dialog-actions&gt;
-    &lt;button
-      type&#x3D;&quot;button&quot;
-      mat-raised-button
-      color&#x3D;&quot;primary&quot;
-      (click)&#x3D;&quot;dialogRef.close(true)&quot;&gt; {{&#x27;Ok&#x27; | translate }}
-    &lt;/button&gt;
-    &amp;nbsp;
-    &lt;span fxFlex&gt;&lt;/span&gt;
-    &lt;button
-      type&#x3D;&quot;button&quot;
-      color&#x3D;&quot;accent&quot;
-      mat-raised-button
-      (click)&#x3D;&quot;dialogRef.close(false)&quot;&gt;{{&#x27;Cancel&#x27; | translate }}
-    &lt;/button&gt;
-  &lt;/div&gt;</code></pre>
+&lt;div mat-dialog-content&gt;{{ data.message }}&lt;/div&gt;
+&lt;div mat-dialog-actions&gt;
+  &lt;button
+    type&#x3D;&quot;button&quot;
+    name&#x3D;&quot;confirm-button&quot;
+    mat-raised-button
+    color&#x3D;&quot;primary&quot;
+    (click)&#x3D;&quot;dialogRef.close(true)&quot;&gt; {{&#x27;Ok&#x27; | translate }}
+  &lt;/button&gt;
+  &amp;nbsp;
+  &lt;span fxFlex&gt;&lt;/span&gt;
+  &lt;button
+    type&#x3D;&quot;button&quot;
+    color&#x3D;&quot;accent&quot;
+    mat-raised-button
+    (click)&#x3D;&quot;dialogRef.close(false)&quot;&gt;{{&#x27;Cancel&#x27; | translate }}
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
     </div>
 
 
@@ -428,7 +429,7 @@ export class ConfirmComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><h1 matDialogTitle>{{ data.title }}</h1>  <div mat-dialog-content>{{ data.message }}</div>  <div mat-dialog-actions>    <button      type="button"      mat-raised-button      color="primary"      (click)="dialogRef.close(true)"> {{\'Ok\' | translate }}    </button>    &nbsp;    <span fxFlex></span>    <button      type="button"      color="accent"      mat-raised-button      (click)="dialogRef.close(false)">{{\'Cancel\' | translate }}    </button>  </div></div>'
+        var COMPONENT_TEMPLATE = '<div><h1 matDialogTitle>{{ data.title }}</h1><div mat-dialog-content>{{ data.message }}</div><div mat-dialog-actions>  <button    type="button"    name="confirm-button"    mat-raised-button    color="primary"    (click)="dialogRef.close(true)"> {{\'Ok\' | translate }}  </button>  &nbsp;  <span fxFlex></span>  <button    type="button"    color="accent"    mat-raised-button    (click)="dialogRef.close(false)">{{\'Cancel\' | translate }}  </button></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'moio-root'},{'name': 'AuthLayoutComponent', 'selector': 'moio-auth-layout'},{'name': 'BlankComponent', 'selector': 'moio-blank'},{'name': 'BreadcrumbComponent', 'selector': 'moio-breadcrumb'},{'name': 'ConfirmComponent', 'selector': 'moio-confirm'},{'name': 'DashboardLayoutComponent', 'selector': 'moio-dashboard'},{'name': 'ErrorComponent', 'selector': 'moio-error'},{'name': 'ErrorLayoutComponent', 'selector': 'moio-error-layout'},{'name': 'ForgotPasswordComponent', 'selector': 'moio-forgot-password'},{'name': 'HeaderSideComponent', 'selector': 'moio-header-side'},{'name': 'LoaderComponent', 'selector': 'moio-app-loader'},{'name': 'LockscreenComponent', 'selector': 'moio-lockscreen'},{'name': 'NotFoundComponent', 'selector': 'moio-not-found'},{'name': 'NotificationsComponent', 'selector': 'moio-notifications'},{'name': 'NursingHomeFormComponent', 'selector': 'nursing-home-form'},{'name': 'PatientEditFormComponent', 'selector': 'moio-patient-edit-form'},{'name': 'PatientFormComponent', 'selector': 'patient-form'},{'name': 'PatientListComponent', 'selector': 'moio-patient-list'},{'name': 'PatientsComponent', 'selector': 'moio-patients-page'},{'name': 'SidebarSideComponent', 'selector': 'moio-sidebar-side'},{'name': 'SidebarTopComponent', 'selector': 'moio-sidebar-top'},{'name': 'SidenavComponent', 'selector': 'moio-sidenav'},{'name': 'SigninComponent', 'selector': 'moio-signin'},{'name': 'SignupComponent', 'selector': 'moio-signup'},{'name': 'UserEditFormComponent', 'selector': 'moio-user-edit-form'},{'name': 'UserFormComponent', 'selector': 'user-form'},{'name': 'UserListComponent', 'selector': 'moio-user-list'},{'name': 'UsersComponent', 'selector': 'moio-users-page'}];
     var DIRECTIVES = [{'name': 'AppDropdownDirective', 'selector': '[appDropdown]'},{'name': 'DropdownAnchorDirective', 'selector': '[appDropdownToggle]'},{'name': 'DropdownLinkDirective', 'selector': '[appDropdownLink]'},{'name': 'EgretSideNavToggleDirective', 'selector': '[EgretSideNavToggle]'},{'name': 'FontSizeDirective', 'selector': '[fontSize]'},{'name': 'ScrollToDirective', 'selector': '[scrollTo]'}];
     var ACTUAL_COMPONENT = {'name': 'ConfirmComponent'};

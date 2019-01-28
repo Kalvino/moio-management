@@ -21,7 +21,7 @@
         <span class="text-muted">{{item.name | translate}}</span>
       </div>
       <div *ngIf="!item.disabled && item.type !== 'separator' && item.type !== 'icon'" class="lvl1">
-        <a routerLink="/{{item.state}}" appDropdownToggle matRipple *ngIf="item.type === 'link'">
+        <a routerLink="/{{item.state}}" name="{{item.name}}" appDropdownToggle matRipple *ngIf="item.type === 'link'">
           <mat-icon>{{item.icon}}</mat-icon>
           <span class="item-name lvl1">{{item.name | translate}}</span>
           <span fxFlex></span>

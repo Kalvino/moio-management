@@ -61,17 +61,16 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/dashboard/reducers/index.ts</code>
+            <code>src/app/dashboard/reducers/nursing-homes.reducer.ts</code>
         </p>
 
+
             <p class="comment">
-                <h3>Description</h3>
+                <h3>Extends</h3>
             </p>
             <p class="comment">
-                <p>assign state to global store</p>
-
+                    <code><a href="../interfaces/State.html" target="_self" >EntityState</a></code>
             </p>
-
 
         <section>
             <h3 id="index">Index</h3>
@@ -86,7 +85,7 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#dashboard">dashboard</a>
+                                        <a href="#selectedNursingHomeId">selectedNursingHomeId</a>
                                 </li>
                             </ul>
                         </td>
@@ -103,13 +102,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="dashboard"></a>
-                                        <span class="name"><b>dashboard</b><a href="#dashboard"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="selectedNursingHomeId"></a>
+                                        <span class="name"><b>selectedNursingHomeId</b><a href="#selectedNursingHomeId"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>dashboard:     <code><a href="../interfaces/State.html" target="_self" >DashboardState</a></code>
+                                        <code>selectedNursingHomeId:     <code>number | null</code>
 </code>
                                     </td>
                                 </tr>
@@ -117,7 +116,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code><a href="../interfaces/State.html" target="_self" >DashboardState</a></code>
+                                            <i>Type : </i>    <code>number | null</code>
 
                                         </td>
                                     </tr>
@@ -133,311 +132,77 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import * as fromUserPage from &#x27;./users-page.reducer&#x27;;
-import * as fromPatientPage from &#x27;./patients-page.reducer&#x27;;
-import * as fromNursingHomePage from &#x27;./nursing-homes-page.reducer&#x27;;
-import * as fromRoot from &#x27;../../reducers&#x27;;
-import * as fromUsers from &#x27;./users.reducer&#x27;;
-import * as fromPatients from &#x27;./patients.reducer&#x27;;
-import * as fromUserPatients from &#x27;./user-patients.reducer&#x27;;
-import * as fromPatientUsers from &#x27;./patient-users.reducer&#x27;;
-import * as fromNursingHome from &#x27;./nursing-homes.reducer&#x27;;
-import * as fromLayout from &#x27;./layout.reducer&#x27;;
-import { ActionReducerMap, createFeatureSelector, createSelector } from &#x27;@ngrx/store&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NursingHomesApiActions, NursingHomesActions } from &#x27;../actions&#x27;;
+import { createEntityAdapter, EntityAdapter, EntityState } from &#x27;@ngrx/entity&#x27;;
+import { NursingHome } from &#x27;../models/nursing-home.model&#x27;;
+import { AuthApiActions } from &#x27;../../auth/actions&#x27;;
+
+// state interface definition
+export interface State extends EntityState&lt;NursingHome&gt; {
+  selectedNursingHomeId: number | null;
+}
+
+// extend &amp; export entity adapater
+export const adapater: EntityAdapter&lt;NursingHome&gt; &#x3D; createEntityAdapter&lt;NursingHome&gt;({
+  selectId: (nursingHome: NursingHome) &#x3D;&gt; nursingHome.id,
+  sortComparer: false
+});
+
+// compose the initial state
+export const initialState: State &#x3D; adapater.getInitialState({
+  selectedNursingHomeId: null
+});
 
 /**
- * compose dashboard state for global store
+ * reducer for the nursingHomes state
+ * @param state
+ * @param action
  */
-export interface DashboardState {
-  userPage: fromUserPage.State;
-  users: fromUsers.State;
-  nursingHomePage: fromNursingHomePage.State;
-  nursingHomes: fromNursingHome.State;
-  patientPage: fromPatientPage.State;
-  patients: fromPatients.State;
-  userPatients: fromUserPatients.State;
-  patientUsers: fromPatientUsers.State;
-  layout: fromLayout.State;
+export function reducer(
+  state: State &#x3D; initialState,
+  action:
+    | NursingHomesApiActions.NursingHomesApiActionsUnion
+    | NursingHomesActions.NursingHomesActionsUnion
+    | AuthApiActions.AuthApiActionsUnion
+): State {
+
+  switch (action.type) {
+
+    // load nursingHomes success state
+    case NursingHomesApiActions.NursingHomesApiActionTypes.LoadNursingHomesSuccess:
+      console.log(action.payload.nursingHomes);
+      return adapater.upsertMany(action.payload.nursingHomes, state);
+
+    // add a new entity to the state in case creation is successful
+    case NursingHomesApiActions.NursingHomesApiActionTypes.CreateNursingHomeSuccess:
+      return adapater.addOne(action.payload.nursingHome, state);
+
+    case NursingHomesApiActions.NursingHomesApiActionTypes.EditNursingHomeSuccess:
+      return adapater.upsertOne(action.payload.nursingHome, state);
+
+    // case select nursingHome
+    case NursingHomesActions.NursingHomesActionTypes.SelectNursingHome:
+      return {
+        ...state,
+        selectedNursingHomeId: action.payload.id
+      };
+
+    // reset state to initial state on logout
+    case AuthApiActions.AuthApiActionTypes.LogoutSuccess:
+    case NursingHomesActions.NursingHomesActionTypes.ResetNursingHomesState:
+      return initialState;
+
+    default:
+      return state;
+  }
+
 }
 
 /**
- * assign state to global store
+ * return the selected nursingHome id from the state
+ * @param state
  */
-export interface State extends fromRoot.State {
-  dashboard: DashboardState;
-}
-
-/**
- * compose action reducers
- */
-export const reducers: ActionReducerMap&lt;DashboardState, any&gt; &#x3D; {
-  userPage: fromUserPage.reducer,
-  users: fromUsers.reducer,
-  nursingHomePage: fromNursingHomePage.reducer,
-  nursingHomes: fromNursingHome.reducer,
-  patientPage: fromPatientPage.reducer,
-  patients: fromPatients.reducer,
-  userPatients: fromUserPatients.reducer,
-  patientUsers: fromPatientUsers.reducer,
-  layout: fromLayout.reducer
-};
-
-// create feature selectors
-export const getDashboardState &#x3D; createFeatureSelector&lt;State, DashboardState&gt;(&#x27;dashboard&#x27;);
-
-// ****************** USERS PAGE *************
-export const getUsersPageState &#x3D; createSelector(
-  getDashboardState,
-  (state: DashboardState) &#x3D;&gt; state.userPage
-);
-
-// get error state of the userPage from the store
-export const getUserPageError &#x3D; createSelector(
-  getUsersPageState,
-  fromUserPage.getError
-);
-
-// get pending state of the userPage from the store
-export const getUserPagePending &#x3D; createSelector(
-  getUsersPageState,
-  fromUserPage.getPending
-);
-
-// get error state when creating user from the store
-export const getUserCreationError &#x3D; createSelector(
-  getUsersPageState,
-  fromUserPage.getCreateUserError
-);
-
-// get pending state when creating a user from the store
-export const getUserCreationPending &#x3D; createSelector(
-  getUsersPageState,
-  fromUserPage.getCreateUserPending
-);
-
-// get error state when editing a user from the store
-export const getUserEditionError &#x3D; createSelector(
-  getUsersPageState,
-  fromUserPage.getEditUserError
-);
-
-// get pending state when editing a user from the store
-export const getUserEditionPending &#x3D; createSelector(
-  getUsersPageState,
-  fromUserPage.getEditUserPending
-);
-
-// get pending state when loading user patients from the store
-export const getLoadUserPatientsPending &#x3D; createSelector(
-  getUsersPageState,
-  fromUserPage.getLoadUserPatientsPending
-);
-
-// get error state when loading user patients from the store
-export const getLoadUserPatientsError &#x3D; createSelector(
-  getUsersPageState,
-  fromUserPage.getLoadUserPatientsError
-);
-
-// ****************** USERS *************
-export const getUsersState &#x3D; createSelector(
-  getDashboardState,
-  (state: DashboardState) &#x3D;&gt; state.users
-);
-
-// get the selected user id from state
-export const getSelectedUserId &#x3D; createSelector(
-  getUsersState,
-  fromUsers.getSelectedUserId
-);
-
-// deconstruct several functions from ngrx/entity
-export const {
-  selectIds: getUsersIds,
-  selectEntities: getUserEntities,
-  selectAll: getAllUsers,
-  selectTotal: getTotalUsers
-} &#x3D; fromUsers.adapater.getSelectors(getUsersState);
-
-// get the selected user from the state / users collection
-export const getSelectedUser &#x3D; createSelector(
-  getUserEntities,
-  getSelectedUserId,
-  (entities, id) &#x3D;&gt; entities[id]
-);
-
-
-// ****************** USER PATIENTS *************
-export const getUserPatientsState &#x3D; createSelector(
-  getDashboardState,
-  (state: DashboardState) &#x3D;&gt; state.userPatients
-);
-
-// deconstruct several functions from ngrx/entity
-export const {
-  selectEntities: getUserPatientsEntities,
-  selectAll: getAllUserPatients,
-  selectTotal: getTotalUserPatients
-} &#x3D; fromUserPatients.adapater.getSelectors(getUserPatientsState);
-
-
-
-// ****************** NURSING HOMES PAGE *************
-export const getNursingHomesPageState &#x3D; createSelector(
-  getDashboardState,
-  (state: DashboardState) &#x3D;&gt; state.nursingHomePage
-);
-
-// get error state of the nursingHomePage from the store
-export const getNursingHomePageError &#x3D; createSelector(
-  getNursingHomesPageState,
-  fromNursingHomePage.getError
-);
-
-// get pending state of the nursingHomePage from the store
-export const getNursingHomePagePending &#x3D; createSelector(
-  getNursingHomesPageState,
-  fromNursingHomePage.getPending
-);
-
-// ****************** NURSING HOMES *************
-export const getNursingHomesState &#x3D; createSelector(
-  getDashboardState,
-  (state: DashboardState) &#x3D;&gt; state.nursingHomes
-);
-
-// get the selected nursing home id from state
-export const getSelectedNursingHomeId &#x3D; createSelector(
-  getNursingHomesState,
-  fromNursingHome.getSelectedNursingHomeId
-);
-
-// deconstruct several functions from ngrx/entity
-export const {
-  selectIds: getNursingHomesIds,
-  selectEntities: getNursingHomeEntities,
-  selectAll: getAllNursingHomes,
-  selectTotal: getTotalNursiomes
-} &#x3D; fromNursingHome.adapater.getSelectors(getNursingHomesState);
-
-// get the selected nursing home from the state / nursing homes collection
-export const getSelectedNursingHome &#x3D; createSelector(
-  getNursingHomeEntities,
-  getSelectedNursingHomeId,
-  (entities, id) &#x3D;&gt; entities[id]
-);
-
-// ****************** PATIENTS PAGE *************
-export const getPatientsPageState &#x3D; createSelector(
-  getDashboardState,
-  (state: DashboardState) &#x3D;&gt; state.patientPage
-);
-
-// get error state of the patientPage from the store
-export const getPatientPageError &#x3D; createSelector(
-  getPatientsPageState,
-  fromPatientPage.getError
-);
-
-// get pending state of the patientPage from the store
-export const getPatientPagePending &#x3D; createSelector(
-  getPatientsPageState,
-  fromPatientPage.getPending
-);
-
-// get error state when creating patient from the store
-export const getPatientCreationError &#x3D; createSelector(
-  getPatientsPageState,
-  fromPatientPage.getCreatePatientError
-);
-
-// get pending state when creating a patient from the store
-export const getPatientCreationPending &#x3D; createSelector(
-  getPatientsPageState,
-  fromPatientPage.getCreatePatientPending
-);
-
-// get error state when editing a patient from the store
-export const getPatientEditionError &#x3D; createSelector(
-  getPatientsPageState,
-  fromPatientPage.getEditPatientError
-);
-
-// get pending state when editing a patient from the store
-export const getPatientEditionPending &#x3D; createSelector(
-  getPatientsPageState,
-  fromPatientPage.getEditPatientPending
-);
-
-// get pending state when loading patient users from the store
-export const getLoadPatientUsersPending &#x3D; createSelector(
-  getPatientsPageState,
-  fromPatientPage.getLoadPatientUsersPending
-);
-
-// get error state when loading patient users from the store
-export const getLoadPatientUsersError &#x3D; createSelector(
-  getPatientsPageState,
-  fromPatientPage.getLoadPatientUsersError
-);
-
-// ****************** PATIENTS *************
-export const getPatientsState &#x3D; createSelector(
-  getDashboardState,
-  (state: DashboardState) &#x3D;&gt; state.patients
-);
-
-// get the selected patient id from state
-export const getSelectedPatientId &#x3D; createSelector(
-  getPatientsState,
-  fromPatients.getSelectedPatientId
-);
-
-// deconstruct several functions from ngrx/entity
-export const {
-  selectIds: getPatientsIds,
-  selectEntities: getPatientEntities,
-  selectAll: getAllPatients,
-  selectTotal: getTotalPatients
-} &#x3D; fromPatients.adapater.getSelectors(getPatientsState);
-
-// get the selected patient from the state / patients collection
-export const getSelectedPatient &#x3D; createSelector(
-  getPatientEntities,
-  getSelectedPatientId,
-  (entities, id) &#x3D;&gt; entities[id]
-);
-
-// ****************** PATIENT USERS *************
-export const getPatientUsersState &#x3D; createSelector(
-  getDashboardState,
-  (state: DashboardState) &#x3D;&gt; state.patientUsers
-);
-
-// deconstruct several functions from ngrx/entity
-export const {
-  selectEntities: getPatientUsersEntities,
-  selectAll: getAllPatientUsers,
-  selectTotal: getTotalPatientUsers
-} &#x3D; fromPatientUsers.adapater.getSelectors(getPatientUsersState);
-
-// ****************** DASHBOARD LAYOUT *************
-export const getLayoutState &#x3D; createSelector(
-  getDashboardState,
-  (state: DashboardState) &#x3D;&gt; state.layout
-);
-
-/**
- * Layout configurations selectors
- */
-export const getSideNav &#x3D; createSelector(getLayoutState, fromLayout.getSideNav);
-export const getNavPosition &#x3D; createSelector(getLayoutState, fromLayout.getNavPosition);
-export const getDirection &#x3D; createSelector(getLayoutState, fromLayout.getDirection);
-export const getLayoutInTransition &#x3D; createSelector(getLayoutState, fromLayout.getLayoutInTransition);
-export const getIsMobile &#x3D; createSelector(getLayoutState, fromLayout.getIsMobile);
-export const getUseBreadcrumb &#x3D; createSelector(getLayoutState, fromLayout.getUseBreadcrumb);
-export const getBreadcrumb &#x3D; createSelector(getLayoutState, fromLayout.getBreadcrumb);
-export const getTopbarFixed &#x3D; createSelector(getLayoutState, fromLayout.getTopbarFixed);
+export const getSelectedNursingHomeId &#x3D; (state: State) &#x3D;&gt; state.selectedNursingHomeId;
 </code></pre>
     </div>
 </div>

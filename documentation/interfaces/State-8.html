@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/dashboard/reducers/patient-users.reducer.ts</code>
+            <code>src/app/dashboard/reducers/user-patients.reducer.ts</code>
         </p>
 
 
@@ -79,18 +79,18 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PatientsApiActions, PatientsActions } from &#x27;../actions&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UsersApiActions, UsersActions } from &#x27;../actions&#x27;;
 import { createEntityAdapter, EntityAdapter, EntityState } from &#x27;@ngrx/entity&#x27;;
 import { AuthApiActions } from &#x27;../../auth/actions&#x27;;
-import { User } from &#x27;../models/user.model&#x27;;
+import { IPatient } from &#x27;../models/patient.model&#x27;;
 
 // state interface definition
-export interface State extends EntityState&lt;User&gt; {
+export interface State extends EntityState&lt;IPatient&gt; {
 }
 
 // extend &amp; export entity adapater
-export const adapater: EntityAdapter&lt;User&gt; &#x3D; createEntityAdapter&lt;User&gt;({
-  selectId: (user: User) &#x3D;&gt; user.id,
+export const adapater: EntityAdapter&lt;IPatient&gt; &#x3D; createEntityAdapter&lt;IPatient&gt;({
+  selectId: (patient: IPatient) &#x3D;&gt; patient.id,
   sortComparer: false
 });
 
@@ -99,35 +99,35 @@ export const initialState: State &#x3D; adapater.getInitialState({
 });
 
 /**
- * reducer for the patient users state
+ * reducer for the user patients state
  * @param state
  * @param action
  */
 export function reducer(
   state: State &#x3D; initialState,
   action:
-    | PatientsApiActions.PatientsApiActionsUnion
-    | PatientsActions.PatientsActionsUnion
+    | UsersApiActions.UsersApiActionsUnion
+    | UsersActions.UsersActionsUnion
     | AuthApiActions.AuthApiActionsUnion
 ): State {
 
   switch (action.type) {
 
-    // load patient users success state
-    case PatientsApiActions.PatientsApiActionTypes.LoadPatientUsersSuccess:
-      return adapater.upsertMany(action.payload.users, state);
+    // load user patients success state
+    case UsersApiActions.UsersApiActionTypes.LoadUserPatientsSuccess:
+      return adapater.upsertMany(action.payload.patients, state);
 
-    // clear selected patient
-    case (PatientsActions.PatientsActionTypes.DismissEditPatient):
+    // clear selected user
+    case (UsersActions.UsersActionTypes.DismissEditUser):
       return adapater.removeAll(state)
 
-    // clear patient users
-    case (PatientsActions.PatientsActionTypes.SelectPatient):
+    // clear user patients
+    case (UsersActions.UsersActionTypes.SelectUser):
       return adapater.removeAll(state)
 
     // reset state to initial state on logout
     case AuthApiActions.AuthApiActionTypes.LogoutSuccess:
-    case PatientsActions.PatientsActionTypes.ResetPatientsState:
+    case UsersActions.UsersActionTypes.ResetUsersState:
       return initialState;
 
     default:

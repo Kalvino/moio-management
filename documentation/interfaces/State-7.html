@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/dashboard/reducers/nursing-homes.reducer.ts</code>
+            <code>src/app/dashboard/reducers/patients.reducer.ts</code>
         </p>
 
 
@@ -85,7 +85,7 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#selectedNursingHomeId">selectedNursingHomeId</a>
+                                        <a href="#selectedPatientId">selectedPatientId</a>
                                 </li>
                             </ul>
                         </td>
@@ -102,13 +102,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="selectedNursingHomeId"></a>
-                                        <span class="name"><b>selectedNursingHomeId</b><a href="#selectedNursingHomeId"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="selectedPatientId"></a>
+                                        <span class="name"><b>selectedPatientId</b><a href="#selectedPatientId"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>selectedNursingHomeId:     <code>number | null</code>
+                                        <code>selectedPatientId:     <code>number | null</code>
 </code>
                                     </td>
                                 </tr>
@@ -132,64 +132,70 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NursingHomesApiActions, NursingHomesActions } from &#x27;../actions&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PatientsApiActions, PatientsActions } from &#x27;../actions&#x27;;
 import { createEntityAdapter, EntityAdapter, EntityState } from &#x27;@ngrx/entity&#x27;;
-import { NursingHome } from &#x27;../models/nursing-home.model&#x27;;
+import { IPatient } from &#x27;../models/patient.model&#x27;;
 import { AuthApiActions } from &#x27;../../auth/actions&#x27;;
 
 // state interface definition
-export interface State extends EntityState&lt;NursingHome&gt; {
-  selectedNursingHomeId: number | null;
+export interface State extends EntityState&lt;IPatient&gt; {
+  selectedPatientId: number | null;
 }
 
 // extend &amp; export entity adapater
-export const adapater: EntityAdapter&lt;NursingHome&gt; &#x3D; createEntityAdapter&lt;NursingHome&gt;({
-  selectId: (nursingHome: NursingHome) &#x3D;&gt; nursingHome.id,
+export const adapater: EntityAdapter&lt;IPatient&gt; &#x3D; createEntityAdapter&lt;IPatient&gt;({
+  selectId: (patient: IPatient) &#x3D;&gt; patient.id,
   sortComparer: false
 });
 
 // compose the initial state
 export const initialState: State &#x3D; adapater.getInitialState({
-  selectedNursingHomeId: null
+  selectedPatientId: null
 });
 
 /**
- * reducer for the nursingHomes state
+ * reducer for the patients state
  * @param state
  * @param action
  */
 export function reducer(
   state: State &#x3D; initialState,
   action:
-    | NursingHomesApiActions.NursingHomesApiActionsUnion
-    | NursingHomesActions.NursingHomesActionsUnion
+    | PatientsApiActions.PatientsApiActionsUnion
+    | PatientsActions.PatientsActionsUnion
     | AuthApiActions.AuthApiActionsUnion
 ): State {
 
   switch (action.type) {
 
-    // load nursingHomes success state
-    case NursingHomesApiActions.NursingHomesApiActionTypes.LoadNursingHomesSuccess:
-      console.log(action.payload.nursingHomes);
-      return adapater.upsertMany(action.payload.nursingHomes, state);
+    // load patients success state
+    case PatientsApiActions.PatientsApiActionTypes.LoadPatientsSuccess:
+      return adapater.upsertMany(action.payload.patients, state);
 
     // add a new entity to the state in case creation is successful
-    case NursingHomesApiActions.NursingHomesApiActionTypes.CreateNursingHomeSuccess:
-      return adapater.addOne(action.payload.nursingHome, state);
+    case PatientsApiActions.PatientsApiActionTypes.CreatePatientSuccess:
+      return adapater.addOne(action.payload.patient, state);
 
-    case NursingHomesApiActions.NursingHomesApiActionTypes.EditNursingHomeSuccess:
-      return adapater.upsertOne(action.payload.nursingHome, state);
+    case PatientsApiActions.PatientsApiActionTypes.EditPatientSuccess:
+      return adapater.upsertOne(action.payload.patient, state);
 
-    // case select nursingHome
-    case NursingHomesActions.NursingHomesActionTypes.SelectNursingHome:
+    // case select patient
+    case PatientsActions.PatientsActionTypes.SelectPatient:
       return {
         ...state,
-        selectedNursingHomeId: action.payload.id
+        selectedPatientId: action.payload.id
       };
+
+    // clear selected patient
+    case (PatientsActions.PatientsActionTypes.DismissEditPatient):
+      return {
+        ...state,
+        selectedPatientId: null
+      }
 
     // reset state to initial state on logout
     case AuthApiActions.AuthApiActionTypes.LogoutSuccess:
-    case NursingHomesActions.NursingHomesActionTypes.ResetNursingHomesState:
+    case PatientsActions.PatientsActionTypes.ResetPatientsState:
       return initialState;
 
     default:
@@ -199,10 +205,11 @@ export function reducer(
 }
 
 /**
- * return the selected nursingHome id from the state
+ * return the selected patient id from the state
  * @param state
+ * @param state the current state
  */
-export const getSelectedNursingHomeId &#x3D; (state: State) &#x3D;&gt; state.selectedNursingHomeId;
+export const getSelectedPatientId &#x3D; (state: State) &#x3D;&gt; state.selectedPatientId;
 </code></pre>
     </div>
 </div>

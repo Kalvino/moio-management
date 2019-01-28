@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/dashboard/reducers/patients.reducer.ts</code>
+            <code>src/app/dashboard/reducers/users.reducer.ts</code>
         </p>
 
 
@@ -85,7 +85,7 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#selectedPatientId">selectedPatientId</a>
+                                        <a href="#selectedUserId">selectedUserId</a>
                                 </li>
                             </ul>
                         </td>
@@ -102,13 +102,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="selectedPatientId"></a>
-                                        <span class="name"><b>selectedPatientId</b><a href="#selectedPatientId"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="selectedUserId"></a>
+                                        <span class="name"><b>selectedUserId</b><a href="#selectedUserId"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>selectedPatientId:     <code>number | null</code>
+                                        <code>selectedUserId:     <code>number | null</code>
 </code>
                                     </td>
                                 </tr>
@@ -132,70 +132,70 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PatientsApiActions, PatientsActions } from &#x27;../actions&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UsersApiActions, UsersActions } from &#x27;../actions&#x27;;
 import { createEntityAdapter, EntityAdapter, EntityState } from &#x27;@ngrx/entity&#x27;;
-import { IPatient } from &#x27;../models/patient.model&#x27;;
+import { User } from &#x27;../models/user.model&#x27;;
 import { AuthApiActions } from &#x27;../../auth/actions&#x27;;
 
 // state interface definition
-export interface State extends EntityState&lt;IPatient&gt; {
-  selectedPatientId: number | null;
+export interface State extends EntityState&lt;User&gt; {
+  selectedUserId: number | null;
 }
 
 // extend &amp; export entity adapater
-export const adapater: EntityAdapter&lt;IPatient&gt; &#x3D; createEntityAdapter&lt;IPatient&gt;({
-  selectId: (patient: IPatient) &#x3D;&gt; patient.id,
+export const adapater: EntityAdapter&lt;User&gt; &#x3D; createEntityAdapter&lt;User&gt;({
+  selectId: (user: User) &#x3D;&gt; user.id,
   sortComparer: false
 });
 
 // compose the initial state
 export const initialState: State &#x3D; adapater.getInitialState({
-  selectedPatientId: null
+  selectedUserId: null
 });
 
 /**
- * reducer for the patients state
+ * reducer for the users state
  * @param state
  * @param action
  */
 export function reducer(
   state: State &#x3D; initialState,
   action:
-    | PatientsApiActions.PatientsApiActionsUnion
-    | PatientsActions.PatientsActionsUnion
+    | UsersApiActions.UsersApiActionsUnion
+    | UsersActions.UsersActionsUnion
     | AuthApiActions.AuthApiActionsUnion
 ): State {
 
   switch (action.type) {
 
-    // load patients success state
-    case PatientsApiActions.PatientsApiActionTypes.LoadPatientsSuccess:
-      return adapater.upsertMany(action.payload.patients, state);
+    // load users success state
+    case UsersApiActions.UsersApiActionTypes.LoadUsersSuccess:
+      return adapater.upsertMany(action.payload.users, state);
 
     // add a new entity to the state in case creation is successful
-    case PatientsApiActions.PatientsApiActionTypes.CreatePatientSuccess:
-      return adapater.addOne(action.payload.patient, state);
+    case UsersApiActions.UsersApiActionTypes.CreateUserSuccess:
+      return adapater.addOne(action.payload.user, state);
 
-    case PatientsApiActions.PatientsApiActionTypes.EditPatientSuccess:
-      return adapater.upsertOne(action.payload.patient, state);
+    case UsersApiActions.UsersApiActionTypes.EditUserSuccess:
+      return adapater.upsertOne(action.payload.user, state);
 
-    // case select patient
-    case PatientsActions.PatientsActionTypes.SelectPatient:
+    // case select user
+    case UsersActions.UsersActionTypes.SelectUser:
       return {
         ...state,
-        selectedPatientId: action.payload.id
+        selectedUserId: action.payload.id
       };
 
-    // clear selected patient
-    case (PatientsActions.PatientsActionTypes.DismissEditPatient):
+    // clear selected user
+    case (UsersActions.UsersActionTypes.DismissEditUser):
       return {
         ...state,
-        selectedPatientId: null
+        selectedUserId: null
       }
 
     // reset state to initial state on logout
     case AuthApiActions.AuthApiActionTypes.LogoutSuccess:
-    case PatientsActions.PatientsActionTypes.ResetPatientsState:
+    case UsersActions.UsersActionTypes.ResetUsersState:
       return initialState;
 
     default:
@@ -205,11 +205,11 @@ export function reducer(
 }
 
 /**
- * return the selected patient id from the state
+ * return the selected user id from the state
  * @param state
  * @param state the current state
  */
-export const getSelectedPatientId &#x3D; (state: State) &#x3D;&gt; state.selectedPatientId;
+export const getSelectedUserId &#x3D; (state: State) &#x3D;&gt; state.selectedUserId;
 </code></pre>
     </div>
 </div>

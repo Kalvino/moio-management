@@ -1,28 +1,32 @@
 import { browser, by, element } from 'protractor';
 
-export class LoginPage {
-  navigateTo() {
-    return browser.get('login');
+export class SigninPage {
+  navigateToSigninPage() {
+    return browser.get('auth/signin');
   }
 
-  getTagName() {
-    return element(by.tagName('moio-login-page')).getTagName();
+  getSigninTagName() {
+    return element(by.tagName('moio-signin')).getTagName();
   }
 
-  inputUsername(name) {
-    return element(by.id('mat-input-0')).sendKeys(name);
-  }
-
-  inputPassword(pass) {
-    return element(by.id('mat-input-1')).sendKeys(pass);
+  get signInComponent() {
+    return element(by.tagName('moio-signin'));
   }
 
   getUsernameInput() {
-    return element(by.id('username'));
+    return element(by.name('username'));
   }
 
   getPasswordInput() {
-    return element(by.id('password'));
+    return element(by.name('password'));
+  }
+
+  inputUsername(name) {
+    return element(by.name('username')).sendKeys(name);
+  }
+
+  inputPassword(pass) {
+    return element(by.name('password')).sendKeys(pass);
   }
 
   login() {
@@ -33,6 +37,6 @@ export class LoginPage {
   }
 
   getForm() {
-    return element(by.id('loginForm'));
+    return element(by.tagName('form'));
   }
 }
