@@ -1,5 +1,5 @@
 export const environment = {
-    env_name: 'prod',
+    env_name: 'dev',
     production: false,
     whitelistedDomains: [
         'localhost:4200',
