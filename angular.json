@@ -121,6 +121,14 @@
                   "with": "src/environments/environment.cal.ts"
                 }
               ]
+            },
+            "wnk": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.wk.ts"
+                }
+              ]
             }
           }
         },
@@ -141,6 +149,9 @@
             },
             "cal": {
               "browserTarget": "moio-management:build:cal"
+            },
+            "wnk": {
+              "browserTarget": "moio-management:build:wnk"
             }
           }
         },

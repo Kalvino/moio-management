@@ -7,6 +7,8 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { NursingHome } from '../models/nursing-home.model';
 import { environment } from '../../../environments/environment';
 
+import { token } from '../../utilities';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -18,7 +20,7 @@ export class NursingHomesService {
    * get all nursing homes from the moio-cloud api
    */
   getNursingHomes(): Observable<NursingHome[]> {
-    return this.http.get<NursingHome[]>(`${environment.apiHost}/api/nursinghomes`);
+    return this.http.get<NursingHome[]>(`${environment.apiHost}/api/nursinghomes`, { headers: token() });
   }
 
   /**
@@ -27,7 +29,7 @@ export class NursingHomesService {
    */
   createNursingHome(nursingHome: NursingHome): Observable<NursingHome> {
     return this.http
-      .post(`${environment.apiHost}/api/nursinghomes`, {...nursingHome});
+      .post(`${environment.apiHost}/api/nursinghomes`, { ...nursingHome }, { headers: token() });
   }
 
 }

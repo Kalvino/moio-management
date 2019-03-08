@@ -2,12 +2,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 /* NGRX */
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as fromDashboard from '../../../reducers';
 import * as nursingHomeActions from '../../../actions/nursing-homes.actions';
-import { Observable } from 'rxjs';
+// import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { NursingHomesApiActions, NursingHomesActions } from '../../../actions';
+import { NursingHomesActions } from '../../../actions';
 import { NursingHome } from '../../../models/nursing-home.model';
 
 @Component({
@@ -20,7 +20,7 @@ export class NursingHomeFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<NursingHomeFormComponent>,
     private fb: FormBuilder,
-    private store: Store<fromDashboard.State>, 
+    private store: Store<fromDashboard.State>,
     private translate: TranslateService,
   ) { }
 
@@ -29,11 +29,11 @@ export class NursingHomeFormComponent implements OnInit {
 
     this.store.dispatch(new nursingHomeActions.LoadNursingHomes());
   }
-  
+
   buildItemForm(item) {
     this.itemForm = this.fb.group({
-      key: [item.firstname || '', Validators.required],
-      name: [item.lastname || '', Validators.required]
+      key: [item.name || '', Validators.required],
+      name: [item.key || '', Validators.required]
     })
   }
 
@@ -46,10 +46,10 @@ export class NursingHomeFormComponent implements OnInit {
    * @param nursingHome
    */
   onFormSubmitted(nursingHome: NursingHome) {
-    this.store.dispatch(new NursingHomesActions.CreateNursingHome({nursingHome}));
+    this.store.dispatch(new NursingHomesActions.CreateNursingHome({ nursingHome }));
   }
 
-  cancel(){
+  cancel() {
     this.store.dispatch(new NursingHomesActions.DismissPoppedUpNursingHomeForm());
   }
 }

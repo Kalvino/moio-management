@@ -1,0 +1,40 @@
+<div *ngIf="nursingHome" class="m-333">
+  <mat-card class="p-0">
+    <mat-card-title class="default">
+      <div class="card-title-text">{{pageTitle}}</div>
+      <mat-divider></mat-divider>
+    </mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="nursingHomeEditForm" (ngSubmit)="editNursingHome()">
+        <div fxLayout="row wrap">
+          <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+            <div class="pb-1">
+              <mat-form-field class="full-width">
+                <input matInput name="name" formControlName="name" placeholder="{{'Name' | translate}}" >
+              </mat-form-field>
+              <small *ngIf="nursingHomeEditForm.controls['name'].hasError('required') && nursingHomeEditForm.controls['name'].touched"
+                class="form-error-msg"> {{'NameRequired' | translate}} </small>
+            </div>
+
+            <div class="pb-1">
+              <mat-form-field class="full-width">
+                <input matInput name="key" formControlName="key" placeholder="{{'Key' | translate}}" >
+              </mat-form-field>
+              <small *ngIf="nursingHomeEditForm.controls['key'].hasError('required') && nursingHomeEditForm.controls['key'].touched"
+                class="form-error-msg"> {{'KeyRequired' | translate}} </small>
+            </div>
+          </div>
+          
+          <div fxFlex="100" class="mt-1">
+            <button mat-raised-button color="primary" [disabled]="nursingHomeEditForm.invalid || !nursingHomeEditForm.dirty" type="submit">
+              {{'Edit' | translate}}</button>
+            <span fxFlex></span>
+            <button mat-button color="warn" type="button" (click)="cancelEdit()">{{'Cancel' | translate}}</button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  
+</div>

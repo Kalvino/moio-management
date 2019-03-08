@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { IPatient } from '../models/patient.model';
 import { environment } from '../../../environments/environment';
 import { Update } from '@ngrx/entity';
+import { token } from '../../utilities';
 
 /**
  * patient service
@@ -24,8 +25,7 @@ export class PatientsService {
    * get all patients from the moio-cloud api
    */
   getPatients(): Observable<IPatient[]> {
-    console.log('loading patients');
-    return this.http.get<IPatient[]>(`${environment.apiHost}/api/patients`);
+    return this.http.get<IPatient[]>(`${environment.apiHost}/api/patients`, { headers: token() });
   }
 
   /**
@@ -33,7 +33,7 @@ export class PatientsService {
    * @param patient IPatient
    */
   createPatient(patient: IPatient): Observable<IPatient> {
-    return this.http.post<IPatient>(`${environment.apiHost}/api/patients`, patient);
+    return this.http.post<IPatient>(`${environment.apiHost}/api/patients`, patient, { headers: token() });
   }
 
   /**
@@ -41,7 +41,7 @@ export class PatientsService {
    * @param id patient id
    */
   deletePatient(id: number): Observable<{}> {
-    return this.http.delete<IPatient>(`${environment.apiHost}/api/patients/${id}`);
+    return this.http.delete<IPatient>(`${environment.apiHost}/api/patients/${id}`, { headers: token() });
   }
 
   /**
@@ -49,7 +49,7 @@ export class PatientsService {
    * @param patient object:IPatient
    */
   updatePatient(patient: IPatient): Observable<IPatient> {
-    return this.http.put<IPatient>(`${environment.apiHost}/api/patients/${patient.id}`, patient);
+    return this.http.put<IPatient>(`${environment.apiHost}/api/patients/${patient.id}`, patient, { headers: token() });
   }
 
   /**
@@ -58,6 +58,6 @@ export class PatientsService {
    */
   editPatient(changed: Update<IPatient>): Observable<IPatient> {
     return this.http
-      .put<IPatient>(`${environment.apiHost}/api/patients/${changed.id}`, {...changed.changes});
+      .put<IPatient>(`${environment.apiHost}/api/patients/${changed.id}`, { ...changed.changes }, { headers: token() });
   }
 }

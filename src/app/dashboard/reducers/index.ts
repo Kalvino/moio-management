@@ -192,6 +192,18 @@ export const getSelectedNursingHome = createSelector(
   (entities, id) => entities[id]
 );
 
+// get error state when editing a patient from the store
+export const getNursingHomeEditionError = createSelector(
+  getNursingHomesPageState,
+  fromNursingHomePage.getEditNursingHomeError
+);
+
+// get pending state when editing a patient from the store
+export const getNursingHomeEditionPending = createSelector(
+  getNursingHomesPageState,
+  fromNursingHomePage.getEditNursingHomePending
+);
+
 // ****************** PATIENTS PAGE *************
 export const getPatientsPageState = createSelector(
   getDashboardState,

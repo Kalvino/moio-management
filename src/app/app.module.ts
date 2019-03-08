@@ -115,7 +115,7 @@ function getBrowserLanguage() {
     MatProgressSpinnerModule,
     MatSortModule,
     MatTableModule,
-    StoreModule.forRoot(reducers, {metaReducers}),
+    StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 10,
@@ -126,7 +126,7 @@ function getBrowserLanguage() {
   ],
   exports: [RouterModule],
   providers: [
-    {provide: LOCALE_ID, useValue: getBrowserLanguage()}
+    { provide: LOCALE_ID, useValue: getBrowserLanguage() }
   ],
   bootstrap: [AppComponent]
 })

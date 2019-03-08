@@ -14,7 +14,8 @@ export enum NursingHomesActionTypes {
   SearchNursingHomeComplete = '[NursingHome] Search NursingHome Complete',
   EditNursingHome = '[NursingHome] Edit NursingHome',
   DismissEditNursingHome = '[NursingHome] Dismiss Edit NursingHome',
-  ResetNursingHomesState = '[NursingHomes] Reset NursingHomes State'
+  DeleteNursingHome = '[NursingHome] Delete NursingHome',
+  ResetNursingHomesState = '[NursingHomes] Reset NursingHomes State',
 }
 
 
@@ -95,7 +96,7 @@ export class SearchNursingHomeComplete implements Action {
 export class EditNursingHome implements Action {
   readonly type = NursingHomesActionTypes.EditNursingHome;
 
-  constructor(public payload: Update<NursingHome>) {
+  constructor(public payload: NursingHome) {
   }
 }
 
@@ -105,6 +106,17 @@ export class EditNursingHome implements Action {
 export class DismissEditNursingHome implements Action {
   readonly type = NursingHomesActionTypes.DismissEditNursingHome;
 }
+
+/**
+ * action to delete a patient
+ */
+export class DeleteNursingHome implements Action {
+  readonly type = NursingHomesActionTypes.DeleteNursingHome;
+
+  constructor(public payload: number) {
+  }
+}
+
 
 /**
  * reset the nursingHome state

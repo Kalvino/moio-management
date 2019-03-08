@@ -7,6 +7,7 @@ import { User } from '../models/user.model';
 import { environment } from '../../../environments/environment';
 import { Update } from '@ngrx/entity';
 import { IPatient } from '../models/patient.model';
+import { token } from '../../utilities';
 
 /**
  * user service
@@ -25,7 +26,7 @@ export class UsersService {
    * get all users from the moio-cloud api
    */
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${environment.apiHost}/api/usermanagement`);
+    return this.http.get<User[]>(`${environment.apiHost}/api/usermanagement`, { headers: token() });
   }
 
   /**
@@ -33,7 +34,7 @@ export class UsersService {
    * @param id user id
    */
   getUserPatients(id: number): Observable<IPatient[]> {
-    return this.http.get<IPatient[]>(`${environment.apiHost}/api/users/${id}/patients`);
+    return this.http.get<IPatient[]>(`${environment.apiHost}/api/users/${id}/patients`, { headers: token() });
   }
 
   /**
@@ -41,7 +42,7 @@ export class UsersService {
    * @param user User
    */
   createUser(user: User): Observable<User> {
-    return this.http.post<User>(`${environment.apiHost}/api/appusers`, user);
+    return this.http.post<User>(`${environment.apiHost}/api/appusers`, user, { headers: token() });
   }
 
   /**
@@ -49,7 +50,7 @@ export class UsersService {
    * @param id user id
    */
   deleteUser(id: number): Observable<{}> {
-    return this.http.delete<User>(`${environment.apiHost}/api/users/${id}`);
+    return this.http.delete<User>(`${environment.apiHost}/api/users/${id}`, { headers: token() });
   }
 
   /**
@@ -58,7 +59,7 @@ export class UsersService {
    */
   updateUser(user: User): Observable<User> {
     console.log(user);
-    return this.http.put<User>(`${environment.apiHost}/api/users/${user.id}`, user);
+    return this.http.put<User>(`${environment.apiHost}/api/users/${user.id}`, user, { headers: token() });
   }
 
   /**
@@ -68,7 +69,7 @@ export class UsersService {
   editUser(changed: Update<User>): Observable<User> {
     console.log(changed);
     return this.http
-      .put<User>(`${environment.apiHost}/api/users/${changed.id}`, {...changed.changes});
+      .put<User>(`${environment.apiHost}/api/users/${changed.id}`, { ...changed.changes }, { headers: token() });
   }
 
 

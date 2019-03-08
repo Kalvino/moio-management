@@ -5,6 +5,7 @@ import { MaterialModule } from '../material';
 import { BlankComponent } from './components/blank/blank.component';
 import { UsersComponent } from './components/users/users.component';
 import { PatientsComponent } from './components/patients/patients.component';
+import { NursingHomeComponent } from './components/nursing-homes/nursing-home.component';
 import { Routes } from '@angular/router';
 import { DashboardLayoutComponent } from './containers/dashboard-layout.component';
 import { AuthGuard } from '../auth/guards/auth.guard';
@@ -52,7 +53,15 @@ export const dashboardRoutes: Routes = [
       }, {
         path: 'devices',
         loadChildren: './devices/devices.module#DevicesModule'
-      }
+      },
+      {
+        path: 'nursing-homes',
+        component: NursingHomeComponent,
+        data: {
+          title: 'Nursing Homes',
+          breadcrumb: 'Nursing Homes'
+        }
+      },
     ]
   }
 ];

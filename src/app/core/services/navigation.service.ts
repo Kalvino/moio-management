@@ -55,11 +55,18 @@ export class NavigationService {
       state: 'dashboard/patients'
     },
     {
-        name: 'Devices',
-        type: 'link',
-        tooltip: 'devices',
-        icon: 'group',
-        state: 'dashboard/devices'
+      name: 'Devices',
+      type: 'link',
+      tooltip: 'devices',
+      icon: 'settings',
+      state: 'dashboard/devices'
+    },
+    {
+      name: 'Nursing Homes',
+      type: 'link',
+      tooltip: 'nursing-homes',
+      icon: 'home',
+      state: 'dashboard/nursing-homes'
     }
   ];
 
