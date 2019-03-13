@@ -49,6 +49,9 @@ export const dashboardRoutes: Routes = [
           title: 'Patients',
           breadcrumb: 'Patients'
         }
+      }, {
+        path: 'devices',
+        loadChildren: './devices/devices.module#DevicesModule'
       }
     ]
   }

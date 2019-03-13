@@ -53,6 +53,13 @@ export class NavigationService {
       tooltip: 'patients',
       icon: 'group',
       state: 'dashboard/patients'
+    },
+    {
+        name: 'Devices',
+        type: 'link',
+        tooltip: 'devices',
+        icon: 'group',
+        state: 'dashboard/devices'
     }
   ];
 
