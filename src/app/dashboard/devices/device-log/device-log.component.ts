@@ -29,4 +29,8 @@ export class DeviceLogComponent implements OnInit {
 
     }
 
+    onSelectDevice($event){
+        console.log('Device selected');
+    }
+
 }
