@@ -4,7 +4,6 @@ import * as fromDashboard from '../../reducers';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
-
 import { NursingHomeFormComponent } from './nursing-home-form/nursing-home-form.component';
 
 /**
@@ -44,4 +43,7 @@ export class NursingHomeComponent {
       id: 'nursingHomeCreationForm'
     });
   }
+
+
+
 }

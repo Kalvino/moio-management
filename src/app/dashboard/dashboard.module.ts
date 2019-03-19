@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material';
 import { NgModule } from '@angular/core';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -37,6 +38,8 @@ import { PatientFormComponent } from './components/patients/patient-form/patient
 import { NursingHomeListComponent } from './components/nursing-homes/nursing-home-list/nursing-home-list.component';
 import { NursingHomeFormComponent } from './components/nursing-homes/nursing-home-form/nursing-home-form.component';
 import { NursingHomeEditFormComponent } from './components/nursing-homes/nursing-home-edit-form/nursing-home-edit-form.component';
+import { NursingHomeGeofence } from './components/nursing-homes/geofence/geofence.component';
+import { GeofenceFormComponent } from './components/nursing-homes/geofence-form/geofence-form.component';
 import { NursingHomeComponent } from './components/nursing-homes/nursing-home.component';
 
 import { LoaderComponent } from '../core/components/loader/loader.component';
@@ -73,6 +76,8 @@ export const COMPONENTS = [
     NursingHomeListComponent,
     NursingHomeEditFormComponent,
     NursingHomeComponent,
+    NursingHomeGeofence,
+    GeofenceFormComponent,
 
     LoaderComponent,
     AppDropdownDirective,
@@ -111,16 +116,20 @@ export const EFFECTS = [
         NgxDatatableModule,
         StoreModule.forFeature('dashboard', fromDashboard.reducers),
         EffectsModule.forFeature(EFFECTS),
-        SplitPaneModule
+        SplitPaneModule,
+        AgmCoreModule.forRoot({
+            libraries: ["places", "drawing"],
+            apiKey: 'AIzaSyA8iBX6-mnmMBfh9dM1bXiFxdnnsx98qk4'
+        })
     ],
     exports: [
         DashboardLayoutComponent,
         DashboardRoutingModule
     ],
     providers: [
-        ConfirmService
+        ConfirmService, GoogleMapsAPIWrapper
     ],
-    entryComponents: [UserFormComponent, PatientFormComponent, NursingHomeFormComponent
+    entryComponents: [UserFormComponent, PatientFormComponent, NursingHomeFormComponent, GeofenceFormComponent
     ]
 })
 export class DashboardModule {

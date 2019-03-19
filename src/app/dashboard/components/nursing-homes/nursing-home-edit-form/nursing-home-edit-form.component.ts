@@ -1,21 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 import { Observable, of } from 'rxjs';
-
-// import { INursingHome as NursingHome } from '../../../models/patient.model';
 import { NursingHome } from '../../../models/nursing-home.model';
-// import { User } from '../../../models/user.model';
+import { Geofencing } from '../../../models/nursing-home-geofencing.model';
 import { GenericValidator } from '../../../shared/generic-validator';
-// import { NumberValidators } from '../../../shared/number-validator';
-
 import { takeWhile } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
-
+import { MatDialogRef, MatDialog } from '@angular/material';
 import * as fromDashboard from '../../../reducers';
 import * as nursingHomeActions from '../../../actions/nursing-homes.actions';
 import { TranslateService } from '@ngx-translate/core';
-import { ConfirmService } from '../../../../core/services/confirm.service'
+import { ConfirmService } from '../../../../core/services/confirm.service';
+import { GeofenceFormComponent } from '../geofence-form/geofence-form.component';
 
 @Component({
   selector: 'moio-nursing-home-edit-form',
@@ -26,6 +22,7 @@ export class NursingHomeEditFormComponent implements OnInit, OnDestroy {
   pageTitle = 'Nursing Home Edit';
   errorMessage$: Observable<string>;
   componentActive = true;
+  panelOpenState = false;
   nursingHomeEditForm: FormGroup;
 
   nursingHome: NursingHome;
@@ -35,28 +32,30 @@ export class NursingHomeEditFormComponent implements OnInit, OnDestroy {
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
 
-  // // all patient users
-  // patientUsers$: Observable<User[]> = this.store.pipe(
-  //   select(fromDashboard.getAllNursingHomeUsers)
-  // );
-
-  /* 
-  patientUsers: User[];
-
-  // get error state when loading patient patients
-  loadNursingHomeNursingHomesError$: Observable<string> = this.store.pipe(
-    select(fromDashboard.getLoadNursingHomeUsersError)
+  // get all geofencing 
+  $: Observable<Geofencing[]> = this.store.pipe(
+    select(fromDashboard.getAllNursingHomeGeofencing)
   );
 
-  // get pending state when loading patient patients
-  loadNursingHomeNursingHomesPending$: Observable<boolean> = this.store.pipe(
-    select(fromDashboard.getLoadNursingHomeUsersPending)
+  // all user patients
+  nursingHomeGeofencing$: Observable<Geofencing[]> = this.store.pipe(
+    select(fromDashboard.getAllNursingHomeGeofencing)
   );
-  */
+
+  // Get error state when loading nursinghome geofencing
+  loadNursingHomeGeofencingError$: Observable<string> = this.store.pipe(
+    select(fromDashboard.getNursingHomeGeofencingError)
+  );
+
+  // Get pending state when loading nursinghome geofencing
+  loadNursingHomeGeofencingPending$: Observable<boolean> = this.store.pipe(
+    select(fromDashboard.getNursingHomeGeofencingPending)
+  );
 
   constructor(private store: Store<fromDashboard.State>,
     private fb: FormBuilder,
     private translate: TranslateService,
+    private dialog: MatDialog,
     public confirmService: ConfirmService) {
 
     // Defines all of the validation messages for the form.
@@ -173,5 +172,17 @@ export class NursingHomeEditFormComponent implements OnInit, OnDestroy {
       this.errorMessage$ = of('Please correct the validation errors.');
     }
   }
+
+
+  addPolygon() {
+    let title = `Add new geofence - ${this.nursingHome.name}`; //this.translate.instant('GeofenceFormTitle');
+    let dialogRef: MatDialogRef<any> = this.dialog.open(GeofenceFormComponent, {
+      width: '720px',
+      disableClose: true,
+      data: { title: title },
+      id: 'geofenceCreationForm'
+    });
+  }
+
 
 }

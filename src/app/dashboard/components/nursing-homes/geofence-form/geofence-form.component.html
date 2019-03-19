@@ -1,0 +1,40 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+<form [formGroup]="itemForm" (ngSubmit)="submit()">
+    <div fxLayout="row wrap" fxLayout.lt-sm="column">
+      
+      <div fxFlex="100"  class="pr-1">
+        <mat-form-field class="full-width">
+          <input
+          matInput
+          name="name"
+          [formControl]="itemForm.controls['name']"
+          placeholder="Geofence Name">
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="100"  class="pr-1">
+        <mat-form-field class="full-width">
+          <input
+              matInput
+              name="search"
+              autocapitalize="off"
+              spellcheck="off"
+              placeholder="Search the map"
+              #search [formControl]="itemForm.controls['search']">
+        </mat-form-field>
+      </div>
+      
+      <agm-map #map [latitude]="lat" [longitude]="lng" [zoom]="zoom" >
+        <agm-polygon>
+        </agm-polygon>
+      </agm-map>
+
+      <div fxFlex="100" class="mt-1">
+        <button mat-raised-button color="primary" [disabled]="itemForm.invalid">Save</button>
+        <span fxFlex></span>
+        <button mat-raised-button color="warn" [disabled]="!overlay" (click)="deletePolygon()" >Remove Polygon</button>
+        <span fxFlex></span>
+        <button mat-raised-button color="warn" type="button" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+</form>

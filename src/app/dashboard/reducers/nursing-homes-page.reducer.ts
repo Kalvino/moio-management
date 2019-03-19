@@ -7,6 +7,8 @@ export interface State {
   createNursingHomePending: boolean;
   editNursingHomeError: string | null;
   editNursingHomePending: boolean;
+  loadNursingHomeGeofencingPending: boolean;
+  loadNursingHomeGeofencingError: string | null;
 }
 
 export const initialState: State = {
@@ -16,6 +18,8 @@ export const initialState: State = {
   createNursingHomePending: false,
   editNursingHomeError: null,
   editNursingHomePending: false,
+  loadNursingHomeGeofencingPending: false,
+  loadNursingHomeGeofencingError: null
 };
 
 /**
@@ -29,6 +33,27 @@ export function reducer(
   action: NursingHomesApiActions.NursingHomesApiActionsUnion
     | NursingHomesActions.NursingHomesActionsUnion): State {
   switch (action.type) {
+
+    case (NursingHomesActions.NursingHomesActionTypes.LoadNursingHomesGeofencing):
+      return {
+        ...state,
+        loadNursingHomeGeofencingPending: true,
+        loadNursingHomeGeofencingError: null
+      };
+
+    case (NursingHomesApiActions.NursingHomesApiActionTypes.LoadNursingHomesGeofencingSuccess):
+      return {
+        ...state,
+        loadNursingHomeGeofencingPending: false,
+        loadNursingHomeGeofencingError: null
+      };
+
+    case (NursingHomesApiActions.NursingHomesApiActionTypes.LoadNursingHomesGeofencingFailure):
+      return {
+        ...state,
+        loadNursingHomeGeofencingPending: false,
+        loadNursingHomeGeofencingError: action.payload.message
+      };
 
     case (NursingHomesActions.NursingHomesActionTypes.LoadNursingHomes):
     case (NursingHomesActions.NursingHomesActionTypes.EditNursingHome):
@@ -104,5 +129,17 @@ export const getEditNursingHomeError = (state: State) => state.editNursingHomeEr
  */
 export const getEditNursingHomePending = (state: State) => state.editNursingHomePending;
 
+
+/**
+ * get the pending state when loading user patients
+ * @param state
+ */
+export const getNursingHomeGeofencingPending = (state: State) => state.loadNursingHomeGeofencingPending;
+
+/**
+ * get the error state when loading user patients
+ * @param state
+ */
+export const getNursingHomeGeofencingError = (state: State) => state.loadNursingHomeGeofencingError;
 
 

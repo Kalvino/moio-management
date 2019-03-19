@@ -7,7 +7,7 @@
     <mat-card-content>
       <form [formGroup]="nursingHomeEditForm" (ngSubmit)="editNursingHome()">
         <div fxLayout="row wrap">
-          <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+          <div fxFlex="100" fxFlex.gt-xs="100" class="pr-1">
             <div class="pb-1">
               <mat-form-field class="full-width">
                 <input matInput name="name" formControlName="name" placeholder="{{'Name' | translate}}" >
@@ -33,8 +33,44 @@
           </div>
         </div>
       </form>
+
+      <mat-tab-group>
+        <mat-tab label="Users">
+          <p class="pt-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis quod dolores explicabo at nisi voluptatum doloribus,
+            natus consequatur voluptate reprehenderit, obcaecati nulla quibusdam porro iste autem. Quia, quod possimus voluptas?</p>
+        </mat-tab>
+        <mat-tab label="Patient Profiles">
+          <p class="pt-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis quod dolores explicabo at nisi voluptatum doloribus,
+            natus consequatur voluptate reprehenderit, obcaecati nulla quibusdam porro iste autem. Quia, quod possimus voluptas?</p>
+        </mat-tab>
+        <mat-tab label="Geofencing">
+            
+            <div fxFlex="100" class="mt-1 mb-1 ">
+              <button mat-raised-button class="buttonright" color="primary" type="button" (click)="addPolygon()">{{'Add Geofence' | translate}}</button>
+            </div>
+
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let geofence of nursingHomeGeofencing$ | async">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{geofence.name}}
+                  </mat-panel-title>
+                  
+                </mat-expansion-panel-header>
+
+                <nursing-home-geofence [input]=geofence.polygon ></nursing-home-geofence>
+
+              </mat-expansion-panel>
+
+            </mat-accordion>
+
+
+        </mat-tab>
+      </mat-tab-group>
+
     </mat-card-content>
   </mat-card>
+
 
   
 </div>

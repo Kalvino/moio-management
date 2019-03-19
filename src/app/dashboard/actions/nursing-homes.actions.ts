@@ -16,6 +16,7 @@ export enum NursingHomesActionTypes {
   DismissEditNursingHome = '[NursingHome] Dismiss Edit NursingHome',
   DeleteNursingHome = '[NursingHome] Delete NursingHome',
   ResetNursingHomesState = '[NursingHomes] Reset NursingHomes State',
+  LoadNursingHomesGeofencing = '[NursingHomes] Load NursingHomes Geofencing'
 }
 
 
@@ -126,6 +127,14 @@ export class ResetNursingHomesState implements Action {
 }
 
 /**
+ * Load nursinghome geogencing action
+ */
+export class LoadNursingHomesGeofencing implements Action {
+  readonly type = NursingHomesActionTypes.LoadNursingHomesGeofencing;
+  constructor(public payload: number) { }
+}
+
+/**
  * Export union of nursingHome Action
  */
 export type NursingHomesActionsUnion
@@ -140,4 +149,5 @@ export type NursingHomesActionsUnion
   | SearchNursingHomeComplete
   | EditNursingHome
   | DismissEditNursingHome
-  | ResetNursingHomesState;
+  | ResetNursingHomesState
+  | LoadNursingHomesGeofencing;

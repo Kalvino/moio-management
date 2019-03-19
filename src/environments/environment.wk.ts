@@ -3,7 +3,8 @@ export const environment = {
   whitelistedDomains: [
     'localhost:4200',
     'dev.william.local:4200',
-    'dev-api.my-appsolute-mobility.com'
+    'dev-api.my-appsolute-mobility.com',
+    'localhost:8888'
   ],
   // apiHost: 'http://localhost:8888'
   // apiHost: 'https://dev-api.my-appsolute-mobility.com'

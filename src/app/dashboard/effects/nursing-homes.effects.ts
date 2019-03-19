@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
 import { NursingHomeFormComponent } from '../components/nursing-homes/nursing-home-form/nursing-home-form.component';
+import { Geofencing } from '../models/nursing-home-geofencing.model';
 
 /**
  * nursingHomes effects
@@ -59,11 +60,9 @@ export class NursingHomesEffects {
           .pipe(
             delay(2000),
             map((nursingHomes: NursingHome[]) => {
-              console.log(nursingHomes)
-              return new NursingHomesApiActions.LoadNursingHomesSuccess({nursingHomes});
+              return new NursingHomesApiActions.LoadNursingHomesSuccess({ nursingHomes });
             }),
             catchError(httpError => {
-              console.log(httpError);
               const message = httpError.statusText.toLowerCase();
 
               let snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
@@ -72,9 +71,9 @@ export class NursingHomesEffects {
 
               snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
 
-                if (snackBarDismiss.dismissedByAction){
+                if (snackBarDismiss.dismissedByAction) {
                   this.store.dispatch(new NursingHomesActions.LoadNursingHomes());
-                }else{
+                } else {
                   this.router.navigate(['/dashboard']);
                 }
               });
@@ -103,7 +102,7 @@ export class NursingHomesEffects {
           disableClose: true,
           data: { title: title }
         });
-        
+
         return dialogRef.afterClosed();
       })
     );
@@ -120,8 +119,47 @@ export class NursingHomesEffects {
       ofType(NursingHomesActions.NursingHomesActionTypes.DismissPoppedUpNursingHomeForm),
       map(() => {
         this.dialog.closeAll();
-    })
-  );
+      })
+    );
+
+
+  /**
+   * effect for loading nursinghome geofencing
+   */
+  @Effect()
+  loadNursingHomeGeofencing = this.actions$
+    .pipe(
+      ofType<NursingHomesActions.LoadNursingHomesGeofencing>(NursingHomesActions.NursingHomesActionTypes.LoadNursingHomesGeofencing),
+      map(action => action.payload),
+      exhaustMap((id: number) => {
+
+        return this.nursingHomesService.getNursingHomeGeofencing(id)
+          .pipe(
+            delay(2000),
+            map((geofencing: Geofencing[]) => {
+              return new NursingHomesApiActions.LoadNursingHomesGeofencingSuccess({ geofencing });
+            }),
+            catchError(httpError => {
+              const message = httpError.statusText.toLowerCase();
+              const snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
+
+                if (snackBarDismiss.dismissedByAction) {
+                  this.store.dispatch(new NursingHomesActions.LoadNursingHomesGeofencing(id));
+                } else {
+                  this.router.navigate(['/dashboard/nursinghomes']);
+                }
+              });
+
+              return of(new NursingHomesApiActions.LoadNursingHomesGeofencingFailure({ message }));
+            })
+          );
+      })
+    );
+
 
 
 
@@ -141,6 +179,6 @@ export class NursingHomesEffects {
     private store: Store<any>,
     public snackBar: MatSnackBar,
     private translate: TranslateService,
-    private dialog: MatDialog,){
+    private dialog: MatDialog, ) {
   }
 }

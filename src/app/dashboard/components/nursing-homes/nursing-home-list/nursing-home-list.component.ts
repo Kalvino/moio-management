@@ -100,13 +100,13 @@ export class NursingHomeListComponent implements OnInit, OnDestroy {
    * In our case just a single nursing-home!
    * Therefor emit 0th element of the selection.
    *
-   * @param selected NursingHome  first element of array
+   * @param selected NursingHome first element of array
    */
   onSelectRow({ selected }) {
     // this.patientSelected.emit(selected[0]);
     const nursinghome = selected[0];
     this.store.dispatch(new nursingHomesActions.SelectNursingHome(nursinghome));
-    // this.store.dispatch(new nursingHomesActions.LoadNursingHomeUsers(nursing-home.id));
+    this.store.dispatch(new nursingHomesActions.LoadNursingHomesGeofencing(nursinghome.id));
 
   }
 

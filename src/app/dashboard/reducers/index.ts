@@ -5,6 +5,7 @@ import * as fromRoot from '../../reducers';
 import * as fromUsers from './users.reducer';
 import * as fromPatients from './patients.reducer';
 import * as fromUserPatients from './user-patients.reducer';
+import * as fromNursingHomeGeofencing from './nursing-homes-geofencing.reducer';
 import * as fromPatientUsers from './patient-users.reducer';
 import * as fromNursingHome from './nursing-homes.reducer';
 import * as fromLayout from './layout.reducer';
@@ -21,6 +22,7 @@ export interface DashboardState {
   patientPage: fromPatientPage.State;
   patients: fromPatients.State;
   userPatients: fromUserPatients.State;
+  nursingHomeGeofencing: fromNursingHomeGeofencing.State;
   patientUsers: fromPatientUsers.State;
   layout: fromLayout.State;
 }
@@ -43,6 +45,7 @@ export const reducers: ActionReducerMap<DashboardState, any> = {
   patientPage: fromPatientPage.reducer,
   patients: fromPatients.reducer,
   userPatients: fromUserPatients.reducer,
+  nursingHomeGeofencing: fromNursingHomeGeofencing.reducer,
   patientUsers: fromPatientUsers.reducer,
   layout: fromLayout.reducer
 };
@@ -147,6 +150,19 @@ export const {
 
 
 
+// ****************** NURSINGHOMES GEOFENCING *************
+export const getNursingHomeGeofencingState = createSelector(
+  getDashboardState,
+  (state: DashboardState) => state.nursingHomeGeofencing
+);
+
+// deconstruct several functions from ngrx/entity
+export const {
+  selectEntities: getNursingHomeGeofencingEntities,
+  selectAll: getAllNursingHomeGeofencing,
+  selectTotal: getTotalNursingHomeGeofencing
+} = fromNursingHomeGeofencing.adapater.getSelectors(getNursingHomeGeofencingState);
+
 // ****************** NURSING HOMES PAGE *************
 export const getNursingHomesPageState = createSelector(
   getDashboardState,
@@ -175,6 +191,18 @@ export const getNursingHomesState = createSelector(
 export const getSelectedNursingHomeId = createSelector(
   getNursingHomesState,
   fromNursingHome.getSelectedNursingHomeId
+);
+
+// get pending state when loading user patients from the store
+export const getNursingHomeGeofencingPending = createSelector(
+  getNursingHomesPageState,
+  fromNursingHomePage.getNursingHomeGeofencingPending
+);
+
+// get error state when loading user patients from the store
+export const getNursingHomeGeofencingError = createSelector(
+  getNursingHomesPageState,
+  fromNursingHomePage.getNursingHomeGeofencingError
 );
 
 // deconstruct several functions from ngrx/entity

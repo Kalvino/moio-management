@@ -30,8 +30,9 @@ import * as fromAuth from './auth/reducers';
 
 import {
   MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,
-  MatSortModule, MatTableModule
+  MatSortModule, MatTableModule,
 } from '@angular/material';
+
 
 /**
  * register locales

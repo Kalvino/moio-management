@@ -36,7 +36,7 @@ export function reducer(
 
     // load nursingHomes success state
     case NursingHomesApiActions.NursingHomesApiActionTypes.LoadNursingHomesSuccess:
-      console.log(action.payload.nursingHomes);
+      // console.log(action.payload.nursingHomes);
       return adapater.upsertMany(action.payload.nursingHomes, state);
 
     // add a new entity to the state in case creation is successful
