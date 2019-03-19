@@ -7,6 +7,7 @@ export enum DevicesActionTypes {
     LoadAllDevicesFailure = '[Devices] Load All Devices Failure',
     LoadSingleDeviceRequest = '[Devices] Load Single Device Request',
     LoadSingleDeviceSuccess = '[Devices] Load Single Device Success',
+    SetSelectedDevice = '[Devices] Set Selected Device'
 }
 
 /**
@@ -59,6 +60,15 @@ export class LoadSingleDeviceSuccess implements Action {
 }
 
 /**
+ * Load all devices successfully
+ */
+export class SetSelectedDevice implements Action {
+    readonly type = DevicesActionTypes.SetSelectedDevice;
+    constructor(public payload: { deviceId: number }) {
+    }
+}
+
+/**
  * Export union of devices Action
  */
 export type DevicesActionsUnion =
@@ -66,5 +76,6 @@ export type DevicesActionsUnion =
     | LoadAllDevicesSuccess
     | LoadAllDevicesFailure
     | LoadSingleDeviceRequest
-    | LoadSingleDeviceSuccess;
+    | LoadSingleDeviceSuccess
+    | SetSelectedDevice;
 

@@ -1,0 +1,30 @@
+<p *ngIf="rawView">{{log.telegram_data}}</p>
+<ng-container *ngIf="!rawView">
+
+    <table>
+        <tr>
+            <td valign="top"><b>Alarm:</b></td>
+            <td valign="top">
+                {{log.parsed.result.alarmName}}<br>
+                <small *ngIf="log.parsed.result.error.alarm" style="color: red">{{log.parsed.result.error.alarm}}
+                </small>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top"><b>Position Code:</b></td>
+            <td valign="top">
+                {{log.parsed.result.positionName}}<br>
+                <small *ngIf="log.parsed.result.error.position" style="color: red">{{log.parsed.result.error.position}}
+                </small>
+            </td>
+        </tr>
+
+        <tr>
+            <td valign="top"><b>Geo position:</b></td>
+            <td valign="top">
+                {{log.parsed.result.latitude}} / {{log.parsed.result.longitude}}
+            </td>
+        </tr>
+    </table>
+
+</ng-container>

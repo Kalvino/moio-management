@@ -14,7 +14,7 @@ export const adapter: EntityAdapter<IDeviceLogs> =
 
 export const initialDeviceLogsState: DeviceLogsState = adapter.getInitialState({
     loading: true,
-    allDevicesLoaded: false
+    allDevicesLoaded: false,
 });
 
 
@@ -28,6 +28,10 @@ export function deviceLogsReducer(
         // Get all devices
         case deviceLogsActions.DeviceLogsActionTypes.LoadAllDeviceLogsSuccess:
             return adapter.addMany(action.payload.deviceLogs, {...state, loading: false});
+
+        // WS incoming notifications
+        case deviceLogsActions.DeviceLogsActionTypes.IncomingLogs:
+            return adapter.upsertOne(action.payload.deviceLogs, state);
 
         default:
             return state;

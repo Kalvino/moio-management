@@ -1,11 +1,13 @@
 import * as deviceActions from '../actions/device.actions';
 import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
 import {IDevice} from '../../../models/device.model';
+import * as deviceLogsActions from '../actions/device-logs.actions';
 
 
 export interface DeviceState extends EntityState<IDevice> {
     loading: boolean;
     allDevicesLoaded: boolean;
+    selectedDeviceId: number;
 }
 
 export const adapter: EntityAdapter<IDevice> =
@@ -14,7 +16,8 @@ export const adapter: EntityAdapter<IDevice> =
 
 export const initialDeviceState: DeviceState = adapter.getInitialState({
     loading: true,
-    allDevicesLoaded: false
+    allDevicesLoaded: false,
+    selectedDeviceId: null
 });
 
 
@@ -39,6 +42,9 @@ export function deviceReducer(
         // Get all devices
         case deviceActions.DevicesActionTypes.LoadSingleDeviceSuccess:
             return adapter.addOne(action.payload.device, {...state, loading: false});
+
+        case deviceActions.DevicesActionTypes.SetSelectedDevice:
+            return {...state, selectedDeviceId: action.payload.deviceId};
 
         default:
             return state;

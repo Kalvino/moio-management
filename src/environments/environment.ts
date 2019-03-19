@@ -8,7 +8,8 @@ export const environment = {
     'dev-api.my-appsolute-mobility.com',
     'localhost:4200'
   ],
-  apiHost: 'https://dev-api.my-appsolute-mobility.com'
+  apiHost: 'https://dev-api.my-appsolute-mobility.com',
+  socketHost: 'http://moio.broker.local:8089'
 };
 
 /*

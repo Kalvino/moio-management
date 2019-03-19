@@ -4,27 +4,38 @@
 </mat-card-title>
 <mat-card-content>
 
+    <mat-slide-toggle [(ngModel)]="rawView">Raw View</mat-slide-toggle>
+
     <ngx-datatable
             class="material fullscreen bg-white"
             [columnMode]="'force'"
             [headerHeight]="50"
             [footerHeight]="0"
-            [rowHeight]="50"
-            [scrollbarV]="false"
-            [rows]="deviceLogs$ | async"
-            [selectionType]="'single'"
-            (select)="onSelectDevice($event)">
+            [rowHeight]="'auto'"
+            [rows]="deviceLogs$ | async | orderBy: created_at">
 
-        <ngx-datatable-column name="Type" [flexGrow]="1">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.type }}
+        <ngx-datatable-column name="Type" [width]="50" [canAutoResize]="false">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{ row?.direction }}
             </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Raw Data" [flexGrow]="1">
+        <ngx-datatable-column name="Command" [width]="200" [canAutoResize]="false">
             <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row.telegram_raw }}
+                <moio-device-command [log]="row" [rawView]="rawView"></moio-device-command>
             </ng-template>
         </ngx-datatable-column>
+        <ngx-datatable-column name="Data" [canAutoResize]="true">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <moio-device-data [log]="row" [rawView]="rawView"></moio-device-data>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Date" [canAutoResize]="true">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <p>{{row.created_at}}</p>
+            </ng-template>
+
+        </ngx-datatable-column>
+
     </ngx-datatable>
 
 </mat-card-content>
