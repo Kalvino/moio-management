@@ -51,21 +51,21 @@ export class NavigationService {
       name: 'Patients',
       type: 'link',
       tooltip: 'patients',
-      icon: 'group',
+      icon: 'accessible',
       state: 'dashboard/patients'
     },
     {
       name: 'Devices',
       type: 'link',
       tooltip: 'devices',
-      icon: 'settings',
+      icon: 'memory',
       state: 'dashboard/devices'
     },
     {
-      name: 'Nursing Homes',
+      name: 'NursingHomes',
       type: 'link',
       tooltip: 'nursing-homes',
-      icon: 'home',
+      icon: 'domain',
       state: 'dashboard/nursing-homes'
     }
   ];

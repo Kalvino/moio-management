@@ -12,6 +12,7 @@ import * as nursingHomeActions from '../../../actions/nursing-homes.actions';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmService } from '../../../../core/services/confirm.service';
 import { GeofenceFormComponent } from '../geofence-form/geofence-form.component';
+import { GeofenceEditFormComponent } from '../geofence-edit-form/geofence-edit-form.component';
 
 @Component({
   selector: 'moio-nursing-home-edit-form',
@@ -77,6 +78,7 @@ export class NursingHomeEditFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
     // Watch for changes to the currently selected patient
     this.store.pipe(
       select(fromDashboard.getSelectedNursingHome),
@@ -175,12 +177,37 @@ export class NursingHomeEditFormComponent implements OnInit, OnDestroy {
 
 
   addPolygon() {
-    let title = `Add new geofence - ${this.nursingHome.name}`; //this.translate.instant('GeofenceFormTitle');
+    let title = this.translate.instant('NewGeofenceFormTitle');
     let dialogRef: MatDialogRef<any> = this.dialog.open(GeofenceFormComponent, {
       width: '720px',
       disableClose: true,
       data: { title: title },
       id: 'geofenceCreationForm'
+    });
+  }
+
+  deletePolygon(geofence) {
+
+
+    const title = this.translate.instant("DeleteGeofence.title");
+    const message = this.translate.instant("DeleteGeofence.message");
+
+    this.confirmService.confirm({ title: title, message: message }).subscribe(res => {
+      if (res) {
+        console.log(geofence);
+        //this.store.dispatch(new nursingHomeActions.DismissEditNursingHome());
+      }
+    })
+
+  }
+
+  editPolygon(geofence) {
+    let title = this.translate.instant('EditGeofenceFormTitle');
+    let dialogRef: MatDialogRef<any> = this.dialog.open(GeofenceEditFormComponent, {
+      width: '720px',
+      disableClose: true,
+      data: { title, geofence },
+      id: 'geofenceEditForm'
     });
   }
 

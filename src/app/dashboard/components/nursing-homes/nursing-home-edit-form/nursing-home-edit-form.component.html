@@ -10,46 +10,46 @@
           <div fxFlex="100" fxFlex.gt-xs="100" class="pr-1">
             <div class="pb-1">
               <mat-form-field class="full-width">
-                <input matInput name="name" formControlName="name" placeholder="{{'Name' | translate}}" >
+                <input matInput name="name" formControlName="name" placeholder="{{'NHName' | translate}}" >
               </mat-form-field>
               <small *ngIf="nursingHomeEditForm.controls['name'].hasError('required') && nursingHomeEditForm.controls['name'].touched"
-                class="form-error-msg"> {{'NameRequired' | translate}} </small>
+                class="form-error-msg"> {{'NHNameRequired' | translate}} </small>
             </div>
 
             <div class="pb-1">
               <mat-form-field class="full-width">
-                <input matInput name="key" formControlName="key" placeholder="{{'Key' | translate}}" >
+                <input matInput name="key" formControlName="key" placeholder="{{'NHKey' | translate}}" >
               </mat-form-field>
               <small *ngIf="nursingHomeEditForm.controls['key'].hasError('required') && nursingHomeEditForm.controls['key'].touched"
-                class="form-error-msg"> {{'KeyRequired' | translate}} </small>
+                class="form-error-msg"> {{'NHKeyRequired' | translate}} </small>
             </div>
           </div>
           
           <div fxFlex="100" class="mt-1">
-            <button mat-raised-button color="primary" [disabled]="nursingHomeEditForm.invalid || !nursingHomeEditForm.dirty" type="submit">
+            <button mat-stroked-button color="primary" [disabled]="nursingHomeEditForm.invalid || !nursingHomeEditForm.dirty" type="submit">
               {{'Edit' | translate}}</button>
             <span fxFlex></span>
-            <button mat-button color="warn" type="button" (click)="cancelEdit()">{{'Cancel' | translate}}</button>
+            <button mat-stroked-button color="warn" type="button" (click)="cancelEdit()">{{'Cancel' | translate}}</button>
           </div>
         </div>
       </form>
 
       <mat-tab-group>
-        <mat-tab label="Users">
+        <mat-tab label="{{'NHUsersTabTitle' | translate}}">
           <p class="pt-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis quod dolores explicabo at nisi voluptatum doloribus,
             natus consequatur voluptate reprehenderit, obcaecati nulla quibusdam porro iste autem. Quia, quod possimus voluptas?</p>
         </mat-tab>
-        <mat-tab label="Patient Profiles">
+        <mat-tab label="{{'NHProfilesTabTitle' | translate}}">
           <p class="pt-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis quod dolores explicabo at nisi voluptatum doloribus,
             natus consequatur voluptate reprehenderit, obcaecati nulla quibusdam porro iste autem. Quia, quod possimus voluptas?</p>
         </mat-tab>
-        <mat-tab label="Geofencing">
+        <mat-tab label="{{'NHGeofenceTabTitle' | translate}}">
             
             <div fxFlex="100" class="mt-1 mb-1 ">
-              <button mat-raised-button class="buttonright" color="primary" type="button" (click)="addPolygon()">{{'Add Geofence' | translate}}</button>
+              <button mat-stroked-button class="addButton" color="primary" type="button" (click)="addPolygon()">{{'NewGeofenceButton' | translate}}</button>
             </div>
-
-            <mat-accordion>
+            <div *ngIf="(nursingHomeGeofencing$ | async)?.length==0">{{'NoGeofence' | translate}}</div>
+            <mat-accordion *ngIf="(nursingHomeGeofencing$ | async)?.length > 0">
               <mat-expansion-panel *ngFor="let geofence of nursingHomeGeofencing$ | async">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
@@ -59,6 +59,11 @@
                 </mat-expansion-panel-header>
 
                 <nursing-home-geofence [input]=geofence.polygon ></nursing-home-geofence>
+
+                <div class="mt-1 mb-1 ">
+                  <button mat-stroked-button class="editButton mat-small" color="primary" type="button" (click)="editPolygon(geofence)">{{'Edit' | translate}}</button>
+                  <button mat-stroked-button class="deleteButton mat-small" color="warn" type="button" (click)="deletePolygon(geofence)">{{'Delete' | translate}}</button>
+                </div>
 
               </mat-expansion-panel>
 

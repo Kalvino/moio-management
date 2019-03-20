@@ -9,8 +9,8 @@ declare var google: any;
   styleUrls: ['./geofence.component.scss']
 })
 export class NursingHomeGeofence implements OnInit, AfterViewInit {
-  lat: number = 0;
-  lng: number = 0;
+  lat: number = 49.4521;
+  lng: number = 11.0767;
   zoom: number = 20;
   fillcolor = '#ffff00';
   fillopacity = 0.5;
@@ -18,7 +18,7 @@ export class NursingHomeGeofence implements OnInit, AfterViewInit {
   paths: Array<LatLngLiteral> = [];
   @Input() input = '';
 
-  @ViewChild('map') map: AgmMap;
+  @ViewChild('map') m: AgmMap;
 
   ngOnInit() {
 
@@ -34,7 +34,7 @@ export class NursingHomeGeofence implements OnInit, AfterViewInit {
   ngAfterViewInit() {
 
     if (this.input.length > 0) {
-      this.map.mapReady.subscribe(map => {
+      this.m.mapReady.subscribe(map => {
         const bounds: LatLngBounds = new google.maps.LatLngBounds();
         for (const mm of this.paths) {
           bounds.extend(new google.maps.LatLng(mm.lat, mm.lng));

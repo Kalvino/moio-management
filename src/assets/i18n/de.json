@@ -35,7 +35,6 @@
   "list": "liste",
   "LIST": "LISTE",
   "Name": "Name",
-  "NursingHome": "Einrichtung",
   "RegisteredOn": "Registriert am",
   "LastLoginOn": "Lezte Anmeldung am",
   "PatientProfiles": "Patientenprofile",
@@ -64,6 +63,7 @@
   "ConfirmPassword": "Passwort bestätigen",
   "Save": "Speichern",
   "Edit": "bearbeiten",
+  "Delete": "Löschen",
   "Gender": "Geschlecht",
   "EmailInvalid": "Geben sie eine gültige E-Mail-Adresse",
   "CloseUnsavedForm": {
@@ -73,8 +73,28 @@
   "ConnectedUserProfiles": "Verbundene Benutzerprofile",
   "ConnectedPatientProfiles": "Verbundene Patientenprofile",
   "LastLogin": "Letzte Anmeldung",
+  "Devices": "Geräte",
+  "NursingHomes": "Altenheime",
+  "NursingHome": "Altenheim",
   "Patients": "Patienten",
   "Patient": "Patient",
-  "Permission": "Berechtigung"
-
+  "Permission": "Berechtigung",
+  "SearchMap": "Suchen Sie die Karte",
+  "NoGeofence": "Keine Geogenz gefunden",
+  "RemoveGeofence": "Geofence entfernen",
+  "GeofenceName": "Geofence-Name",
+  "NewGeofenceFormTitle": "Neuen Geofence hinzufügen",
+  "EditGeofenceFormTitle": "Geofence bearbeiten",
+  "NewGeofenceButton": "Hinzufügen",
+  "NHGeofenceTabTitle": "Geofencing",
+  "NHProfilesTabTitle": "Patientenprofile",
+  "NHUsersTabTitle": "Benutzer",
+  "NHNameRequired": "Name ist erforderlich",
+  "NHKeyRequired": "Schlüssel ist erforderlich",
+  "NHName": "Name",
+  "NHKey": "Schlüssel",
+  "DeleteGeofence": {
+    "title": "Löschen Sie diesen Geofence?",
+    "message": "Möchten Sie diesen Geofence wirklich löschen?"
+  }
 }

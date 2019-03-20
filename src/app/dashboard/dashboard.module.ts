@@ -40,6 +40,7 @@ import { NursingHomeFormComponent } from './components/nursing-homes/nursing-hom
 import { NursingHomeEditFormComponent } from './components/nursing-homes/nursing-home-edit-form/nursing-home-edit-form.component';
 import { NursingHomeGeofence } from './components/nursing-homes/geofence/geofence.component';
 import { GeofenceFormComponent } from './components/nursing-homes/geofence-form/geofence-form.component';
+import { GeofenceEditFormComponent } from './components/nursing-homes/geofence-edit-form/geofence-edit-form.component';
 import { NursingHomeComponent } from './components/nursing-homes/nursing-home.component';
 
 import { LoaderComponent } from '../core/components/loader/loader.component';
@@ -78,6 +79,7 @@ export const COMPONENTS = [
     NursingHomeComponent,
     NursingHomeGeofence,
     GeofenceFormComponent,
+    GeofenceEditFormComponent,
 
     LoaderComponent,
     AppDropdownDirective,
@@ -129,7 +131,7 @@ export const EFFECTS = [
     providers: [
         ConfirmService, GoogleMapsAPIWrapper
     ],
-    entryComponents: [UserFormComponent, PatientFormComponent, NursingHomeFormComponent, GeofenceFormComponent
+    entryComponents: [UserFormComponent, PatientFormComponent, NursingHomeFormComponent, GeofenceFormComponent, GeofenceEditFormComponent
     ]
 })
 export class DashboardModule {

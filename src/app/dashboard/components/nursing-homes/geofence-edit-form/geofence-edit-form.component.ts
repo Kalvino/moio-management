@@ -2,7 +2,7 @@
 import { Component, OnInit, Inject, NgZone, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { MapsAPILoader, AgmMap, GoogleMapsAPIWrapper } from '@agm/core';
+import { MapsAPILoader, AgmMap, GoogleMapsAPIWrapper, LatLngLiteral, LatLngBounds } from '@agm/core';
 
 /* NGRX */
 import { Store } from '@ngrx/store';
@@ -16,11 +16,11 @@ import { ConfirmService } from '../../../../core/services/confirm.service'
 declare var google: any;
 
 @Component({
-  selector: 'geofence-form',
-  templateUrl: './geofence-form.component.html',
-  styleUrls: ['./geofence-form.component.scss']
+  selector: 'geofence-edit-form',
+  templateUrl: './geofence-edit-form.component.html',
+  styleUrls: ['./geofence-edit-form.component.scss']
 })
-export class GeofenceFormComponent implements OnInit {
+export class GeofenceEditFormComponent implements OnInit {
   public itemForm: FormGroup;
   private validationMessages: { [key: string]: { [key: string]: string } };
   public lat: number;
@@ -31,6 +31,8 @@ export class GeofenceFormComponent implements OnInit {
   public overlay;
   public coordinates;
   public map;
+  public paths: Array<LatLngLiteral> = [];
+
 
   @ViewChild('map') m: AgmMap;
 
@@ -39,7 +41,7 @@ export class GeofenceFormComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<GeofenceFormComponent>,
+    public dialogRef: MatDialogRef<GeofenceEditFormComponent>,
     private fb: FormBuilder,
     private store: Store<fromDashboard.State>,
     private translate: TranslateService,
@@ -61,14 +63,14 @@ export class GeofenceFormComponent implements OnInit {
 
   ngOnInit() {
 
-    this.buildItemForm()
+    this.paths = JSON.parse(this.data.geofence.polygon);
+
+    this.buildItemForm();
     this.zoom = 18;
     this.lat = 49.4521;
     this.lng = 11.0767;
     this.overlay = null;
-    this.coordinates = [];
-
-    this.setCurrentPosition();
+    this.coordinates = this.paths;
 
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
@@ -114,7 +116,7 @@ export class GeofenceFormComponent implements OnInit {
     });
 
 
-  }
+  }//End of init
 
   deleteGeofence() {
 
@@ -134,6 +136,7 @@ export class GeofenceFormComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+
     this.m.mapReady.subscribe(map => {
       this.drawingManager.setMap(map);
       this.map = map;
@@ -151,12 +154,37 @@ export class GeofenceFormComponent implements OnInit {
         }
       }
     });
+
+    const polygon = new google.maps.Polygon({
+      paths: this.paths,
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#ffff00',
+      fillOpacity: 0.5
+    });
+
+    if (this.paths.length > 0) {
+      this.m.mapReady.subscribe(map => {
+        const bounds: LatLngBounds = new google.maps.LatLngBounds();
+        for (const mm of this.paths) {
+          bounds.extend(new google.maps.LatLng(mm.lat, mm.lng));
+        }
+
+        map.fitBounds(bounds);
+
+        polygon.setMap(map);
+        this.overlay = polygon;
+      });
+    }
+
   }
 
   buildItemForm() {
+    let { name, polygon, nursing_home_id } = this.data.geofence;
     this.itemForm = this.fb.group({
-      name: ['', Validators.required],
-      polygon: ['', Validators.required],
+      name: [name, Validators.required],
+      polygon: [polygon, Validators.required],
+      nursing_home_id: [nursing_home_id, Validators.required],
       search: ['']
     })
   }
@@ -164,14 +192,14 @@ export class GeofenceFormComponent implements OnInit {
   submit() {
 
     if (this.itemForm.valid) {
-      console.log(this.itemForm)
+
       const geofence = this.itemForm.value;
       console.log(geofence);
-      console.log(this.coordinates);
-      let x = JSON.stringify(this.coordinates);
-      console.log(x)
+      //console.log(this.coordinates);
+      //let x = JSON.stringify(this.coordinates);
+      //console.log(x)
       //this.store.dispatch(new UsersActions.CreateUser({ user }));
-      //this.dialogRef.close(this.itemForm.value)
+      this.dialogRef.close(this.itemForm.value)
     }
   }
 
@@ -189,16 +217,6 @@ export class GeofenceFormComponent implements OnInit {
     } else {
       // this.store.dispatch(new UsersActions.DismissUserFormDialog());
       this.dialogRef.close(this.itemForm.value)
-    }
-  }
-
-  private setCurrentPosition() {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
-        this.zoom = 12;
-      });
     }
   }
 

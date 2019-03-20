@@ -59,7 +59,7 @@ export const dashboardRoutes: Routes = [
         component: NursingHomeComponent,
         data: {
           title: 'Nursing Homes',
-          breadcrumb: 'Nursing Homes'
+          breadcrumb: 'NursingHome'
         }
       },
     ]
