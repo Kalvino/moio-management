@@ -5,9 +5,11 @@ import {IDeviceLogs as DeviceLogs} from '../model/device-logs.model';
 import {select, Store} from '@ngrx/store';
 import * as fromDashboard from '../../reducers';
 import * as deviceLogsActions from '../store/actions/device-logs.actions';
+import * as deviceSocketActions from '../store/actions/device-socket.actions';
 import {getDeviceSelectedState, selectDeviceLogsByDeviceId} from '../store/selectors';
 import {SocketService} from '../service/socket.service';
 import {take} from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'moio-device-log',
@@ -18,7 +20,6 @@ export class DeviceLogComponent implements OnInit, OnDestroy {
     deviceLogs$: Observable<DeviceLogs[]>;
     deviceId: number;
     rawView = false;
-
     /**
      * subscription on new notifications
      */
@@ -27,8 +28,10 @@ export class DeviceLogComponent implements OnInit, OnDestroy {
     constructor(
         private store: Store<fromDashboard.State>,
         private route: ActivatedRoute,
-        private socketService: SocketService
+        private socketService: SocketService,
+        public translate: TranslateService
     ) {
+        translate.setDefaultLang('de');
     }
 
     ngOnInit() {
@@ -37,8 +40,8 @@ export class DeviceLogComponent implements OnInit, OnDestroy {
 
             this.deviceId = deviceId;
 
-            this.store.dispatch(new deviceLogsActions.ConnectClient());
-            this.store.dispatch(new deviceLogsActions.Subscribe({deviceId: this.deviceId}));
+            // this.store.dispatch(new deviceSocketActions.ConnectClient({namespace: this.socketNamespace}));
+            // this.store.dispatch(new deviceSocketActions.Subscribe({namespace: this.socketNamespace, deviceId: this.deviceId}));
 
             // subscribe to the incoming notifications stream
             this.logsSubscription = this.socketService.onLog()
@@ -49,7 +52,7 @@ export class DeviceLogComponent implements OnInit, OnDestroy {
                 });
 
             // Load all devices by the store
-            this.store.dispatch(new deviceLogsActions.LoadAllDeviceLogsRequest(deviceId));
+            // this.store.dispatch(new deviceLogsActions.LoadAllDeviceLogsRequest(deviceId));
 
             // Get all devices from the store
             this.deviceLogs$ = this.store.pipe(select(selectDeviceLogsByDeviceId(this.deviceId)));
@@ -60,12 +63,14 @@ export class DeviceLogComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
 
-        this.store.dispatch(new deviceLogsActions.DisconnectClient());
+        this.logsSubscription.unsubscribe();
+
+        // this.store.dispatch(new deviceSocketActions.DisconnectClient({namespace: this.socketNamespace}));
 
     }
 
-    onSelectDevice($event){
-        console.log('Device selected');
-    }
+    // onSelectDevice($event){
+    //     console.log('Device selected');
+    // }
 
 }

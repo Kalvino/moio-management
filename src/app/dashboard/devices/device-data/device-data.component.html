@@ -1,0 +1,66 @@
+<ng-container *ngIf="log.parsed" [ngSwitch]="log.parsed.report_typ">
+    <ng-template ngSwitchCase="simple_report">
+
+        <p>
+            <label>{{'Device.Log.table.cell.alarm' |translate}}:</label>
+            {{('Device.alarm_code.' + log.parsed.alarmName) | translate}}<br>
+            <small *ngIf="log.parsed.error && log.parsed.error.alarm" style="color: red">{{log.parsed.error.alarm}}
+            </small>
+        </p>
+
+        <p>
+            <label>{{'Device.Log.table.cell.position_code' |translate}}:</label>
+            {{('Device.position_code.' + log.parsed.positionName) | translate}}<br>
+            <small *ngIf="log.parsed.error && log.parsed.error.position" style="color: red">
+                {{log.parsed.error.position}}
+            </small>
+        </p>
+
+        <p>
+            <label>{{'Device.Log.table.cell.geo_position' |translate}}:</label>
+            {{log.parsed.latitude}} / {{log.parsed.longitude}}
+        </p>
+
+        <p>
+            <label>{{'Device.Log.table.cell.battery_charge' |translate}}:</label>
+            {{log.parsed.batteryChargePercent}}%
+        </p>
+
+    </ng-template>
+    <ng-template ngSwitchCase="active_tracking_report">
+
+        <p>
+            <label>{{'Device.Log.table.cell.position_code' |translate}}:</label>
+            {{('Device.position_code.' + log.parsed.positionName) | translate}}<br>
+            <small *ngIf="log.parsed.error && log.parsed.error.position" style="color: red">
+                {{log.parsed.error.position}}
+            </small>
+        </p>
+
+        <p>
+            <label>{{'Device.Log.table.cell.geo_position' |translate}}:</label>
+            {{log.parsed.latitude}} / {{log.parsed.longitude}}
+        </p>
+
+        <p>
+            <label>{{'Device.Log.table.cell.sensor_status' |translate}}:</label>
+            {{log.parsed.sensorStatus}}
+        </p>
+
+        <p>
+            <label>{{'Device.Log.table.cell.beacon_status' |translate}}:</label>
+            {{log.parsed.beaconStatus}}
+        </p>
+
+        <p>
+            <label>{{'Device.Log.table.cell.battery_charge' |translate}}:</label>
+            {{log.parsed.batteryChargePercent}}%
+        </p>
+
+    </ng-template>
+    <ng-template ngSwitchDefault>
+        <i>No data</i>
+    </ng-template>
+</ng-container>
+
+

@@ -21,7 +21,7 @@ export class SocketService {
     /**
      * instance of socket client for notifications
      */
-    private deviceLogsClient = null;
+    private deviceClient = null;
 
     /**
      * current user
@@ -50,24 +50,12 @@ export class SocketService {
 
     }
 
-    /**
-     * create client or open / re-open connection of the client
-     * @param client name of the client: 'notifications | patient_history
-     */
-    connectClient(client: string): void {
+    connectClient(): void {
 
-        if (client === 'device_logs') {
-
-            if (!this.deviceLogsClient) {
-
-                this.deviceLogsClient =
-                    io(`${environment.socketHost}/devices/logs?token=${this._token}&device_id=1`);
-
-            } else if (this.deviceLogsClient && this.deviceLogsClient.disconnected) {
-
-                this.deviceLogsClient.open();
-
-            }
+        if (!this.deviceClient) {
+            this.deviceClient = io(`${environment.socketHost}/devices/logs?token=${this._token}&device_id=1&application=moio_management`);
+        } else if (this.deviceClient && this.deviceClient.disconnected) {
+            this.deviceClient.open();
         }
 
     }
@@ -76,12 +64,11 @@ export class SocketService {
      * close socket connection
      * @param client name of the client to close: notifications | patient_history
      */
-    disconnectClient(client): void {
-        if (client === 'notifications') {
-            if (this.deviceLogsClient) {
-                this.deviceLogsClient.close();
-                this.deviceLogsClient = null;
-            }
+    disconnectClient(): void {
+
+        if (this.deviceClient) {
+            this.deviceClient.close();
+            this.deviceClient = null;
         }
 
     }
@@ -91,8 +78,8 @@ export class SocketService {
      * @param client: string patient_history | notifications
      * @param id: number patient_id | user_id
      */
-    subscribe(client, id: number) {
-        this.emit(client, 'subscribe', id);
+    subscribe(id: number) {
+        this.emit('subscribe', id);
     }
 
     /**
@@ -101,28 +88,30 @@ export class SocketService {
      * @param id: number patient_id | user_id
      */
     unsubscribe(client, id: number) {
-        this.emit(client, 'unsubscribe', id);
+        this.emit('unsubscribe', id);
     }
 
-    emit(client: string, topic: string, id: number) {
-        switch (client) {
+    emit(topic: string, id: number) {
 
-            case 'device_logs':
-                if (this.deviceLogsClient) {
-                    if (this.deviceLogsClient.disconnected) {
-                        this.deviceLogsClient.open();
-                    }
-                    this.deviceLogsClient.emit(topic, id);
-                }
-                break;
+        if (this.deviceClient) {
+            if (this.deviceClient.disconnected) {
+                this.deviceClient.open();
+            }
+            this.deviceClient.emit(topic, id);
         }
+
     }
 
     onLog(): Observable<any> {
         return new Observable(observer => {
-            this.deviceLogsClient.on('device_logs', (data) => observer.next(data));
+            this.deviceClient.on('device_logs', (data) => observer.next(data));
         });
     }
 
+    onReport(): Observable<any> {
+        return new Observable(observer => {
+            this.deviceClient.on('device_reports', (data) => observer.next(data));
+        });
+    }
 
 }

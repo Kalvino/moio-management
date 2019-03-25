@@ -18,9 +18,10 @@ import {DeviceListComponent} from './device-list/device-list.component';
 import {DeviceDetailComponent} from './device-detail/device-detail.component';
 import {DeviceContainerComponent} from './device-container/device-container.component';
 import {DeviceLogComponent} from './device-log/device-log.component';
+import {DeviceCommandComponent} from './device-command/device-command.component';
+import {DeviceDataComponent} from './device-data/device-data.component';
 import {DeviceSettingsComponent} from './device-settings/device-settings.component';
-import {DeviceCommandComponent} from './device-log/device-command/device-command.component';
-import {DeviceDataComponent} from './device-log/device-data/device-data.component';
+import {DeviceReportsComponent} from './device-reports/device-reports.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import {DeviceDataComponent} from './device-log/device-data/device-data.componen
         DeviceLogComponent,
         DeviceSettingsComponent,
         DeviceCommandComponent,
-        DeviceDataComponent
+        DeviceDataComponent,
+        DeviceReportsComponent
     ],
     imports: [
         StoreModule.forFeature('deviceState', reducers),
@@ -41,7 +43,7 @@ import {DeviceDataComponent} from './device-log/device-data/device-data.componen
         TranslateModule,
         MaterialModule,
         FormsModule,
-        OrderModule
+        OrderModule,
     ]
 })
 export class DevicesModule {

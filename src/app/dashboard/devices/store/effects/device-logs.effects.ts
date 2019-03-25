@@ -10,11 +10,7 @@ import {
     DeviceLogsActionTypes,
     LoadAllDeviceLogsRequest,
     LoadAllDeviceLogsFailure,
-    LoadAllDeviceLogsSuccess,
-    ConnectClient,
-    DisconnectClient,
-    Subscribe,
-    Unsubscribe
+    LoadAllDeviceLogsSuccess
 } from '../actions/device-logs.actions';
 import {IPatient} from '../../../models/patient.model';
 import * as UsersApiActions from '../../../actions/users-api.actions';
@@ -38,61 +34,62 @@ export class DeviceLogsEffects {
                 }
             ));
 
-    /**
-     * connect to WS client for notifications
-     */
-    @Effect({
-        dispatch: false
-    })
-    connectClient$ = this.actions$.pipe(
-        ofType<ConnectClient>(DeviceLogsActionTypes.ConnectClient),
-        tap(() => {
-            this.socketService.connectClient('device_logs');
-        })
-    );
-
-    /**
-     * disconnect WS client for notifications
-     */
-    @Effect({
-        dispatch: false
-    })
-    disconnectClient$ = this.actions$.pipe(
-        ofType<DisconnectClient>(DeviceLogsActionTypes.DisconnectClient),
-        // delay(500),
-        tap(() => {
-            this.socketService.disconnectClient('device_logs');
-        })
-    );
-
-    /**
-     * subscribe to notifications stream for a user id
-     */
-    @Effect({
-        dispatch: false
-    })
-    subscribeDeviceLogs$ = this.actions$.pipe(
-        ofType<Subscribe>(DeviceLogsActionTypes.Subscribe),
-        delay(1000),
-        map(action => action.payload.deviceId),
-        tap(deviceId => {
-            this.socketService.subscribe('device_logs', deviceId);
-        })
-    );
-
-    /**
-     * unsubscribe to notifications stream for a user id
-     */
-    @Effect({
-        dispatch: false
-    })
-    unsubscribeNotifications$ = this.actions$.pipe(
-        ofType<Unsubscribe>(DeviceLogsActionTypes.Unsubscribe),
-        map(action => action.payload.userId),
-        tap(patientId => {
-            this.socketService.unsubscribe('notifications', patientId);
-        })
-    );
+    // /**
+    //  * connect to WS client for notifications
+    //  */
+    // @Effect({
+    //     dispatch: false
+    // })
+    // connectClient$ = this.actions$.pipe(
+    //     ofType<ConnectClient>(DeviceLogsActionTypes.ConnectClient),
+    //     map(action => action.payload.namespace),
+    //     tap((namespace) => {
+    //         this.socketService.connectClient(namespace);
+    //     })
+    // );
+    //
+    // /**
+    //  * disconnect WS client for notifications
+    //  */
+    // @Effect({
+    //     dispatch: false
+    // })
+    // disconnectClient$ = this.actions$.pipe(
+    //     ofType<DisconnectClient>(DeviceLogsActionTypes.DisconnectClient),
+    //     map(action => action.payload.namespace),
+    //     tap((namespace) => {
+    //         this.socketService.disconnectClient(namespace);
+    //     })
+    // );
+    //
+    // /**
+    //  * subscribe to notifications stream for a user id
+    //  */
+    // @Effect({
+    //     dispatch: false
+    // })
+    // subscribeDeviceLogs$ = this.actions$.pipe(
+    //     ofType<Subscribe>(DeviceLogsActionTypes.Subscribe),
+    //     delay(1000),
+    //     map(action => action.payload),
+    //     tap(payload => {
+    //         this.socketService.subscribe(payload.namespace, payload.deviceId);
+    //     })
+    // );
+    //
+    // /**
+    //  * unsubscribe to notifications stream for a user id
+    //  */
+    // @Effect({
+    //     dispatch: false
+    // })
+    // unsubscribeNotifications$ = this.actions$.pipe(
+    //     ofType<Unsubscribe>(DeviceLogsActionTypes.Unsubscribe),
+    //     map(action => action.payload.userId),
+    //     tap(patientId => {
+    //         this.socketService.unsubscribe('notifications', patientId);
+    //     })
+    // );
 
 
     constructor(

@@ -1,0 +1,12 @@
+<ng-container *ngIf="rawView">
+    <span>{{log.command_code}}</span>
+</ng-container>
+
+<ng-container *ngIf="!rawView">
+
+    <ng-container *ngIf="log.parsed.commandName">{{('Device.command_code.' + log.parsed.commandName) | translate}}<br></ng-container>
+    <ng-container *ngIf="!log.parsed.commandName">{{log.parsed.commandCode}}<br></ng-container>
+    <small *ngIf="log.parsed.error && log.parsed.error.command" style="color: red">{{log.parsed.error.command}}
+    </small>
+
+</ng-container>
