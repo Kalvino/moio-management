@@ -2,9 +2,10 @@ import {Action} from '@ngrx/store';
 import {IDeviceLogs} from '../../model/device-logs.model';
 
 export enum DeviceLogsActionTypes {
-    LoadAllDeviceLogsRequest = '[Devices] Load All Devices Logs Request',
-    LoadAllDeviceLogsSuccess = '[Devices] Load All Devices Logs Success',
-    LoadAllDeviceLogsFailure = '[Devices] Load All Devices Logs Failure',
+    LoadAllDeviceLogsRequest = '[Devices/Logs] Load All Devices Logs Request',
+    LoadAllDeviceLogsSuccess = '[Devices/Logs] Load All Devices Logs Success',
+    LoadAllDeviceLogsFailure = '[Devices/Logs] Load All Devices Logs Failure',
+    IncomingLogs = '[Devices/Logs] Incoming Logs'
 }
 
 /**
@@ -13,7 +14,7 @@ export enum DeviceLogsActionTypes {
 export class LoadAllDeviceLogsRequest implements Action {
     readonly type = DeviceLogsActionTypes.LoadAllDeviceLogsRequest;
 
-    constructor() {
+    constructor(public deviceId: number) {
     }
 }
 
@@ -36,10 +37,25 @@ export class LoadAllDeviceLogsFailure implements Action {
 }
 
 /**
+ * Load all devices successfully
+ */
+export class IncomingLogs implements Action {
+
+    readonly type = DeviceLogsActionTypes.IncomingLogs;
+
+    constructor(public payload: { deviceLogs: IDeviceLogs }) {
+
+    }
+
+}
+
+/**
  * Export union of devices Action
  */
 export type DeviceLogsActionsUnion =
     | LoadAllDeviceLogsRequest
     | LoadAllDeviceLogsSuccess
-    | LoadAllDeviceLogsFailure;
+    | LoadAllDeviceLogsFailure
+    | IncomingLogs;
+
 

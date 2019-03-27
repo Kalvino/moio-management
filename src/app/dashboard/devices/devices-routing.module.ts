@@ -5,6 +5,7 @@ import {DeviceListComponent} from './device-list/device-list.component';
 import {DeviceDetailComponent} from './device-detail/device-detail.component';
 import {DeviceLogComponent} from './device-log/device-log.component';
 import {DeviceSettingsComponent} from './device-settings/device-settings.component';
+import {DeviceReportsComponent} from './device-reports/device-reports.component';
 
 const routes: Routes = [
     {
@@ -29,7 +30,15 @@ const routes: Routes = [
                 children: [
                     {
                         path: '',
-                        redirectTo: 'logs',
+                        redirectTo: 'reports',
+                    },
+                    {
+                        path: 'reports',
+                        component: DeviceReportsComponent,
+                        data: {
+                            title: 'Reports',
+                            breadcrumb: 'Reports'
+                        }
                     },
                     {
                         path: 'logs',

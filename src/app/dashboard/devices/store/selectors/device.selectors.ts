@@ -24,4 +24,13 @@ export const getDeviceLoadingState = createSelector(
     }
 );
 
+export const
+    getDeviceSelectedState = createSelector(
+    fromFeature.getDeviceState,
+    deviceState => {
+        return deviceState.devices.selectedDeviceId;
+    }
+);
+
+
 

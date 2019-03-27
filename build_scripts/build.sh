@@ -7,7 +7,7 @@ if [ -z "$1" ]
 then
     ng build --prod
 else
-    ng build --$1
+    ng build --configuration=$1
 fi
 
 

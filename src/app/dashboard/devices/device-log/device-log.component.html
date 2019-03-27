@@ -1,30 +1,41 @@
 <mat-card-title class="">
-    <div class="card-title-text">Device Logs</div>
+    <div class="card-title-text">{{'Device.Log.headline' |translate}}</div>
     <mat-divider></mat-divider>
 </mat-card-title>
 <mat-card-content>
+
+    <mat-slide-toggle [(ngModel)]="rawView">Raw View</mat-slide-toggle>
 
     <ngx-datatable
             class="material fullscreen bg-white"
             [columnMode]="'force'"
             [headerHeight]="50"
             [footerHeight]="0"
-            [rowHeight]="50"
-            [scrollbarV]="false"
-            [rows]="deviceLogs$ | async"
-            [selectionType]="'single'"
-            (select)="onSelectDevice($event)">
+            [rowHeight]="'auto'"
+            [rows]="deviceLogs$ | async">
 
-        <ngx-datatable-column name="Type" [flexGrow]="1">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.type }}
+        <ngx-datatable-column [name]="'Device.Log.table.type' | translate" [width]="50" [canAutoResize]="false">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{ row?.direction }}
             </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Raw Data" [flexGrow]="1">
+        <ngx-datatable-column [name]="'Device.Log.table.command' | translate" [width]="200" [canAutoResize]="false">
             <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row.telegram_raw }}
+                <moio-device-command [log]="row" [rawView]="rawView"></moio-device-command>
             </ng-template>
         </ngx-datatable-column>
+        <ngx-datatable-column [name]="'Device.Log.table.data' | translate" [canAutoResize]="true">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <moio-device-data [log]="row" [rawView]="rawView"></moio-device-data>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [name]="'Device.Log.table.date' | translate" [canAutoResize]="true">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <span>{{row.created_at | date:'medium'}}</span>
+            </ng-template>
+
+        </ngx-datatable-column>
+
     </ngx-datatable>
 
 </mat-card-content>

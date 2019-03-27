@@ -17,7 +17,8 @@ import {
   MatSidenavModule,
   MatSnackBarModule, MatToolbarModule,
   MatTooltipModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSlideToggleModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -42,7 +43,8 @@ const MODULES = [
   MatProgressBarModule,
   MatInputModule,
   FlexLayoutModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSlideToggleModule
 ];
 
 @NgModule({

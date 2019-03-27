@@ -5,5 +5,6 @@ export const environment = {
         'localhost:4200',
         'api.moiocloud.local'
     ],
-    apiHost: 'http://api.moiocloud.local'
+    apiHost: 'http://api.moiocloud.local',
+    socketHost: 'http://moio.broker.local:8089'
 };

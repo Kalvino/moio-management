@@ -76,5 +76,50 @@
   "LastLogin": "Last Login",
   "Patients": "Patients",
   "Patient": "Patient",
-  "Permission": "Permission"
+  "Permission": "Permission",
+  "Device": {
+    "Log": {
+      "headline": "Log entries",
+      "table": {
+        "type": "Type",
+        "command": "Command",
+        "data": "Data",
+        "date": "Date",
+        "cell": {
+          "alarm": "Alarm",
+          "position_code": "Position Code",
+          "geo_position": "Geo Position",
+          "battery_charge": "State of charge",
+          "sensor_status": "Sensor status",
+          "beacon_status": "Beacon status"
+        }
+      }
+    },
+    "position_code": {
+      "Sleeping on stomach": "Sleeping on stomach",
+      "Sleeping on back": "Sleeping on back",
+      "Sleeping on left": "Sleeping on left",
+      "Sleeping on right": "Sleeping on right",
+      "Sitting or standing up": "Sitting or standing up",
+      "Walking": "Walking",
+      "Falling down": "Falling down"
+    },
+    "alarm_code": {
+      "Silent": "Silent",
+      "External Red Zone Error": "External Red Zone Error",
+      "Bedsore sitting timeout": "Bedsore sitting timeout",
+      "Bedsore sleep time out": "Bedsore sleep time out",
+      "Fall down Detection on any side": "Fall down Detection on any side",
+      "Dead Pattern Detection or No motion": "Dead Pattern Detection or No motion",
+      "Touch sensor detach time out": "Touch sensor detach time out",
+      "Out of green zone. Beacons not detected or out of defined geofencing area": "Out of green zone. Beacons not detected or out of defined geofencing area",
+      "tbd": "Silent"
+    },
+    "command_code": {
+      "CC": "Active tracking report",
+      "SPO": "Position report",
+      "SOK": "System Acknowledge",
+      "DIC": "Disconnection request"
+    }
+  }
 }

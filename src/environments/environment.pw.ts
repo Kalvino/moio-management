@@ -3,12 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  whitelistedDomains: [
-    'localhost:4200',
-    'api.moiocloud.local'
-  ],
-  apiHost: 'http://127.0.0.1:8000'
+    production: false,
+    whitelistedDomains: [
+        'localhost:4200',
+        'moio.cloud.local:8000'
+    ],
+    apiHost: 'http://moio.cloud.local:8000',
+    socketHost: 'http://moio.broker.local:8089'
 };
 
 /*

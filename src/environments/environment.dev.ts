@@ -2,8 +2,9 @@ export const environment = {
     env_name: 'dev',
     production: false,
     whitelistedDomains: [
-        'localhost:4200',
-        'api.moiocloud.local'
+        'dev-api.my-appsolute-mobility.com',
+        'localhost:4200'
     ],
-    apiHost: 'http://api.moiocloud.local'
+    apiHost: 'https://dev-api.my-appsolute-mobility.com',
+    socketHost: 'http://dev-broker.my-appsolute-mobility.com:8012'
 };

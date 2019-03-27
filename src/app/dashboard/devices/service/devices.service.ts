@@ -33,8 +33,8 @@ export class DevicesService {
     /**
      * Get all devices from the API
      */
-    getAllDeviceLogs(): Observable<IDeviceLogs[]> {
-        return this.http.get<IDeviceLogs[]>('https://fcc34170-5efa-455b-8217-132846e1421c.mock.pstmn.io/api/devices/3/logs/all');
+    getAllDeviceLogs(deviceId): Observable<IDeviceLogs[]> {
+        return this.http.get<IDeviceLogs[]>(`${environment.apiHost}/api/devices/log/${deviceId}`);
     }
 
     /**
