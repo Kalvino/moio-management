@@ -89,7 +89,7 @@ function getBrowserLanguage() {
     AppComponent
   ],
   imports: [
-    RouterModule.forRoot(rootRoutes),
+    RouterModule.forRoot(rootRoutes, {useHash: true}),
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
