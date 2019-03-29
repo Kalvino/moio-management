@@ -8,6 +8,7 @@ import {environment} from '../../../../environments/environment';
 import {delay} from 'rxjs/operators';
 import {IDeviceSetting} from '../model/device-settings.model';
 import {IDeviceLogs} from '../model/device-logs.model';
+import {IDeviceCommand} from '../model/device-command.model';
 
 /**
  * patient service
@@ -21,6 +22,14 @@ export class DevicesService {
 
     constructor(private http: HttpClient) {
 
+    }
+
+    getAllDeviceCommands(): Observable<IDeviceCommand[]> {
+        return this.http.get<IDeviceCommand[]>(`${environment.apiHost}/api/devices_commands`);
+    }
+
+    triggerDeviceCommands(deviceId, commandId): Observable<any> {
+        return this.http.post(`${environment.apiHost}/api/devices/command_queue`, {'device_id': deviceId, 'command_code_id': commandId});
     }
 
     /**

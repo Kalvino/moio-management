@@ -6,6 +6,8 @@ import {DeviceDetailComponent} from './device-detail/device-detail.component';
 import {DeviceLogComponent} from './device-log/device-log.component';
 import {DeviceSettingsComponent} from './device-settings/device-settings.component';
 import {DeviceReportsComponent} from './device-reports/device-reports.component';
+import {DeviceCommandComponent} from './device-command/device-command.component';
+import {DeviceCommandsComponent} from './device-commands/device-commands.component';
 
 const routes: Routes = [
     {
@@ -56,6 +58,14 @@ const routes: Routes = [
                             breadcrumb: 'Settings'
                         }
                     },
+                    {
+                        path: 'commands',
+                        component: DeviceCommandsComponent,
+                        data: {
+                            title: 'Commands',
+                            breadcrumb: 'Commands'
+                        }
+                    }
                 ]
             }
         ]
