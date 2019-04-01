@@ -46,7 +46,6 @@ export class DeviceCommandsComponent implements OnInit, OnDestroy {
     }
 
     triggerCommand(commandId) {
-        console.log(commandId);
         this.deviceService.triggerDeviceCommands(this.deviceId, commandId).subscribe();
     }
 
