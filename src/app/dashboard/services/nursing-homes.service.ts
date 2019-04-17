@@ -62,7 +62,31 @@ export class NursingHomesService {
      * @param id nursingome id
      */
   getNursingHomeGeofencing(id: number): Observable<Geofencing[]> {
-    return this.http.get<Geofencing[]>(`${environment.apiHost}/api/nursinghomes/${id}/geofencing`);
+    return this.http.get<Geofencing[]>(`${environment.apiHost}/api/nursinghomes/${id}/geofence`);
+  }
+
+  /**
+   * create a new geofence
+   * @param geofence Geofencing
+   */
+  createNursingHomeGeofencing(geofence: Geofencing): Observable<Geofencing> {
+    return this.http.post<Geofencing>(`${environment.apiHost}/api/nursinghomes/${geofence.nursing_home_id}/geofence`, geofence);
+  }
+
+  /**
+   * update a geofence
+   * @param geofence object:Geofencing
+   */
+  updateNursingHomeGeofencing(geofence: Geofencing): Observable<Geofencing> {
+    return this.http.put<Geofencing>(`${environment.apiHost}/api/nursinghomes/${geofence.nursing_home_id}/geofence/${geofence.id}`, geofence);
+  }
+
+  /**
+   * delete a geofence
+   * @param geofence object:Geofencing
+   */
+  deleteNursingHomeGeofencing(geofence: Geofencing): Observable<{}> {
+    return this.http.delete<Geofencing>(`${environment.apiHost}/api/nursinghomes/${geofence.nursing_home_id}/geofence/${geofence.id}`);
   }
 
 }

@@ -9,6 +9,10 @@ export interface State {
   editNursingHomePending: boolean;
   loadNursingHomeGeofencingPending: boolean;
   loadNursingHomeGeofencingError: string | null;
+  createNursingHomeGeofencingError: string | null;
+  createNursingHomeGeofencingPending: boolean;
+  editNursingHomeGeofencingError: string | null;
+  editNursingHomeGeofencingPending: boolean;
 }
 
 export const initialState: State = {
@@ -19,7 +23,11 @@ export const initialState: State = {
   editNursingHomeError: null,
   editNursingHomePending: false,
   loadNursingHomeGeofencingPending: false,
-  loadNursingHomeGeofencingError: null
+  loadNursingHomeGeofencingError: null,
+  createNursingHomeGeofencingError: null,
+  createNursingHomeGeofencingPending: false,
+  editNursingHomeGeofencingError: null,
+  editNursingHomeGeofencingPending: false
 };
 
 /**
@@ -34,21 +42,21 @@ export function reducer(
     | NursingHomesActions.NursingHomesActionsUnion): State {
   switch (action.type) {
 
-    case (NursingHomesActions.NursingHomesActionTypes.LoadNursingHomesGeofencing):
+    case (NursingHomesActions.NursingHomesActionTypes.LoadNursingHomeGeofencing):
       return {
         ...state,
         loadNursingHomeGeofencingPending: true,
         loadNursingHomeGeofencingError: null
       };
 
-    case (NursingHomesApiActions.NursingHomesApiActionTypes.LoadNursingHomesGeofencingSuccess):
+    case (NursingHomesApiActions.NursingHomesApiActionTypes.LoadNursingHomeGeofencingSuccess):
       return {
         ...state,
         loadNursingHomeGeofencingPending: false,
         loadNursingHomeGeofencingError: null
       };
 
-    case (NursingHomesApiActions.NursingHomesApiActionTypes.LoadNursingHomesGeofencingFailure):
+    case (NursingHomesApiActions.NursingHomesApiActionTypes.LoadNursingHomeGeofencingFailure):
       return {
         ...state,
         loadNursingHomeGeofencingPending: false,
@@ -85,6 +93,33 @@ export function reducer(
         ...state,
         pending: false,
         error: action.payload.message
+      };
+
+    case (NursingHomesActions.NursingHomesActionTypes.EditNursingHomeGeofencing):
+      return {
+        ...state,
+        editNursingHomeGeofencingPending: true,
+        editNursingHomeGeofencingError: null
+      };
+
+    case (NursingHomesActions.NursingHomesActionTypes.CreateNursingHomeGeofencing):
+      return {
+        ...state,
+        createNursingHomeGeofencingPending: true
+      };
+
+    case (NursingHomesApiActions.NursingHomesApiActionTypes.CreateNursingHomeGeofencingFailure):
+      return {
+        ...state,
+        createNursingHomeGeofencingPending: false,
+        createNursingHomeGeofencingError: action.payload.message
+      };
+
+    case (NursingHomesApiActions.NursingHomesApiActionTypes.CreateNursingHomeGeofencingSuccess):
+      return {
+        ...state,
+        createNursingHomeGeofencingPending: false,
+        createNursingHomeGeofencingError: null
       };
 
     default:
@@ -143,3 +178,26 @@ export const getNursingHomeGeofencingPending = (state: State) => state.loadNursi
 export const getNursingHomeGeofencingError = (state: State) => state.loadNursingHomeGeofencingError;
 
 
+/**
+ * get the current error state when creating nursinghome geofence
+ * @param state
+ */
+export const getCreateNursingHomeGeofencingError = (state: State) => state.createNursingHomeGeofencingError;
+
+/**
+ * get the pending state when creating nursinghome geofence
+ * @param state
+ */
+export const getCreateNursingHomeGeofencingPending = (state: State) => state.createNursingHomeGeofencingPending;
+
+/**
+ * get the current error state when editing nursinghome geofence
+ * @param state
+ */
+export const getEditNursingHomeGeofencingError = (state: State) => state.editNursingHomeGeofencingError;
+
+/**
+ * get the pending state when editing nursinghome geofence
+ * @param state
+ */
+export const getEditNursingHomeGeofencingPending = (state: State) => state.editNursingHomeGeofencingPending;

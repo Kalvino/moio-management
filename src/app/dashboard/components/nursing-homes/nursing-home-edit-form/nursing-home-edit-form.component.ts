@@ -181,7 +181,7 @@ export class NursingHomeEditFormComponent implements OnInit, OnDestroy {
     let dialogRef: MatDialogRef<any> = this.dialog.open(GeofenceFormComponent, {
       width: '720px',
       disableClose: true,
-      data: { title: title },
+      data: { title: title, nursing_home_id: this.nursingHome.id },
       id: 'geofenceCreationForm'
     });
   }

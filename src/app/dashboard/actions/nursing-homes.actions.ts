@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { NursingHome } from '../models/nursing-home.model';
+import { Geofencing } from '../models/nursing-home-geofencing.model';
 import { Update } from '@ngrx/entity';
 
 export enum NursingHomesActionTypes {
@@ -8,7 +9,7 @@ export enum NursingHomesActionTypes {
   InitializeNursingHome = '[NursingHome] Initialize Current NursingHome',
   PopUpNursingHomeForm = '[NursingHome] Pop Up NursingHome Form',
   CreateNursingHome = '[NursingHome] Create NursingHome',
-  DismissPoppedUpNursingHomeForm = '[NursingHome] Dismiss Create NursingHome',
+  DismissNewNursingHome = '[NursingHome] Dismiss Create NursingHome',
   LoadNursingHomes = '[NursingHome] Load Nursing Homes',
   SearchNursingHome = '[NursingHome] Search NursingHome',
   SearchNursingHomeComplete = '[NursingHome] Search NursingHome Complete',
@@ -16,7 +17,13 @@ export enum NursingHomesActionTypes {
   DismissEditNursingHome = '[NursingHome] Dismiss Edit NursingHome',
   DeleteNursingHome = '[NursingHome] Delete NursingHome',
   ResetNursingHomesState = '[NursingHomes] Reset NursingHomes State',
-  LoadNursingHomesGeofencing = '[NursingHomes] Load NursingHomes Geofencing'
+  LoadNursingHomeGeofencing = '[NursingHome] Load NursingHome Geofencing',
+  CreateNursingHomeGeofencing = '[NursingHome] Create NursingHome Geofencing',
+  EditNursingHomeGeofencing = '[NursingHome] Edit NursingHome Geofencing',
+  DismissNewNursingHomeGeofencing = '[NursingHome] Dismiss Create NursingHome Geofencing',
+  DismissEditNursingHomeGeofencing = '[NursingHome] Dismiss Edit NursingHome Geofencing',
+  SelectNursingHomeGeofencing = '[NursingHome] Select NursingHome Geofencing',
+  ResetNursingHomeGeofencingState = '[NursingHomes] Reset NursingHome Geofencing State',
 }
 
 
@@ -62,8 +69,8 @@ export class CreateNursingHome implements Action {
 /**
  * CreateNursingHome Dialog window dismissed
  */
-export class DismissPoppedUpNursingHomeForm implements Action {
-  readonly type = NursingHomesActionTypes.DismissPoppedUpNursingHomeForm;
+export class DismissNewNursingHome implements Action {
+  readonly type = NursingHomesActionTypes.DismissNewNursingHome;
 }
 
 /**
@@ -129,10 +136,61 @@ export class ResetNursingHomesState implements Action {
 /**
  * Load nursinghome geogencing action
  */
-export class LoadNursingHomesGeofencing implements Action {
-  readonly type = NursingHomesActionTypes.LoadNursingHomesGeofencing;
+export class LoadNursingHomeGeofencing implements Action {
+  readonly type = NursingHomesActionTypes.LoadNursingHomeGeofencing;
   constructor(public payload: number) { }
 }
+
+/**
+ * action to submit and edit nursingHome
+ */
+export class EditNursingHomeGeofencing implements Action {
+  readonly type = NursingHomesActionTypes.EditNursingHomeGeofencing;
+
+  constructor(public payload: Geofencing) {
+  }
+}
+
+/**
+ * Create nursingHome Action
+ */
+export class CreateNursingHomeGeofencing implements Action {
+  readonly type = NursingHomesActionTypes.CreateNursingHomeGeofencing;
+
+  constructor(public payload: { geofencing: Geofencing }) { }
+}
+
+/**
+ * NursingHome Geofencing Edit dismissed action
+ */
+export class DismissEditNursingHomeGeofencing implements Action {
+  readonly type = NursingHomesActionTypes.DismissEditNursingHomeGeofencing;
+}
+
+/**
+ * CreateNursingHome Geofencing Dialog window dismissed
+ */
+export class DismissNewNursingHomeGeofencing implements Action {
+  readonly type = NursingHomesActionTypes.DismissNewNursingHomeGeofencing;
+}
+
+/**
+ * Select nursingHome Geofencing Action
+ */
+export class SelectNursingHomeGeofencing implements Action {
+  readonly type = NursingHomesActionTypes.SelectNursingHomeGeofencing;
+
+  constructor(public payload: Geofencing) { }
+}
+
+
+/**
+ * reset the nursingHome geofencing state
+ */
+export class ResetNursingHomeGeofencingState implements Action {
+  readonly type = NursingHomesActionTypes.ResetNursingHomeGeofencingState;
+}
+
 
 /**
  * Export union of nursingHome Action
@@ -143,11 +201,17 @@ export type NursingHomesActionsUnion
   | InitializeNursingHome
   | PopUpNursingHomeForm
   | CreateNursingHome
-  | DismissPoppedUpNursingHomeForm
+  | DismissNewNursingHome
   | LoadNursingHomes
   | SearchNursingHome
   | SearchNursingHomeComplete
   | EditNursingHome
   | DismissEditNursingHome
   | ResetNursingHomesState
-  | LoadNursingHomesGeofencing;
+  | LoadNursingHomeGeofencing
+  | CreateNursingHomeGeofencing
+  | EditNursingHomeGeofencing
+  | DismissNewNursingHomeGeofencing
+  | DismissEditNursingHomeGeofencing
+  | SelectNursingHomeGeofencing
+  | ResetNursingHomeGeofencingState

@@ -50,6 +50,6 @@ export class NursingHomeFormComponent implements OnInit {
   }
 
   cancel() {
-    this.store.dispatch(new NursingHomesActions.DismissPoppedUpNursingHomeForm());
+    this.store.dispatch(new NursingHomesActions.DismissNewNursingHome());
   }
 }

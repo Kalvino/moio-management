@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
 import * as fromDashboard from '../../../reducers';
 // import * as nursingHomeActions from '../../../actions/nursing-homes.actions';
 import { TranslateService } from '@ngx-translate/core';
-// import { NursingHomesActions } from '../../../actions';
+import { NursingHomesActions } from '../../../actions';
 import { Geofencing } from '../../../models/nursing-home-geofencing.model';
 import { ConfirmService } from '../../../../core/services/confirm.service'
 
@@ -64,7 +64,7 @@ export class GeofenceEditFormComponent implements OnInit {
   ngOnInit() {
 
     this.paths = JSON.parse(this.data.geofence.polygon);
-
+    
     this.buildItemForm();
     this.zoom = 18;
     this.lat = 49.4521;
@@ -180,8 +180,9 @@ export class GeofenceEditFormComponent implements OnInit {
   }
 
   buildItemForm() {
-    let { name, polygon, nursing_home_id } = this.data.geofence;
+    let { id, name, polygon, nursing_home_id } = this.data.geofence;
     this.itemForm = this.fb.group({
+      id: [id, Validators.required],
       name: [name, Validators.required],
       polygon: [polygon, Validators.required],
       nursing_home_id: [nursing_home_id, Validators.required],
@@ -193,12 +194,12 @@ export class GeofenceEditFormComponent implements OnInit {
 
     if (this.itemForm.valid) {
 
-      const geofence = this.itemForm.value;
-      console.log(geofence);
+      const geofencing = this.itemForm.value;
+      console.log(geofencing);
       //console.log(this.coordinates);
       //let x = JSON.stringify(this.coordinates);
       //console.log(x)
-      //this.store.dispatch(new UsersActions.CreateUser({ user }));
+      this.store.dispatch(new NursingHomesActions.EditNursingHomeGeofencing(geofencing));
       this.dialogRef.close(this.itemForm.value)
     }
   }
@@ -210,12 +211,12 @@ export class GeofenceEditFormComponent implements OnInit {
     if (this.itemForm.dirty) {
       this.confirmService.confirm({ title: title, message: message }).subscribe(res => {
         if (res) {
-          // this.store.dispatch(new UsersActions.DismissUserFormDialog());
+          this.store.dispatch(new NursingHomesActions.DismissEditNursingHomeGeofencing());
           this.dialogRef.close(this.itemForm.value)
         }
       })
     } else {
-      // this.store.dispatch(new UsersActions.DismissUserFormDialog());
+      this.store.dispatch(new NursingHomesActions.DismissEditNursingHomeGeofencing());
       this.dialogRef.close(this.itemForm.value)
     }
   }

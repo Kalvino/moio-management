@@ -12,8 +12,12 @@ export enum NursingHomesApiActionTypes {
   LoadNursingHomesFailure = '[NursingHome/Api] Load NursingHomes Failure',
   EditNursingHomeSuccess = '[NursingHome/Api] Edit NursingHome Success',
   EditNursingHomeFailure = '[NursingHome/Api] Edit NursingHome Failure',
-  LoadNursingHomesGeofencingSuccess = '[NursingHome/Api] Load NursingHome Geofencing Success',
-  LoadNursingHomesGeofencingFailure = '[NursingHome/Api] Load NursingHome Geofencing Failure',
+  LoadNursingHomeGeofencingSuccess = '[NursingHome/Api] Load NursingHome Geofencing Success',
+  LoadNursingHomeGeofencingFailure = '[NursingHome/Api] Load NursingHome Geofencing Failure',
+  CreateNursingHomeGeofencingSuccess = '[NursingHome/Api] Create NursingHome Geofencing Success',
+  CreateNursingHomeGeofencingFailure = '[NursingHome/Api] Create NursingHome Geofencing Failure',
+  EditNursingHomeGeofencingSuccess = '[NursingHome/Api] Edit NursingHome Geofencing Success',
+  EditNursingHomeGeofencingFailure = '[NursingHome/Api] Edit NursingHome Geofencing Failure',
 }
 
 /**
@@ -80,8 +84,8 @@ export class EditNursingHomeFailure implements Action {
 /**
  * load all nursinghome geofencing success action
  */
-export class LoadNursingHomesGeofencingSuccess implements Action {
-  public readonly type = NursingHomesApiActionTypes.LoadNursingHomesGeofencingSuccess;
+export class LoadNursingHomeGeofencingSuccess implements Action {
+  public readonly type = NursingHomesApiActionTypes.LoadNursingHomeGeofencingSuccess;
 
   constructor(public payload: { geofencing: Geofencing[] }) {
   }
@@ -90,10 +94,50 @@ export class LoadNursingHomesGeofencingSuccess implements Action {
 /**
  * load all nursinghome geofencing failure action
  */
-export class LoadNursingHomesGeofencingFailure implements Action {
-  public readonly type = NursingHomesApiActionTypes.LoadNursingHomesGeofencingFailure;
+export class LoadNursingHomeGeofencingFailure implements Action {
+  public readonly type = NursingHomesApiActionTypes.LoadNursingHomeGeofencingFailure;
 
   constructor(public payload: { message: any }) {
+  }
+}
+
+/**
+ * add nursingHome geofencing success action
+ */
+export class CreateNursingHomeGeofencingSuccess implements Action {
+  public readonly type = NursingHomesApiActionTypes.CreateNursingHomeGeofencingSuccess;
+
+  constructor(public payload: { geofencing: Geofencing }) {
+  }
+}
+
+/**
+ * add nursingHome geofencing failure action
+ */
+export class CreateNursingHomeGeofencingFailure implements Action {
+  public readonly type = NursingHomesApiActionTypes.CreateNursingHomeGeofencingFailure;
+
+  constructor(public payload: { message: string }) {
+  }
+}
+
+/**
+ * edit nursingHome geofencing success action
+ */
+export class EditNursingHomeGeofencingSuccess implements Action {
+  public readonly type = NursingHomesApiActionTypes.EditNursingHomeGeofencingSuccess;
+
+  constructor(public payload: { geofencing: Geofencing }) {
+  }
+}
+
+/**
+ * edit nursingHome geofencing failure action
+ */
+export class EditNursingHomeGeofencingFailure implements Action {
+  public readonly type = NursingHomesApiActionTypes.EditNursingHomeGeofencingFailure;
+
+  constructor(public payload: { message: string }) {
   }
 }
 
@@ -106,5 +150,9 @@ export type NursingHomesApiActionsUnion =
   | EditNursingHomeFailure
   | LoadNursingHomesSuccess
   | LoadNursingHomesFailure
-  | LoadNursingHomesGeofencingSuccess
-  | LoadNursingHomesGeofencingFailure
+  | LoadNursingHomeGeofencingSuccess
+  | LoadNursingHomeGeofencingFailure
+  | CreateNursingHomeGeofencingSuccess
+  | CreateNursingHomeGeofencingFailure
+  | EditNursingHomeGeofencingSuccess
+  | EditNursingHomeGeofencingFailure

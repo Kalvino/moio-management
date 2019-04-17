@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
 import * as fromDashboard from '../../../reducers';
 // import * as nursingHomeActions from '../../../actions/nursing-homes.actions';
 import { TranslateService } from '@ngx-translate/core';
-// import { NursingHomesActions } from '../../../actions';
+import { NursingHomesActions } from '../../../actions';
 import { Geofencing } from '../../../models/nursing-home-geofencing.model';
 import { ConfirmService } from '../../../../core/services/confirm.service'
 
@@ -154,9 +154,12 @@ export class GeofenceFormComponent implements OnInit {
   }
 
   buildItemForm() {
+    let { nursing_home_id } = this.data;
+    console.log('nursing home id passed: ', nursing_home_id);
     this.itemForm = this.fb.group({
       name: ['', Validators.required],
       polygon: ['', Validators.required],
+      nursing_home_id: [nursing_home_id, Validators.required],
       search: ['']
     })
   }
@@ -167,11 +170,11 @@ export class GeofenceFormComponent implements OnInit {
       console.log(this.itemForm)
       const geofence = this.itemForm.value;
       console.log(geofence);
-      console.log(this.coordinates);
+      //console.log(this.coordinates);
       let x = JSON.stringify(this.coordinates);
       console.log(x)
-      //this.store.dispatch(new UsersActions.CreateUser({ user }));
-      //this.dialogRef.close(this.itemForm.value)
+      this.store.dispatch(new NursingHomesActions.CreateNursingHomeGeofencing({ geofencing: geofence }));
+      this.dialogRef.close(this.itemForm.value)
     }
   }
 
@@ -182,12 +185,12 @@ export class GeofenceFormComponent implements OnInit {
     if (this.itemForm.dirty) {
       this.confirmService.confirm({ title: title, message: message }).subscribe(res => {
         if (res) {
-          // this.store.dispatch(new UsersActions.DismissUserFormDialog());
+          this.store.dispatch(new NursingHomesActions.DismissNewNursingHomeGeofencing());
           this.dialogRef.close(this.itemForm.value)
         }
       })
     } else {
-      // this.store.dispatch(new UsersActions.DismissUserFormDialog());
+      this.store.dispatch(new NursingHomesActions.DismissNewNursingHomeGeofencing());
       this.dialogRef.close(this.itemForm.value)
     }
   }
