@@ -2,12 +2,12 @@
 
 const client = require('scp2');
 const ftp = {
-  host: 'ftp.my-appsolute-mobility.com',
-  username: 'ftp',
-  password: '865jZ9wT34vr09Zj804',
-  port: 2222
+  host: '94.130.33.37',
+  username: 'moiofairuser',
+  password: 'm0i0fairus3r',
+  port: 22
 };
-const remotePath = '/moio_showcase/dev-management';
+const remotePath = '/var/www/html/fair-management';
 /**
  * sftp://ftp@ftp.my-appsolute-mobility.com:2222/moio_showcase/dev-management
  */

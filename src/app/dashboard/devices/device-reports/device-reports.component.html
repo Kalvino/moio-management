@@ -4,7 +4,7 @@
         [headerHeight]="50"
         [footerHeight]="0"
         [rowHeight]="'auto'"
-        [rows]="deviceReports$ | async | orderBy: updated_at">
+        [rows]="deviceReports$ | async">
 
     <ngx-datatable-column name="Command" [width]="200" [canAutoResize]="false">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
