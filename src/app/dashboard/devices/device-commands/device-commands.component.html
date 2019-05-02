@@ -1,0 +1,33 @@
+<mat-card-title class="">
+    <div class="card-title-text">Commands</div>
+    <mat-divider></mat-divider>
+</mat-card-title>
+<mat-card-content>
+
+    <ngx-datatable
+            class="material fullscreen bg-white"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="0"
+            [rowHeight]="'auto'"
+            [rows]="deviceCommands$ | async">
+
+        <ngx-datatable-column name="Shortname" [width]="50" [canAutoResize]="false">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{ row?.short_name }}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Description" [width]="500" [canAutoResize]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.description}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [canAutoResize]="true">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <button mat-raised-button class="mr-1" color="warn" (click)="triggerCommand(row.id)">Start</button>
+            </ng-template>
+        </ngx-datatable-column>
+
+    </ngx-datatable>
+
+</mat-card-content>

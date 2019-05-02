@@ -39,7 +39,9 @@ export class DeviceDetailComponent implements OnInit, OnDestroy {
         this.navLinks = [
             {label: 'Reports', path: 'reports'},
             {label: 'Logs', path: 'logs'},
-            {label: 'Settings', path: 'settings'}];
+            {label: 'Settings', path: 'settings'},
+            {label: 'Commands', path: 'commands'}
+        ];
 
     }
 

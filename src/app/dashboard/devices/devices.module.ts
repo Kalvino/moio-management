@@ -21,6 +21,7 @@ import {DeviceLogComponent} from './device-log/device-log.component';
 import {DeviceCommandComponent} from './device-command/device-command.component';
 import {DeviceDataComponent} from './device-data/device-data.component';
 import {DeviceSettingsComponent} from './device-settings/device-settings.component';
+import {DeviceCommandsComponent} from './device-commands/device-commands.component';
 import {DeviceReportsComponent} from './device-reports/device-reports.component';
 
 @NgModule({
@@ -30,6 +31,7 @@ import {DeviceReportsComponent} from './device-reports/device-reports.component'
         DeviceContainerComponent,
         DeviceLogComponent,
         DeviceSettingsComponent,
+        DeviceCommandsComponent,
         DeviceCommandComponent,
         DeviceDataComponent,
         DeviceReportsComponent
