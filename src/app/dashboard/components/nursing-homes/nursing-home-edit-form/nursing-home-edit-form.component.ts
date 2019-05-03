@@ -8,7 +8,7 @@ import { takeWhile } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import * as fromDashboard from '../../../reducers';
-import * as nursingHomeActions from '../../../actions/nursing-homes.actions';
+import { NursingHomesActions } from '../../../actions';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmService } from '../../../../core/services/confirm.service';
 import { GeofenceFormComponent } from '../geofence-form/geofence-form.component';
@@ -124,10 +124,10 @@ export class NursingHomeEditFormComponent implements OnInit, OnDestroy {
   }
 
   cancelEdit(): void {
-    // Redisplay the currently selected patient
+    // Redisplay the currently selected nursing home
     // replacing any edits made
     this.displayNursingHome(this.nursingHome);
-    this.store.dispatch(new nursingHomeActions.DismissEditNursingHome);
+    this.store.dispatch(new NursingHomesActions.DismissEditNursingHome);
 
 
     const title = this.translate.instant("CloseUnsavedForm.title");
@@ -136,30 +136,30 @@ export class NursingHomeEditFormComponent implements OnInit, OnDestroy {
       this.confirmService.confirm({ title: title, message: message })
         .subscribe(res => {
           if (res) {
-            this.store.dispatch(new nursingHomeActions.DismissEditNursingHome());
+            this.store.dispatch(new NursingHomesActions.DismissEditNursingHome());
           }
         })
     } else {
-      this.store.dispatch(new nursingHomeActions.DismissEditNursingHome());
+      this.store.dispatch(new NursingHomesActions.DismissEditNursingHome());
     }
   }
 
   deleteNursingHome(): void {
     if (this.nursingHome && this.nursingHome.id) {
       if (confirm(`Really delete the nursing home: ${this.nursingHome.name}?`)) {
-        this.store.dispatch(new nursingHomeActions.DeleteNursingHome(this.nursingHome.id));
+        this.store.dispatch(new NursingHomesActions.DeleteNursingHome(this.nursingHome.id));
       }
     } else {
       // No need to delete, it was never saved
-      this.store.dispatch(new nursingHomeActions.DismissEditNursingHome);
+      this.store.dispatch(new NursingHomesActions.DismissEditNursingHome);
     }
   }
 
   editNursingHome(): void {
-    console.log(this.nursingHomeEditForm.value);
+
     if (this.nursingHomeEditForm.valid) {
       if (this.nursingHomeEditForm.dirty) {
-        // Copy over all of the original patient properties
+        // Copy over all of the original nursinghome properties
         // Then copy over the values from the form
         // This ensures values not on the form, such as the Id, are retained
         const p = {
@@ -167,8 +167,8 @@ export class NursingHomeEditFormComponent implements OnInit, OnDestroy {
           name: this.nursingHomeEditForm.get('name').value,
           key: this.nursingHomeEditForm.get('key').value
         };
-        console.log(p);
-        this.store.dispatch(new nursingHomeActions.EditNursingHome(p));
+        // console.log(p);
+        this.store.dispatch(new NursingHomesActions.EditNursingHome(p));
       }
     } else {
       this.errorMessage$ = of('Please correct the validation errors.');
@@ -186,16 +186,14 @@ export class NursingHomeEditFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  deletePolygon(geofence) {
-
+  deletePolygon(geofencing) {
 
     const title = this.translate.instant("DeleteGeofence.title");
     const message = this.translate.instant("DeleteGeofence.message");
 
     this.confirmService.confirm({ title: title, message: message }).subscribe(res => {
       if (res) {
-        console.log(geofence);
-        //this.store.dispatch(new nursingHomeActions.DismissEditNursingHome());
+        this.store.dispatch(new NursingHomesActions.DeleteNursingHomeGeofencing(geofencing));
       }
     })
 

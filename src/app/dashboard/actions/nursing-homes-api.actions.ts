@@ -18,6 +18,8 @@ export enum NursingHomesApiActionTypes {
   CreateNursingHomeGeofencingFailure = '[NursingHome/Api] Create NursingHome Geofencing Failure',
   EditNursingHomeGeofencingSuccess = '[NursingHome/Api] Edit NursingHome Geofencing Success',
   EditNursingHomeGeofencingFailure = '[NursingHome/Api] Edit NursingHome Geofencing Failure',
+  DeleteNursingHomeGeofencingSuccess = '[NursingHome/Api] Delete NursingHome Geofencing Success',
+  DeleteNursingHomeGeofencingFailure = '[NursingHome/Api] Delete NursingHome Geofencing Failure',
 }
 
 /**
@@ -102,6 +104,26 @@ export class LoadNursingHomeGeofencingFailure implements Action {
 }
 
 /**
+ * delete nursingHome geofencing success action
+ */
+export class DeleteNursingHomeGeofencingSuccess implements Action {
+  public readonly type = NursingHomesApiActionTypes.DeleteNursingHomeGeofencingSuccess;
+
+  constructor(public payload: { geofencing: Geofencing }) {
+  }
+}
+
+/**
+ * delete nursingHome geofencing failure action
+ */
+export class DeleteNursingHomeGeofencingFailure implements Action {
+  public readonly type = NursingHomesApiActionTypes.DeleteNursingHomeGeofencingFailure;
+
+  constructor(public payload: { message: string }) {
+  }
+}
+
+/**
  * add nursingHome geofencing success action
  */
 export class CreateNursingHomeGeofencingSuccess implements Action {
@@ -156,3 +178,5 @@ export type NursingHomesApiActionsUnion =
   | CreateNursingHomeGeofencingFailure
   | EditNursingHomeGeofencingSuccess
   | EditNursingHomeGeofencingFailure
+  | DeleteNursingHomeGeofencingSuccess
+  | DeleteNursingHomeGeofencingFailure

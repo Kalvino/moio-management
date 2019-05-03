@@ -65,7 +65,16 @@ export class GeofenceEditFormComponent implements OnInit {
 
   ngOnInit() {
 
-    this.paths = JSON.parse(this.data.geofence.polygon);
+    const path = JSON.parse(this.data.geofence.polygon);
+
+    let arr = [];
+
+    for (const co of path) {
+      let x = { lat: parseFloat(co.lat), lng: parseFloat(co.lng) }
+      arr.push(x);
+    }
+
+    this.paths = arr;
 
     this.buildItemForm();
     this.zoom = 18;
@@ -245,10 +254,6 @@ export class GeofenceEditFormComponent implements OnInit {
     if (this.itemForm.valid) {
 
       const geofencing = this.itemForm.value;
-      console.log(geofencing);
-      //console.log(this.coordinates);
-      //let x = JSON.stringify(this.coordinates);
-      //console.log(x)
       this.store.dispatch(new NursingHomesActions.EditNursingHomeGeofencing(geofencing));
       this.dialogRef.close(this.itemForm.value)
     }

@@ -194,7 +194,7 @@ export class NursingHomesEffects {
               return new NursingHomesApiActions.CreateNursingHomeGeofencingSuccess({ geofencing });
             }),
             catchError(httpError => {
-              console.log(httpError);
+              console.error(httpError);
 
               const message = httpError.statusText.toLowerCase();
 
@@ -244,6 +244,33 @@ export class NursingHomesEffects {
     })
   );
 
+
+
+  /**
+     * effect fired, when the deleting a geofence
+     * send data to api and handle result
+     */
+  @Effect()
+  deleteGeofence$ = this.actions$
+    .pipe(
+      ofType<NursingHomesActions.DeleteNursingHomeGeofencing>(NursingHomesActions.NursingHomesActionTypes.DeleteNursingHomeGeofencing),
+      map(action => action.payload.geofencing),
+      exhaustMap((geofence: Geofencing) => {
+        return this.nursingHomesService.deleteNursingHomeGeofencing(geofence)
+          .pipe(
+            map(geofencing => {
+              return new NursingHomesApiActions.DeleteNursingHomeGeofencingSuccess({ geofencing });
+            }),
+            catchError(httpError => {
+              console.error(httpError);
+
+              const message = httpError.statusText.toLowerCase();
+
+              return of(new NursingHomesApiActions.DeleteNursingHomeGeofencingFailure({ message }));
+            })
+          );
+      })
+    );
 
 
 

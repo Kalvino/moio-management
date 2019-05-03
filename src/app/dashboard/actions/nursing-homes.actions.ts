@@ -24,6 +24,7 @@ export enum NursingHomesActionTypes {
   DismissEditNursingHomeGeofencing = '[NursingHome] Dismiss Edit NursingHome Geofencing',
   SelectNursingHomeGeofencing = '[NursingHome] Select NursingHome Geofencing',
   ResetNursingHomeGeofencingState = '[NursingHomes] Reset NursingHome Geofencing State',
+  DeleteNursingHomeGeofencing = '[NursingHome] Delete NursingHome Geofencing',
 }
 
 
@@ -191,6 +192,15 @@ export class ResetNursingHomeGeofencingState implements Action {
   readonly type = NursingHomesActionTypes.ResetNursingHomeGeofencingState;
 }
 
+/**
+ * Delete nursingHome Action
+ */
+export class DeleteNursingHomeGeofencing implements Action {
+  readonly type = NursingHomesActionTypes.DeleteNursingHomeGeofencing;
+
+  constructor(public payload: { geofencing: Geofencing }) { }
+}
+
 
 /**
  * Export union of nursingHome Action
@@ -215,3 +225,4 @@ export type NursingHomesActionsUnion
   | DismissEditNursingHomeGeofencing
   | SelectNursingHomeGeofencing
   | ResetNursingHomeGeofencingState
+  | DeleteNursingHomeGeofencing
