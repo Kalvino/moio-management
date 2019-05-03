@@ -23,7 +23,18 @@ export class NursingHomeGeofence implements OnInit, AfterViewInit {
   ngOnInit() {
 
     if (this.input.length > 0) {
-      this.paths = JSON.parse(this.input);
+
+      const path = JSON.parse(this.input);
+
+      let arr = [];
+
+      for (const co of path) {
+        let x = { lat: parseFloat(co.lat), lng: parseFloat(co.lng) }
+        arr.push(x);
+      }
+
+      this.paths = arr;
+
     } else {
       console.log('no paths available');
     }

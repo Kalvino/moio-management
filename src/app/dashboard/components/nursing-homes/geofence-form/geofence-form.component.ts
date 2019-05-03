@@ -204,7 +204,6 @@ export class GeofenceFormComponent implements OnInit {
 
   buildItemForm() {
     let { nursing_home_id } = this.data;
-    // console.log('nursing home id passed: ', nursing_home_id);
     this.itemForm = this.fb.group({
       name: ['', Validators.required],
       polygon: ['', Validators.required],
@@ -216,12 +215,7 @@ export class GeofenceFormComponent implements OnInit {
   submit() {
 
     if (this.itemForm.valid) {
-      console.log(this.itemForm)
       const geofence = this.itemForm.value;
-      console.log(geofence);
-      //console.log(this.coordinates);
-      let x = JSON.stringify(this.coordinates);
-      console.log(x)
       this.store.dispatch(new NursingHomesActions.CreateNursingHomeGeofencing({ geofencing: geofence }));
       this.dialogRef.close(this.itemForm.value)
     }

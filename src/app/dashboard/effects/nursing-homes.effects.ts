@@ -187,11 +187,10 @@ export class NursingHomesEffects {
       ofType<NursingHomesActions.CreateNursingHomeGeofencing>(NursingHomesActions.NursingHomesActionTypes.CreateNursingHomeGeofencing),
       map(action => action.payload.geofencing),
       exhaustMap((geofence: Geofencing) => {
-        console.log('effect: ',geofence);
+
         return this.nursingHomesService.createNursingHomeGeofencing(geofence)
           .pipe(
             map(geofencing => {
-              console.log('in the create map: ',geofencing);
               return new NursingHomesApiActions.CreateNursingHomeGeofencingSuccess({ geofencing });
             }),
             catchError(httpError => {
