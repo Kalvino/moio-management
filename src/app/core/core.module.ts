@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ConfirmComponent } from './components/confirm/confirm.component';
+import { NotifyComponent } from './components/notify/notify.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '../material';
 
@@ -7,7 +8,7 @@ import { MaterialModule } from '../material';
  * list of components in this module
  */
 export const COMPONENTS = [
-  ConfirmComponent
+  ConfirmComponent, NotifyComponent
 ];
 
 /**
@@ -23,7 +24,7 @@ export const COMPONENTS = [
     COMPONENTS
   ],
   providers: [],
-  entryComponents: [ConfirmComponent]
+  entryComponents: [ConfirmComponent, NotifyComponent]
 })
 export class CoreModule {
 }

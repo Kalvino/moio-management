@@ -78,6 +78,7 @@ export class NursingHomesService {
    * @param geofence object:Geofencing
    */
   updateNursingHomeGeofencing(geofence: Geofencing): Observable<Geofencing> {
+    console.log('updating this: ', geofence);
     return this.http.put<Geofencing>(`${environment.apiHost}/api/nursinghomes/${geofence.nursing_home_id}/geofence/${geofence.id}`, geofence);
   }
 

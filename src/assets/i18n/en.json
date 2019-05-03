@@ -70,6 +70,14 @@
     "title": "Close this form?",
     "message": "The unsaved data in this form will be lost. Are you sure you want to close this form?"
   },
+  "MaxPolygonPoints": {
+    "title": "Notice",
+    "message": "A polygon cannot exceed 16 points. Please create another one"
+  },
+  "PolygonIntersection": {
+    "title": "Notice",
+    "message": "A polygon cannot intersect itself. Please create another one."
+  },
   "ConnectedUserProfiles": "Connected User Profiles",
   "ConnectedPatientProfiles": "Connected Patient Profiles",
   "LastLogin": "Last Login",

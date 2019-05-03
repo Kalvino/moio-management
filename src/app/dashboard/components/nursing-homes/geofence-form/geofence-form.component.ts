@@ -1,17 +1,17 @@
 /// <reference types="@types/googlemaps" />
 import { Component, OnInit, Inject, NgZone, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MapsAPILoader, AgmMap, GoogleMapsAPIWrapper } from '@agm/core';
 
 /* NGRX */
 import { Store } from '@ngrx/store';
 import * as fromDashboard from '../../../reducers';
-// import * as nursingHomeActions from '../../../actions/nursing-homes.actions';
 import { TranslateService } from '@ngx-translate/core';
 import { NursingHomesActions } from '../../../actions';
-import { Geofencing } from '../../../models/nursing-home-geofencing.model';
+import { NotifyService } from '../../../../core/services/notify.service';
 import { ConfirmService } from '../../../../core/services/confirm.service'
+import { MapIntersections } from '../../../shared/gmap-intersection';
 
 declare var google: any;
 
@@ -44,6 +44,8 @@ export class GeofenceFormComponent implements OnInit {
     private store: Store<fromDashboard.State>,
     private translate: TranslateService,
     public confirmService: ConfirmService,
+    public intersect: MapIntersections,
+    public notifyService: NotifyService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     public mapApiWrapper: GoogleMapsAPIWrapper,
@@ -123,7 +125,27 @@ export class GeofenceFormComponent implements OnInit {
       this.overlay = null;
       this.coordinates = [];
       this.itemForm.controls['polygon'].setValue('');
+
+      this.drawingManager.setOptions({
+        drawingControlOptions: {
+          position: google.maps.ControlPosition.TOP_CENTER,
+          drawingModes: [google.maps.drawing.OverlayType.POLYGON]
+        }
+      });
+
     }
+  }
+
+  maxPointsNotify() {
+    const title = this.translate.instant("MaxPolygonPoints.title");
+    const message = this.translate.instant("MaxPolygonPoints.message");
+    this.notifyService.notify({ title, message });
+  }
+
+  intersectionNotify() {
+    const title = this.translate.instant("PolygonIntersection.title");
+    const message = this.translate.instant("PolygonIntersection.message");
+    this.notifyService.notify({ title, message });
   }
 
   createPolygonArray(input) {
@@ -137,6 +159,33 @@ export class GeofenceFormComponent implements OnInit {
     this.m.mapReady.subscribe(map => {
       this.drawingManager.setMap(map);
       this.map = map;
+    });
+
+    google.maps.event.addListener(this.drawingManager, 'polygoncomplete', (polygon) => {
+
+      if (polygon.getPath().length > 16) {
+        this.maxPointsNotify();
+        this.deleteGeofence(); // Remove the current polygon
+      } else {
+
+        this.drawingManager.setOptions({
+          drawingControlOptions: {
+            position: google.maps.ControlPosition.TOP_CENTER,
+            drawingModes: []
+          }
+        });
+
+        this.intersect = new MapIntersections();
+        const status = this.intersect.checkIntersection(polygon);
+
+        //The map intersects
+        if (status) {
+          this.intersectionNotify();
+          this.deleteGeofence(); // Remove the current polygon
+        }
+
+      }
+
     });
 
     google.maps.event.addListener(this.drawingManager, 'overlaycomplete', (event) => {
@@ -155,7 +204,7 @@ export class GeofenceFormComponent implements OnInit {
 
   buildItemForm() {
     let { nursing_home_id } = this.data;
-    console.log('nursing home id passed: ', nursing_home_id);
+    // console.log('nursing home id passed: ', nursing_home_id);
     this.itemForm = this.fb.group({
       name: ['', Validators.required],
       polygon: ['', Validators.required],

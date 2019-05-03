@@ -70,6 +70,14 @@
     "title": "Schließen Sie dieses Formular?",
     "message": "Die nicht gespeicherten Daten in diesem Formular gehen verloren. Möchten Sie dieses Formular wirklich schließen?"
   },
+  "MaxPolygonPoints": {
+    "title": "Beachten",
+    "message": "Ein Polygon darf 16 Punkte nicht überschreiten. Bitte erstellen Sie eine weitere"
+  },
+  "PolygonIntersection": {
+    "title": "Beachten",
+    "message": "Ein Polygon kann sich nicht schneiden. Bitte erstellen Sie eine weitere."
+  },
   "ConnectedUserProfiles": "Verbundene Benutzerprofile",
   "ConnectedPatientProfiles": "Verbundene Patientenprofile",
   "LastLogin": "Letzte Anmeldung",

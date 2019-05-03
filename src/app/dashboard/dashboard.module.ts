@@ -18,7 +18,9 @@ import { UsersEffects } from './effects/users.effects';
 import { PatientsEffects } from './effects/patients.effects';
 import { NursingHomesEffects } from './effects/nursing-homes.effects';
 import { ConfirmService } from '../core/services/confirm.service';
+import { NotifyService } from '../core/services/notify.service';
 import { SharedModule } from './shared/shared.module';
+import { MapIntersections } from './shared/gmap-intersection';
 
 /* NGRX */
 import { StoreModule } from '@ngrx/store';
@@ -129,7 +131,7 @@ export const EFFECTS = [
         DashboardRoutingModule
     ],
     providers: [
-        ConfirmService, GoogleMapsAPIWrapper
+        ConfirmService, NotifyService, GoogleMapsAPIWrapper, MapIntersections,
     ],
     entryComponents: [UserFormComponent, PatientFormComponent, NursingHomeFormComponent, GeofenceFormComponent, GeofenceEditFormComponent
     ]

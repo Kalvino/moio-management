@@ -7,11 +7,11 @@ import { MapsAPILoader, AgmMap, GoogleMapsAPIWrapper, LatLngLiteral, LatLngBound
 /* NGRX */
 import { Store } from '@ngrx/store';
 import * as fromDashboard from '../../../reducers';
-// import * as nursingHomeActions from '../../../actions/nursing-homes.actions';
 import { TranslateService } from '@ngx-translate/core';
 import { NursingHomesActions } from '../../../actions';
-import { Geofencing } from '../../../models/nursing-home-geofencing.model';
-import { ConfirmService } from '../../../../core/services/confirm.service'
+import { ConfirmService } from '../../../../core/services/confirm.service';
+import { MapIntersections } from '../../../shared/gmap-intersection';
+import { NotifyService } from '../../../../core/services/notify.service';
 
 declare var google: any;
 
@@ -46,6 +46,8 @@ export class GeofenceEditFormComponent implements OnInit {
     private store: Store<fromDashboard.State>,
     private translate: TranslateService,
     public confirmService: ConfirmService,
+    public intersect: MapIntersections,
+    public notifyService: NotifyService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     public mapApiWrapper: GoogleMapsAPIWrapper,
@@ -64,7 +66,7 @@ export class GeofenceEditFormComponent implements OnInit {
   ngOnInit() {
 
     this.paths = JSON.parse(this.data.geofence.polygon);
-    
+
     this.buildItemForm();
     this.zoom = 18;
     this.lat = 49.4521;
@@ -118,6 +120,7 @@ export class GeofenceEditFormComponent implements OnInit {
 
   }//End of init
 
+
   deleteGeofence() {
 
     if (this.overlay) {
@@ -125,7 +128,27 @@ export class GeofenceEditFormComponent implements OnInit {
       this.overlay = null;
       this.coordinates = [];
       this.itemForm.controls['polygon'].setValue('');
+
+      this.drawingManager.setOptions({
+        drawingControlOptions: {
+          position: google.maps.ControlPosition.TOP_CENTER,
+          drawingModes: [google.maps.drawing.OverlayType.POLYGON]
+        }
+      });
+
     }
+  }
+
+  maxPointsNotify() {
+    const title = this.translate.instant("MaxPolygonPoints.title");
+    const message = this.translate.instant("MaxPolygonPoints.message");
+    this.notifyService.notify({ title, message });
+  }
+
+  intersectionNotify() {
+    const title = this.translate.instant("PolygonIntersection.title");
+    const message = this.translate.instant("PolygonIntersection.message");
+    this.notifyService.notify({ title, message });
   }
 
   createPolygonArray(input) {
@@ -140,6 +163,33 @@ export class GeofenceEditFormComponent implements OnInit {
     this.m.mapReady.subscribe(map => {
       this.drawingManager.setMap(map);
       this.map = map;
+    });
+
+    google.maps.event.addListener(this.drawingManager, 'polygoncomplete', (polygon) => {
+
+      if (polygon.getPath().length > 16) {
+        this.maxPointsNotify();
+        this.deleteGeofence(); // Remove the current polygon
+      } else {
+
+        this.drawingManager.setOptions({
+          drawingControlOptions: {
+            position: google.maps.ControlPosition.TOP_CENTER,
+            drawingModes: []
+          }
+        });
+
+        this.intersect = new MapIntersections();
+        const status = this.intersect.checkIntersection(polygon);
+
+        //The map intersects
+        if (status) {
+          this.intersectionNotify();
+          this.deleteGeofence(); // Remove the current polygon
+        }
+
+      }
+
     });
 
     google.maps.event.addListener(this.drawingManager, 'overlaycomplete', (event) => {

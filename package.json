@@ -37,6 +37,7 @@
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "@swimlane/ngx-datatable": "^14.0.0",
+    "@types/jsts": "^0.17.0",
     "core-js": "^2.6.0",
     "ng2-split-pane": "^1.4.0",
     "ngrx-store-localstorage": "^5.1.0",
