@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
 import { NursingHome } from '../models/nursing-home.model';
 import { Geofencing } from '../models/nursing-home-geofencing.model';
-import { Update } from '@ngrx/entity';
 
 export enum NursingHomesActionTypes {
   SelectNursingHome = '[NursingHome] Select Current NursingHome',
@@ -198,7 +197,8 @@ export class ResetNursingHomeGeofencingState implements Action {
 export class DeleteNursingHomeGeofencing implements Action {
   readonly type = NursingHomesActionTypes.DeleteNursingHomeGeofencing;
 
-  constructor(public payload: { geofencing: Geofencing }) { }
+  constructor(public payload: Geofencing) { }
+
 }
 
 

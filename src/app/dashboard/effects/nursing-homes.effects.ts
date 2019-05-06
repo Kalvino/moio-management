@@ -251,26 +251,28 @@ export class NursingHomesEffects {
      * send data to api and handle result
      */
   @Effect()
-  deleteGeofence$ = this.actions$
-    .pipe(
-      ofType<NursingHomesActions.DeleteNursingHomeGeofencing>(NursingHomesActions.NursingHomesActionTypes.DeleteNursingHomeGeofencing),
-      map(action => action.payload.geofencing),
-      exhaustMap((geofence: Geofencing) => {
-        return this.nursingHomesService.deleteNursingHomeGeofencing(geofence)
-          .pipe(
-            map(geofencing => {
-              return new NursingHomesApiActions.DeleteNursingHomeGeofencingSuccess({ geofencing });
-            }),
-            catchError(httpError => {
-              console.error(httpError);
+  deleteGeofence$ = this.actions$.pipe(
+    ofType<NursingHomesActions.DeleteNursingHomeGeofencing>(NursingHomesActions.NursingHomesActionTypes.DeleteNursingHomeGeofencing),
+    map(action => action.payload),
+    exhaustMap((geofence: Geofencing) => {
+      return this.nursingHomesService.deleteNursingHomeGeofencing(geofence)
+        .pipe(
+          map(geofencing => {
+            return new NursingHomesApiActions.DeleteNursingHomeGeofencingSuccess({ geofencing });
+          }),
+          catchError(httpError => {
+            console.error(httpError);
 
-              const message = httpError.statusText.toLowerCase();
+            const message = httpError.statusText.toLowerCase();
 
-              return of(new NursingHomesApiActions.DeleteNursingHomeGeofencingFailure({ message }));
-            })
-          );
-      })
-    );
+            return of(new NursingHomesApiActions.DeleteNursingHomeGeofencingFailure({ message }));
+          }),
+          tap(() => {
+            this.store.dispatch(new NursingHomesActions.LoadNursingHomeGeofencing(geofence.nursing_home_id));
+          })
+        );
+    })
+  );
 
 
 
