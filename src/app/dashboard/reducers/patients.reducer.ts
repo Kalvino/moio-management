@@ -8,14 +8,14 @@ export interface State extends EntityState<IPatient> {
   selectedPatientId: number | null;
 }
 
-// extend & export entity adapater
-export const adapater: EntityAdapter<IPatient> = createEntityAdapter<IPatient>({
+// extend & export entity adapter
+export const adapter: EntityAdapter<IPatient> = createEntityAdapter<IPatient>({
   selectId: (patient: IPatient) => patient.id,
   sortComparer: false
 });
 
 // compose the initial state
-export const initialState: State = adapater.getInitialState({
+export const initialState: State = adapter.getInitialState({
   selectedPatientId: null
 });
 
@@ -36,14 +36,14 @@ export function reducer(
 
     // load patients success state
     case PatientsApiActions.PatientsApiActionTypes.LoadPatientsSuccess:
-      return adapater.upsertMany(action.payload.patients, state);
+      return adapter.upsertMany(action.payload.patients, state);
 
     // add a new entity to the state in case creation is successful
     case PatientsApiActions.PatientsApiActionTypes.CreatePatientSuccess:
-      return adapater.addOne(action.payload.patient, state);
+      return adapter.addOne(action.payload.patient, state);
 
     case PatientsApiActions.PatientsApiActionTypes.EditPatientSuccess:
-      return adapater.upsertOne(action.payload.patient, state);
+      return adapter.upsertOne(action.payload.patient, state);
 
     // case select patient
     case PatientsActions.PatientsActionTypes.SelectPatient:

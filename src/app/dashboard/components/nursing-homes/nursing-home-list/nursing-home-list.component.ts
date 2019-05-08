@@ -103,11 +103,11 @@ export class NursingHomeListComponent implements OnInit, OnDestroy {
    * @param selected NursingHome first element of array
    */
   onSelectRow({ selected }) {
-    // this.patientSelected.emit(selected[0]);
     const nursinghome = selected[0];
     this.store.dispatch(new nursingHomesActions.SelectNursingHome(nursinghome));
     this.store.dispatch(new nursingHomesActions.LoadNursingHomeGeofencing(nursinghome.id));
 
   }
+
 
 }

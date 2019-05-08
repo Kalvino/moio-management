@@ -9,13 +9,13 @@ export interface State extends EntityState<Geofencing> {
 }
 
 // extend & export entity adapater
-export const adapater: EntityAdapter<Geofencing> = createEntityAdapter<Geofencing>({
+export const adapter: EntityAdapter<Geofencing> = createEntityAdapter<Geofencing>({
   selectId: (geofencing: Geofencing) => geofencing.id,
   sortComparer: false
 });
 
 // compose the initial state
-export const initialState: State = adapater.getInitialState({
+export const initialState: State = adapter.getInitialState({
   selectedGeogenceId: null
 });
 
@@ -34,35 +34,33 @@ export function reducer(
 
   switch (action.type) {
 
-    // load nursinghome geofencing success state
+    // load user patients success state
     case NursingHomesApiActions.NursingHomesApiActionTypes.LoadNursingHomeGeofencingSuccess:
-      return adapater.upsertMany(action.payload.geofencing, state);
+      return adapter.upsertMany(action.payload.geofencing, state);
 
-    // add a new entity to the state in case creation is successful
+    // Add a new geofence
     case NursingHomesApiActions.NursingHomesApiActionTypes.CreateNursingHomeGeofencingSuccess:
-      return adapater.addOne(action.payload.geofencing, state);
+      return adapter.addOne(action.payload.geofencing, state);
 
+    // Edit a geofence
     case NursingHomesApiActions.NursingHomesApiActionTypes.EditNursingHomeGeofencingSuccess:
-      return adapater.upsertOne(action.payload.geofencing, state);
+      return adapter.upsertOne(action.payload.geofencing, state);
 
-    // case select nursinghome geofencing
-    case (NursingHomesActions.NursingHomesActionTypes.SelectNursingHomeGeofencing):
-      return {
-        ...state,
-        selectedGeogenceId: action.payload.id
-      };
+    // delete a geofence
+    case (NursingHomesApiActions.NursingHomesApiActionTypes.DeleteNursingHomeGeofencingSuccess):
+      return adapter.removeOne(action.payload.geofencing.id, state)
 
-    // clear selected nursinghome geofencing
-    case (NursingHomesActions.NursingHomesActionTypes.DismissEditNursingHomeGeofencing):
-      return {
-        ...state,
-        selectedGeogenceId: null
-      }
+    // clear selected nursinghome
+    case (NursingHomesActions.NursingHomesActionTypes.DismissEditNursingHome):
+      return adapter.removeAll(state)
 
+    // clear nursinghome geofences
+    case (NursingHomesActions.NursingHomesActionTypes.SelectNursingHome):
+      return adapter.removeAll(state)
 
     // reset state to initial state on logout
     case AuthApiActions.AuthApiActionTypes.LogoutSuccess:
-    case NursingHomesActions.NursingHomesActionTypes.ResetNursingHomeGeofencingState:
+    case NursingHomesActions.NursingHomesActionTypes.ResetNursingHomesState:
       return initialState;
 
     default:

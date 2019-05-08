@@ -1,6 +1,6 @@
 /// <reference types="@types/googlemaps" />
-import { Component, OnInit, Inject, NgZone, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, Inject, NgZone, ViewChild, ElementRef } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MapsAPILoader, AgmMap, GoogleMapsAPIWrapper } from '@agm/core';
 
@@ -92,29 +92,29 @@ export class GeofenceFormComponent implements OnInit {
           //set latitude, longitude and zoom
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
-          this.zoom = 12;
+          this.zoom = 18;
 
         });
       });
-    });
 
-    this.drawingManager = new google.maps.drawing.DrawingManager({
-      drawingControl: true,
-      drawingControlOptions: {
-        position: google.maps.ControlPosition.TOP_CENTER,
-        drawingModes: [
-          google.maps.drawing.OverlayType.POLYGON
-        ]
-      },
-      polygonOptions: {
-        clickable: true,
-        draggable: true,
-        editable: true,
-        fillColor: '#ffff00',
-        fillOpacity: 0.5,
-      },
-    });
+      this.drawingManager = new google.maps.drawing.DrawingManager({
+        drawingControl: true,
+        drawingControlOptions: {
+          position: google.maps.ControlPosition.TOP_CENTER,
+          drawingModes: [
+            google.maps.drawing.OverlayType.POLYGON
+          ]
+        },
+        polygonOptions: {
+          clickable: true,
+          draggable: true,
+          editable: true,
+          fillColor: '#ffff00',
+          fillOpacity: 0.5,
+        },
+      });
 
+    });// End of this.mapsAPILoader.load().then(() => {
 
   }
 
@@ -142,6 +142,12 @@ export class GeofenceFormComponent implements OnInit {
     this.notifyService.notify({ title, message });
   }
 
+  minPointsNotify() {
+    const title = this.translate.instant("MinPolygonPoints.title");
+    const message = this.translate.instant("MinPolygonPoints.message");
+    this.notifyService.notify({ title, message });
+  }
+
   intersectionNotify() {
     const title = this.translate.instant("PolygonIntersection.title");
     const message = this.translate.instant("PolygonIntersection.message");
@@ -156,50 +162,59 @@ export class GeofenceFormComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.m.mapReady.subscribe(map => {
-      this.drawingManager.setMap(map);
-      this.map = map;
-    });
 
-    google.maps.event.addListener(this.drawingManager, 'polygoncomplete', (polygon) => {
+    this.mapsAPILoader.load().then(() => {
 
-      if (polygon.getPath().length > 16) {
-        this.maxPointsNotify();
-        this.deleteGeofence(); // Remove the current polygon
-      } else {
+      this.m.mapReady.subscribe(map => {
+        this.drawingManager.setMap(map);
+        this.map = map;
+      });
 
-        this.drawingManager.setOptions({
-          drawingControlOptions: {
-            position: google.maps.ControlPosition.TOP_CENTER,
-            drawingModes: []
-          }
-        });
+      google.maps.event.addListener(this.drawingManager, 'polygoncomplete', (polygon) => {
 
-        this.intersect = new MapIntersections();
-        const status = this.intersect.checkIntersection(polygon);
-
-        //The map intersects
-        if (status) {
-          this.intersectionNotify();
+        if (polygon.getPath().length > 16) {
+          this.maxPointsNotify();
           this.deleteGeofence(); // Remove the current polygon
+        } else if (polygon.getPath().length < 4) {
+          this.minPointsNotify();
+          this.deleteGeofence(); // Remove the current polygon
+        } else {
+
+          this.drawingManager.setOptions({
+            drawingControlOptions: {
+              position: google.maps.ControlPosition.TOP_CENTER,
+              drawingModes: []
+            }
+          });
+
+          this.intersect = new MapIntersections();
+          const status = this.intersect.checkIntersection(polygon);
+
+          //The map intersects
+          if (status) {
+            this.intersectionNotify();
+            this.deleteGeofence(); // Remove the current polygon
+          }
+
         }
 
-      }
+      });
 
-    });
+      google.maps.event.addListener(this.drawingManager, 'overlaycomplete', (event) => {
 
-    google.maps.event.addListener(this.drawingManager, 'overlaycomplete', (event) => {
+        this.overlay = event.overlay;
+        this.overlay.type = event.type;
 
-      this.overlay = event.overlay;
-      this.overlay.type = event.type;
-
-      if (event.type === google.maps.drawing.OverlayType.POLYGON) {
-        var len = event.overlay.getPath().getLength();
-        for (var i = 0; i < len; i++) {
-          this.createPolygonArray(event.overlay.getPath().getAt(i).toUrlValue(6));
+        if (event.type === google.maps.drawing.OverlayType.POLYGON) {
+          var len = event.overlay.getPath().getLength();
+          for (var i = 0; i < len; i++) {
+            this.createPolygonArray(event.overlay.getPath().getAt(i).toUrlValue(6));
+          }
         }
-      }
-    });
+      });
+
+    }); // End of this.mapsAPILoader.load().then(() => {
+
   }
 
   buildItemForm() {
@@ -243,7 +258,7 @@ export class GeofenceFormComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
-        this.zoom = 12;
+        this.zoom = 18;
       });
     }
   }

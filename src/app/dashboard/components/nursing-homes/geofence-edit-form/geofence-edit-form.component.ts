@@ -33,7 +33,6 @@ export class GeofenceEditFormComponent implements OnInit {
   public map;
   public paths: Array<LatLngLiteral> = [];
 
-
   @ViewChild('map') m: AgmMap;
 
   @ViewChild("search")
@@ -103,29 +102,29 @@ export class GeofenceEditFormComponent implements OnInit {
           //set latitude, longitude and zoom
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
-          this.zoom = 12;
+          this.zoom = 18;
 
         });
       });
-    });
 
-    this.drawingManager = new google.maps.drawing.DrawingManager({
-      drawingControl: true,
-      drawingControlOptions: {
-        position: google.maps.ControlPosition.TOP_CENTER,
-        drawingModes: [
-          google.maps.drawing.OverlayType.POLYGON
-        ]
-      },
-      polygonOptions: {
-        clickable: true,
-        draggable: true,
-        editable: true,
-        fillColor: '#ffff00',
-        fillOpacity: 0.5,
-      },
-    });
+      this.drawingManager = new google.maps.drawing.DrawingManager({
+        drawingControl: true,
+        drawingControlOptions: {
+          position: google.maps.ControlPosition.TOP_CENTER,
+          drawingModes: [
+            google.maps.drawing.OverlayType.POLYGON
+          ]
+        },
+        polygonOptions: {
+          clickable: true,
+          draggable: true,
+          editable: true,
+          fillColor: '#ffff00',
+          fillOpacity: 0.5,
+        },
+      });
 
+    }); // End of this.mapsAPILoader.load().then(() => {
 
   }//End of init
 
@@ -154,6 +153,12 @@ export class GeofenceEditFormComponent implements OnInit {
     this.notifyService.notify({ title, message });
   }
 
+  minPointsNotify() {
+    const title = this.translate.instant("MinPolygonPoints.title");
+    const message = this.translate.instant("MinPolygonPoints.message");
+    this.notifyService.notify({ title, message });
+  }
+
   intersectionNotify() {
     const title = this.translate.instant("PolygonIntersection.title");
     const message = this.translate.instant("PolygonIntersection.message");
@@ -169,72 +174,79 @@ export class GeofenceEditFormComponent implements OnInit {
 
   ngAfterViewInit() {
 
-    this.m.mapReady.subscribe(map => {
-      this.drawingManager.setMap(map);
-      this.map = map;
-    });
+    this.mapsAPILoader.load().then(() => {
 
-    google.maps.event.addListener(this.drawingManager, 'polygoncomplete', (polygon) => {
-
-      if (polygon.getPath().length > 16) {
-        this.maxPointsNotify();
-        this.deleteGeofence(); // Remove the current polygon
-      } else {
-
-        this.drawingManager.setOptions({
-          drawingControlOptions: {
-            position: google.maps.ControlPosition.TOP_CENTER,
-            drawingModes: []
-          }
-        });
-
-        this.intersect = new MapIntersections();
-        const status = this.intersect.checkIntersection(polygon);
-
-        //The map intersects
-        if (status) {
-          this.intersectionNotify();
-          this.deleteGeofence(); // Remove the current polygon
-        }
-
-      }
-
-    });
-
-    google.maps.event.addListener(this.drawingManager, 'overlaycomplete', (event) => {
-
-      this.overlay = event.overlay;
-      this.overlay.type = event.type;
-
-      if (event.type === google.maps.drawing.OverlayType.POLYGON) {
-        var len = event.overlay.getPath().getLength();
-        for (var i = 0; i < len; i++) {
-          this.createPolygonArray(event.overlay.getPath().getAt(i).toUrlValue(6));
-        }
-      }
-    });
-
-    const polygon = new google.maps.Polygon({
-      paths: this.paths,
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: '#ffff00',
-      fillOpacity: 0.5
-    });
-
-    if (this.paths.length > 0) {
       this.m.mapReady.subscribe(map => {
-        const bounds: LatLngBounds = new google.maps.LatLngBounds();
-        for (const mm of this.paths) {
-          bounds.extend(new google.maps.LatLng(mm.lat, mm.lng));
+        this.drawingManager.setMap(map);
+        this.map = map;
+      });
+
+      google.maps.event.addListener(this.drawingManager, 'polygoncomplete', (polygon) => {
+
+        if (polygon.getPath().length > 16) {
+          this.maxPointsNotify();
+          this.deleteGeofence(); // Remove the current polygon
+        } else if (polygon.getPath().length < 4) {
+          this.minPointsNotify();
+          this.deleteGeofence(); // Remove the current polygon
+        } else {
+
+          this.drawingManager.setOptions({
+            drawingControlOptions: {
+              position: google.maps.ControlPosition.TOP_CENTER,
+              drawingModes: []
+            }
+          });
+
+          this.intersect = new MapIntersections();
+          const status = this.intersect.checkIntersection(polygon);
+
+          //The map intersects
+          if (status) {
+            this.intersectionNotify();
+            this.deleteGeofence(); // Remove the current polygon
+          }
+
         }
 
-        map.fitBounds(bounds);
-
-        polygon.setMap(map);
-        this.overlay = polygon;
       });
-    }
+
+      google.maps.event.addListener(this.drawingManager, 'overlaycomplete', (event) => {
+
+        this.overlay = event.overlay;
+        this.overlay.type = event.type;
+
+        if (event.type === google.maps.drawing.OverlayType.POLYGON) {
+          var len = event.overlay.getPath().getLength();
+          for (var i = 0; i < len; i++) {
+            this.createPolygonArray(event.overlay.getPath().getAt(i).toUrlValue(6));
+          }
+        }
+      });
+
+      const polygon = new google.maps.Polygon({
+        paths: this.paths,
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#ffff00',
+        fillOpacity: 0.5
+      });
+
+      if (this.paths.length > 0) {
+        this.m.mapReady.subscribe(map => {
+          const bounds: LatLngBounds = new google.maps.LatLngBounds();
+          for (const mm of this.paths) {
+            bounds.extend(new google.maps.LatLng(mm.lat, mm.lng));
+          }
+
+          map.fitBounds(bounds);
+
+          polygon.setMap(map);
+          this.overlay = polygon;
+        });
+      }
+
+    }); //End of this.mapsAPILoader.load().then(() => {
 
   }
 

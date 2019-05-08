@@ -258,7 +258,7 @@ export class NursingHomesEffects {
       return this.nursingHomesService.deleteNursingHomeGeofencing(geofence)
         .pipe(
           map(geofencing => {
-            return new NursingHomesApiActions.DeleteNursingHomeGeofencingSuccess({ geofencing });
+            return new NursingHomesApiActions.DeleteNursingHomeGeofencingSuccess({ geofencing: geofence });
           }),
           catchError(httpError => {
             console.error(httpError);

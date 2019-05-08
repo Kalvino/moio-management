@@ -57,7 +57,6 @@ export class UsersService {
    * @param user object:User
    */
   updateUser(user: User): Observable<User> {
-    console.log(user);
     return this.http.put<User>(`${environment.apiHost}/api/users/${user.id}`, user);
   }
 
@@ -66,7 +65,6 @@ export class UsersService {
    * @param changed
    */
   editUser(changed: Update<User>): Observable<User> {
-    console.log(changed);
     return this.http
       .put<User>(`${environment.apiHost}/api/users/${changed.id}`, { ...changed.changes });
   }

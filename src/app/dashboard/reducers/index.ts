@@ -125,7 +125,7 @@ export const {
   selectEntities: getUserEntities,
   selectAll: getAllUsers,
   selectTotal: getTotalUsers
-} = fromUsers.adapater.getSelectors(getUsersState);
+} = fromUsers.adapter.getSelectors(getUsersState);
 
 // get the selected user from the state / users collection
 export const getSelectedUser = createSelector(
@@ -146,7 +146,7 @@ export const {
   selectEntities: getUserPatientsEntities,
   selectAll: getAllUserPatients,
   selectTotal: getTotalUserPatients
-} = fromUserPatients.adapater.getSelectors(getUserPatientsState);
+} = fromUserPatients.adapter.getSelectors(getUserPatientsState);
 
 
 
@@ -161,7 +161,7 @@ export const {
   selectEntities: getNursingHomeGeofencingEntities,
   selectAll: getAllNursingHomeGeofencing,
   selectTotal: getTotalNursingHomeGeofencing
-} = fromNursingHomeGeofencing.adapater.getSelectors(getNursingHomeGeofencingState);
+} = fromNursingHomeGeofencing.adapter.getSelectors(getNursingHomeGeofencingState);
 
 // ****************** NURSING HOMES PAGE *************
 export const getNursingHomesPageState = createSelector(
@@ -210,8 +210,8 @@ export const {
   selectIds: getNursingHomesIds,
   selectEntities: getNursingHomeEntities,
   selectAll: getAllNursingHomes,
-  selectTotal: getTotalNursiomes
-} = fromNursingHome.adapater.getSelectors(getNursingHomesState);
+  selectTotal: getTotalNursingHomes
+} = fromNursingHome.adapter.getSelectors(getNursingHomesState);
 
 // get the selected nursing home from the state / nursing homes collection
 export const getSelectedNursingHome = createSelector(
@@ -304,7 +304,7 @@ export const {
   selectEntities: getPatientEntities,
   selectAll: getAllPatients,
   selectTotal: getTotalPatients
-} = fromPatients.adapater.getSelectors(getPatientsState);
+} = fromPatients.adapter.getSelectors(getPatientsState);
 
 // get the selected patient from the state / patients collection
 export const getSelectedPatient = createSelector(
@@ -324,7 +324,7 @@ export const {
   selectEntities: getPatientUsersEntities,
   selectAll: getAllPatientUsers,
   selectTotal: getTotalPatientUsers
-} = fromPatientUsers.adapater.getSelectors(getPatientUsersState);
+} = fromPatientUsers.adapter.getSelectors(getPatientUsersState);
 
 // ****************** DASHBOARD LAYOUT *************
 export const getLayoutState = createSelector(

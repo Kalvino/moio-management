@@ -48,12 +48,17 @@
             <div fxFlex="100" class="mt-1 mb-1 ">
               <button mat-stroked-button class="addButton" color="primary" type="button" (click)="addPolygon()">{{'NewGeofenceButton' | translate}}</button>
             </div>
+            
+            <mat-progress-bar *ngIf="loadNursingHomeGeofencingPending$ | async" [mode]="(loadNursingHomeGeofencingPending$ | async) ? 'indeterminate' : 'determinate'"
+      class="session-progress"></mat-progress-bar>
+
             <div *ngIf="(nursingHomeGeofencing$ | async)?.length==0">{{'NoGeofence' | translate}}</div>
+            
             <mat-accordion *ngIf="(nursingHomeGeofencing$ | async)?.length > 0">
               <mat-expansion-panel *ngFor="let geofence of nursingHomeGeofencing$ | async">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
-                    {{geofence.name}}
+                    {{geofence.name}} 
                   </mat-panel-title>
                   
                 </mat-expansion-panel-header>

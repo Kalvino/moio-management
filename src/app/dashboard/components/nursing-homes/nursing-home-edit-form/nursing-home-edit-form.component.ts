@@ -33,12 +33,7 @@ export class NursingHomeEditFormComponent implements OnInit, OnDestroy {
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
 
-  // get all geofencing 
-  $: Observable<Geofencing[]> = this.store.pipe(
-    select(fromDashboard.getAllNursingHomeGeofencing)
-  );
-
-  // all user patients
+  // all nusrsing home geofence
   nursingHomeGeofencing$: Observable<Geofencing[]> = this.store.pipe(
     select(fromDashboard.getAllNursingHomeGeofencing)
   );
@@ -79,7 +74,7 @@ export class NursingHomeEditFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    // Watch for changes to the currently selected patient
+    // Watch for changes to the currently selected nursing home
     this.store.pipe(
       select(fromDashboard.getSelectedNursingHome),
       takeWhile(() => this.componentActive)

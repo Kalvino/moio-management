@@ -201,3 +201,4 @@ export const getEditNursingHomeGeofencingError = (state: State) => state.editNur
  * @param state
  */
 export const getEditNursingHomeGeofencingPending = (state: State) => state.editNursingHomeGeofencingPending;
+

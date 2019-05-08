@@ -74,6 +74,10 @@
     "title": "Beachten",
     "message": "Ein Polygon darf 16 Punkte nicht überschreiten. Bitte erstellen Sie eine weitere"
   },
+  "MinPolygonPoints": {
+    "title": "Beachten",
+    "message": "Ein Polygon muss mindestens 4 Punkte haben. Bitte erstelle eine andere"
+  },
   "PolygonIntersection": {
     "title": "Beachten",
     "message": "Ein Polygon kann sich nicht schneiden. Bitte erstellen Sie eine weitere."

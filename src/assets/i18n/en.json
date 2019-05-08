@@ -74,6 +74,10 @@
     "title": "Notice",
     "message": "A polygon cannot exceed 16 points. Please create another one"
   },
+  "MinPolygonPoints": {
+    "title": "Notice",
+    "message": "A polygon must have atleast 4 points. Please create another one"
+  },
   "PolygonIntersection": {
     "title": "Notice",
     "message": "A polygon cannot intersect itself. Please create another one."
