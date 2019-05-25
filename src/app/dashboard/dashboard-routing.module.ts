@@ -6,6 +6,7 @@ import { BlankComponent } from './components/blank/blank.component';
 import { UsersComponent } from './components/users/users.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { PatientsComponent } from './components/patients/patients.component';
+import { NursingHomeComponent } from './components/nursing-homes/nursing-home.component';
 import { Routes } from '@angular/router';
 import { DashboardLayoutComponent } from './containers/dashboard-layout.component';
 import { AuthGuard } from '../auth/guards/auth.guard';
@@ -65,6 +66,14 @@ export const dashboardRoutes: Routes = [
           breadcrumb: 'SCM'
         }
       }, 
+      {
+        path: 'nursing-homes',
+        component: NursingHomeComponent,
+        data: {
+          title: 'Nursing Homes',
+          breadcrumb: 'NursingHome'
+        }
+      },
     ]
   }
 ];

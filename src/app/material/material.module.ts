@@ -15,6 +15,7 @@ import {
   MatRippleModule,
   MatSelectModule,
   MatSidenavModule,
+  MatExpansionModule,
   MatSnackBarModule, MatToolbarModule,
   MatTooltipModule,
   MatTabsModule,
@@ -48,7 +49,8 @@ const MODULES = [
   MatTabsModule,
   MatSlideToggleModule,
   MatChipsModule,
-  MatTableModule
+  MatTableModule,
+  MatExpansionModule
 ];
 
 @NgModule({

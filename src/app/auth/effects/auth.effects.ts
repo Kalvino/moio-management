@@ -35,10 +35,10 @@ export class AuthEffects {
         return this.authApiService
           .login(credentials)
           .pipe(
-            map(response => new AuthApiActions.LoginSuccess({response})),
+            map(response => new AuthApiActions.LoginSuccess({ response })),
             catchError(response => {
               const message = response.statusText.toLowerCase();
-              return of(new AuthApiActions.LoginFailure({message}));
+              return of(new AuthApiActions.LoginFailure({ message }));
             })
           );
       })
@@ -101,13 +101,15 @@ export class AuthEffects {
               snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
 
                 if (snackBarDismiss.dismissedByAction) {
+
                   this.store.dispatch(new AuthActions.Logout());
                 } else {
+
                   this.router.navigate(['/dashboard']);
                 }
               });
 
-              return of(new AuthApiActions.LogoutFailure({message}));
+              return of(new AuthApiActions.LogoutFailure({ message }));
             })
           );
       })
@@ -121,8 +123,10 @@ export class AuthEffects {
     .pipe(
       ofType(AuthActions.AuthActionTypes.LogoutConfirmation),
       exhaustMap(() => {
-        return this.confirmService.confirm({title: this.translate.instant("Logout"), 
-          message: this.translate.instant("Auth.ConfirmLogoutMessage")});
+        return this.confirmService.confirm({
+          title: this.translate.instant("Logout"),
+          message: this.translate.instant("Auth.ConfirmLogoutMessage")
+        });
       }),
       map(result =>
         result

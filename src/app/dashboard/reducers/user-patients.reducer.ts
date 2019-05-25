@@ -7,14 +7,14 @@ import { IPatient } from '../models/patient.model';
 export interface State extends EntityState<IPatient> {
 }
 
-// extend & export entity adapater
-export const adapater: EntityAdapter<IPatient> = createEntityAdapter<IPatient>({
+// extend & export entity adapter
+export const adapter: EntityAdapter<IPatient> = createEntityAdapter<IPatient>({
   selectId: (patient: IPatient) => patient.id,
   sortComparer: false
 });
 
 // compose the initial state
-export const initialState: State = adapater.getInitialState({
+export const initialState: State = adapter.getInitialState({
 });
 
 /**
@@ -34,15 +34,15 @@ export function reducer(
 
     // load user patients success state
     case UsersApiActions.UsersApiActionTypes.LoadUserPatientsSuccess:
-      return adapater.upsertMany(action.payload.patients, state);
+      return adapter.upsertMany(action.payload.patients, state);
 
     // clear selected user
     case (UsersActions.UsersActionTypes.DismissEditUser):
-      return adapater.removeAll(state)
+      return adapter.removeAll(state)
 
     // clear user patients
     case (UsersActions.UsersActionTypes.SelectUser):
-      return adapater.removeAll(state)
+      return adapter.removeAll(state)
 
     // reset state to initial state on logout
     case AuthApiActions.AuthApiActionTypes.LogoutSuccess:

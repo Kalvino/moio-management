@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
 import { NursingHomeFormComponent } from '../components/nursing-homes/nursing-home-form/nursing-home-form.component';
+import { Geofencing } from '../models/nursing-home-geofencing.model';
 
 /**
  * nursingHomes effects
@@ -59,11 +60,9 @@ export class NursingHomesEffects {
           .pipe(
             delay(2000),
             map((nursingHomes: NursingHome[]) => {
-              console.log(nursingHomes)
-              return new NursingHomesApiActions.LoadNursingHomesSuccess({nursingHomes});
+              return new NursingHomesApiActions.LoadNursingHomesSuccess({ nursingHomes });
             }),
             catchError(httpError => {
-              console.log(httpError);
               const message = httpError.statusText.toLowerCase();
 
               let snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
@@ -72,9 +71,9 @@ export class NursingHomesEffects {
 
               snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
 
-                if (snackBarDismiss.dismissedByAction){
+                if (snackBarDismiss.dismissedByAction) {
                   this.store.dispatch(new NursingHomesActions.LoadNursingHomes());
-                }else{
+                } else {
                   this.router.navigate(['/dashboard']);
                 }
               });
@@ -103,7 +102,7 @@ export class NursingHomesEffects {
           disableClose: true,
           data: { title: title }
         });
-        
+
         return dialogRef.afterClosed();
       })
     );
@@ -115,11 +114,163 @@ export class NursingHomesEffects {
   @Effect({
     dispatch: false
   })
-  DismissPoppedUpNursingHomeForm = this.actions$
+  DismissNewNursingHome = this.actions$
     .pipe(
-      ofType(NursingHomesActions.NursingHomesActionTypes.DismissPoppedUpNursingHomeForm),
+      ofType(NursingHomesActions.NursingHomesActionTypes.DismissNewNursingHome),
       map(() => {
         this.dialog.closeAll();
+      })
+    );
+
+
+  /**
+   * effect to dismiss the dialog for adding nursingHome Geofencing details
+   */
+  @Effect({
+    dispatch: false
+  })
+  DismissNewNursingHomeGeofencing = this.actions$
+    .pipe(
+      ofType(NursingHomesActions.NursingHomesActionTypes.DismissNewNursingHomeGeofencing),
+      map(() => {
+        this.dialog.closeAll();
+      })
+    );
+
+
+  /**
+   * effect for loading nursinghome geofencing
+   */
+  @Effect()
+  loadNursingHomeGeofencing = this.actions$
+    .pipe(
+      ofType<NursingHomesActions.LoadNursingHomeGeofencing>(NursingHomesActions.NursingHomesActionTypes.LoadNursingHomeGeofencing),
+      map(action => action.payload),
+      exhaustMap((id: number) => {
+
+        return this.nursingHomesService.getNursingHomeGeofencing(id)
+          .pipe(
+            delay(2000),
+            map((geofencing: Geofencing[]) => {
+              return new NursingHomesApiActions.LoadNursingHomeGeofencingSuccess({ geofencing });
+            }),
+            catchError(httpError => {
+              const message = httpError.statusText.toLowerCase();
+              const snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
+
+                if (snackBarDismiss.dismissedByAction) {
+                  this.store.dispatch(new NursingHomesActions.LoadNursingHomeGeofencing(id));
+                } else {
+                  this.router.navigate(['/dashboard/nursinghomes']);
+                }
+              });
+
+              return of(new NursingHomesApiActions.LoadNursingHomeGeofencingFailure({ message }));
+            })
+          );
+      })
+    );
+
+
+
+  /**
+     * effect fired, when the create new geofence form is submitted
+     * send data to api and handle result
+     */
+  @Effect()
+  createGeofence$ = this.actions$
+    .pipe(
+      ofType<NursingHomesActions.CreateNursingHomeGeofencing>(NursingHomesActions.NursingHomesActionTypes.CreateNursingHomeGeofencing),
+      map(action => action.payload.geofencing),
+      exhaustMap((geofence: Geofencing) => {
+
+        return this.nursingHomesService.createNursingHomeGeofencing(geofence)
+          .pipe(
+            map(geofencing => {
+              return new NursingHomesApiActions.CreateNursingHomeGeofencingSuccess({ geofencing });
+            }),
+            catchError(httpError => {
+              console.error(httpError);
+
+              const message = httpError.statusText.toLowerCase();
+
+              return of(new NursingHomesApiActions.CreateNursingHomeGeofencingFailure({ message }));
+            })
+          );
+      })
+    );
+
+
+
+  /**
+     * send geofence data to api and handle result
+     */
+  @Effect()
+  editGeofence$ = this.actions$.pipe(
+    ofType<NursingHomesActions.EditNursingHomeGeofencing>(NursingHomesActions.NursingHomesActionTypes.EditNursingHomeGeofencing),
+    map(action => action.payload),
+    exhaustMap((geofence: Geofencing) => {
+
+      return this.nursingHomesService.updateNursingHomeGeofencing(geofence)
+        .pipe(
+          map((geofencing: Geofencing) => {
+            this.store.dispatch(new NursingHomesActions.DismissEditNursingHomeGeofencing());
+            return new NursingHomesApiActions.EditNursingHomeGeofencingSuccess({ geofencing });
+          }),
+          catchError(httpError => {
+            console.log(httpError);
+            const message = httpError.statusText.toLowerCase();
+
+            const snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
+              duration: 10000
+            });
+
+            snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
+
+              if (snackBarDismiss.dismissedByAction) {
+                this.store.dispatch(new NursingHomesActions.EditNursingHomeGeofencing(geofence));
+              } else {
+                this.router.navigate(['/dashboard/nursing-homes']);
+              }
+            });
+
+            return of(new NursingHomesApiActions.EditNursingHomeGeofencingFailure({ message }));
+          })
+        );
+    })
+  );
+
+
+
+  /**
+     * effect fired, when the deleting a geofence
+     * send data to api and handle result
+     */
+  @Effect()
+  deleteGeofence$ = this.actions$.pipe(
+    ofType<NursingHomesActions.DeleteNursingHomeGeofencing>(NursingHomesActions.NursingHomesActionTypes.DeleteNursingHomeGeofencing),
+    map(action => action.payload),
+    exhaustMap((geofence: Geofencing) => {
+      return this.nursingHomesService.deleteNursingHomeGeofencing(geofence)
+        .pipe(
+          map(geofencing => {
+            return new NursingHomesApiActions.DeleteNursingHomeGeofencingSuccess({ geofencing: geofence });
+          }),
+          catchError(httpError => {
+            console.error(httpError);
+
+            const message = httpError.statusText.toLowerCase();
+
+            return of(new NursingHomesApiActions.DeleteNursingHomeGeofencingFailure({ message }));
+          }),
+          tap(() => {
+            this.store.dispatch(new NursingHomesActions.LoadNursingHomeGeofencing(geofence.nursing_home_id));
+          })
+        );
     })
   );
 
@@ -141,6 +292,6 @@ export class NursingHomesEffects {
     private store: Store<any>,
     public snackBar: MatSnackBar,
     private translate: TranslateService,
-    private dialog: MatDialog,){
+    private dialog: MatDialog, ) {
   }
 }

@@ -35,13 +35,13 @@ export class UsersEffects {
             // delay(2000),
             map(user => {
               console.log(user);
-              return new UsersApiActions.CreateUserSuccess({user});
+              return new UsersApiActions.CreateUserSuccess({ user });
             }),
             catchError(httpResponse => {
               console.log(httpResponse);
               const messages = httpResponse.statusText.toLowerCase();
 
-              return of(new UsersApiActions.CreateUserFailure({messages}));
+              return of(new UsersApiActions.CreateUserFailure({ messages }));
             })
           );
       })
@@ -60,27 +60,27 @@ export class UsersEffects {
         .pipe(
           map((savedUser: User) => {
             this.store.dispatch(new UsersActions.DismissEditUser());
-            return new UsersApiActions.EditUserSuccess({user: savedUser});
+            return new UsersApiActions.EditUserSuccess({ user: savedUser });
           }),
           catchError(httpError => {
             console.log(httpError);
-              const message = httpError.statusText.toLowerCase();
+            const message = httpError.statusText.toLowerCase();
 
-              const snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
-                duration: 10000
-              });
+            const snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
+              duration: 10000
+            });
 
-              snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
+            snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
 
-                if (snackBarDismiss.dismissedByAction){
-                  this.store.dispatch(new UsersActions.EditUser(user));
-                } else {
-                  this.router.navigate(['/dashboard/users']);
-                }
-              });
+              if (snackBarDismiss.dismissedByAction) {
+                this.store.dispatch(new UsersActions.EditUser(user));
+              } else {
+                this.router.navigate(['/dashboard/users']);
+              }
+            });
 
-              return of(new UsersApiActions.LoadUserPatientsFailure({message}));
-            })
+            return of(new UsersApiActions.LoadUserPatientsFailure({ message }));
+          })
         );
     })
   );
@@ -129,26 +129,26 @@ export class UsersEffects {
           .pipe(
             //delay(2000),
             map((users: User[]) => {
-              console.log(users);
-              return new UsersApiActions.LoadUsersSuccess({users});
+              //console.log(users);
+              return new UsersApiActions.LoadUsersSuccess({ users });
             }),
             catchError(httpError => {
               const message = httpError.statusText.toLowerCase();
-
+              console.log(message)
               const snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
                 duration: 10000
               });
 
               snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
 
-                if (snackBarDismiss.dismissedByAction){
+                if (snackBarDismiss.dismissedByAction) {
                   this.store.dispatch(new UsersActions.LoadUsers());
                 } else {
                   this.router.navigate(['/dashboard']);
                 }
               });
 
-              return of(new UsersApiActions.LoadUsersFailure({message}));
+              return of(new UsersApiActions.LoadUsersFailure({ message }));
             })
           );
       })
@@ -171,20 +171,20 @@ export class UsersEffects {
             map((patients: IPatient[]) => {
               console.log(patients);
 
-              for (let key in patients){
+              for (let key in patients) {
                 const patient = patients[key];
-                const user = patient.users.filter(user => user.id === id );
+                const user = patient.users.filter(user => user.id === id);
                 let permission = "";
 
-                if(user[0].user_patient_permission == 1){
+                if (user[0].user_patient_permission == 1) {
                   permission = "Administrator";
-                }else{
+                } else {
                   permission = "Read Only"
                 }
                 patient["permission"] = permission;
               }
 
-              return new UsersApiActions.LoadUserPatientsSuccess({patients});
+              return new UsersApiActions.LoadUserPatientsSuccess({ patients });
             }),
             catchError(httpError => {
               const message = httpError.statusText.toLowerCase();
@@ -195,14 +195,14 @@ export class UsersEffects {
 
               snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
 
-                if (snackBarDismiss.dismissedByAction){
+                if (snackBarDismiss.dismissedByAction) {
                   this.store.dispatch(new UsersActions.LoadUserPatients(id));
                 } else {
                   this.router.navigate(['/dashboard/users']);
                 }
               });
 
-              return of(new UsersApiActions.LoadUserPatientsFailure({message}));
+              return of(new UsersApiActions.LoadUserPatientsFailure({ message }));
             })
           );
       })
@@ -222,7 +222,7 @@ export class UsersEffects {
           disableClose: true,
           data: { title: title }
         });
-        
+
         return dialogRef.afterClosed();
       })
     );

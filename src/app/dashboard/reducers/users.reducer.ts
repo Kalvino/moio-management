@@ -8,14 +8,14 @@ export interface State extends EntityState<User> {
   selectedUserId: number | null;
 }
 
-// extend & export entity adapater
-export const adapater: EntityAdapter<User> = createEntityAdapter<User>({
+// extend & export entity adapter
+export const adapter: EntityAdapter<User> = createEntityAdapter<User>({
   selectId: (user: User) => user.id,
   sortComparer: false
 });
 
 // compose the initial state
-export const initialState: State = adapater.getInitialState({
+export const initialState: State = adapter.getInitialState({
   selectedUserId: null
 });
 
@@ -36,14 +36,14 @@ export function reducer(
 
     // load users success state
     case UsersApiActions.UsersApiActionTypes.LoadUsersSuccess:
-      return adapater.upsertMany(action.payload.users, state);
+      return adapter.upsertMany(action.payload.users, state);
 
     // add a new entity to the state in case creation is successful
     case UsersApiActions.UsersApiActionTypes.CreateUserSuccess:
-      return adapater.addOne(action.payload.user, state);
+      return adapter.addOne(action.payload.user, state);
 
     case UsersApiActions.UsersApiActionTypes.EditUserSuccess:
-      return adapater.upsertOne(action.payload.user, state);
+      return adapter.upsertOne(action.payload.user, state);
 
     // case select user
     case UsersActions.UsersActionTypes.SelectUser:

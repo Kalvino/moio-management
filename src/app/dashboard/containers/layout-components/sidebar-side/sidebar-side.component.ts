@@ -39,7 +39,7 @@ export class SidebarSideComponent implements OnInit, OnDestroy, AfterViewInit {
 
     // TODO: Unsubscribe
     this.store.pipe(select(fromAuth.getUser)).subscribe(
-      user => this.user = user );
+      user => this.user = user);
   }
 
   ngAfterViewInit() {

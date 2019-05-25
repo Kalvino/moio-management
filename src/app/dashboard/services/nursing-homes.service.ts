@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, tap, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { NursingHome } from '../models/nursing-home.model';
 import { environment } from '../../../environments/environment';
+
+import { Update } from '@ngrx/entity';
+import { Geofencing } from '../models/nursing-home-geofencing.model';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +29,64 @@ export class NursingHomesService {
    */
   createNursingHome(nursingHome: NursingHome): Observable<NursingHome> {
     return this.http
-      .post(`${environment.apiHost}/api/nursinghomes`, {...nursingHome});
+      .post(`${environment.apiHost}/api/nursinghomes`, { ...nursingHome });
+  }
+
+  /**
+   * delete a nursingome
+   * @param id nursingome id
+   */
+  deleteNursingHome(id: number): Observable<{}> {
+    return this.http.delete<NursingHome>(`${environment.apiHost}/api/nursinghomes/${id}`);
+  }
+
+  /**
+   * update a nursingome
+   * @param nursingome object:NursingHome
+   */
+  updateNursingHome(nursingome: NursingHome): Observable<NursingHome> {
+    return this.http.put<NursingHome>(`${environment.apiHost}/api/nursinghomes/${nursingome.id}`, nursingome);
+  }
+
+  /**
+   * edit a nursingome
+   * @param nursinghome
+   */
+  editNursingHome(nursinghome: Update<NursingHome>): Observable<NursingHome> {
+    return this.http
+      .put<NursingHome>(`${environment.apiHost}/api/nursinghomes/${nursinghome.id}`, { ...nursinghome.changes });
+  }
+
+  /**
+     * get all geofencing belonging to a nursing home from the moio-cloud api
+     * @param id nursingome id
+     */
+  getNursingHomeGeofencing(id: number): Observable<Geofencing[]> {
+    return this.http.get<Geofencing[]>(`${environment.apiHost}/api/nursinghomes/${id}/geofence`);
+  }
+
+  /**
+   * create a new geofence
+   * @param geofence Geofencing
+   */
+  createNursingHomeGeofencing(geofence: Geofencing): Observable<Geofencing> {
+    return this.http.post<Geofencing>(`${environment.apiHost}/api/nursinghomes/${geofence.nursing_home_id}/geofence`, geofence);
+  }
+
+  /**
+   * update a geofence
+   * @param geofence object:Geofencing
+   */
+  updateNursingHomeGeofencing(geofence: Geofencing): Observable<Geofencing> {
+    return this.http.put<Geofencing>(`${environment.apiHost}/api/nursinghomes/${geofence.nursing_home_id}/geofence/${geofence.id}`, geofence);
+  }
+
+  /**
+   * delete a geofence
+   * @param geofence object:Geofencing
+   */
+  deleteNursingHomeGeofencing(geofence: Geofencing): Observable<Geofencing> {
+    return this.http.delete<Geofencing>(`${environment.apiHost}/api/nursinghomes/${geofence.nursing_home_id}/geofence/${geofence.id}`);
   }
 
 }

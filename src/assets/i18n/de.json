@@ -35,7 +35,6 @@
   "list": "liste",
   "LIST": "LISTE",
   "Name": "Name",
-  "NursingHome": "Einrichtung",
   "RegisteredOn": "Registriert am",
   "LastLoginOn": "Lezte Anmeldung am",
   "PatientProfiles": "Patientenprofile",
@@ -64,15 +63,31 @@
   "ConfirmPassword": "Passwort bestätigen",
   "Save": "Speichern",
   "Edit": "bearbeiten",
+  "Delete": "Löschen",
   "Gender": "Geschlecht",
   "EmailInvalid": "Geben sie eine gültige E-Mail-Adresse",
   "CloseUnsavedForm": {
     "title": "Schließen Sie dieses Formular?",
     "message": "Die nicht gespeicherten Daten in diesem Formular gehen verloren. Möchten Sie dieses Formular wirklich schließen?"
   },
+  "MaxPolygonPoints": {
+    "title": "Beachten",
+    "message": "Ein Polygon darf 16 Punkte nicht überschreiten. Bitte erstellen Sie eine weitere"
+  },
+  "MinPolygonPoints": {
+    "title": "Beachten",
+    "message": "Ein Polygon muss mindestens 4 Punkte haben. Bitte erstelle eine andere"
+  },
+  "PolygonIntersection": {
+    "title": "Beachten",
+    "message": "Ein Polygon kann sich nicht schneiden. Bitte erstellen Sie eine weitere."
+  },
   "ConnectedUserProfiles": "Verbundene Benutzerprofile",
   "ConnectedPatientProfiles": "Verbundene Patientenprofile",
   "LastLogin": "Letzte Anmeldung",
+  "Devices": "Geräte",
+  "NursingHomes": "Altenheime",
+  "NursingHome": "Altenheim",
   "Patients": "Patienten",
   "Patient": "Patient",
   "Permission": "Berechtigung",
@@ -120,5 +135,23 @@
       "SOK": "System Bestätigung",
       "DIC": "Beenden der Verbindung"
     }
+  },
+  "SearchMap": "Suchen Sie die Karte",
+  "NoGeofence": "Keine Geogenz gefunden",
+  "RemoveGeofence": "Geofence entfernen",
+  "GeofenceName": "Geofence-Name",
+  "NewGeofenceFormTitle": "Neuen Geofence hinzufügen",
+  "EditGeofenceFormTitle": "Geofence bearbeiten",
+  "NewGeofenceButton": "Hinzufügen",
+  "NHGeofenceTabTitle": "Geofencing",
+  "NHProfilesTabTitle": "Patientenprofile",
+  "NHUsersTabTitle": "Benutzer",
+  "NHNameRequired": "Name ist erforderlich",
+  "NHKeyRequired": "Schlüssel ist erforderlich",
+  "NHName": "Name",
+  "NHKey": "Schlüssel",
+  "DeleteGeofence": {
+    "title": "Löschen Sie diesen Geofence?",
+    "message": "Möchten Sie diesen Geofence wirklich löschen?"
   }
 }

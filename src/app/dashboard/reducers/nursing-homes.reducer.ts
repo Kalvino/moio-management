@@ -8,14 +8,14 @@ export interface State extends EntityState<NursingHome> {
   selectedNursingHomeId: number | null;
 }
 
-// extend & export entity adapater
-export const adapater: EntityAdapter<NursingHome> = createEntityAdapter<NursingHome>({
+// extend & export entity adapter
+export const adapter: EntityAdapter<NursingHome> = createEntityAdapter<NursingHome>({
   selectId: (nursingHome: NursingHome) => nursingHome.id,
   sortComparer: false
 });
 
 // compose the initial state
-export const initialState: State = adapater.getInitialState({
+export const initialState: State = adapter.getInitialState({
   selectedNursingHomeId: null
 });
 
@@ -36,15 +36,15 @@ export function reducer(
 
     // load nursingHomes success state
     case NursingHomesApiActions.NursingHomesApiActionTypes.LoadNursingHomesSuccess:
-      console.log(action.payload.nursingHomes);
-      return adapater.upsertMany(action.payload.nursingHomes, state);
+      // console.log(action.payload.nursingHomes);
+      return adapter.upsertMany(action.payload.nursingHomes, state);
 
     // add a new entity to the state in case creation is successful
     case NursingHomesApiActions.NursingHomesApiActionTypes.CreateNursingHomeSuccess:
-      return adapater.addOne(action.payload.nursingHome, state);
+      return adapter.addOne(action.payload.nursingHome, state);
 
     case NursingHomesApiActions.NursingHomesApiActionTypes.EditNursingHomeSuccess:
-      return adapater.upsertOne(action.payload.nursingHome, state);
+      return adapter.upsertOne(action.payload.nursingHome, state);
 
     // case select nursingHome
     case NursingHomesActions.NursingHomesActionTypes.SelectNursingHome:
