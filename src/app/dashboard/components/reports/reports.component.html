@@ -1,0 +1,10 @@
+<div fxLayout="row" fxLayoutAlign="start stretch">
+  <div class="split-pane-left" [fxFlex]="((selectedReportId$ | async) !== null) ? 50 : 100">
+    <moio-report-list></moio-report-list>
+  </div>
+  <div class="split-pane-right"
+    fxFlex="50" 
+    [fxShow]="(selectedReportId$ | async) !== null">
+    <moio-report-details></moio-report-details>
+  </div>
+</div>

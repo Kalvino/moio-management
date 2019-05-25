@@ -120,12 +120,6 @@ export class UserEditFormComponent implements OnInit, OnDestroy {
   }
 
   cancelEdit(): void {
-    // Redisplay the currently selected user
-    // replacing any edits made
-    this.displayUser(this.user);
-    this.store.dispatch(new usersActions.DismissEditUser);
-
-
     const title = this.translate.instant("CloseUnsavedForm.title");
     const message = this.translate.instant("CloseUnsavedForm.message");
     if (this.userEditForm.dirty){

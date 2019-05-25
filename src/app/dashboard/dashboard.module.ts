@@ -27,6 +27,9 @@ import {CoreModule} from '../core/core.module';
 import {UserListComponent} from './components/users/user-list/user-list.component';
 import {PatientListComponent} from './components/patients/patient-list/patient-list.component';
 import {UsersComponent} from './components/users/users.component';
+import {ReportsComponent} from './components/reports/reports.component';
+import {ReportListComponent} from './components/reports/reports-list/report-list.component';
+import { ReportDetailsComponent } from './components/reports/report-details/report-details.component';
 import {PatientsComponent} from './components/patients/patients.component';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {SplitPaneModule} from 'ng2-split-pane/lib/ng2-split-pane';
@@ -42,7 +45,7 @@ import {DropdownAnchorDirective} from '../core/directives/dropdown-anchor.direct
 import {EgretSideNavToggleDirective} from '../core/directives/egret-side-nav-toggle.directive';
 import {FontSizeDirective} from '../core/directives/font-size.directive';
 import {ScrollToDirective} from '../core/directives/scroll-to.directive';
-
+import { ReportsEffects } from './effects/scm-reports.effects';
 
 /**
  * list of components in this module
@@ -58,6 +61,9 @@ export const COMPONENTS = [
     SidenavComponent,
     BlankComponent,
     UsersComponent,
+    ReportsComponent,
+    ReportListComponent,
+    ReportDetailsComponent,
     PatientsComponent,
     UserListComponent,
     PatientListComponent,
@@ -83,7 +89,8 @@ export const COMPONENTS = [
 export const EFFECTS = [
     UsersEffects,
     PatientsEffects,
-    NursingHomesEffects
+    NursingHomesEffects,
+    ReportsEffects
 ];
 
 /**

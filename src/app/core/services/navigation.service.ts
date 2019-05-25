@@ -55,12 +55,19 @@ export class NavigationService {
       state: 'dashboard/patients'
     },
     {
-        name: 'Devices',
-        type: 'link',
-        tooltip: 'devices',
-        icon: 'group',
-        state: 'dashboard/devices'
-    }
+      name: 'Devices',
+      type: 'link',
+      tooltip: 'devices',
+      icon: 'devices',
+      state: 'dashboard/devices'
+    },
+    {
+      name: 'SCM',
+      type: 'link',
+      tooltip: 'SCM',
+      icon: 'report',
+      state: 'dashboard/SCM'
+  }
   ];
 
   // Icon menu TITLE at the very top of navigation.

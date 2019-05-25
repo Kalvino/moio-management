@@ -1,0 +1,214 @@
+<div *ngIf="report" class="m-333">
+  <mat-card class="p-0">
+    <mat-card-title class="default">
+      <div class="card-title-text">{{pageTitle}}</div>
+      <mat-divider></mat-divider>
+    </mat-card-title>
+    <mat-card-content>
+
+      <!-- parameters cards row -->
+      <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="50">
+          <mat-card>
+            <mat-card-title fxLayoutAlign="start center">
+              <small class="text-muted">Connection</small>
+              <span fxFlex></span>
+              <mat-icon class="report-icon">power</mat-icon>
+            </mat-card-title>
+            <mat-card-content>
+              <mat-slide-toggle class="example-margin" color="primary" [checked]="true">
+              </mat-slide-toggle>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="50">
+          <mat-card>
+            <mat-card-title fxLayoutAlign="start center">
+              <small class="text-muted">Online Tracking Report</small>
+              <span fxFlex></span>
+              <mat-icon class="report-icon">power</mat-icon>
+            </mat-card-title>
+            <mat-card-content>
+              <mat-slide-toggle class="example-margin" color="primary" [checked]="true">
+              </mat-slide-toggle>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="50">
+          <mat-card>
+            <mat-card-title fxLayoutAlign="start center">
+              <small class="text-muted">Active Tracking Report</small>
+              <span fxFlex></span>
+              <mat-icon class="report-icon">battery_alert</mat-icon>
+            </mat-card-title>
+            <mat-card-content>
+              <mat-slide-toggle class="example-margin" color="primary" [checked]="true">
+              </mat-slide-toggle>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      <div fxLayout="row wrap">
+
+        <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="50">
+          <mat-card>
+            <mat-card-title fxLayoutAlign="start center">
+              <small class="text-muted">Battery</small>
+              <span fxFlex></span>
+              <mat-icon class="report-icon">battery_alert</mat-icon>
+            </mat-card-title>
+            <mat-card-content>
+              <mat-chip class="icon-chip" color="primary" selected="true">
+                {{report.batteryHealth}}%
+              </mat-chip>
+              <mat-slide-toggle class="example-margin" color="primary" [checked]="true">
+              </mat-slide-toggle>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="50">
+          <mat-card>
+            <mat-card-title fxLayoutAlign="start center">
+              <small class="text-muted">Touch Sensor</small>
+              <span fxFlex></span>
+              <mat-icon class="report-icon">touch_app</mat-icon>
+            </mat-card-title>
+            <mat-card-content>
+              <mat-chip class="icon-chip" color="primary" selected="true">
+                Disconnected
+              </mat-chip>
+              <mat-slide-toggle class="example-margin" color="primary" [checked]="true">
+              </mat-slide-toggle>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="50">
+          <mat-card>
+            <mat-card-title fxLayoutAlign="start center">
+              <small class="text-muted">Indoor Positioning</small>
+              <span fxFlex></span>
+              <mat-icon class="report-icon">bluetooth</mat-icon>
+            </mat-card-title>
+            <mat-card-content>
+              <mat-chip class="icon-chip" color="primary" selected="true">
+                Beacons detected
+              </mat-chip>
+              <mat-slide-toggle class="example-margin" color="primary" [checked]="true">
+              </mat-slide-toggle>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
+      <div fxLayout="row wrap">
+        <div fxFlex="50" fxFlex.gt-sm="50" fxFlex.sm="50">
+          <div class="mat-box-shadow margin-333">
+            <table>
+              <tr>
+                <th>Attribute</th>
+                <th>Value</th>
+              </tr>
+              <tr>
+                <th>Alarm Code</th>
+                <td>{{report.alarmCode}}</td>
+              </tr>
+              <tr>
+                <th>Alarm Name</th>
+                <td>{{report.alarmName}}</td>
+              </tr>
+              <tr>
+                <th>Battery Health</th>
+                <td>{{report.batteryHealth}}</td>
+              </tr>
+              <tr>
+                <th>Beacon Status</th>
+                <td>{{report.beaconStatus}}</td>
+              </tr>
+              <tr>
+                <th>Date</th>
+                <td>{{report.date}}</td>
+              </tr>
+              <tr>
+                <th>Day of Week</th>
+                <td>{{report.dayOfWeek}}</td>
+              </tr>
+              <tr>
+                <th>Latitude</th>
+                <td>{{report.latitude}}</td>
+              </tr>
+              <tr>
+                <th>Longitude</th>
+                <td>{{report.longitude}}</td>
+              </tr>
+              <tr>
+                <th>Position Code</th>
+                <td>{{report.positionCode}}</td>
+              </tr>
+              <tr>
+                <th>position Name</th>
+                <td>{{report.positionName}}</td>
+              </tr>
+              <tr>
+                <th>Report Type</th>
+                <td>{{report.reportType}}</td>
+              </tr>
+              <tr>
+                <th>Sensor Status</th>
+                <td>{{report.sensorStatus}}</td>
+              </tr>
+              <tr>
+                <th>Time</th>
+                <td>{{report.time}}</td>
+              </tr>
+            </table>
+            <!-- <ngx-datatable class="material fullscreen bg-white" [columnMode]="'force'" [headerHeight]="50"
+              [footerHeight]="0" [rowHeight]="50" [scrollbarV]="true">
+
+              <ngx-datatable-column name="Attribute">
+                <ng-template *ngFor="let attribute of report | keyvalue" ngx-datatable-cell-template>
+                  <b>{{attribute.key}}</b>
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column name="Value">
+                <ng-template let-row="row" *ngFor="let attribute of report | keyvalue" ngx-datatable-cell-template>
+                  <b>{{attribute.value}}</b>
+                </ng-template>
+              </ngx-datatable-column>
+
+            </ngx-datatable> -->
+          </div>
+
+
+
+          <!-- <div *ngFor="let item of report | keyvalue">
+            Key: <b>{{item.key}}</b> and Value: <b>{{item.value}}</b>
+          </div> -->
+        </div>
+
+        <div fxFlex="50" fxFlex.gt-sm="50" fxFlex.sm="50">
+          <mat-card>
+            <mat-card-title fxLayoutAlign="start center">
+              <small class="text-muted">Map</small>
+              <span fxFlex></span>
+              <mat-icon class="report-icon">location_on</mat-icon>
+            </mat-card-title>
+            <mat-card-content>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+
+      </div>
+
+      <div fxLayout="row wrap">
+        <div fxFlex="100" class="mt-1">
+          <span fxFlex></span>
+          <button mat-button color="warn" type="button" (click)="closeDetails()">{{'Cancel' | translate}}</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

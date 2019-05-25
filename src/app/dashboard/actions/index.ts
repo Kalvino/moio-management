@@ -5,6 +5,8 @@ import * as PatientsApiActions from './patients-api.actions';
 import * as PatientsActions from './patients.actions';
 import * as NursingHomesApiActions from './nursing-homes-api.actions';
 import * as NursingHomesActions from './nursing-homes.actions';
+import * as ReportsApiActions from './reports-api.actions';
+import * as ReportsActions from './reports.actions';
 
 export {
   LayoutActions,
@@ -13,5 +15,7 @@ export {
   PatientsApiActions,
   PatientsActions,
   NursingHomesApiActions,
-  NursingHomesActions
+  NursingHomesActions,
+  ReportsApiActions,
+  ReportsActions
 };

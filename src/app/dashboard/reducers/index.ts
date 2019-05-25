@@ -1,8 +1,10 @@
 import * as fromUserPage from './users-page.reducer';
+import * as fromReportPage from './reports-page.reducer';
 import * as fromPatientPage from './patients-page.reducer';
 import * as fromNursingHomePage from './nursing-homes-page.reducer';
 import * as fromRoot from '../../reducers';
 import * as fromUsers from './users.reducer';
+import * as fromReports from './reports.reducer';
 import * as fromPatients from './patients.reducer';
 import * as fromUserPatients from './user-patients.reducer';
 import * as fromPatientUsers from './patient-users.reducer';
@@ -23,6 +25,8 @@ export interface DashboardState {
   userPatients: fromUserPatients.State;
   patientUsers: fromPatientUsers.State;
   layout: fromLayout.State;
+  reportPage: fromReportPage.State;
+  reports: fromReports.State;
 }
 
 /**
@@ -44,7 +48,9 @@ export const reducers: ActionReducerMap<DashboardState, any> = {
   patients: fromPatients.reducer,
   userPatients: fromUserPatients.reducer,
   patientUsers: fromPatientUsers.reducer,
-  layout: fromLayout.reducer
+  layout: fromLayout.reducer,
+  reportPage: fromReportPage.reducer,
+  reports: fromReports.reducer
 };
 
 // create feature selectors
@@ -291,6 +297,89 @@ export const getLayoutState = createSelector(
   getDashboardState,
   (state: DashboardState) => state.layout
 );
+
+
+// ****************** REPORTS PAGE *************
+export const getReportsPageState = createSelector(
+  getDashboardState,
+  (state: DashboardState) => state.reportPage
+);
+
+// get error state of the reportPage from the store
+export const getReportPageError = createSelector(
+  getReportsPageState,
+  fromReportPage.getError
+);
+
+// get pending state of the reportPage from the store
+export const getReportPagePending = createSelector(
+  getReportsPageState,
+  fromReportPage.getPending
+);
+
+// get error state when creating report from the store
+export const getReportCreationError = createSelector(
+  getReportsPageState,
+  fromReportPage.getCreateReportError
+);
+
+// get pending state when creating a report from the store
+export const getReportCreationPending = createSelector(
+  getReportsPageState,
+  fromReportPage.getCreateReportPending
+);
+
+// get error state when editing a report from the store
+export const getReportEditionError = createSelector(
+  getReportsPageState,
+  fromReportPage.getEditReportError
+);
+
+// get pending state when editing a report from the store
+export const getReportEditionPending = createSelector(
+  getReportsPageState,
+  fromReportPage.getEditReportPending
+);
+
+// get pending state when loading report patients from the store
+export const getLoadReportPatientsPending = createSelector(
+  getReportsPageState,
+  fromReportPage.getLoadReportPatientsPending
+);
+
+// get error state when loading report patients from the store
+export const getLoadReportPatientsError = createSelector(
+  getReportsPageState,
+  fromReportPage.getLoadReportPatientsError
+);
+
+// ****************** REPORTS *************
+export const getReportsState = createSelector(
+  getDashboardState,
+  (state: DashboardState) => state.reports
+);
+
+// get the selected report id from state
+export const getSelectedReportId = createSelector(
+  getReportsState,
+  fromReports.getSelectedReportId
+);
+
+// deconstruct several functions from ngrx/entity
+export const {
+  selectIds: getReportsIds,
+  selectEntities: getReportEntities,
+  selectAll: getAllReports,
+  selectTotal: getTotalReports
+} = fromReports.adapater.getSelectors(getReportsState);
+
+// get the selected report from the state / reports collection
+export const getSelectedReport = createSelector(
+  getReportEntities,
+  getSelectedReportId,
+  (entities, id) => entities[id]
+);
+
 
 /**
  * Layout configurations selectors
