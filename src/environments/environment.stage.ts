@@ -1,10 +1,10 @@
 export const environment = {
+    env_name: 'dev',
     production: false,
     whitelistedDomains: [
-      'fair-api.my-appsolute-mobility.com',
-      'localhost:4200'
+        'dev-api.my-appsolute-mobility.com',
+        'localhost:4200'
     ],
-    apiHost: 'https://fair-api.my-appsolute-mobility.com',
-    socketHost: 'https://fair-broker.my-appsolute-mobility.com:8012'
-  };
-  
+    apiHost: 'https://dev-api.my-appsolute-mobility.com',
+    socketHost: 'https://dev-broker.my-appsolute-mobility.com'
+};
