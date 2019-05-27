@@ -8,7 +8,7 @@ export interface State {
   editUserError: string | null;
   editUserPending: boolean;
   loadUserPatientsPending: boolean;
-  LoadUserPatientsError: null;
+  loadUserPatientsError: null;
 }
 
 export const initialState: State = {
@@ -19,7 +19,7 @@ export const initialState: State = {
   editUserError: null,
   editUserPending: false,
   loadUserPatientsPending: false,
-  LoadUserPatientsError: null
+  loadUserPatientsError: null
 };
 
 /**
@@ -52,7 +52,7 @@ export function reducer(
       return {
         ...state,
         loadUserPatientsPending: true,
-        LoadUserPatientsError: null
+        loadUserPatientsError: null
       };
 
     case (UsersActions.UsersActionTypes.CreateUser):
@@ -60,7 +60,7 @@ export function reducer(
         ...state,
         createUserPending: true
       };
-    
+
     case (UsersApiActions.UsersApiActionTypes.CreateUserFailure):
       return {
         ...state,
@@ -86,14 +86,14 @@ export function reducer(
       return {
         ...state,
         loadUserPatientsPending: false,
-        LoadUserPatientsError: null
+        loadUserPatientsError: null
       };
 
     case (UsersApiActions.UsersApiActionTypes.LoadUserPatientsFailure):
       return {
         ...state,
         loadUserPatientsPending: false,
-        LoadUserPatientsError: action.payload.message
+        loadUserPatientsError: action.payload.message
       };
 
     case (UsersApiActions.UsersApiActionTypes.EditUserSuccess):
@@ -115,7 +115,7 @@ export function reducer(
         pending: false,
         error: action.payload.message
       };
-    
+
     case (UsersApiActions.UsersApiActionTypes.EditUserFailure):
       return {
         ...state,
@@ -175,5 +175,5 @@ export const getLoadUserPatientsPending = (state: State) => state.loadUserPatien
  * get the error state when loading user patients
  * @param state
  */
-export const getLoadUserPatientsError = (state: State) => state.LoadUserPatientsError;
+export const getLoadUserPatientsError = (state: State) => state.loadUserPatientsError;
 

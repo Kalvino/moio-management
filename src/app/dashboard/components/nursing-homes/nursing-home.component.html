@@ -1,0 +1,14 @@
+<!-- <div class="m-333">
+  <button mat-raised-button class="mb-05" color="primary" (click)="openPopUp()"><mat-icon>add</mat-icon>{{'Create' | translate}}</button>
+</div> -->
+
+<div fxLayout="row" fxLayoutAlign="start stretch">
+  <div class="split-pane-left" [fxFlex]="((selectedNursingHomeId$ | async) !== null) ? 40 : 100">
+    <moio-nursing-home-list></moio-nursing-home-list>
+  </div>
+  <div class="split-pane-right"
+    fxFlex="60" 
+    [fxShow]="(selectedNursingHomeId$ | async) !== null">
+    <moio-nursing-home-edit-form></moio-nursing-home-edit-form>
+  </div>
+</div>

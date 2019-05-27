@@ -51,7 +51,7 @@ export class NavigationService {
       name: 'Patients',
       type: 'link',
       tooltip: 'patients',
-      icon: 'group',
+      icon: 'accessible',
       state: 'dashboard/patients'
     },
     {
@@ -67,7 +67,14 @@ export class NavigationService {
       tooltip: 'SCM',
       icon: 'report',
       state: 'dashboard/SCM'
-  }
+    },
+    {
+      name: 'NursingHomes',
+      type: 'link',
+      tooltip: 'nursing-homes',
+      icon: 'domain',
+      state: 'dashboard/nursing-homes'
+    }
   ];
 
   // Icon menu TITLE at the very top of navigation.

@@ -24,7 +24,6 @@ export class PatientsService {
    * get all patients from the moio-cloud api
    */
   getPatients(): Observable<IPatient[]> {
-    console.log('loading patients');
     return this.http.get<IPatient[]>(`${environment.apiHost}/api/patients`);
   }
 
@@ -58,6 +57,6 @@ export class PatientsService {
    */
   editPatient(changed: Update<IPatient>): Observable<IPatient> {
     return this.http
-      .put<IPatient>(`${environment.apiHost}/api/patients/${changed.id}`, {...changed.changes});
+      .put<IPatient>(`${environment.apiHost}/api/patients/${changed.id}`, { ...changed.changes });
   }
 }
