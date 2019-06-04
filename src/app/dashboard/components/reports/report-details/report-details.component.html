@@ -105,83 +105,21 @@
       <div fxLayout="row wrap">
         <div fxFlex="50" fxFlex.gt-sm="50" fxFlex.sm="50">
           <div class="mat-box-shadow margin-333">
-            <table>
-              <tr>
-                <th>Attribute</th>
-                <th>Value</th>
-              </tr>
-              <tr>
-                <th>Alarm Code</th>
-                <td>{{report.alarmCode}}</td>
-              </tr>
-              <tr>
-                <th>Alarm Name</th>
-                <td>{{report.alarmName}}</td>
-              </tr>
-              <tr>
-                <th>Battery Health</th>
-                <td>{{report.batteryHealth}}</td>
-              </tr>
-              <tr>
-                <th>Beacon Status</th>
-                <td>{{report.beaconStatus}}</td>
-              </tr>
-              <tr>
-                <th>Date</th>
-                <td>{{report.date}}</td>
-              </tr>
-              <tr>
-                <th>Day of Week</th>
-                <td>{{report.dayOfWeek}}</td>
-              </tr>
-              <tr>
-                <th>Latitude</th>
-                <td>{{report.latitude}}</td>
-              </tr>
-              <tr>
-                <th>Longitude</th>
-                <td>{{report.longitude}}</td>
-              </tr>
-              <tr>
-                <th>Position Code</th>
-                <td>{{report.positionCode}}</td>
-              </tr>
-              <tr>
-                <th>position Name</th>
-                <td>{{report.positionName}}</td>
-              </tr>
-              <tr>
-                <th>Report Type</th>
-                <td>{{report.reportType}}</td>
-              </tr>
-              <tr>
-                <th>Sensor Status</th>
-                <td>{{report.sensorStatus}}</td>
-              </tr>
-              <tr>
-                <th>Time</th>
-                <td>{{report.time}}</td>
-              </tr>
+            <table class="mat-table">
+              <thead>
+                <tr>
+                  <th class="mat-header-cell">Attribute</th>
+                  <th class="mat-header-cell">Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="mat-row" *ngFor="let item of report | keyvalue">
+                  <th class="mat-cell">{{item.key}}</th>
+                  <td class="mat-cell">{{item.value}}</td>
+                </tr>
+              </tbody>
             </table>
-            <!-- <ngx-datatable class="material fullscreen bg-white" [columnMode]="'force'" [headerHeight]="50"
-              [footerHeight]="0" [rowHeight]="50" [scrollbarV]="true">
-
-              <ngx-datatable-column name="Attribute">
-                <ng-template *ngFor="let attribute of report | keyvalue" ngx-datatable-cell-template>
-                  <b>{{attribute.key}}</b>
-                </ng-template>
-              </ngx-datatable-column>
-
-              <ngx-datatable-column name="Value">
-                <ng-template let-row="row" *ngFor="let attribute of report | keyvalue" ngx-datatable-cell-template>
-                  <b>{{attribute.value}}</b>
-                </ng-template>
-              </ngx-datatable-column>
-
-            </ngx-datatable> -->
           </div>
-
-
 
           <!-- <div *ngFor="let item of report | keyvalue">
             Key: <b>{{item.key}}</b> and Value: <b>{{item.value}}</b>

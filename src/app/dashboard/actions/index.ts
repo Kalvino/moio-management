@@ -7,6 +7,10 @@ import * as NursingHomesApiActions from './nursing-homes-api.actions';
 import * as NursingHomesActions from './nursing-homes.actions';
 import * as ReportsApiActions from './reports-api.actions';
 import * as ReportsActions from './reports.actions';
+import * as DevicesApiActions from './devices-api.actions';
+import * as DevicesActions from './devices.actions';
+import * as DeviceReportsApiActions from './device-reports-api.actions';
+import * as DeviceReportsActions from './device-reports.actions';
 
 export {
   LayoutActions,
@@ -17,5 +21,9 @@ export {
   NursingHomesApiActions,
   NursingHomesActions,
   ReportsApiActions,
-  ReportsActions
+  ReportsActions,
+  DevicesApiActions,
+  DevicesActions,
+  DeviceReportsApiActions,
+  DeviceReportsActions
 };

@@ -1,12 +1,16 @@
-import * as fromUserPage from './users-page.reducer';
-import * as fromReportPage from './reports-page.reducer';
-import * as fromPatientPage from './patients-page.reducer';
-import * as fromNursingHomePage from './nursing-homes-page.reducer';
+import * as fromUsersPage from './users-page.reducer';
+import * as fromReportsPage from './reports-page.reducer';
+import * as fromPatientsPage from './patients-page.reducer';
+import * as fromNursingHomesPage from './nursing-homes-page.reducer';
+import * as fromDevicesPage from './devices-page.reducer';
+import * as fromDeviceReportsPage from './device-reports-page.reducer';
 import * as fromRoot from '../../reducers';
 import * as fromUsers from './users.reducer';
 import * as fromReports from './reports.reducer';
+import * as fromDevices from './devices.reducer';
 import * as fromPatients from './patients.reducer';
 import * as fromUserPatients from './user-patients.reducer';
+import * as fromDeviceReports from './device-reports.reducer';
 import * as fromNursingHomeGeofencing from './nursing-homes-geofencing.reducer';
 import * as fromPatientUsers from './patient-users.reducer';
 import * as fromNursingHome from './nursing-homes.reducer';
@@ -17,18 +21,22 @@ import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/s
  * compose dashboard state for global store
  */
 export interface DashboardState {
-  userPage: fromUserPage.State;
+  usersPage: fromUsersPage.State;
   users: fromUsers.State;
-  nursingHomePage: fromNursingHomePage.State;
+  nursingHomesPage: fromNursingHomesPage.State;
   nursingHomes: fromNursingHome.State;
-  patientPage: fromPatientPage.State;
+  patientsPage: fromPatientsPage.State;
   patients: fromPatients.State;
   userPatients: fromUserPatients.State;
   nursingHomeGeofencing: fromNursingHomeGeofencing.State;
   patientUsers: fromPatientUsers.State;
   layout: fromLayout.State;
-  reportPage: fromReportPage.State;
+  reportsPage: fromReportsPage.State;
   reports: fromReports.State;
+  deviceReports: fromDeviceReports.State;
+  deviceReportsPage: fromDeviceReportsPage.State;
+  devices: fromDevices.State;
+  devicesPage: fromDevicesPage.State;
 }
 
 /**
@@ -42,18 +50,23 @@ export interface State extends fromRoot.State {
  * compose action reducers
  */
 export const reducers: ActionReducerMap<DashboardState, any> = {
-  userPage: fromUserPage.reducer,
+  usersPage: fromUsersPage.reducer,
   users: fromUsers.reducer,
-  nursingHomePage: fromNursingHomePage.reducer,
+  nursingHomesPage: fromNursingHomesPage.reducer,
   nursingHomes: fromNursingHome.reducer,
-  patientPage: fromPatientPage.reducer,
+  patientsPage: fromPatientsPage.reducer,
   patients: fromPatients.reducer,
   userPatients: fromUserPatients.reducer,
   nursingHomeGeofencing: fromNursingHomeGeofencing.reducer,
   patientUsers: fromPatientUsers.reducer,
   layout: fromLayout.reducer,
-  reportPage: fromReportPage.reducer,
-  reports: fromReports.reducer
+  reportsPage: fromReportsPage.reducer,
+  reports: fromReports.reducer,
+  devicesPage: fromDevicesPage.reducer,
+  devices: fromDevices.reducer,
+  deviceReportsPage: fromDeviceReportsPage.reducer,
+  deviceReports: fromDeviceReports.reducer
+
 };
 
 // create feature selectors
@@ -62,55 +75,55 @@ export const getDashboardState = createFeatureSelector<State, DashboardState>('d
 // ****************** USERS PAGE *************
 export const getUsersPageState = createSelector(
   getDashboardState,
-  (state: DashboardState) => state.userPage
+  (state: DashboardState) => state.usersPage
 );
 
-// get error state of the userPage from the store
+// get error state of the usersPage from the store
 export const getUserPageError = createSelector(
   getUsersPageState,
-  fromUserPage.getError
+  fromUsersPage.getError
 );
 
-// get pending state of the userPage from the store
+// get pending state of the usersPage from the store
 export const getUserPagePending = createSelector(
   getUsersPageState,
-  fromUserPage.getPending
+  fromUsersPage.getPending
 );
 
 // get error state when creating user from the store
 export const getUserCreationError = createSelector(
   getUsersPageState,
-  fromUserPage.getCreateUserError
+  fromUsersPage.getCreateUserError
 );
 
 // get pending state when creating a user from the store
 export const getUserCreationPending = createSelector(
   getUsersPageState,
-  fromUserPage.getCreateUserPending
+  fromUsersPage.getCreateUserPending
 );
 
 // get error state when editing a user from the store
 export const getUserEditionError = createSelector(
   getUsersPageState,
-  fromUserPage.getEditUserError
+  fromUsersPage.getEditUserError
 );
 
 // get pending state when editing a user from the store
 export const getUserEditionPending = createSelector(
   getUsersPageState,
-  fromUserPage.getEditUserPending
+  fromUsersPage.getEditUserPending
 );
 
 // get pending state when loading user patients from the store
 export const getLoadUserPatientsPending = createSelector(
   getUsersPageState,
-  fromUserPage.getLoadUserPatientsPending
+  fromUsersPage.getLoadUserPatientsPending
 );
 
 // get error state when loading user patients from the store
 export const getLoadUserPatientsError = createSelector(
   getUsersPageState,
-  fromUserPage.getLoadUserPatientsError
+  fromUsersPage.getLoadUserPatientsError
 );
 
 // ****************** USERS *************
@@ -172,19 +185,19 @@ export const {
 // ****************** NURSING HOMES PAGE *************
 export const getNursingHomesPageState = createSelector(
   getDashboardState,
-  (state: DashboardState) => state.nursingHomePage
+  (state: DashboardState) => state.nursingHomesPage
 );
 
-// get error state of the nursingHomePage from the store
+// get error state of the nursingHomesPage from the store
 export const getNursingHomePageError = createSelector(
   getNursingHomesPageState,
-  fromNursingHomePage.getError
+  fromNursingHomesPage.getError
 );
 
-// get pending state of the nursingHomePage from the store
+// get pending state of the nursingHomesPage from the store
 export const getNursingHomePagePending = createSelector(
   getNursingHomesPageState,
-  fromNursingHomePage.getPending
+  fromNursingHomesPage.getPending
 );
 
 // ****************** NURSING HOMES *************
@@ -202,13 +215,13 @@ export const getSelectedNursingHomeId = createSelector(
 // get pending state when loading user patients from the store
 export const getNursingHomeGeofencingPending = createSelector(
   getNursingHomesPageState,
-  fromNursingHomePage.getNursingHomeGeofencingPending
+  fromNursingHomesPage.getNursingHomeGeofencingPending
 );
 
 // get error state when loading user patients from the store
 export const getNursingHomeGeofencingError = createSelector(
   getNursingHomesPageState,
-  fromNursingHomePage.getNursingHomeGeofencingError
+  fromNursingHomesPage.getNursingHomeGeofencingError
 );
 
 // deconstruct several functions from ngrx/entity
@@ -229,67 +242,67 @@ export const getSelectedNursingHome = createSelector(
 // get error state when editing a patient from the store
 export const getNursingHomeEditionError = createSelector(
   getNursingHomesPageState,
-  fromNursingHomePage.getEditNursingHomeError
+  fromNursingHomesPage.getEditNursingHomeError
 );
 
 // get pending state when editing a patient from the store
 export const getNursingHomeEditionPending = createSelector(
   getNursingHomesPageState,
-  fromNursingHomePage.getEditNursingHomePending
+  fromNursingHomesPage.getEditNursingHomePending
 );
 
 // ****************** PATIENTS PAGE *************
 export const getPatientsPageState = createSelector(
   getDashboardState,
-  (state: DashboardState) => state.patientPage
+  (state: DashboardState) => state.patientsPage
 );
 
-// get error state of the patientPage from the store
+// get error state of the patientsPage from the store
 export const getPatientPageError = createSelector(
   getPatientsPageState,
-  fromPatientPage.getError
+  fromPatientsPage.getError
 );
 
-// get pending state of the patientPage from the store
+// get pending state of the patientsPage from the store
 export const getPatientPagePending = createSelector(
   getPatientsPageState,
-  fromPatientPage.getPending
+  fromPatientsPage.getPending
 );
 
 // get error state when creating patient from the store
 export const getPatientCreationError = createSelector(
   getPatientsPageState,
-  fromPatientPage.getCreatePatientError
+  fromPatientsPage.getCreatePatientError
 );
 
 // get pending state when creating a patient from the store
 export const getPatientCreationPending = createSelector(
   getPatientsPageState,
-  fromPatientPage.getCreatePatientPending
+  fromPatientsPage.getCreatePatientPending
 );
 
 // get error state when editing a patient from the store
 export const getPatientEditionError = createSelector(
   getPatientsPageState,
-  fromPatientPage.getEditPatientError
+  fromPatientsPage.getEditPatientError
 );
 
 // get pending state when editing a patient from the store
 export const getPatientEditionPending = createSelector(
   getPatientsPageState,
-  fromPatientPage.getEditPatientPending
+  fromPatientsPage.getEditPatientPending
 );
 
 // get pending state when loading patient users from the store
 export const getLoadPatientUsersPending = createSelector(
   getPatientsPageState,
-  fromPatientPage.getLoadPatientUsersPending
+  fromPatientsPage.getLoadPatientUsersPending
 );
 
 // get error state when loading patient users from the store
 export const getLoadPatientUsersError = createSelector(
   getPatientsPageState,
-  fromPatientPage.getLoadPatientUsersError
+  fromPatientsPage.getLoadPatientUsersError
 );
 
 // ****************** PATIENTS *************
@@ -339,58 +352,129 @@ export const getLayoutState = createSelector(
 );
 
 
+// ****************** DEVICES PAGE *************
+export const getDevicesPageState = createSelector(
+  getDashboardState,
+  (state: DashboardState) => state.devicesPage
+);
+
+// get error state of the devicesPage from the store
+export const getDevicesPageError = createSelector(
+  getDevicesPageState,
+  fromDevicesPage.getError
+);
+
+// get pending state of the devicesPage from the store
+export const getDevicesPagePending = createSelector(
+  getDevicesPageState,
+  fromDevicesPage.getPending
+);
+
+// get error state when creating device from the store
+export const getDeviceCreationError = createSelector(
+  getDevicesPageState,
+  fromDevicesPage.getCreateDeviceError
+);
+
+// get pending state when creating a device from the store
+export const getDeviceCreationPending = createSelector(
+  getDevicesPageState,
+  fromDevicesPage.getCreateDevicePending
+);
+
+// get error state when editing a device from the store
+export const getDeviceEditionError = createSelector(
+  getDevicesPageState,
+  fromDevicesPage.getEditDeviceError
+);
+
+// get pending state when editing a device from the store
+export const getDeviceEditionPending = createSelector(
+  getDevicesPageState,
+  fromDevicesPage.getEditDevicePending
+);
+
+// ****************** DEVICES *************
+export const getDevicesState = createSelector(
+  getDashboardState,
+  (state: DashboardState) => state.devices
+);
+
+// get the selected device id from state
+export const getSelectedDeviceId = createSelector(
+  getDevicesState,
+  fromDevices.getSelectedDeviceId
+);
+
+// deconstruct several functions from ngrx/entity
+export const {
+  selectIds: getDevicesIds,
+  selectEntities: getDeviceEntities,
+  selectAll: getAllDevices,
+  selectTotal: getTotalDevices
+} = fromDevices.adapter.getSelectors(getDevicesState);
+
+// get the selected device from the state / devices collection
+export const getSelectedDevice = createSelector(
+  getDeviceEntities,
+  getSelectedDeviceId,
+  (entities, id) => entities[id]
+);
+
+
+
 // ****************** REPORTS PAGE *************
 export const getReportsPageState = createSelector(
   getDashboardState,
-  (state: DashboardState) => state.reportPage
+  (state: DashboardState) => state.reportsPage
 );
 
-// get error state of the reportPage from the store
+// get error state of the reportsPage from the store
 export const getReportPageError = createSelector(
   getReportsPageState,
-  fromReportPage.getError
+  fromReportsPage.getError
 );
 
-// get pending state of the reportPage from the store
+// get pending state of the reportsPage from the store
 export const getReportPagePending = createSelector(
   getReportsPageState,
-  fromReportPage.getPending
+  fromReportsPage.getPending
 );
 
 // get error state when creating report from the store
 export const getReportCreationError = createSelector(
   getReportsPageState,
-  fromReportPage.getCreateReportError
+  fromReportsPage.getCreateReportError
 );
 
 // get pending state when creating a report from the store
 export const getReportCreationPending = createSelector(
   getReportsPageState,
-  fromReportPage.getCreateReportPending
+  fromReportsPage.getCreateReportPending
 );
 
 // get error state when editing a report from the store
 export const getReportEditionError = createSelector(
   getReportsPageState,
-  fromReportPage.getEditReportError
+  fromReportsPage.getEditReportError
 );
 
 // get pending state when editing a report from the store
 export const getReportEditionPending = createSelector(
   getReportsPageState,
-  fromReportPage.getEditReportPending
+  fromReportsPage.getEditReportPending
 );
 
 // get pending state when loading report patients from the store
 export const getLoadReportPatientsPending = createSelector(
   getReportsPageState,
-  fromReportPage.getLoadReportPatientsPending
+  fromReportsPage.getLoadReportPatientsPending
 );
 
 // get error state when loading report patients from the store
 export const getLoadReportPatientsError = createSelector(
   getReportsPageState,
-  fromReportPage.getLoadReportPatientsError
+  fromReportsPage.getLoadReportPatientsError
 );
 
 // ****************** REPORTS *************
@@ -419,6 +503,40 @@ export const getSelectedReport = createSelector(
   getSelectedReportId,
   (entities, id) => entities[id]
 );
+
+
+
+// ****************** DEVICE REPORTS PAGE *************
+export const getDeviceReportsPageState = createSelector(
+  getDashboardState,
+  (state: DashboardState) => state.deviceReportsPage
+);
+
+// get error state of the deviceReportsPage from the store
+export const getDeviceReportPageError = createSelector(
+  getDeviceReportsPageState,
+  fromDeviceReportsPage.getLoadDeviceReportsError
+);
+
+// get pending state of the deviceReportsPage from the store
+export const getDeviceReportPagePending = createSelector(
+  getDeviceReportsPageState,
+  fromDeviceReportsPage.getLoadDeviceReportsPending
+);
+
+
+// ****************** DEVICE REPORTS *************
+export const getDeviceReportsState = createSelector(
+  getDashboardState,
+  (state: DashboardState) => state.deviceReports
+);
+
+// deconstruct several functions from ngrx/entity
+export const {
+  selectEntities: getDeviceReportsEntities,
+  selectAll: getAllDeviceReports,
+  selectTotal: getTotalDeviceReports
+} = fromDeviceReports.adapter.getSelectors(getDeviceReportsState);
 
 
 /**

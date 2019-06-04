@@ -153,5 +153,20 @@
   "DeleteGeofence": {
     "title": "Delete this geofence?",
     "message": "Are you sure you want to delete this geofence?"
+  },
+  "Report": {
+    "ReportType": "Report Type",
+    "AlarmCode": "Alarm Code",
+    "AlarmName": "Alarm Name",
+    "positionCode": "position Code",
+    "PositionName": "Position Name",
+    "BeaconStatus": "Beacon Status",
+    "Latitude": "Latitude",
+    "Longitude": "Longitude",
+    "SensorStatus": "Sensor Status",
+    "Date": "Date",
+    "Time": "Time",
+    "DayOfWeek": "Day Of Week",
+    "BatteryStatus": "Battery Status"
   }
 }

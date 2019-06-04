@@ -10,6 +10,9 @@ import { NursingHomeComponent } from './components/nursing-homes/nursing-home.co
 import { Routes } from '@angular/router';
 import { DashboardLayoutComponent } from './containers/dashboard-layout.component';
 import { AuthGuard } from '../auth/guards/auth.guard';
+import { DevicesComponent } from './components/devices/devices.component';
+import { DevicesListComponent } from './components/devices/devices-list/devices-list.component';
+import { DevicesContainerComponent } from './components/devices/devices-container.component';
 
 /**
  * Dashboard module routings
@@ -53,11 +56,86 @@ export const dashboardRoutes: Routes = [
           title: 'Patients',
           breadcrumb: 'Patients'
         }
-      }, 
+      },          
       {
         path: 'devices',
-        loadChildren: './devices/devices.module#DevicesModule'
+        component: DevicesComponent,
+        data: {
+          title: 'Devices',
+          breadcrumb: 'Devices'
+        },
+        children: [
+          {
+            path: '',
+            component: DevicesListComponent,
+            data: {
+              title: 'Devices',
+              breadcrumb: 'Devices'
+            }
+          },
+          // {
+          //   path: ':device_id',
+          //   component: DevicesContainerComponent,
+          //   children: [
+          //     {
+          //       path: '',
+          //       redirectTo: 'details',
+          //     },
+          //     {
+          //       path: 'details',
+          //       component: DeviceDetailsComponent,
+          //       data: {
+          //         title: 'Details',
+          //         breadcrumb: 'Details'
+          //       }
+          //     },
+          //     {
+          //       path: 'raw-reports',
+          //       component: DeviceRawReportsComponent,
+          //       data: {
+          //         title: 'Raw-Reports',
+          //         breadcrumb: 'Raw-Reports'
+          //       }
+          //     },
+          //     {
+          //       path: 'parsed-reports',
+          //       component: DeviceParsedReportsComponent,
+          //       data: {
+          //         title: 'Parsed-Reports',
+          //         breadcrumb: 'Parsed-Reports'
+          //       }
+          //     },
+          //     {
+          //       path: 'reports',
+          //       component: DeviceReportsComponent,
+          //       data: {
+          //         title: 'Reports',
+          //         breadcrumb: 'Reports'
+          //       }
+          //     },
+          //     {
+          //       path: 'settings',
+          //       component: DeviceSettingsComponent,
+          //       data: {
+          //         title: 'Settings',
+          //         breadcrumb: 'Settings'
+          //       }
+          //     },
+          //     {
+          //       path: 'commands',
+          //       component: DeviceCommandsComponent,
+          //       data: {
+          //         title: 'Commands',
+          //         breadcrumb: 'Commands'
+          //       }
+          //     }
+          //   ]
+          // }
+        ]
+    
       },
+
+
       {
         path: 'SCM',
         component: ReportsComponent,
