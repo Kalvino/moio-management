@@ -1,0 +1,42 @@
+<mat-progress-bar *ngIf="isPending$ | async" [mode]="(isPending$ | async) ? 'indeterminate' : 'determinate'"
+    class="session-progress"></mat-progress-bar>
+<div class="mat-box-shadow margin-333">
+    <ngx-datatable 
+    class="material fullscreen bg-white" 
+    [columnMode]="'force'" 
+    [headerHeight]="50" 
+    [footerHeight]="0"
+    [rowHeight]="60" 
+    [scrollbarV]="false" 
+    [rows]="devices$ | async">
+
+        <ngx-datatable-column name="{{'IP' | translate}}" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row?.ip_address }}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Serial Number" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.serial_no }}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Details" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template >
+                <button mat-raised-button class="mr-1" color="primary" (click)="deviceDetails(row.id)" >Details</button>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Reports" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <button mat-raised-button class="mr-1" color="primary" (click)="parsedReports(row.id)">Parsed Reports</button>
+                <button mat-raised-button class="mr-1" color="accent" (click)="rawReports(row.id)">Raw Reports</button>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Actions" [flexGrow]="1" [canAutoResize]="true">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <button mat-raised-button class="mr-1" color="primary" (click)="triggerCommand(row?.id, 1)">Start</button>
+                <button mat-raised-button class="mr-1" color="accent" (click)="triggerCommand(row?.id, 2)">Reset</button>
+                <button mat-raised-button class="mr-1" color="warn" (click)="triggerCommand(row?.id, 3)">Switch off</button>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div>
