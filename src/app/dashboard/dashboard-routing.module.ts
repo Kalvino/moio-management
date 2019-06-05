@@ -13,6 +13,7 @@ import { AuthGuard } from '../auth/guards/auth.guard';
 import { DevicesComponent } from './components/devices/devices.component';
 import { DevicesListComponent } from './components/devices/devices-list/devices-list.component';
 import { DevicesContainerComponent } from './components/devices/devices-container.component';
+import { DeviceParsedReportsComponent } from './components/devices/device-parsed-reports/device-parsed-reports.component'
 
 /**
  * Dashboard module routings
@@ -73,64 +74,64 @@ export const dashboardRoutes: Routes = [
               breadcrumb: 'Devices'
             }
           },
-          // {
-          //   path: ':device_id',
-          //   component: DevicesContainerComponent,
-          //   children: [
-          //     {
-          //       path: '',
-          //       redirectTo: 'details',
-          //     },
-          //     {
-          //       path: 'details',
-          //       component: DeviceDetailsComponent,
-          //       data: {
-          //         title: 'Details',
-          //         breadcrumb: 'Details'
-          //       }
-          //     },
-          //     {
-          //       path: 'raw-reports',
-          //       component: DeviceRawReportsComponent,
-          //       data: {
-          //         title: 'Raw-Reports',
-          //         breadcrumb: 'Raw-Reports'
-          //       }
-          //     },
-          //     {
-          //       path: 'parsed-reports',
-          //       component: DeviceParsedReportsComponent,
-          //       data: {
-          //         title: 'Parsed-Reports',
-          //         breadcrumb: 'Parsed-Reports'
-          //       }
-          //     },
-          //     {
-          //       path: 'reports',
-          //       component: DeviceReportsComponent,
-          //       data: {
-          //         title: 'Reports',
-          //         breadcrumb: 'Reports'
-          //       }
-          //     },
-          //     {
-          //       path: 'settings',
-          //       component: DeviceSettingsComponent,
-          //       data: {
-          //         title: 'Settings',
-          //         breadcrumb: 'Settings'
-          //       }
-          //     },
-          //     {
-          //       path: 'commands',
-          //       component: DeviceCommandsComponent,
-          //       data: {
-          //         title: 'Commands',
-          //         breadcrumb: 'Commands'
-          //       }
-          //     }
-          //   ]
-          // }
+          {
+            path: ':device_id',
+            component: DevicesContainerComponent,
+            children: [
+              // {
+              //   path: '',
+              //   redirectTo: 'details',
+              // },
+              // {
+              //   path: 'details',
+              //   component: DeviceDetailsComponent,
+              //   data: {
+              //     title: 'Details',
+              //     breadcrumb: 'Details'
+              //   }
+              // },
+              // {
+              //   path: 'raw-reports',
+              //   component: DeviceRawReportsComponent,
+              //   data: {
+              //     title: 'Raw-Reports',
+              //     breadcrumb: 'Raw-Reports'
+              //   }
+              // },
+              {
+                path: 'parsed-reports',
+                component: DeviceParsedReportsComponent,
+                data: {
+                  title: 'Parsed-Reports',
+                  breadcrumb: 'Parsed-Reports'
+                }
+              },
+              // {
+              //   path: 'reports',
+              //   component: DeviceReportsComponent,
+              //   data: {
+              //     title: 'Reports',
+              //     breadcrumb: 'Reports'
+              //   }
+              // },
+              // {
+              //   path: 'settings',
+              //   component: DeviceSettingsComponent,
+              //   data: {
+              //     title: 'Settings',
+              //     breadcrumb: 'Settings'
+              //   }
+              // },
+              // {
+              //   path: 'commands',
+              //   component: DeviceCommandsComponent,
+              //   data: {
+              //     title: 'Commands',
+              //     breadcrumb: 'Commands'
+              //   }
+              // }
+            ]
+          }
         ]
     
       },

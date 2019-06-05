@@ -11,6 +11,10 @@ import * as DevicesApiActions from './devices-api.actions';
 import * as DevicesActions from './devices.actions';
 import * as DeviceReportsApiActions from './device-reports-api.actions';
 import * as DeviceReportsActions from './device-reports.actions';
+import * as DeviceCommandsApiActions from './device-commands-api.actions';
+import * as DeviceCommandsActions from './device-commands.actions';
+import * as ParsedDeviceReportsApiActions from './device-parsed-reports-api.actions';
+import * as ParsedDeviceReportsActions from './device-parsed-reports.actions';
 
 export {
   LayoutActions,
@@ -25,5 +29,9 @@ export {
   DevicesApiActions,
   DevicesActions,
   DeviceReportsApiActions,
-  DeviceReportsActions
+  DeviceReportsActions,
+  DeviceCommandsApiActions,
+  DeviceCommandsActions,
+  ParsedDeviceReportsApiActions,
+  ParsedDeviceReportsActions
 };

@@ -60,7 +60,7 @@ import { DevicesComponent } from './components/devices/devices.component';
 import { DevicesListComponent } from './components/devices/devices-list/devices-list.component';
 import { DevicesContainerComponent } from './components/devices/devices-container.component';
 import { DevicesEffects } from './effects/devices.effects';
-
+import { DeviceParsedReportsComponent } from './components/devices/device-parsed-reports/device-parsed-reports.component';
 
 /**
  * list of components in this module
@@ -96,6 +96,7 @@ export const COMPONENTS = [
     DevicesComponent,
     DevicesListComponent,
     DevicesContainerComponent,
+    DeviceParsedReportsComponent,
 
     LoaderComponent,
     AppDropdownDirective,

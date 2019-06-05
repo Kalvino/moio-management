@@ -7,6 +7,7 @@ import { IDevice } from '../models/device.model';
 import { environment } from '../../../environments/environment';
 import { Update } from '@ngrx/entity';
 import { IDeviceReport } from '../models/device-report.model';
+import { IParsedDeviceReport } from '../models/parsed-device-report.model';
 
 /**
  * device service
@@ -32,8 +33,16 @@ export class DevicesService {
    * get all reports belonging to a device from the moio-cloud api
    * @param id device id
    */
-  getDevicePatients(id: number): Observable<IDeviceReport[]> {
-    return this.http.get<IDeviceReport[]>(`${environment.apiHost}/api/devices/${id}/reports`);
+  getDeviceReports(id: number): Observable<IDeviceReport[]> {
+    return this.http.get<IDeviceReport[]>(`${environment.apiHost}/api/devices/log/${id}`);
+  }
+
+  /**
+   * get all parsed reports belonging to a device from the moio-cloud api
+   * @param id device id
+   */
+  getParsedDeviceReports(id: number): Observable<IParsedDeviceReport[]> {
+    return this.http.get<IParsedDeviceReport[]>(`${environment.apiHost}/api/telegrams/${id}`);
   }
 
   /**
@@ -58,6 +67,10 @@ export class DevicesService {
    */
   updateDevice(device: IDevice): Observable<IDevice> {
     return this.http.put<IDevice>(`${environment.apiHost}/api/devices/${device.id}`, device);
+  }
+
+  triggerDeviceCommands(deviceId, commandId): Observable<any> {
+    return this.http.post(`${environment.apiHost}/api/devices/command_queue`, {'device_id': deviceId, 'command_code_id': commandId});
   }
 
   /**

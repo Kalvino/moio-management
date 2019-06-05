@@ -22,8 +22,9 @@ export interface IDeviceReport {
     created_at: string;
     updated_at: string;
     parsed: {
-        report_typ: string;
-        deviceIp: string;
+        id: number;
+        reportType: string;
+        IpAddress: string;
         alarmCode: string;
         alarmName: string;
         positionCode: string;
@@ -32,12 +33,16 @@ export interface IDeviceReport {
         latitude: string;
         longitude: string;
         sensorStatus: string;
-        batteryChargePercent: string;
-        time: string;
         date: string;
-        weekDay: string;
-        error: string;
-        commandCode: string;
-        commandName: string
+        time: string;
+        dayOfWeek: string;
+        batteryHealth: string;
+        batteryVoltage: string;
+        gusimSerialNumber: string;
+        xAngle: string;
+        yAngle: string;
+        zAngle: string;
+        imuInterruptStatus: string;
+        createdAt: string;
     }
 }

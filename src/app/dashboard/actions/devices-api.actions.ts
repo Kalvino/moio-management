@@ -1,6 +1,5 @@
 import { Action } from '@ngrx/store';
 import { IDevice } from '../models/device.model';
-import { IDeviceReport } from '../models/device-report.model';
 
 /**
  * definitions for action types
@@ -55,7 +54,7 @@ export class LoadDevicesFailure implements Action {
 }
 
 /**
- * edit device success action
+ * dataless command success action
  */
 export class EditDeviceSuccess implements Action {
   public readonly type = DevicesApiActionTypes.EditDeviceSuccess;
@@ -65,7 +64,7 @@ export class EditDeviceSuccess implements Action {
 }
 
 /**
- * edit device failure action
+ * dataless command failure action
  */
 export class EditDeviceFailure implements Action {
   public readonly type = DevicesApiActionTypes.EditDeviceFailure;
@@ -73,6 +72,8 @@ export class EditDeviceFailure implements Action {
   constructor(public payload: { message: string }) {
   }
 }
+
+
 
 // export types
 export type DevicesApiActionsUnion =

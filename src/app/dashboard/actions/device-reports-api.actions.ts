@@ -15,7 +15,7 @@ export enum DeviceReportsApiActionTypes {
 export class LoadDeviceReportsSuccess implements Action {
   public readonly type = DeviceReportsApiActionTypes.LoadDeviceReportsSuccess;
 
-  constructor(public payload: { reports: IDeviceReport[] }) {
+  constructor(public payload: { deviceReports: IDeviceReport[] }) {
   }
 }
 

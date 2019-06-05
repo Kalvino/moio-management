@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { DevicesApiActions, DevicesActions } from '../actions';
+import { DevicesApiActions, DevicesActions, DeviceReportsApiActions, 
+  DeviceReportsActions, ParsedDeviceReportsApiActions, 
+  ParsedDeviceReportsActions, } from '../actions';
 import { catchError, exhaustMap, map, tap, delay } from 'rxjs/operators';
 import { IDevice } from '../models/device.model';
 import { DevicesService } from '../services/devices.service';
@@ -12,6 +14,10 @@ import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
 // import { DeviceFormComponent } from '../components/devices/device-form/device-form.component';
 import { IPatient } from '../models/patient.model';
 import { Update } from '@ngrx/entity';
+import { IDeviceReport } from '../models/device-report.model';
+import { IParsedDeviceReport } from '../models/parsed-device-report.model';
+import { ParsedDeviceReportsApiActionTypes } from '../actions/device-parsed-reports-api.actions';
+import { ParsedDeviceReportsActionTypes } from '../actions/device-parsed-reports.actions';
 
 /**
  * devices effects
@@ -160,57 +166,86 @@ export class DevicesEffects {
 
 
   /**
-   * effect for loading device devices
+   * effect for loading device reports
    */
-//   @Effect()
-//   loadDevicePatients = this.actions$
-//     .pipe(
-//       ofType<DevicesActions.LoadDevicePatients>(DevicesActions.DevicesActionTypes.LoadDevicePatients),
-//       map(action => action.payload),
-//       exhaustMap((id: number) => {
+  @Effect()
+  loadDeviceReports = this.actions$
+    .pipe(
+      ofType<DeviceReportsActions.LoadDeviceReports>(DeviceReportsActions.DeviceReportsActionTypes.LoadDeviceReports),
+      map(action => action.payload),
+      exhaustMap((id: number) => {
 
-//         return this.devicesService.getDevicePatients(id)
-//           .pipe(
-//             delay(2000),
-//             map((patients: IPatient[]) => {
-//               console.log(patients);
+        return this.devicesService.getDeviceReports(id)
+          .pipe(
+            delay(2000),
+            map((deviceReports: IDeviceReport[]) => {
+              console.log(deviceReports);
 
-//               for (let key in patients) {
-//                 const patient = patients[key];
-//                 const device = patient.devices.filter(device => device.id === id);
-//                 let permission = "";
+              return new DeviceReportsApiActions.LoadDeviceReportsSuccess({ deviceReports });
+            }),
+            catchError(httpError => {
+              const message = httpError.statusText.toLowerCase();
 
-//                 if (device[0].device_patient_permission == 1) {
-//                   permission = "Administrator";
-//                 } else {
-//                   permission = "Read Only"
-//                 }
-//                 patient["permission"] = permission;
-//               }
+              const snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
+                duration: 10000
+              });
 
-//               return new DevicesApiActions.LoadDevicePatientsSuccess({ patients });
-//             }),
-//             catchError(httpError => {
-//               const message = httpError.statusText.toLowerCase();
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
 
-//               const snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
-//                 duration: 10000
-//               });
+                if (snackBarDismiss.dismissedByAction) {
+                  this.store.dispatch(new DeviceReportsActions.LoadDeviceReports(id));
+                } else {
+                  this.router.navigate(['/dashboard/devices']);
+                }
+              });
 
-//               snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
+              return of(new DeviceReportsApiActions.LoadDeviceReportsFailure({ message }));
+            })
+          );
+      })
+    );
 
-//                 if (snackBarDismiss.dismissedByAction) {
-//                   this.store.dispatch(new DevicesActions.LoadDevicePatients(id));
-//                 } else {
-//                   this.router.navigate(['/dashboard/devices']);
-//                 }
-//               });
 
-//               return of(new DevicesApiActions.LoadDevicePatientsFailure({ message }));
-//             })
-//           );
-//       })
-//     );
+
+    /**
+   * effect for loading device reports
+   */
+  @Effect()
+  loadParsedDeviceReports = this.actions$
+    .pipe(
+      ofType<ParsedDeviceReportsActions.LoadDeviceParsedReports>(ParsedDeviceReportsActionTypes.LoadDeviceParsedReports),
+      map(action => action.payload),
+      exhaustMap((id: number) => {
+
+        return this.devicesService.getParsedDeviceReports(id)
+          .pipe(
+            delay(2000),
+            map((parsedDeviceReports: IParsedDeviceReport[]) => {
+              console.log(parsedDeviceReports);
+
+              return new ParsedDeviceReportsApiActions.LoadParsedDeviceReportsSuccess({ parsedDeviceReports });
+            }),
+            catchError(httpError => {
+              const message = httpError.statusText.toLowerCase();
+
+              const snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
+
+                if (snackBarDismiss.dismissedByAction) {
+                  this.store.dispatch(new ParsedDeviceReportsActions.LoadDeviceParsedReports(id));
+                } else {
+                  this.router.navigate(['/dashboard/devices']);
+                }
+              });
+
+              return of(new ParsedDeviceReportsApiActions.LoadParsedDeviceReportsFailure({ message }));
+            })
+          );
+      })
+    );
 
   /**
    * show a dialog form for device details as a pop up

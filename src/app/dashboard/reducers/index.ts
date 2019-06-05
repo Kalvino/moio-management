@@ -14,6 +14,9 @@ import * as fromDeviceReports from './device-reports.reducer';
 import * as fromNursingHomeGeofencing from './nursing-homes-geofencing.reducer';
 import * as fromPatientUsers from './patient-users.reducer';
 import * as fromNursingHome from './nursing-homes.reducer';
+import * as fromDatalessCommands from './dataless-commands-reducer';
+import * as fromParsedDeviceReportsPage from './parsed-device-reports-page.reducer';
+import * as fromParsedDeviceReports from './parsed-device-reports.reducer';
 import * as fromLayout from './layout.reducer';
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
@@ -37,6 +40,9 @@ export interface DashboardState {
   deviceReportsPage: fromDeviceReportsPage.State;
   devices: fromDevices.State;
   devicesPage: fromDevicesPage.State;
+  datalessCommands: fromDatalessCommands.State;
+  parsedDeviceReports: fromParsedDeviceReports.State;
+  parsedDeviceReportsPage: fromParsedDeviceReportsPage.State;
 }
 
 /**
@@ -65,7 +71,10 @@ export const reducers: ActionReducerMap<DashboardState, any> = {
   devicesPage: fromDevicesPage.reducer,
   devices: fromDevices.reducer,
   deviceReportsPage: fromDeviceReportsPage.reducer,
-  deviceReports: fromDeviceReports.reducer
+  deviceReports: fromDeviceReports.reducer,
+  datalessCommands: fromDatalessCommands.reducer,
+  parsedDeviceReports: fromParsedDeviceReports.reducer,
+  parsedDeviceReportsPage: fromParsedDeviceReportsPage.reducer
 
 };
 
@@ -152,6 +161,27 @@ export const getSelectedUser = createSelector(
   getSelectedUserId,
   (entities, id) => entities[id]
 );
+
+
+// ****************** DEVICE COMMANDS *************
+export const getDatalessDeviceCommandsState = createSelector(
+  getDashboardState,
+  (state: DashboardState) => state.datalessCommands
+);
+
+// get the fired dataless command id from state
+export const getFiredDatalessCommandId = createSelector(
+  getDatalessDeviceCommandsState,
+  fromDatalessCommands.getFiredCommandId
+);
+
+// deconstruct several functions from ngrx/entity
+export const {
+  selectIds: getFiredCommandId,
+  selectEntities: getDatalessCommandsEntities,
+  selectAll: getAllDatalessCommands,
+  selectTotal: getTotalDatalessCommands
+} = fromDatalessCommands.adapter.getSelectors(getDatalessDeviceCommandsState);
 
 
 // ****************** USER PATIENTS *************
@@ -513,13 +543,13 @@ export const getDeviceReportsPageState = createSelector(
 );
 
 // get error state of the deviceReportsPage from the store
-export const getDeviceReportPageError = createSelector(
+export const getDeviceReportsPageError = createSelector(
   getDeviceReportsPageState,
   fromDeviceReportsPage.getLoadDeviceReportsError
 );
 
 // get pending state of the deviceReportsPage from the store
-export const getDeviceReportPagePending = createSelector(
+export const getDeviceReportsPagePending = createSelector(
   getDeviceReportsPageState,
   fromDeviceReportsPage.getLoadDeviceReportsPending
 );
@@ -537,6 +567,43 @@ export const {
   selectAll: getAllDeviceReports,
   selectTotal: getTotalDeviceReports
 } = fromDeviceReports.adapter.getSelectors(getDeviceReportsState);
+
+
+
+
+
+
+// ****************** PARSED DEVICE REPORTS PAGE *************
+export const getParsedDeviceReportsPageState = createSelector(
+  getDashboardState,
+  (state: DashboardState) => state.parsedDeviceReportsPage
+);
+
+// get error state of the deviceReportsPage from the store
+export const getParsedDeviceReportsPageError = createSelector(
+  getParsedDeviceReportsPageState,
+  fromParsedDeviceReportsPage.getLoadParsedDeviceReportsError
+);
+
+// get pending state of the deviceReportsPage from the store
+export const getParsedDeviceReportsPagePending = createSelector(
+  getParsedDeviceReportsPageState,
+  fromParsedDeviceReportsPage.getLoadParsedDeviceReportsPending
+);
+
+
+// ****************** PARSED DEVICE REPORTS *************
+export const getParsedDeviceReportsState = createSelector(
+  getDashboardState,
+  (state: DashboardState) => state.parsedDeviceReports
+);
+
+// deconstruct several functions from ngrx/entity
+export const {
+  selectEntities: getParsedDeviceReportsEntities,
+  selectAll: getAllParsedDeviceReports,
+  selectTotal: getTotalParsedDeviceReports
+} = fromParsedDeviceReports.adapter.getSelectors(getParsedDeviceReportsState);
 
 
 /**

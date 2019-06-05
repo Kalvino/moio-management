@@ -15,7 +15,8 @@ export enum DevicesActionTypes {
   EditDevice = '[Device] Edit Device',
   DismissEditDevice = '[Device] Dismiss Edit Device',
   ResetDevicesState = '[Devices] Reset Devices State',
-  DeleteDevice = '[Devices] Delete Device'
+  DeleteDevice = '[Devices] Delete Device',
+  TriggerDatalessCommand = '[Device Dataless Command] Trigger Dataless Command'
 }
 
 
@@ -125,6 +126,14 @@ export class DeleteDevice implements Action {
 }
 
 /**
+ * Send dataless commands to device action
+ */
+export class TriggerDatalessCommand implements Action {
+  readonly type = DevicesActionTypes.TriggerDatalessCommand;
+  constructor(public payload: {device_id: number, short_name: string} ) { }
+}
+
+/**
  * Export union of device Action
  */
 export type DevicesActionsUnion
@@ -139,4 +148,5 @@ export type DevicesActionsUnion
   | SearchDeviceComplete
   | EditDevice
   | DismissEditDevice
-  | ResetDevicesState;
+  | ResetDevicesState
+  | TriggerDatalessCommand;

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy} from '@angular/core';
 import { MatProgressBar, MatButton } from '@angular/material';
 import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
+import {Router} from '@angular/router';
 
 import { IDevice } from '../../../models/device.model';
 
@@ -8,9 +9,11 @@ import { IDevice } from '../../../models/device.model';
 import { Store, select } from '@ngrx/store';
 import * as fromDashboard from '../../../reducers';
 import * as devicesActions from '../../../actions/devices.actions';
+import * as deviceReportsActions from '../../../actions/device-reports.actions';
 import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { takeWhile } from 'rxjs/operators';
+import { DevicesService } from '../../../services/devices.service';
 
 @Component({
   selector: 'moio-devices-list',
@@ -49,7 +52,9 @@ export class DevicesListComponent implements OnInit, OnDestroy {
     private store: Store<fromDashboard.State>, 
     private translate: TranslateService,
     private dialog: MatDialog,
-    private snack: MatSnackBar) {
+    private snack: MatSnackBar,
+    private router: Router,
+    private devicesService: DevicesService) {
 
       this.translate.setDefaultLang('de');
 
@@ -63,8 +68,6 @@ export class DevicesListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.store.dispatch(new devicesActions.LoadDevices());
-
-    this.devices = this.store.pipe(select(fromDashboard.getAllDevices)) as Observable<IDevice[]>;
 
     this.store.pipe(select(fromDashboard.getDevicesIds))
     .subscribe((ids: string[]) => this.ids = ids);
@@ -86,6 +89,30 @@ export class DevicesListComponent implements OnInit, OnDestroy {
   // Create Device action
   newDevice(): void {
     this.store.dispatch(new devicesActions.InitializeDevice());
+  }
+
+  // Get parsed reports
+  parsedReports(device: IDevice){
+    console.log(device);
+    this.selectDevice(device);
+    this.router.navigate(['dashboard', 'devices', device.id, 'parsed-reports']);
+
+    // this.store.dispatch(new deviceReportsActions.LoadDeviceReports(device.id));
+  }
+  // Get raw reports
+  rawReports(device: IDevice){
+    console.log(device);
+    this.selectDevice(device);
+  }
+  // Get device details
+  deviceDetails(device: IDevice){
+    console.log(device);
+    this.selectDevice(device);
+  }
+
+  // Trigger Dataless device commands/// TODO NGRX
+  triggerCommand(deviceId, commandId) {
+    this.devicesService.triggerDeviceCommands(deviceId, commandId).subscribe();
   }
 
   // Select device action

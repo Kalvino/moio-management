@@ -1,15 +1,15 @@
-import { DeviceReportsApiActions, DeviceReportsActions } from '../actions';
+import { ParsedDeviceReportsApiActions, ParsedDeviceReportsActions } from '../actions';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { AuthApiActions } from '../../auth/actions';
-import { IDeviceReport } from '../models/device-report.model';
+import { IParsedDeviceReport } from '../models/parsed-device-report.model';
 
 // state interface definition
-export interface State extends EntityState<IDeviceReport> {
+export interface State extends EntityState<IParsedDeviceReport> {
 }
 
 // extend & export entity adapter
-export const adapter: EntityAdapter<IDeviceReport> = createEntityAdapter<IDeviceReport>({
-  selectId: (report: IDeviceReport) => report.id,
+export const adapter: EntityAdapter<IParsedDeviceReport> = createEntityAdapter<IParsedDeviceReport>({
+  selectId: (report: IParsedDeviceReport) => report.id,
   sortComparer: false
 });
 
@@ -25,15 +25,15 @@ export const initialState: State = adapter.getInitialState({
 export function reducer(
   state: State = initialState,
   action:
-    | DeviceReportsApiActions.DeviceReportsApiActionsUnion
+    | ParsedDeviceReportsApiActions.ParsedDeviceReportsApiActionsUnion
     | AuthApiActions.AuthApiActionsUnion
 ): State {
 
   switch (action.type) {
 
     // load device reports success state
-    case DeviceReportsApiActions.DeviceReportsApiActionTypes.LoadDeviceReportsSuccess:
-      return adapter.upsertMany(action.payload.deviceReports, state);
+    case ParsedDeviceReportsApiActions.ParsedDeviceReportsApiActionTypes.LoadParsedDeviceReportsSuccess:
+      return adapter.upsertMany(action.payload.parsedDeviceReports, state);
 
     // reset state to initial state on logout
     case AuthApiActions.AuthApiActionTypes.LogoutSuccess:
