@@ -6,9 +6,8 @@
                 [footerHeight]="0"
                 [rowHeight]="50"
                 [scrollbarV]="false"
-                [rows]="deviceParsedReports | async"
+                [rows]="deviceParsedReports$ | async"
                 [columns]="columns"
-                [selectionType]="'single'"
-                (select)="onSelectRow($event)">
+                [selectionType]="'single'">
   </ngx-datatable>
 </div> 
