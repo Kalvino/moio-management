@@ -15,6 +15,8 @@ import * as DeviceCommandsApiActions from './device-commands-api.actions';
 import * as DeviceCommandsActions from './device-commands.actions';
 import * as ParsedDeviceReportsApiActions from './device-parsed-reports-api.actions';
 import * as ParsedDeviceReportsActions from './device-parsed-reports.actions';
+import * as RawDeviceReportsApiActions from './device-raw-reports-api.actions';
+import * as RawDeviceReportsActions from './device-raw-reports.actions';
 
 export {
   LayoutActions,
@@ -33,5 +35,7 @@ export {
   DeviceCommandsApiActions,
   DeviceCommandsActions,
   ParsedDeviceReportsApiActions,
-  ParsedDeviceReportsActions
+  ParsedDeviceReportsActions,
+  RawDeviceReportsApiActions,
+  RawDeviceReportsActions
 };

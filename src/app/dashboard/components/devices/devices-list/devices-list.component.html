@@ -28,7 +28,7 @@
         <ngx-datatable-column name="Reports" [flexGrow]="1">
             <ng-template let-row="row" ngx-datatable-cell-template>
                 <button mat-raised-button class="mr-1" color="primary" (click)="parsedReports(row)">Parsed Reports</button>
-                <!-- <button mat-raised-button class="mr-1" color="accent" (click)="rawReports(row)">Raw Reports</button> -->
+                <button mat-raised-button class="mr-1" color="accent" (click)="rawReports(row)">Raw Reports</button>
             </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Actions" [flexGrow]="1" [canAutoResize]="true">

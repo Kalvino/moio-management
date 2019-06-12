@@ -61,6 +61,7 @@ import { DevicesListComponent } from './components/devices/devices-list/devices-
 import { DevicesContainerComponent } from './components/devices/devices-container.component';
 import { DevicesEffects } from './effects/devices.effects';
 import { DeviceParsedReportsComponent } from './components/devices/device-parsed-reports/device-parsed-reports.component';
+import { DeviceRawReportsComponent } from './components/devices/device-raw-reports/device-raw-reports.component';
 
 /**
  * list of components in this module
@@ -97,6 +98,7 @@ export const COMPONENTS = [
     DevicesListComponent,
     DevicesContainerComponent,
     DeviceParsedReportsComponent,
+    DeviceRawReportsComponent,
 
     LoaderComponent,
     AppDropdownDirective,

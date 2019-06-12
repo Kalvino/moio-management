@@ -8,6 +8,8 @@ import { environment } from '../../../environments/environment';
 import { Update } from '@ngrx/entity';
 import { IDeviceReport } from '../models/device-report.model';
 import { IParsedDeviceReport } from '../models/parsed-device-report.model';
+import { IRawDeviceReport } from '../models/raw-device-report.model';
+
 
 /**
  * device service
@@ -43,6 +45,14 @@ export class DevicesService {
    */
   getParsedDeviceReports(id: number): Observable<IParsedDeviceReport[]> {
     return this.http.get<IParsedDeviceReport[]>(`${environment.apiHost}/api/telegrams/${id}`);
+  }
+
+  /**
+   * get all parsed reports belonging to a device from the moio-cloud api
+   * @param id device id
+   */
+  getRawDeviceReports(id: number): Observable<IRawDeviceReport[]> {
+    return this.http.get<IRawDeviceReport[]>(`${environment.apiHost}/api/telegramslog/${id}`);
   }
 
   /**

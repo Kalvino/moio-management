@@ -103,6 +103,7 @@ export class DevicesListComponent implements OnInit, OnDestroy {
   rawReports(device: IDevice){
     console.log(device);
     this.selectDevice(device);
+    this.router.navigate(['dashboard', 'devices', device.id, 'raw-reports']);
   }
   // Get device details
   deviceDetails(device: IDevice){

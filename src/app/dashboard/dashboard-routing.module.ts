@@ -14,6 +14,7 @@ import { DevicesComponent } from './components/devices/devices.component';
 import { DevicesListComponent } from './components/devices/devices-list/devices-list.component';
 import { DevicesContainerComponent } from './components/devices/devices-container.component';
 import { DeviceParsedReportsComponent } from './components/devices/device-parsed-reports/device-parsed-reports.component'
+import { DeviceRawReportsComponent } from './components/devices/device-raw-reports/device-raw-reports.component';
 
 /**
  * Dashboard module routings
@@ -90,14 +91,14 @@ export const dashboardRoutes: Routes = [
               //     breadcrumb: 'Details'
               //   }
               // },
-              // {
-              //   path: 'raw-reports',
-              //   component: DeviceRawReportsComponent,
-              //   data: {
-              //     title: 'Raw-Reports',
-              //     breadcrumb: 'Raw-Reports'
-              //   }
-              // },
+              {
+                path: 'raw-reports',
+                component: DeviceRawReportsComponent,
+                data: {
+                  title: 'Raw-Reports',
+                  breadcrumb: 'Raw-Reports'
+                }
+              },
               {
                 path: 'parsed-reports',
                 component: DeviceParsedReportsComponent,

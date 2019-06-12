@@ -50,13 +50,13 @@ export function reducer(
 }
 
 /**
- * get the pending state when loading user patients
+ * get the pending state when loading device parsed reports
  * @param state
  */
 export const getLoadParsedDeviceReportsPending = (state: State) => state.loadParsedDeviceReportsPending;
 
 /**
- * get the error state when loading user patients
+ * get the error state when loading device raw reports
  * @param state
  */
 export const getLoadParsedDeviceReportsError = (state: State) => state.loadParsedDeviceReportsError;

@@ -1,10 +1,10 @@
 import { Action } from '@ngrx/store';
 export enum ParsedDeviceReportsActionTypes {
-  LoadDeviceParsedReports = '[Device] Load Device Reports'
+  LoadDeviceParsedReports = '[Device] Load Device Parsed Reports'
 }
 
 /**
- * Load device patients action
+ * Load device raw reports action
  */
 export class LoadDeviceParsedReports implements Action {
   readonly type = ParsedDeviceReportsActionTypes.LoadDeviceParsedReports;

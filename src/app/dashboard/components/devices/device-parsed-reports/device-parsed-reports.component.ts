@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { MatProgressBar, MatButton } from '@angular/material';
 import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
 
@@ -18,7 +18,7 @@ import { takeWhile } from 'rxjs/operators';
   templateUrl: './device-parsed-reports.component.html',
 //   styleUrls: ['./device-parsed-reports.component.scss']
 })
-export class DeviceParsedReportsComponent implements OnInit, OnDestroy {
+export class DeviceParsedReportsComponent implements OnInit {
   
   // selected device in the list
   selectedDeviceId: number;
@@ -149,21 +149,14 @@ export class DeviceParsedReportsComponent implements OnInit, OnDestroy {
    */
   ngOnInit(): void {
     // Subscribe here because it does not use an async pipe
-    this.store.pipe(
-        select(fromDashboard.getSelectedDeviceId),
-        takeWhile(() => this.componentActive)
-      ).subscribe(
-        (id: number) => this.selectedDeviceId = id
-      );
+    this.store.pipe(select(fromDashboard.getSelectedDeviceId)).subscribe((id: number) => {
+      console.log(id);
+      this.selectedDeviceId = id;
+    });
 
     this.store.dispatch(new parsedDeviceReportsActions.LoadDeviceParsedReports(this.selectedDeviceId));
 
     
-  }
-
-  // unsubscribe from the observable
-  ngOnDestroy(): void {
-    this.componentActive = false;
   }
 
 }

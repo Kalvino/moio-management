@@ -7,8 +7,8 @@ export const environment = {
     'dev-api.my-appsolute-mobility.com'
   ],
   // apiHost: 'http://localhost:8000',
-  // apiHost: 'https://dev-api.my-appsolute-mobility.com'
-  apiHost: 'http://moio.cloud.local',
-  // socketHost: 'http://moio.broker.local:8089'
-  socketHost: 'http://localhost:8089'
+  apiHost: 'https://dev-api.my-appsolute-mobility.com',
+  // apiHost: 'http://moio.cloud.local',
+  socketHost: 'http://moio.broker.local:8089'
+  // socketHost: 'http://localhost:8089'
 };

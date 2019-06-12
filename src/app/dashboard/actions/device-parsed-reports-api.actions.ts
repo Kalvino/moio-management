@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { IParsedDeviceReport } from '../models/parsed-device-report.model';
 
 /**
- * definitions for action types
+ * definitions for device parsed reports action types
  */
 export enum ParsedDeviceReportsApiActionTypes {
   LoadParsedDeviceReportsSuccess = '[DeviceReports/Api] Load Parsed Device Reports Success',
@@ -10,7 +10,7 @@ export enum ParsedDeviceReportsApiActionTypes {
 }
 
 /**
- * load all device reports success action
+ * load all device parsed reports success action
  */
 export class LoadParsedDeviceReportsSuccess implements Action {
   public readonly type = ParsedDeviceReportsApiActionTypes.LoadParsedDeviceReportsSuccess;
@@ -20,7 +20,7 @@ export class LoadParsedDeviceReportsSuccess implements Action {
 }
 
 /**
- * load all device reports failure action
+ * load all device parsed reports failure action
  */
 export class LoadParsedDeviceReportsFailure implements Action {
   public readonly type = ParsedDeviceReportsApiActionTypes.LoadParsedDeviceReportsFailure;

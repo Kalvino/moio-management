@@ -17,6 +17,8 @@ import * as fromNursingHome from './nursing-homes.reducer';
 import * as fromDatalessCommands from './dataless-commands-reducer';
 import * as fromParsedDeviceReportsPage from './parsed-device-reports-page.reducer';
 import * as fromParsedDeviceReports from './parsed-device-reports.reducer';
+import * as fromRawDeviceReportsPage from './raw-device-reports-page.reducer';
+import * as fromRawDeviceReports from './raw-device-reports.reducer';
 import * as fromLayout from './layout.reducer';
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
@@ -43,6 +45,8 @@ export interface DashboardState {
   datalessCommands: fromDatalessCommands.State;
   parsedDeviceReports: fromParsedDeviceReports.State;
   parsedDeviceReportsPage: fromParsedDeviceReportsPage.State;
+  rawDeviceReports: fromRawDeviceReports.State;
+  rawDeviceReportsPage: fromRawDeviceReportsPage.State;
 }
 
 /**
@@ -74,7 +78,9 @@ export const reducers: ActionReducerMap<DashboardState, any> = {
   deviceReports: fromDeviceReports.reducer,
   datalessCommands: fromDatalessCommands.reducer,
   parsedDeviceReports: fromParsedDeviceReports.reducer,
-  parsedDeviceReportsPage: fromParsedDeviceReportsPage.reducer
+  parsedDeviceReportsPage: fromParsedDeviceReportsPage.reducer,
+  rawDeviceReports: fromRawDeviceReports.reducer,
+  rawDeviceReportsPage: fromRawDeviceReportsPage.reducer
 
 };
 
@@ -569,23 +575,19 @@ export const {
 } = fromDeviceReports.adapter.getSelectors(getDeviceReportsState);
 
 
-
-
-
-
 // ****************** PARSED DEVICE REPORTS PAGE *************
 export const getParsedDeviceReportsPageState = createSelector(
   getDashboardState,
   (state: DashboardState) => state.parsedDeviceReportsPage
 );
 
-// get error state of the deviceReportsPage from the store
+// get error state of the deviceParsedReportsPage from the store
 export const getParsedDeviceReportsPageError = createSelector(
   getParsedDeviceReportsPageState,
   fromParsedDeviceReportsPage.getLoadParsedDeviceReportsError
 );
 
-// get pending state of the deviceReportsPage from the store
+// get pending state of the deviceParsedReportsPage from the store
 export const getParsedDeviceReportsPagePending = createSelector(
   getParsedDeviceReportsPageState,
   fromParsedDeviceReportsPage.getLoadParsedDeviceReportsPending
@@ -605,6 +607,39 @@ export const {
   selectTotal: getTotalParsedDeviceReports
 } = fromParsedDeviceReports.adapter.getSelectors(getParsedDeviceReportsState);
 
+
+
+// ****************** RAW DEVICE REPORTS PAGE *************
+export const getRawDeviceReportsPageState = createSelector(
+  getDashboardState,
+  (state: DashboardState) => state.rawDeviceReportsPage
+);
+
+// get error state of the deviceRawReportsPage from the store
+export const getRawDeviceReportsPageError = createSelector(
+  getRawDeviceReportsPageState,
+  fromRawDeviceReportsPage.getLoadRawDeviceReportsError
+);
+
+// get pending state of the deviceRawReportsPage from the store
+export const getRawDeviceReportsPagePending = createSelector(
+  getRawDeviceReportsPageState,
+  fromRawDeviceReportsPage.getLoadRawDeviceReportsPending
+);
+
+
+// ****************** RAW DEVICE REPORTS *************
+export const getRawDeviceReportsState = createSelector(
+  getDashboardState,
+  (state: DashboardState) => state.rawDeviceReports
+);
+
+// deconstruct several functions from ngrx/entity
+export const {
+  selectEntities: getRawDeviceReportsEntities,
+  selectAll: getAllRawDeviceReports,
+  selectTotal: getTotalRawDeviceReports
+} = fromRawDeviceReports.adapter.getSelectors(getRawDeviceReportsState);
 
 /**
  * Layout configurations selectors

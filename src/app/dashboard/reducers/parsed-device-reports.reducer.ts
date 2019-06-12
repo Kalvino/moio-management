@@ -26,14 +26,19 @@ export function reducer(
   state: State = initialState,
   action:
     | ParsedDeviceReportsApiActions.ParsedDeviceReportsApiActionsUnion
+    | ParsedDeviceReportsActions.ParsedDeviceReportsActionsUnion
     | AuthApiActions.AuthApiActionsUnion
 ): State {
 
   switch (action.type) {
 
-    // load device reports success state
+    // load parsed device reports success action
     case ParsedDeviceReportsApiActions.ParsedDeviceReportsApiActionTypes.LoadParsedDeviceReportsSuccess:
       return adapter.upsertMany(action.payload.parsedDeviceReports, state);
+
+    // load selected device's parsed reports
+    case (ParsedDeviceReportsActions.ParsedDeviceReportsActionTypes.LoadDeviceParsedReports):
+      return adapter.removeAll(state)
 
     // reset state to initial state on logout
     case AuthApiActions.AuthApiActionTypes.LogoutSuccess:

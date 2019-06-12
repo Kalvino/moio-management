@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { DevicesApiActions, DevicesActions, DeviceReportsApiActions, 
   DeviceReportsActions, ParsedDeviceReportsApiActions, 
-  ParsedDeviceReportsActions, } from '../actions';
+  ParsedDeviceReportsActions, RawDeviceReportsApiActions, RawDeviceReportsActions } from '../actions';
 import { catchError, exhaustMap, map, tap, delay } from 'rxjs/operators';
 import { IDevice } from '../models/device.model';
 import { DevicesService } from '../services/devices.service';
@@ -16,8 +16,10 @@ import { IPatient } from '../models/patient.model';
 import { Update } from '@ngrx/entity';
 import { IDeviceReport } from '../models/device-report.model';
 import { IParsedDeviceReport } from '../models/parsed-device-report.model';
+import { IRawDeviceReport } from '../models/raw-device-report.model';
 import { ParsedDeviceReportsApiActionTypes } from '../actions/device-parsed-reports-api.actions';
 import { ParsedDeviceReportsActionTypes } from '../actions/device-parsed-reports.actions';
+import { RawDeviceReportsActionTypes } from '../actions/device-raw-reports.actions';
 
 /**
  * devices effects
@@ -207,8 +209,8 @@ export class DevicesEffects {
 
 
 
-    /**
-   * effect for loading device reports
+  /**
+   * effect for loading device parsed reports
    */
   @Effect()
   loadParsedDeviceReports = this.actions$
@@ -242,6 +244,46 @@ export class DevicesEffects {
               });
 
               return of(new ParsedDeviceReportsApiActions.LoadParsedDeviceReportsFailure({ message }));
+            })
+          );
+      })
+    );
+
+  /**
+   * effect for loading device raw reports
+   */
+  @Effect()
+  loadRawDeviceReports = this.actions$
+    .pipe(
+      ofType<RawDeviceReportsActions.LoadDeviceRawReports>(RawDeviceReportsActionTypes.LoadDeviceRawReports),
+      map(action => action.payload),
+      exhaustMap((id: number) => {
+
+        return this.devicesService.getRawDeviceReports(id)
+          .pipe(
+            delay(2000),
+            map((rawDeviceReports: IRawDeviceReport[]) => {
+              console.log(rawDeviceReports);
+
+              return new RawDeviceReportsApiActions.LoadRawDeviceReportsSuccess({ rawDeviceReports });
+            }),
+            catchError(httpError => {
+              const message = httpError.statusText.toLowerCase();
+
+              const snackBarRef = this.snackBar.open(this.translate.instant(message), this.translate.instant('Retry'), {
+                duration: 10000
+              });
+
+              snackBarRef.afterDismissed().subscribe(snackBarDismiss => {
+
+                if (snackBarDismiss.dismissedByAction) {
+                  this.store.dispatch(new RawDeviceReportsActions.LoadDeviceRawReports(id));
+                } else {
+                  this.router.navigate(['/dashboard/devices']);
+                }
+              });
+
+              return of(new RawDeviceReportsApiActions.LoadRawDeviceReportsFailure({ message }));
             })
           );
       })
