@@ -152,6 +152,7 @@ export class NursingHomesEffects {
           .pipe(
             delay(2000),
             map((geofencing: Geofencing[]) => {
+              console.log(geofencing);
               return new NursingHomesApiActions.LoadNursingHomeGeofencingSuccess({ geofencing });
             }),
             catchError(httpError => {
@@ -258,6 +259,7 @@ export class NursingHomesEffects {
       return this.nursingHomesService.deleteNursingHomeGeofencing(geofence)
         .pipe(
           map(geofencing => {
+            console.log(geofence);
             return new NursingHomesApiActions.DeleteNursingHomeGeofencingSuccess({ geofencing: geofence });
           }),
           catchError(httpError => {

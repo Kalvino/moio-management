@@ -153,5 +153,20 @@
   "DeleteGeofence": {
     "title": "Löschen Sie diesen Geofence?",
     "message": "Möchten Sie diesen Geofence wirklich löschen?"
+  },
+  "Report": {
+    "ReportType": "Berichtstyp",
+    "AlarmCode": "Alarmcode",
+    "AlarmName": "Alarmname",
+    "positionCode": "Positionscode",
+    "PositionName": "Positionsname",
+    "BeaconStatus": "Beaconstatus",
+    "Latitude": "Breite",
+    "Longitude": "Längengrad",
+    "SensorStatus": "Sensorstatus",
+    "Date": "Datum",
+    "Time": "Zeit",
+    "DayOfWeek": "Wochentag",
+    "BatteryStatus": "Batteriestatus"
   }
 }

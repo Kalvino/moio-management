@@ -56,7 +56,12 @@ import { NursingHomeGeofence } from './components/nursing-homes/geofence/geofenc
 import { GeofenceFormComponent } from './components/nursing-homes/geofence-form/geofence-form.component';
 import { GeofenceEditFormComponent } from './components/nursing-homes/geofence-edit-form/geofence-edit-form.component';
 import { NursingHomeComponent } from './components/nursing-homes/nursing-home.component';
-
+import { DevicesComponent } from './components/devices/devices.component';
+import { DevicesListComponent } from './components/devices/devices-list/devices-list.component';
+import { DevicesContainerComponent } from './components/devices/devices-container.component';
+import { DevicesEffects } from './effects/devices.effects';
+import { DeviceParsedReportsComponent } from './components/devices/device-parsed-reports/device-parsed-reports.component';
+import { DeviceRawReportsComponent } from './components/devices/device-raw-reports/device-raw-reports.component';
 
 /**
  * list of components in this module
@@ -89,6 +94,11 @@ export const COMPONENTS = [
     NursingHomeGeofence,
     GeofenceFormComponent,
     GeofenceEditFormComponent,
+    DevicesComponent,
+    DevicesListComponent,
+    DevicesContainerComponent,
+    DeviceParsedReportsComponent,
+    DeviceRawReportsComponent,
 
     LoaderComponent,
     AppDropdownDirective,
@@ -107,7 +117,8 @@ export const EFFECTS = [
     UsersEffects,
     PatientsEffects,
     NursingHomesEffects,
-    ReportsEffects
+    ReportsEffects,
+    DevicesEffects
 ];
 
 /**
