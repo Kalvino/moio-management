@@ -1,13 +1,16 @@
 <mat-progress-bar *ngIf="isPending$ | async" [mode]="(isPending$ | async) ? 'indeterminate' : 'determinate'" class="session-progress"></mat-progress-bar>
 <div class="mat-box-shadow margin-333">
   <ngx-datatable class="material fullscreen bg-white"
-                [columnMode]="'force'"
-                [headerHeight]="50"
-                [footerHeight]="0"
-                [rowHeight]="50"
-                [scrollbarH]="true"
-                [rows]="deviceRawReports$ | async"
-                [columns]="columns"
-                [selectionType]="'single'">
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [rowHeight]="50"
+        [scrollbarH]="true"
+        [rows]="deviceRawReports$ | async"
+        [columns]="columns"
+        [sortType]="'multi'"
+        [externalPaging]="false"
+        [loadingIndicator]="isPending$ | async"
+        [limit]="15" 
+        [footerHeight]="50">
   </ngx-datatable>
 </div> 

@@ -12,6 +12,8 @@ import * as parsedDeviceReportsActions from '../../../actions/device-parsed-repo
 import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { takeWhile } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'moio-device-parsed-report',
@@ -138,7 +140,16 @@ export class DeviceParsedReportsComponent implements OnInit {
    */
   constructor(
     private store: Store<fromDashboard.State>, 
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private route: ActivatedRoute) {
+
+      
+      console.log(route.snapshot.params.id);
+
+      route.params.pipe(select(p => p.id)).subscribe(id => {
+        console.log(id);
+      });
+      
 
       this.translate.setDefaultLang('de');
 
@@ -148,6 +159,9 @@ export class DeviceParsedReportsComponent implements OnInit {
    * init DeviceParsedReportsComponent component
    */
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      console.log(params);
+    });
     // Subscribe here because it does not use an async pipe
     this.store.pipe(select(fromDashboard.getSelectedDeviceId)).subscribe((id: number) => {
       console.log(id);

@@ -3,11 +3,14 @@
   <ngx-datatable class="material fullscreen bg-white"
                 [columnMode]="'force'"
                 [headerHeight]="50"
-                [footerHeight]="0"
                 [rowHeight]="50"
                 [scrollbarH]="true"
                 [rows]="deviceParsedReports$ | async"
                 [columns]="columns"
-                [selectionType]="'single'">
+                [sortType]="'multi'"
+                [externalPaging]="false"
+                [loadingIndicator]="isPending$ | async"
+                [limit]="15" 
+                [footerHeight]="50">
   </ngx-datatable>
 </div> 
