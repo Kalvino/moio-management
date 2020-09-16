@@ -57,7 +57,6 @@ export function createTanslateLoader(http: HttpClient) {
 export function jwtOptionsFactory(store) {
   return {
     whitelistedDomains: environment.whitelistedDomains,
-    skipWhenExpired: true,
     tokenGetter: () => {
       return store.pipe(
         select(fromAuth.getAccessToken),

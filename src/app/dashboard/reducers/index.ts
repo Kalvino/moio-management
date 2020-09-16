@@ -5,6 +5,7 @@ import * as fromNursingHomesPage from './nursing-homes-page.reducer';
 import * as fromDevicesPage from './devices-page.reducer';
 import * as fromDeviceReportsPage from './device-reports-page.reducer';
 import * as fromRoot from '../../reducers';
+import * as fromAuth from '../../auth/reducers';
 import * as fromUsers from './users.reducer';
 import * as fromReports from './reports.reducer';
 import * as fromDevices from './devices.reducer';
@@ -52,7 +53,7 @@ export interface DashboardState {
 /**
  * assign state to global store
  */
-export interface State extends fromRoot.State {
+export interface State extends fromAuth.State {
   dashboard: DashboardState;
 }
 
